@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythm", "Rhythm\Rhythm.csproj", "{2C946B53-4357-4424-B86D-D7B1FE277A5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythm.Tests", "Rhythm.Tests\Rhythm.Tests.csproj", "{8CCB8084-65E4-4B3A-8A54-BAF224F633DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythm.Domain", "Rhythm.Domain\Rhythm.Domain.csproj", "{7707A10A-E169-48CB-9259-7025315EEB46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C946B53-4357-4424-B86D-D7B1FE277A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C946B53-4357-4424-B86D-D7B1FE277A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C946B53-4357-4424-B86D-D7B1FE277A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C946B53-4357-4424-B86D-D7B1FE277A5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CCB8084-65E4-4B3A-8A54-BAF224F633DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CCB8084-65E4-4B3A-8A54-BAF224F633DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CCB8084-65E4-4B3A-8A54-BAF224F633DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CCB8084-65E4-4B3A-8A54-BAF224F633DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7707A10A-E169-48CB-9259-7025315EEB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7707A10A-E169-48CB-9259-7025315EEB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7707A10A-E169-48CB-9259-7025315EEB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7707A10A-E169-48CB-9259-7025315EEB46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
