@@ -1,0 +1,25 @@
+﻿@model Rhythm.Domain.Model.Post
+
+@{
+    Layout = "~/Views/Shared/_Post.cshtml";
+}
+
+
+@section Title{
+    <p>
+        @Model.Title
+    </p>
+}
+
+@section ShortDescription{
+    <p>
+        @Model.ShortDescription
+    </p>
+
+}
+
+@section Description{
+    <p>
+        @Model.DescriptionPost
+    </p>
+}

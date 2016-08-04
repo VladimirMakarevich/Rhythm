@@ -1,0 +1,3 @@
+2016-08-05 00:15:12.2997|INFO|Rhythm.MvcApplication|Application Start
+2016-08-05 00:16:18.2694|INFO|Rhythm.MvcApplication|Application Start
+2016-08-05 00:18:01.5867|INFO|Rhythm.MvcApplication|Application Start
