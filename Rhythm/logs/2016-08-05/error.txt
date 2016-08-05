@@ -36,3 +36,5 @@
 2016-08-05 13:13:35.0565|ERROR|Rhythm.MvcApplication|Application Error
 2016-08-05 13:14:33.1917|ERROR|Rhythm.MvcApplication|Application Error
 2016-08-05 13:15:14.2454|ERROR|Rhythm.MvcApplication|Application Error
+2016-08-05 13:52:05.0851|ERROR|Rhythm.MvcApplication|Application Error
+2016-08-05 14:04:11.5685|ERROR|Rhythm.MvcApplication|Application Error

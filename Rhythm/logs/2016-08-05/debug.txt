@@ -36,3 +36,5 @@
 2016-08-05 13:13:35.0565|DEBUG|Rhythm.MvcApplication|Application Debug
 2016-08-05 13:14:33.1917|DEBUG|Rhythm.MvcApplication|Application Debug
 2016-08-05 13:15:14.2454|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-05 13:52:05.0851|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-05 14:04:11.5685|DEBUG|Rhythm.MvcApplication|Application Debug

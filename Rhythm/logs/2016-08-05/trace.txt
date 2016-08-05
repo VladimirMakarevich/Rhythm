@@ -36,3 +36,5 @@
 2016-08-05 13:13:35.0565|TRACE|Rhythm.MvcApplication|Application Trace
 2016-08-05 13:14:33.1917|TRACE|Rhythm.MvcApplication|Application Trace
 2016-08-05 13:15:14.2454|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-05 13:52:05.0851|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-05 14:04:11.5685|TRACE|Rhythm.MvcApplication|Application Trace
