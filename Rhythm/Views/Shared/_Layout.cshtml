@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta charset="utf-8">
-    <meta name="author" content="Roman Kirichik">
+    <meta name="author" content="Vladimir Makarevich">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -15,16 +16,8 @@
     <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/apple-touch-icon-114x114.png">
 
-    <!--TODO: CSS -->
-    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/css/style.css">
-    <link rel="stylesheet" href="~/Content/css/style-responsive.css">
-    <link rel="stylesheet" href="~/Content/css/animate.min.css">
-    <link rel="stylesheet" href="~/Content/css/vertical-rhythm.min.css">
-    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
-    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
-
-
+    @Styles.Render("~/Content/css/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="appear-animate">
 
@@ -52,6 +45,29 @@
                 <!-- Main Menu -->
                 <div class="inner-nav desktop-nav">
                     <ul class="clearlist">
+                        <li>@Html.ActionLink("Home", "Home", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Post", "Posts", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Article", "Articles", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Library", "Lybrarys", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Portfolio", "Portfolio", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("About me", "AboutMe", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", new { @class = "mn-has-sub" })</li>
+                        <li><a>&nbsp;</a></li>
+                        <li>
+                            <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
+
+                            <ul class="mn-sub">
+
+                                <li><a href="">English</a></li>
+                                <li><a href="">France</a></li>
+                                <li><a href="">Russian</a></li>
+                                <li><a href="">Belarusian</a></li>
+
+                            </ul>
+
+                        </li>
+                    </ul>
+                    @*<ul class="clearlist">
 
                         <!-- Item With Sub -->
                         <li>
@@ -101,7 +117,7 @@
                         </li>
                         <!-- End Languages -->
 
-                    </ul>
+                    </ul>*@
                 </div>
                 <!-- End Main Menu -->
 
@@ -112,7 +128,7 @@
         <!--TODO: head section-->
         <!-- Section -->
 
-                    @RenderBody()
+        @RenderBody()
 
         <!-- End Section -->
         <!-- Foter -->
@@ -164,32 +180,16 @@
 
     </div>
     <!-- End Page Wrap -->
-    <!-- TODO: JS -->
-    <script type="text/javascript" src="~/scripts/rhythm/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/bootstrap.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/SmoothScroll.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.scrollTo.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.localScroll.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.viewport.mini.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.countTo.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.appear.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.sticky.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.parallax-1.1.3.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/isotope.pkgd.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/gmap3.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/wow.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.simple-text-rotator.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/all.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/contact-form.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/jquery.ajaxchimp.min.js"></script>
+    @Scripts.Render("~/bundles/rhythm/jquery")
+    @Scripts.Render("~/bundles/rhythm/bootstrap")
+    @Scripts.Render("~/bundles/rhythm/all")
+    @Scripts.Render("~/bundles/rhythm/contact")
+    @Scripts.Render("~/bundles/rhythm/imagesloaded")
+    @Scripts.Render("~/bundles/rhythm/isotope")
+    @Scripts.Render("~/bundles/rhythm/masonry")
+    @Scripts.Render("~/bundles/rhythm/owl")
+    @Scripts.Render("~/bundles/rhythm/moothScroll")
+    @Scripts.Render("~/bundles/rhythm/wow")
     <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
-
 </body>
 </html>

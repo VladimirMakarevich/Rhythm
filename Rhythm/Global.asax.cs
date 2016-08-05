@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using NLog;
 using Rhythm.infrastructure;
+using System.Web.Optimization;
 
 namespace Rhythm
 {
@@ -21,6 +22,7 @@ namespace Rhythm
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
