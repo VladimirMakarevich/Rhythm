@@ -18,7 +18,6 @@ namespace Rhythm.Controllers
         {
             this.repository = postRepository;
         }
-        private DogCodingEntities db = new DogCodingEntities();
 
         // GET: Posts
         public ActionResult Index()

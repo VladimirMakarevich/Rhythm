@@ -1,0 +1,17 @@
+﻿@model Rhythm.Models.PostListViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var p in Model.Posts)
+{
+    <h3>@p.Title</h3>
+    <h5>@p.ShortDescription</h5>
+    <p>@p.DescriptionPost</p>
+}
+
+<div class="pagination">
+    <a href=""><i class="fa fa-angle-left"></i></a>
+    @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x } ) )
+    <a href=""><i class="fa fa-angle-right"></i></a>
+</div>

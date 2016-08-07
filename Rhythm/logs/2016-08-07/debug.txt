@@ -1,0 +1,7 @@
+2016-08-07 09:20:38.8450|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:25:43.2141|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:29:18.9637|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:30:08.2004|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:30:36.3371|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:31:30.1782|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-07 09:35:04.1948|DEBUG|Rhythm.MvcApplication|Application Debug
