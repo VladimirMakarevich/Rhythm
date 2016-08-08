@@ -223,6 +223,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,6 +231,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,6 +285,7 @@
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
     <Folder Include="Content\img\" />
+    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
