@@ -11,5 +11,7 @@ namespace Rhythm.Models
         public IEnumerable<Post> Posts { get; set; }
         public ListView PagingView { get; set; }
 
+
+        //TODO: What if we trying create widget, as post-list?
     }
 }
