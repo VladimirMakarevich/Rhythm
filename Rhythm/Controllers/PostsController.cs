@@ -11,12 +11,11 @@ using Rhythm.Domain.Abstract;
 
 namespace Rhythm.Controllers
 {
-    public class PostsController : Controller
+    public class PostsController : DefaultController
     {
-        private IRepository repository;
-        public PostsController(IRepository postRepository)
+        public PostsController(IRepository repository)
         {
-            this.repository = postRepository;
+            this.repository = repository;
         }
 
         public ActionResult Index()

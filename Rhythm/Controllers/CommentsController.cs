@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Controllers
 {
-    public class CommentsController : Controller
+    public class CommentsController : DefaultController
     {
         // GET: Comments
         public ActionResult Index()

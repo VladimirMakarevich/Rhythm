@@ -8,14 +8,14 @@ using System.Web.Mvc;
 
 namespace Rhythm.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : DefaultController
     {
-        private readonly IRepository repository;
-        public int PageSize = 2;
+        public int PageSize = 8;
         public HomeController(IRepository postRepository)
         {
             this.repository = postRepository;
         }
+
         // GET: BlogHome
         public ActionResult Index()
         {
