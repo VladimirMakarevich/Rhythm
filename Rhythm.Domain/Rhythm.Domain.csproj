@@ -108,7 +108,9 @@
     <Compile Include="EfRepository\EfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Model\ModelDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelDb.Designer.cs</LastGenOutput>

@@ -17,7 +17,7 @@ namespace Rhythm.Domain.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Post = new HashSet<Post>();
+            this.Posts = new HashSet<Post>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace Rhythm.Domain.Model
         public string DescriptionCategory { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Post> Post { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

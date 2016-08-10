@@ -25,9 +25,9 @@ namespace Rhythm.Domain.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Comment> Comment { get; set; }
-        public virtual DbSet<Post> Post { get; set; }
-        public virtual DbSet<Tag> Tag { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
     }
 }

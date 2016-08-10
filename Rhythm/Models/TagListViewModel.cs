@@ -8,7 +8,6 @@ namespace Rhythm.Models
 {
     public class TagListViewModel
     {
-        public IEnumerable<Tag> Tag { get; set; }
-        public TagView TagView { get; set; }
+        public Tag Tag { get; private set; }
     }
 }

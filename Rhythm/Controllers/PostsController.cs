@@ -20,7 +20,7 @@ namespace Rhythm.Controllers
 
         public ActionResult Index()
         {
-            var post = repository.Posts.Include(p => p.Category1);
+            var post = repository.Post.Include(p => p.Category1);
             return View(post.ToList());
         }
 
@@ -30,7 +30,7 @@ namespace Rhythm.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = repository.Posts.FirstOrDefault(p => p.ID == id);
+            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
             if (post == null)
             {
                 return HttpNotFound();

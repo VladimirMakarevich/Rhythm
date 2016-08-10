@@ -8,9 +8,9 @@ namespace Rhythm.Domain.EfRepository
 {
     public partial class EfRepository
     {
-        public IQueryable<Tag> Tags
+        public IQueryable<Tag> Tag
         {
-            get { return context.Tag; }
+            get { return context.Tags; }
         }
     }
 }

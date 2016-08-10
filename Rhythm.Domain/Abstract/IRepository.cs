@@ -9,10 +9,10 @@ namespace Rhythm.Domain.Abstract
 {
     public interface IRepository
     {
-        IQueryable<Post> Posts { get; }
-        IQueryable<Tag> Tags { get; }
-        IQueryable<Category> Categories { get; }
-        IQueryable<Comment> Comments { get; }
+        IQueryable<Post> Post { get; }
+        IQueryable<Tag> Tag { get; }
+        IQueryable<Category> Category { get; }
+        IQueryable<Comment> Comment { get; }
 
     }
 }

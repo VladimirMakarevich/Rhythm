@@ -1,0 +1,4 @@
+2016-08-09 17:43:44.6592|ERROR|Rhythm.MvcApplication|Application Error
+2016-08-09 17:44:16.4525|ERROR|Rhythm.MvcApplication|Application Error
+2016-08-09 18:12:06.3019|ERROR|Rhythm.MvcApplication|Application Error
+2016-08-09 18:14:55.7089|ERROR|Rhythm.MvcApplication|Application Error
