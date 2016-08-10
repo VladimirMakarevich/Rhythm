@@ -1,0 +1,10 @@
+2016-08-10 00:11:49.1402|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:12:42.2362|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:13:12.2710|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:14:17.9591|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:14:36.3970|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:22:26.6700|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:24:05.8929|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:30:54.4679|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:34:11.4606|TRACE|Rhythm.MvcApplication|Application Trace
+2016-08-10 00:45:23.6631|TRACE|Rhythm.MvcApplication|Application Trace

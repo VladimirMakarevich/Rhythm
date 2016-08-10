@@ -28,7 +28,7 @@ namespace Rhythm.Controllers
         {
             PostListViewModel model = new PostListViewModel
             {
-                Posts = repository.Posts
+                Posts = repository.Post
                 .OrderBy(p => p.ID)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
@@ -37,7 +37,7 @@ namespace Rhythm.Controllers
                 {
                     CurrentPage = page,
                     PostsPerPage = PageSize,
-                    TotalPosts = repository.Posts.Count()
+                    TotalPosts = repository.Post.Count()
                 }
             };
 

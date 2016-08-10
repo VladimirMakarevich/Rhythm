@@ -8,9 +8,9 @@ namespace Rhythm.Domain.EfRepository
 {
     public partial class EfRepository
     {
-        public IQueryable<Category> Categories
+        public IQueryable<Category> Category
         {
-            get { return context.Category; }
+            get { return context.Categories; }
         }
     }
 }

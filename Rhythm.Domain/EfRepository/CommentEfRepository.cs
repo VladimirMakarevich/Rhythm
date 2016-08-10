@@ -8,9 +8,9 @@ namespace Rhythm.Domain.EfRepository
 {
     public partial class EfRepository
     {
-        public IQueryable<Comment> Comments
+        public IQueryable<Comment> Comment
         {
-            get { return context.Comment; }
+            get { return context.Comments; }
         }
     }
 }

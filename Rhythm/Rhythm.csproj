@@ -223,14 +223,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
-    <Compile Include="Controllers\AboutMeController.cs" />
-    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LibraryController.cs" />
-    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -242,7 +238,7 @@
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Models\TagListViewModel.cs" />
-    <Compile Include="Models\TagView.cs" />
+    <Compile Include="Models\WidgetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
       <DependentUpon>content_fr.resx</DependentUpon>
@@ -282,6 +278,7 @@
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_Tag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -294,11 +291,8 @@
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
     <Folder Include="Content\img\" />
-    <Folder Include="Views\AboutMe\" />
-    <Folder Include="Views\Article\" />
-    <Folder Include="Views\Contact\" />
-    <Folder Include="Views\Library\" />
-    <Folder Include="Views\Portfolio\" />
+    <Folder Include="Views\Blog\" />
+    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

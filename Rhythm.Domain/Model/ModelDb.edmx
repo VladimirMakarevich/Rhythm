@@ -42,11 +42,15 @@
           <Property Name="Comment" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PostTag">
-          <Property Name="PostID" Type="int" />
-          <Property Name="TagID" Type="int" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="PostID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="PostID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="ID" />
@@ -80,17 +84,41 @@ warning 6013: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Post_Tag" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_Tag_Post" />-->
+        <Association Name="FK_Post_Tag">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostTag">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Post">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostTag">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DogCodingModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="blog" store:Type="Tables" />
+          <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" store:Schema="blog">
+            <DefiningQuery>SELECT 
+    [PostTag].[PostID] AS [PostID], 
+    [PostTag].[TagID] AS [TagID]
+    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Comment" EntitySet="Comment" />
@@ -98,6 +126,14 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_Tag" Association="Self.FK_Post_Tag">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="PostTag" EntitySet="PostTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Post" Association="Self.FK_Tag_Post">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="PostTag" EntitySet="PostTag" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -113,7 +149,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
           <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UrlSlug" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Post" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -143,7 +179,8 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
           <Property Name="Category" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
-          <NavigationProperty Name="Comment1" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
+          <NavigationProperty Name="Tags" Relationship="Self.PostTag" FromRole="Post" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -153,6 +190,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
           <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UrlSlug" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Posts" Relationship="Self.PostTag" FromRole="Tag" ToRole="Post" />
         </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -178,18 +216,26 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PostTag">
+          <End Role="Post" Type="Self.Post" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="DogCodingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Comment" EntityType="Self.Comment" />
-          <EntitySet Name="Post" EntityType="Self.Post" />
-          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Post" EntitySet="Post" />
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Post" EntitySet="Posts" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
-            <End Role="Post" EntitySet="Post" />
-            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="PostTag" Association="Self.PostTag">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Tag" EntitySet="Tags" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -198,7 +244,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DogCodingModelStoreContainer" CdmEntityContainer="DogCodingEntities">
-          <EntitySetMapping Name="Category">
+          <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="DogCodingModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -208,7 +254,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Comment">
+          <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="DogCodingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -220,7 +266,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Post">
+          <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="DogCodingModel.Post">
               <MappingFragment StoreEntitySet="Post">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -237,7 +283,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tag">
+          <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="DogCodingModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -247,6 +293,14 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="PostTag" TypeName="DogCodingModel.PostTag" StoreEntitySet="PostTag">
+            <EndProperty Name="Post">
+              <ScalarProperty Name="ID" ColumnName="PostID" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -261,7 +315,7 @@ error 6004: The table 'DogCoding.blog.PostTag' is referenced by a relationship, 
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
