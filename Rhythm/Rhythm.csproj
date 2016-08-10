@@ -223,9 +223,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
+    <Compile Include="Controllers\AboutMeController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,7 +294,11 @@
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
     <Folder Include="Content\img\" />
-    <Folder Include="Views\Comments\" />
+    <Folder Include="Views\AboutMe\" />
+    <Folder Include="Views\Article\" />
+    <Folder Include="Views\Contact\" />
+    <Folder Include="Views\Library\" />
+    <Folder Include="Views\Portfolio\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
