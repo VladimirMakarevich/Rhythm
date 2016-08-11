@@ -6,8 +6,9 @@ using System.Web;
 
 namespace Rhythm.Models
 {
-    public class TagListViewModel
+    public class WidgetListViewModel
     {
-        public Tag Tag { get; private set; }
+        public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }
