@@ -1,33 +1,37 @@
 ﻿@model Rhythm.Domain.Model.Post
 
 @{
-    Layout = "~/Views/Shared/_Post.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!-- Post -->
-<div class="blog-item mb-80 mb-xs-40">
-
-    <!-- Text -->
-    <div class="blog-item-body">
-
-        <h1 class="mt-0 font-alt">
-            @section Title{
-                @Html.DisplayFor(model => model.Title)
-            }
-        </h1>
-
-        <div class="lead">
-            @section ShortDescription{
-                @Html.DisplayFor(model => model.ShortDescription)
-            }
+<section class="page-section">
+    <div class="container relative">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-sm-8">
+                <!-- Post -->
+                <div class="blog-item mb-80 mb-xs-40">
+                    <!-- Text -->
+                    <div class="blog-item-body">
+                        <h1 class="mt-0 font-alt">@Model.Title</h1>
+                        <div class="lead">
+                            @Model.ShortDescription
+                        </div>
+                        @Model.DescriptionPost
+                    </div>
+                    <!-- End Text -->
+                </div>
+                <!-- End Post -->
+                @Html.Partial("_CommentsList")
+                <!-- Prev/Next Post -->
+                <div class="clearfix mt-40">
+                    @Html.ActionLink("Prev post", "Post", new { id = Model.ID - 1 }, new { @class = "blog-item-more left" })
+                    @Html.ActionLink("Prev post", "Post", new { id = Model.ID + 1 }, new { @class = "blog-item-more right" })
+                </div>
+                <!-- End Prev/Next Post -->
+            </div>
+            <!-- End Content -->
+            @Html.Partial("_Sidebar")
         </div>
-
-        @section Description{
-            @Html.DisplayFor(model => model.DescriptionPost)
-        }
-
     </div>
-    <!-- End Text -->
-
-</div>
-<!-- End Post -->
+</section>
+<!-- End Section -->

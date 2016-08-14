@@ -1,56 +1,9 @@
-﻿
+﻿@model Rhythm.Domain.Model.Post
 <!-- Comments -->
 <div class="mb-80 mb-xs-40">
-
-    <h4 class="blog-page-title font-alt">Comments<small class="number">(3)</small></h4>
-
+    <h4 class="blog-page-title font-alt">Comments<small class="number">(@Model.CountComments)</small></h4>
     <ul class="media-list text comment-list clearlist">
-
-        <!-- Comment Item -->
-        <li class="media comment-item">
-
-            <a class="pull-left" href="#"><img class="media-object comment-avatar" src="~/Content/img/user-bone.png" alt="" width="50" height="50"></a>
-
-            <div class="media-body">
-
-                <div class="comment-item-data">
-                    <div class="comment-author">
-                        <a href="#">John Doe</a>
-                    </div>
-                    Feb 9, 2014, at 10:23<span class="separator">&mdash;</span>
-                    <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
-                </div>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-                </p>
-
-                <!-- Comment of second level -->
-                <div class="media comment-item">
-
-                    <a class="pull-left" href="#"><img class="media-object comment-avatar" src="~/Content/img/user-bone.png" alt=""></a>
-
-                    <div class="media-body">
-
-                        <div class="comment-item-data">
-                            <div class="comment-author">
-                                <a href="#">Sam Brin</a>
-                            </div>
-                            Feb 9, 2014, at 10:27<span class="separator">&mdash;</span>
-                            <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
-                        </div>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-                        </p>
-
-                    </div>
-                </div>
-                <!-- End Comment of second level -->
-
-            </div>
-        </li>
-        <!-- End Comment Item -->
+        @Html.Action("AllComments", "Comments")
     </ul>
 </div>
 <!-- End Comments -->

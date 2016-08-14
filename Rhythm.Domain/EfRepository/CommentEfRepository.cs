@@ -13,7 +13,7 @@ namespace Rhythm.Domain.EfRepository
             get { return context.Comments; }
         }
 
-        public List<RecentComment> GetCommentsList()
+        public List<RecentComment> GetFiveCommentsList()
         {
             var recent = new List<RecentComment>();
 

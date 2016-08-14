@@ -6,21 +6,16 @@
 <!-- for renderBody -->
 <section class="page-section">
     <div class="container relative">
-
         <div class="row">
             <!-- for renderBody -->
             <!-- Content -->
             <div class="col-sm-8">
-
-
                 @foreach (var p in Model.Posts)
                 {
                     <!-- Post -->
                     <div class="blog-item">
-
                         <!-- Post Title -->
                         <h2 class="blog-item-title font-alt">@Html.ActionLink(@p.Title, "Article", new { id = p.ID })</h2>
-
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
                             <a href="#"><i class="fa fa-clock-o"></i>@p.PostedOn</a>
@@ -32,39 +27,19 @@
                             <span class="separator">&nbsp;</span>
                             <a href="#"><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
-
-                        <!-- Media Gallery
-                        <div class="blog-media">
-                            <ul class="clearlist content-slider">
-                                <li>
-                                    <img src="~/Content/img/portfolio/full-project-1.jpg" alt="" />
-                                </li>
-                                <li>
-                                    <img src="~/Content/img//portfolio/full-project-2.jpg" alt="" />
-                                </li>
-                                <li>
-                                    <img src="~/Content/img//portfolio/full-project-3.jpg" alt="" />
-                                </li>
-                            </ul>
-                        </div>-->
                         <!-- Text Intro -->
                         <div class="blog-item-body">
                             <p>
                                 @p.ShortDescription
                             </p>
                         </div>
-
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
                             @Html.ActionLink("Read More", "Article", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
-                            @*<a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small"<i class="fa fa-angle-right"></i></a>*@
                         </div>
-
                     </div>
                 <!-- End Post -->
-
                 }
-
                 <div class="pagination">
                     <a href=""><i class="fa fa-angle-left"></i></a>
                     @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x }))
@@ -73,8 +48,6 @@
             </div>
             <!-- End Content -->
             @Html.Partial("_Sidebar")
-
         </div>
-
     </div>
 </section>

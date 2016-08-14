@@ -23,7 +23,7 @@
           <Property Name="PostID" Type="int" Nullable="false" />
           <Property Name="NameUserSender" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EmailUserSender" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DescriptionComment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DescriptionComment" Type="bit" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" />
@@ -167,7 +167,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="PostID" Type="Int32" Nullable="false" />
           <Property Name="NameUserSender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailUserSender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DescriptionComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionComment" Type="Boolean" Nullable="false" />
           <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Precision="3" />

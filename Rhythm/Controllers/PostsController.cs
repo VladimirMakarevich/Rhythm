@@ -41,6 +41,15 @@ namespace Rhythm.Controllers
 
         public ActionResult Post(int? id)
         {
+            //TODO: change
+            if (id == 0)
+            {
+                id++;
+            }
+            if (id >= repository.Post.Count())
+            {
+                id--;
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

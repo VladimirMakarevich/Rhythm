@@ -1,0 +1,47 @@
+﻿@model List<Rhythm.Domain.Model.Comment>
+
+
+@foreach (var comment in Model)
+{
+        <!-- Comment Item -->
+    <li class="media comment-item">
+        @if (@comment.DescriptionComment)
+        {
+            <a class="pull-left" href="#"><img class="media-object comment-avatar" src="~/Content/img/user-bone.png" alt="" width="50" height="50"></a>
+            <div class="media-body">
+                <div class="comment-item-data">
+                    <div class="comment-author">
+                        <a href="#">@comment.NameUserSender</a>
+                    </div>
+                    @comment.PostedOn<span class="separator">&mdash;</span>
+                    <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                </div>
+                <p>
+                    @comment.Comment1
+                </p>
+            </div>
+        }
+        else
+        {
+             <!-- Comment of second level -->
+            <div class="media comment-item" style="padding: 80px">
+                <a class="pull-left" href="#"><img class="media-object comment-avatar" src="~/Content/img/user-bone.png" alt=""></a>
+                <div class="media-body">
+                    <div class="comment-item-data">
+                        <div class="comment-author">
+                            <a href="#">@comment.NameUserSender</a>
+                        </div>
+                        @comment.PostedOn<span class="separator">&mdash;</span>
+                        <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                    </div>
+                    <p>
+                        @comment.Comment1
+                    </p>
+
+                </div>
+            </div>
+              <!-- End Comment of second level -->
+        }
+    </li>
+        <!-- End Comment Item -->
+}

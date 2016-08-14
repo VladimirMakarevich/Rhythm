@@ -40,7 +40,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentComments()
         {
-            var comments = repository.GetCommentsList();
+            var comments = repository.GetFiveCommentsList();
             return PartialView("RecentComments", comments);
         }
 

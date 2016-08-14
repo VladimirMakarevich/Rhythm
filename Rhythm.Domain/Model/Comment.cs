@@ -18,7 +18,7 @@ namespace Rhythm.Domain.Model
         public int PostID { get; set; }
         public string NameUserSender { get; set; }
         public string EmailUserSender { get; set; }
-        public string DescriptionComment { get; set; }
+        public bool DescriptionComment { get; set; }
         public string Comment1 { get; set; }
         public System.DateTime PostedOn { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }

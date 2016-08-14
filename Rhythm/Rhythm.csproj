@@ -235,6 +235,7 @@
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,7 +284,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Shared\_HeadSection.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Recents\RecentCategories.cshtml" />
@@ -298,6 +298,8 @@
     <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\_CommentsList.cshtml" />
     <Content Include="Views\Shared\_AddComment.cshtml" />
+    <Content Include="Views\Comments\AllComments.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
