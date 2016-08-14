@@ -39,7 +39,7 @@ namespace Rhythm.Controllers
             return View(model);
         }
 
-        public ActionResult SinglePost(int? id)
+        public ActionResult Post(int? id)
         {
             if (id == null)
             {
@@ -60,6 +60,18 @@ namespace Rhythm.Controllers
                 Tags = repository.Tag
                 .OrderBy(t => t.Name)
                 .Take(tag)
+            };
+
+            return View(model);
+        }
+
+        public ActionResult Category(int cat = 8)
+        {
+            WidgetListViewModel model = new WidgetListViewModel
+            {
+                Categories = repository.Category
+                .OrderBy(c => c.Name)
+                .Take(cat)
             };
 
             return View(model);

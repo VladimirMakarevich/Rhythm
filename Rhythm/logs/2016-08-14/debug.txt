@@ -1,0 +1,15 @@
+2016-08-14 07:43:17.9321|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:12:04.2935|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:12:43.2288|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:14:32.3530|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:17:07.6353|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:20:53.2159|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:26:19.3726|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:30:55.8700|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:42:57.2450|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:43:49.7953|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:44:51.6007|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:46:01.6951|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:46:57.9494|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:49:55.9301|DEBUG|Rhythm.MvcApplication|Application Debug
+2016-08-14 08:50:31.4137|DEBUG|Rhythm.MvcApplication|Application Debug

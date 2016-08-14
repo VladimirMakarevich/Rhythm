@@ -20,18 +20,18 @@
                     <div class="blog-item">
 
                         <!-- Post Title -->
-                        <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">@p.Title</a></h2>
+                        <h2 class="blog-item-title font-alt">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
 
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
                             <a href="#"><i class="fa fa-clock-o"></i>@p.PostedOn</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="#"><i class="fa fa-user"></i> John Doe</a>
+                            <a href="#"><i class="fa fa-user"></i>@p.NameSenderPost</a>
                             <span class="separator">&nbsp;</span>
                             <i class="fa fa-folder-open"></i>
                             <a href="#">@p.Category1.Name</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
+                            <a href="#"><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
 
                         <!-- Media Gallery
@@ -57,7 +57,7 @@
 
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
-                            @Html.ActionLink("Read More", "SinglePost", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                            @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
                             @*<a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small"<i class="fa fa-angle-right"></i></a>*@
                         </div>
 
