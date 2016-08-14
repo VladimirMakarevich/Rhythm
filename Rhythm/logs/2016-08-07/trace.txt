@@ -1,7 +1,0 @@
-2016-08-07 09:20:38.8450|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:25:43.2266|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:29:18.9757|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:30:08.2004|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:30:36.3371|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:31:30.1782|TRACE|Rhythm.MvcApplication|Application Trace
-2016-08-07 09:35:04.1948|TRACE|Rhythm.MvcApplication|Application Trace
