@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Rhythm.Controllers
 {
-    public class ArticleController : DefaultController
+    public class ContactsController : DefaultController
     {
-        // GET: Article
+        // GET: Contacts
         public ActionResult Index()
         {
             return View();

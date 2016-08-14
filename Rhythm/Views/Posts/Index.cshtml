@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_HeadSection")
+
 <!-- for renderBody -->
 <section class="page-section">
     <div class="container relative">
@@ -34,6 +34,20 @@
                             <a href="#"><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
 
+                        <!-- Media Gallery
+                        <div class="blog-media">
+                            <ul class="clearlist content-slider">
+                                <li>
+                                    <img src="~/Content/img/portfolio/full-project-1.jpg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="~/Content/img//portfolio/full-project-2.jpg" alt="" />
+                                </li>
+                                <li>
+                                    <img src="~/Content/img//portfolio/full-project-3.jpg" alt="" />
+                                </li>
+                            </ul>
+                        </div>-->
                         <!-- Text Intro -->
                         <div class="blog-item-body">
                             <p>
@@ -44,6 +58,7 @@
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
                             @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                            @*<a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small"<i class="fa fa-angle-right"></i></a>*@
                         </div>
 
                     </div>

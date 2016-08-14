@@ -172,6 +172,14 @@
     <Content Include="Content\css\style-responsive.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\vertical-rhythm.min.css" />
+    <Content Include="Content\img\apple-touch-icon-114x114.png" />
+    <Content Include="Content\img\apple-touch-icon-72x72.png" />
+    <Content Include="Content\img\apple-touch-icon.png" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\logo-dark.png" />
+    <Content Include="Content\img\logo-footer.png" />
+    <Content Include="Content\img\user-bone.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
@@ -223,8 +231,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
+    <Compile Include="Collections\Archive.cs" />
+    <Compile Include="Collections\ArchiveCollection.cs" />
+    <Compile Include="Controllers\AboutMeController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RecentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,11 +286,18 @@
     <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Shared\_HeadSection.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Recents\RecentCategories.cshtml" />
     <Content Include="Views\Recents\RecentTags.cshtml" />
     <Content Include="Views\Recents\RecentPosts.cshtml" />
     <Content Include="Views\Recents\RecentComments.cshtml" />
+    <Content Include="Views\Recents\RecentArchives.cshtml" />
+    <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Articles\Index.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Articles\Article.cshtml" />
+    <Content Include="Views\Posts\Post.cshtml" />
+    <Content Include="Views\Shared\_CommentsList.cshtml" />
+    <Content Include="Views\Shared\_AddComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -286,7 +309,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
-    <Folder Include="Content\img\" />
+    <Folder Include="Views\Contacts\" />
+    <Folder Include="Views\Library\" />
+    <Folder Include="Views\Portfolio\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

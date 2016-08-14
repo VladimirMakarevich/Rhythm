@@ -24,5 +24,7 @@ namespace Rhythm.Domain.Concrete
         public DateTime PostAddedDate { get; set; }
         public string NameUserSender { get; set; }
 
+        public bool DisqusComment { get; set; }
+
     }
 }

@@ -45,13 +45,13 @@
                 <!-- Main Menu -->
                 <div class="inner-nav desktop-nav">
                     <ul class="clearlist">
-                        <li>@Html.ActionLink("Home", "Home", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Post", "Posts", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Article", "Articles", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Library", "Lybrarys", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Home", "Home")</li>
+                        <li>@Html.ActionLink("Post", "Posts")</li>
+                        <li>@Html.ActionLink("Article", "Articles")</li>
+                        <li>@Html.ActionLink("Library", "Lybrary", new { @class = "mn-has-sub" })</li>
                         <li>@Html.ActionLink("Portfolio", "Portfolio", new { @class = "mn-has-sub" })</li>
                         <li>@Html.ActionLink("About me", "AboutMe", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Contact", "Contact", new { @class = "mn-has-sub" })</li>
+                        <li>@Html.ActionLink("Contact", "Contacts", new { @class = "mn-has-sub" })</li>
                         <li><a>&nbsp;</a></li>
                         <li>
                             <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
@@ -66,71 +66,17 @@
 
                         </li>
                     </ul>
-                    @*<ul class="clearlist">
-
-                        <!-- Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Home <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Post <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Article <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Library <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Portfolio <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">About me <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Contact <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <!-- Divider -->
-                        <li><a>&nbsp;</a></li>
-                        <!-- End Divider -->
-                        <!-- Languages -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
-
-                            <ul class="mn-sub">
-
-                                <li><a href="">English</a></li>
-                                <li><a href="">France</a></li>
-                                <li><a href="">Russian</a></li>
-                                <li><a href="">Belarusian</a></li>
-
-                            </ul>
-
-                        </li>
-                        <!-- End Languages -->
-
-                    </ul>*@
                 </div>
                 <!-- End Main Menu -->
-
-
             </div>
         </nav>
         <!-- End Navigation panel -->
-        <!--TODO: head section-->
         <!-- Section -->
 
         @RenderBody()
 
         <!-- End Section -->
-        <!-- Foter -->
+        <!-- Footer -->
         <footer class="page-section bg-gray-lighter footer pb-60">
             <div class="container">
 

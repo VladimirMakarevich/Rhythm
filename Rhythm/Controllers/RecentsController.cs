@@ -1,11 +1,9 @@
-﻿using Castle.Core.Internal;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using System;
-using System.Collections.Generic;
+﻿using Rhythm.Domain.Abstract;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using Rhythm.Domain.Model;
+using Rhythm.Concrete;
 
 namespace Rhythm.Controllers
 {
@@ -35,7 +33,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentPosts()
         {
-            var posts = repository.Post.OrderBy(p => p.ID).Take(5).ToList();
+            var posts = GetPosts();
             return PartialView("RecentPosts", posts);
         }
 
@@ -55,6 +53,17 @@ namespace Rhythm.Controllers
         //        return 
         //}
 
+        [ChildActionOnly]
+        public ActionResult RecentArchives()
+        {
+            var model = new ArchiveCollection(GetPosts());
+            return PartialView(model);
+        }
 
+        public List<Post> GetPosts()
+        {
+            var posts = repository.Post.OrderBy(p => p.ID).ToList();
+            return posts;
+        }
     }
 }
