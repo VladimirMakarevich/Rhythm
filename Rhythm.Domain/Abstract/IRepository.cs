@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Model;
+﻿using Rhythm.Domain.Concrete;
+using Rhythm.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Rhythm.Domain.Abstract
         IQueryable<Tag> Tag { get; }
         IQueryable<Category> Category { get; }
         IQueryable<Comment> Comment { get; }
+        List<RecentComment> GetCommentsList();
 
     }
 }

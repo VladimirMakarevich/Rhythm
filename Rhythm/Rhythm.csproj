@@ -225,6 +225,7 @@
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -268,10 +269,12 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\_Post.cshtml" />
     <Content Include="Views\Shared\_HeadSection.cshtml" />
-    <Content Include="Views\Home\Post.cshtml" />
-    <Content Include="Views\Home\_Sidebar.cshtml" />
-    <Content Include="Views\Home\Tag.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Recents\RecentCategories.cshtml" />
+    <Content Include="Views\Recents\RecentTags.cshtml" />
+    <Content Include="Views\Recents\RecentPosts.cshtml" />
+    <Content Include="Views\Recents\RecentComments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,12 @@
+﻿@model List<Rhythm.Domain.Model.Tag>
+
+
+<h5 class="widget-title font-alt">Tags</h5>
+<div class="widget-body">
+    <div class="tags">
+        @foreach (var t in Model)
+        {
+            <a href="">@t.Name</a>
+        }
+    </div>
+</div>

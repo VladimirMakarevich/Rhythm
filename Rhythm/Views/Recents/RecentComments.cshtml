@@ -1,0 +1,14 @@
+﻿@model List<Rhythm.Domain.Concrete.RecentComment>
+
+<h5 class="widget-title font-alt">Comments</h5>
+
+<div class="widget-body">
+    <ul class="clearlist widget-comments">
+        @foreach(var c in Model)
+        {
+            <li>
+               @c.NameUserSender on <a href="#" title="">@c.CommentContent (@c.PostAddedDate)</a>
+            </li>
+        }
+    </ul>
+</div>
