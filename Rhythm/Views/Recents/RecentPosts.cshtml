@@ -1,7 +1,6 @@
 ﻿@model List<Rhythm.Domain.Model.Post>
 
 <h5 class="widget-title font-alt">Last posts</h5>
-
 <div class="widget-body">
     <ul class="clearlist widget-posts">
         @foreach (var p in Model)
@@ -9,7 +8,7 @@
             <li class="clearfix">
                 <a href="#"><img src="~/Content/img/feature-3.png" alt="" width="100" class="widget-posts-img" /></a>
                 <div class="widget-posts-descr">
-                    <a href="#" title="">@p.Title</a>
+                    <a href="#" title="@p.Title">@p.Title</a>
                     Posted by @p.NameSenderPost in @p.PostedOn
                 </div>
             </li>

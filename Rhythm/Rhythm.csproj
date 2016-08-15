@@ -186,6 +186,7 @@
     <Content Include="Content\img\foot-dog-main.png" />
     <Content Include="Content\img\foot-dog.png" />
     <Content Include="Content\img\house-dog.png" />
+    <Content Include="Content\img\logo-dark.png" />
     <Content Include="Content\img\logo-footer-dog-shit.png" />
     <Content Include="Content\img\logo-footer.png" />
     <Content Include="Content\img\user-bone.png" />
@@ -259,7 +260,6 @@
     <Compile Include="infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
-    <Compile Include="Models\WidgetListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
       <DependentUpon>content_fr.resx</DependentUpon>
@@ -309,6 +309,12 @@
     <Content Include="Views\Shared\_AddComment.cshtml" />
     <Content Include="Views\Comments\AllComments.cshtml" />
     <Content Include="Views\Shared\_Error.cshtml" />
+    <Content Include="Views\AboutMe\Index.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Library\Index.cshtml" />
+    <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
+    <Content Include="Views\Shared\_messageNote.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -320,9 +326,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
-    <Folder Include="Views\Contacts\" />
-    <Folder Include="Views\Library\" />
-    <Folder Include="Views\Portfolio\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

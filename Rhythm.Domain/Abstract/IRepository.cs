@@ -15,6 +15,7 @@ namespace Rhythm.Domain.Abstract
         IQueryable<Category> Category { get; }
         IQueryable<Comment> Comment { get; }
         List<RecentComment> GetFiveCommentsList();
+        RecentArticleWidget GetArticleWidget();
 
     }
 }

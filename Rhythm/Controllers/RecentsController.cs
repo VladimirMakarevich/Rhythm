@@ -3,7 +3,9 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Rhythm.Domain.Model;
-using Rhythm.Concrete;
+using Rhythm.Collections;
+using System;
+using Rhythm.Models;
 
 namespace Rhythm.Controllers
 {
@@ -44,14 +46,13 @@ namespace Rhythm.Controllers
             return PartialView("RecentComments", comments);
         }
 
-        //[ChildActionOnly]
-        //public ActionResult RecentArticleWidgets()
-        //{
-        //    int r = 100;
-        //    var articleWidget = new Random();
-        //    articleWidget.
-        //        return 
-        //}
+        [ChildActionOnly]
+        public ActionResult RecentArticleWidgets()
+        {
+            var articleWidget = repository.GetArticleWidget();
+            
+            return PartialView("RecentArticleWidgets", articleWidget);
+        }
 
         [ChildActionOnly]
         public ActionResult RecentArchives()

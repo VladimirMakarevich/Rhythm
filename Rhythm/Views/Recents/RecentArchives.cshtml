@@ -1,1 +1,15 @@
-﻿@model Rhythm.Concrete.ArchiveCollection
+﻿@model Rhythm.Collections.ArchiveCollection
+@using Rhythm.Collections
+
+<h5 class="widget-title font-alt">Archive</h5>
+@foreach (Archive archive in Model)
+{
+    <div class="widget-body">
+        <ul class="clearlist widget-menu">
+            <li>
+                @*@{ var url = Url.RouteUrl("PostByYearMonth", new { year = archive.Year, month = archive.Month }); }*@
+                <a href="" title="@archive.MonthYear">@archive.MonthYear</a>
+            </li>
+        </ul>
+    </div>
+                    }

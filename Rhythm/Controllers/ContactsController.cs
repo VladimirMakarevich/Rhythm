@@ -11,6 +11,11 @@ namespace Rhythm.Controllers
         // GET: Contacts
         public ActionResult Index()
         {
+            ViewBag.Title = "Contact";
+            ViewBag.Text = "DogBlog - Vladimir Makarevich - junior backend Developer ASP.NET MVC";
+            ViewBag.WordFirst = "C#";
+            ViewBag.WordSecond = "ASP.NET MVC";
+            ViewBag.WordThird = "WEB";
             return View();
         }
     }

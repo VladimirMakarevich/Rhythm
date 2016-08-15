@@ -1,4 +1,4 @@
-﻿namespace Rhythm.Concrete
+﻿namespace Rhythm.Collections
 {
     public class Archive
     {

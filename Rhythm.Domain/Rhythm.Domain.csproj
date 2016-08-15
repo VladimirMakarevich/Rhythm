@@ -68,8 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Concrete\RecentArticleWidget.cs" />
     <Compile Include="Concrete\RecentComment.cs" />
     <Compile Include="EfRepository\CommentEfRepository.cs" />
+    <Compile Include="EfRepository\WidgetArticleEfRepository.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>

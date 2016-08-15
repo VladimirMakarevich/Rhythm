@@ -17,6 +17,11 @@ namespace Rhythm.Controllers
         public HomeController(IRepository repository)
         {
             this.repository = repository;
+            ViewBag.Title = "DOGCODING";
+            ViewBag.Text = "DogBlog - Vladimir Makarevich - junior backend Developer ASP.NET MVC";
+            ViewBag.WordFirst = "C#";
+            ViewBag.WordSecond = "ASP.NET MVC";
+            ViewBag.WordThird = "WEB";
         }
 
         public ViewResult Index(int page = 1)

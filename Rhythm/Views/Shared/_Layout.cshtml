@@ -41,13 +41,14 @@
                 <!-- Main Menu -->
                 <div class="inner-nav desktop-nav">
                     <ul class="clearlist">
-                        <li>@Html.ActionLink("Home", "Home")</li>
-                        <li>@Html.ActionLink("Post", "Posts")</li>
-                        <li>@Html.ActionLink("Article", "Articles")</li>
-                        <li>@Html.ActionLink("Library", "Lybrary", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Portfolio", "Portfolio", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("About me", "AboutMe", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Contact", "Contacts", new { @class = "mn-has-sub" })</li>
+                        @*@Html.RouteLink*@
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Post", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Article", "Index", "Articles")</li>
+                        <li>@Html.ActionLink("Library", "Index", "Library")</li>
+                        <li>@Html.ActionLink("Portfolio", "Index", "Portfolio")</li>
+                        <li>@Html.ActionLink("About me", "Index", "AboutMe")</li>
+                        <li>@Html.ActionLink("Contact", "Index", "Contacts")</li>
                         <li><a>&nbsp;</a></li>
                         <li>
                             <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
@@ -63,6 +64,27 @@
             </div>
         </nav>
         <!-- End Navigation panel -->
+
+        <!-- Head Section -->
+        <section class="small-section bg-gray-lighter: multi-columns-row">
+            <div class="relative container align-left">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">@ViewBag.Title</h1>
+                        <div class="hs-line-4 font-alt black">
+                            @ViewBag.Text 
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-30">
+                        <div class="mod-breadcrumbs font-alt black align-right">
+                            <a>@ViewBag.WordFirst</a>&nbsp;/&nbsp;<a>@ViewBag.WordSecond</a>&nbsp;/&nbsp;<a>@ViewBag.WordThird</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Head Section -->
+
         <!-- Section -->
 
         @RenderBody()
