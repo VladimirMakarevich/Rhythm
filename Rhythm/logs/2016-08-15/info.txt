@@ -1,0 +1,13 @@
+2016-08-15 00:09:31.6968|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:20:42.1131|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:24:42.4005|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:25:06.4216|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:25:37.1621|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:27:07.8225|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:28:17.3266|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:42:59.5281|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:43:38.4235|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:45:15.0583|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:45:56.7380|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:55:01.1577|INFO|Rhythm.MvcApplication|Application Start
+2016-08-15 00:58:34.1217|INFO|Rhythm.MvcApplication|Application Start
