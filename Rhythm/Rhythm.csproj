@@ -258,6 +258,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
+    <Content Include="Views\Shared\testComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

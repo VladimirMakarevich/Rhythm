@@ -3,34 +3,35 @@
 <div class="mb-80 mb-xs-40">
     <h4 class="blog-page-title font-alt">Leave a comment</h4>
     <!-- Form -->
-    @using (Html.BeginForm("Add", "Comments", FormMethod.Post, new { id = "userComment" }))
+    @using (Html.BeginForm("Add", "Comments", FormMethod.Post))
     {
-        //<form method="post" action="#" id="form" role="form" class="form">
+        <form method="post" action="#" id="form" role="form" class="form">
         <div class="row mb-20 mb-md-10">
             <div class="col-md-6 mb-md-10">
                 <!-- Name -->
-                @Html.TextBoxFor(model => model.Comment.NameUserSender, new { @class = "input-md form-control required" })
+                @Html.TextBoxFor(m => m.NameSender)
                 @*<input type="text" name="name" id="name" class="input-md form-control" placeholder="Name *" maxlength="100" required>*@
             </div>
             <div class="col-md-6">
                 <!-- Email -->
-                @Html.TextBoxFor(model => model.Comment.EmailUserSender, new { @class = "input-md form-control required" })
+                @Html.TextBox("Add")
                 @*<input type="email" name="email" id="email" class="input-md form-control" placeholder="Email *" maxlength="100" required>*@
             </div>
         </div>
             <!-- Comment -->
             <div class="mb-30 mb-md-10">
-                @Html.TextAreaFor(model => model.Comment.Comment1, new { @class = "input-md form-control", rows = "6" })
+                @Html.TextBox("Add")
                 @*<textarea name="text" id="text" class="input-md form-control" rows="6" placeholder="Comment" maxlength="400"></textarea>*@
             </div>
-            @Html.CheckBoxFor(model => model.IsHuman == false, new { @class = "input-md form-control" })
+            @Html.CheckBox("Add", false)
             <!-- Send Button -->
             <button type="submit" class="btn btn-mod btn-medium btn-round btn-round">
                 Send comment
             </button>
-        //</form>
+        </form>
     }
     <!-- End Form -->
 </div>
 
 <!-- End Add Comment -->
+
