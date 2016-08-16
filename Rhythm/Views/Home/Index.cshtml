@@ -1,215 +1,54 @@
-﻿@{
-        Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model Rhythm.Models.PostListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.Partial("_HeadSection")
 <!-- for renderBody -->
 <section class="page-section">
     <div class="container relative">
-
         <div class="row">
             <!-- for renderBody -->
             <!-- Content -->
             <div class="col-sm-8">
-
-                <!-- Post -->
-                <div class="blog-item">
-
-                    <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">@ViewBag.DogCoding media gallery</a></h2>
-
-                    <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
-                        <a href="#"><i class="fa fa-clock-o"></i> 5 December</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-user"></i> John Doe</a>
-                        <span class="separator">&nbsp;</span>
-                        <i class="fa fa-folder-open"></i>
-                        <a href="">Design</a>, <a href="#">Branding</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
+                @foreach (var p in Model.Posts)
+                {
+                    <!-- Post -->
+                    <div class="blog-item">
+                        <!-- Post Title -->
+                        <h2 class="blog-item-title font-alt">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
+                        <!-- Author, Categories, Comments -->
+                        <div class="blog-item-data">
+                            <a href="#"><i class="fa fa-clock-o"></i>@p.PostedOn</a>
+                            <span class="separator">&nbsp;</span>
+                            <a href="#"><i class="fa fa-user"></i>@p.NameSenderPost</a>
+                            <span class="separator">&nbsp;</span>
+                            <i class="fa fa-folder-open"></i>
+                            <a href="#">@p.Category1.Name</a>
+                            <span class="separator">&nbsp;</span>
+                            <a href="#"><i class="fa fa-comments"></i>Comments @p.CountComments</a>
+                        </div>
+                        <!-- Text Intro -->
+                        <div class="blog-item-body">
+                            <p>
+                                @p.ShortDescription
+                            </p>
+                        </div>
+                        <!-- Read More Link -->
+                        <div class="blog-item-foot">
+                            @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                        </div>
                     </div>
-
-                    <!-- Media Gallery -->
-                    <div class="blog-media">
-                        <ul class="clearlist content-slider">
-                            <li>
-                                <img src="~/Content/img/portfolio/full-project-1.jpg" alt="" />
-                            </li>
-                            <li>
-                                <img src="~/Content/img//portfolio/full-project-2.jpg" alt="" />
-                            </li>
-                            <li>
-                                <img src="~/Content/img//portfolio/full-project-3.jpg" alt="" />
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Text Intro -->
-                    <div class="blog-item-body">
-                        <p>
-                            @ViewBag.Text
-                        </p>
-                    </div>
-
-                    <!-- Read More Link -->
-                    <div class="blog-item-foot">
-                        <a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
                 <!-- End Post -->
-                <!-- Post -->
-                <div class="blog-item">
-
-                    <!-- Blockquote -->
-                    <blockquote class="blog-item-q">
-                        <p>
-                            <a href="blog-single-sidebar-right.html">Curabitur iaculis, ligula facilisis volutpat suscipit, sapien felis tempor, consequat vitae velit.</a>
-                        </p>
-                    </blockquote>
-                    <!-- End Blockquote -->
-                    <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
-                        <a href="#"><i class="fa fa-clock-o"></i> 5 December</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-user"></i> John Doe</a>
-                        <span class="separator">&nbsp;</span>
-                        <i class="fa fa-folder-open"></i>
-                        <a href="">Design</a>, <a href="#">Branding</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
-                    </div>
-
-                    <!-- Read More Link -->
-                    <div class="blog-item-foot">
-                        <a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
-                <!-- End Post -->
-                <!-- Post -->
-                <div class="blog-item">
-
-                    <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Video post only</a></h2>
-
-                    <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
-                        <a href="#"><i class="fa fa-clock-o"></i> 4 December</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-user"></i> John Doe</a>
-                        <span class="separator">&nbsp;</span>
-                        <i class="fa fa-folder-open"></i>
-                        <a href="">Design</a>, <a href="#">Branding</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
-                    </div>
-
-                    <!-- Media Gallery -->
-                    <div class="blog-media">
-                        <iframe width="640" height="360" src="http://www.youtube.com/embed/w2JUhDd0CAA" frameborder="0" allowfullscreen></iframe>
-                    </div>
-
-                    <!-- Text Intro -->
-                    <div class="blog-item-body">
-                        <p>
-                            Morbi lacus massa, euismod ut turpis molestie, tristique sodales est. Integer sit amet mi id sapien tempor molestie in nec massa.
-                        </p>
-                    </div>
-
-                    <!-- Read More Link -->
-                    <div class="blog-item-foot">
-                        <a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
-                <!-- End Post -->
-                <!-- Post -->
-                <div class="blog-item">
-
-                    <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Post with text only</a></h2>
-
-                    <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
-                        <a href="#"><i class="fa fa-clock-o"></i> 4 December</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-user"></i> John Doe</a>
-                        <span class="separator">&nbsp;</span>
-                        <i class="fa fa-folder-open"></i>
-                        <a href="">Design</a>, <a href="#">Branding</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
-                    </div>
-
-                    <!-- Text Intro -->
-                    <div class="blog-item-body">
-                        <p>
-                            Suspendisse accumsan interdum tellus, eu imperdiet lacus consectetur sed. Aliquam in ligula ac lacus blandit commodo vel luctus quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras eu ultrices mauris.
-                        </p>
-                    </div>
-
-                    <!-- Read More Link -->
-                    <div class="blog-item-foot">
-                        <a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
-                <!-- End Post -->
-                <!-- Post -->
-                <div class="blog-item">
-
-                    <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Image post only</a></h2>
-
-                    <!-- Author, Categories, Comments -->
-                    <div class="blog-item-data">
-                        <a href="#"><i class="fa fa-clock-o"></i> 3 December</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-user"></i> John Doe</a>
-                        <span class="separator">&nbsp;</span>
-                        <i class="fa fa-folder-open"></i>
-                        <a href="">Design</a>, <a href="#">Branding</a>
-                        <span class="separator">&nbsp;</span>
-                        <a href="#"><i class="fa fa-comments"></i> 5 Comments</a>
-                    </div>
-
-                    <!-- Image -->
-                    <div class="blog-media">
-                        <a href="blog-single-sidebar-right.html"><img src="images/portfolio/full-project-4.jpg" alt="" /></a>
-                    </div>
-
-                    <!-- Text Intro -->
-                    <div class="blog-item-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend. Aliquam ac libero et diam rutrum rutrum. Nullam interdum mattis ipsum at convallis.
-                        </p>
-                    </div>
-
-                    <!-- Read More Link -->
-                    <div class="blog-item-foot">
-                        <a href="blog-single-sidebar-right.html" class="btn btn-mod btn-round  btn-small">Read More <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
-                <!-- End Post -->
-                <!-- Pagination -->
+                }
                 <div class="pagination">
                     <a href=""><i class="fa fa-angle-left"></i></a>
-                    <a href="" class="active">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a class="no-active">...</a>
-                    <a href="">9</a>
+                    @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x }))
                     <a href=""><i class="fa fa-angle-right"></i></a>
                 </div>
-                <!-- End Pagination -->
-
             </div>
             <!-- End Content -->
             @Html.Partial("_Sidebar")
-
         </div>
-
     </div>
 </section>

@@ -1,0 +1,9 @@
+﻿@model Rhythm.Domain.Model.Post
+<!-- Comments -->
+<div class="mb-80 mb-xs-40">
+    <h4 class="blog-page-title font-alt">Comments<small class="number">(@Model.CountComments)</small></h4>
+    <ul class="media-list text comment-list clearlist">
+        @Html.Action("AllComments", "Comments")
+    </ul>
+</div>
+<!-- End Comments -->

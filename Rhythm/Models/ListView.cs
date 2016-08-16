@@ -16,7 +16,5 @@ namespace Rhythm.Models
         {
             get { return (int)Math.Ceiling((decimal)TotalPosts / PostsPerPage); }
         }
-
-        //TODO: Look sport-store! For widget.
     }
 }

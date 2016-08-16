@@ -16,11 +16,10 @@
     <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/apple-touch-icon-114x114.png">
 
-    @Styles.Render("~/Content/css/css")
+    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="appear-animate">
-
     <!-- Page Loader -->
     <div class="page-loader">
         <div class="loader">Loading...</div>
@@ -28,11 +27,9 @@
     <!-- End Page Loader -->
     <!-- Page Wrap -->
     <div class="page" id="top">
-
         <!-- Navigation panel -->
         <nav class="main-nav js-stick">
             <div class="full-wrapper relative clearfix">
-                <!-- Logo ( * your text or image into link tag *) -->
                 <div class="nav-logo-wrap local-scroll">
                     <a href="mp-index.html" class="logo">
                         <img src="~/Content/img/logo-dark.png" alt="" />
@@ -41,100 +38,61 @@
                 <div class="mobile-nav">
                     <i class="fa fa-bars"></i>
                 </div>
-
                 <!-- Main Menu -->
                 <div class="inner-nav desktop-nav">
                     <ul class="clearlist">
-                        <li>@Html.ActionLink("Home", "Home", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Post", "Posts", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Article", "Articles", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Library", "Lybrarys", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Portfolio", "Portfolio", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("About me", "AboutMe", new { @class = "mn-has-sub" })</li>
-                        <li>@Html.ActionLink("Contact", "Contact", new { @class = "mn-has-sub" })</li>
+                        @*@Html.RouteLink*@
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Post", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Article", "Index", "Articles")</li>
+                        <li>@Html.ActionLink("Library", "Index", "Library")</li>
+                        <li>@Html.ActionLink("Portfolio", "Index", "Portfolio")</li>
+                        <li>@Html.ActionLink("About me", "Index", "AboutMe")</li>
+                        <li>@Html.ActionLink("Contact", "Index", "Contacts")</li>
                         <li><a>&nbsp;</a></li>
                         <li>
                             <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
-
                             <ul class="mn-sub">
-
                                 <li><a href="">English</a></li>
-                                <li><a href="">France</a></li>
                                 <li><a href="">Russian</a></li>
                                 <li><a href="">Belarusian</a></li>
-
                             </ul>
-
                         </li>
                     </ul>
-                    @*<ul class="clearlist">
-
-                        <!-- Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Home <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Post <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Article <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Library <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Portfolio <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">About me <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Contact <i class="fa fa-angle-down"></i></a>
-                        </li>
-                        <!-- End Item With Sub -->
-                        <!-- Divider -->
-                        <li><a>&nbsp;</a></li>
-                        <!-- End Divider -->
-                        <!-- Languages -->
-                        <li>
-                            <a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>
-
-                            <ul class="mn-sub">
-
-                                <li><a href="">English</a></li>
-                                <li><a href="">France</a></li>
-                                <li><a href="">Russian</a></li>
-                                <li><a href="">Belarusian</a></li>
-
-                            </ul>
-
-                        </li>
-                        <!-- End Languages -->
-
-                    </ul>*@
                 </div>
                 <!-- End Main Menu -->
-
-
             </div>
         </nav>
         <!-- End Navigation panel -->
-        <!--TODO: head section-->
+
+        <!-- Head Section -->
+        <section class="small-section bg-gray-lighter: multi-columns-row">
+            <div class="relative container align-left">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1 class="hs-line-11 font-alt mb-20 mb-xs-0">@ViewBag.Title</h1>
+                        <div class="hs-line-4 font-alt black">
+                            @ViewBag.Text 
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-30">
+                        <div class="mod-breadcrumbs font-alt black align-right">
+                            <a>@ViewBag.WordFirst</a>&nbsp;/&nbsp;<a>@ViewBag.WordSecond</a>&nbsp;/&nbsp;<a>@ViewBag.WordThird</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Head Section -->
+
         <!-- Section -->
 
         @RenderBody()
 
         <!-- End Section -->
-        <!-- Foter -->
+        <!-- Footer -->
         <footer class="page-section bg-gray-lighter footer pb-60">
             <div class="container">
-
                 <!-- Footer Logo -->
                 <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.5s">
                     <a href="#top"><img src="~/Content/img/logo-footer.png" width="78" height="36" alt="" /></a>
@@ -151,33 +109,24 @@
                 <!-- End Social Links -->
                 <!-- Footer Text -->
                 <div class="footer-text">
-
                     <!-- Copyright -->
                     <div class="footer-copy font-alt">
                         <a href="http://google.com" target="_blank">&copy; @DateTime.Now.Year</a>.
                     </div>
                     <!-- End Copyright -->
-
                     <div class="footer-made">
                         Vladimir Makarevich - ASP.NET MVC Developer
                     </div>
-
                 </div>
                 <!-- End Footer Text -->
-
             </div>
-
-
             <!-- Top Link -->
             <div class="local-scroll">
                 <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
             </div>
             <!-- End Top Link -->
-
         </footer>
         <!-- End Foter -->
-
-
     </div>
     <!-- End Page Wrap -->
     @Scripts.Render("~/bundles/rhythm/jquery")

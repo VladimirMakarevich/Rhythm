@@ -10,7 +10,8 @@ namespace Rhythm.Models
     {
         public Post Post { get; set; }
         public Comment Comment { get; set; }
-        public string DisplayName { get; set; }
-        public string IsHuman { get; set; }
+        public string NameSender { get; set; }
+        public bool IsHuman { get; set; }
+        public string EmailSender { get; set; }
     }
 }

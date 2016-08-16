@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Rhythm.Domain.Abstract;
+using Rhythm.Domain.Concrete;
+using Rhythm.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,22 +11,50 @@ namespace Rhythm.Controllers
 {
     public class CommentsController : DefaultController
     {
-        // GET: Comments
-        public ActionResult Index()
+        public CommentsController(IRepository repository)
         {
-            return View();
+            this.repository = repository;
         }
+
 
         [ChildActionOnly]
-        public ActionResult RecentComments()
+        public ActionResult AllComments(int? id)
         {
-            var comments = GetRecentComments();
-            return PartialView("RecentComments", comments);
+            var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
+
+            return PartialView("AllComments", allComment);
         }
 
-        private object GetRecentComments()
+        public ActionResult Add(CommentViewModel commentViewModel)
         {
-            throw new NotImplementedException();
+            bool flagCheck = false;
+            if (commentViewModel.NameSender != null && commentViewModel.IsHuman == true)
+            {
+                commentViewModel.Comment.PostID = commentViewModel.Post.ID;
+                flagCheck = true;
+            }
+            else
+            {
+                TempData["CommentErrors"] = GetModelErrors();
+            }
+
+            return View(); 
+        }
+
+        private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
+        {
+            return RiderectByPostType(commentViewModel, flagCheck);
+        }
+
+        private List<string> GetModelErrors()
+        {
+            var errors = new List<string>();
+            ModelState.Values.ToList().ForEach(value =>
+            {
+                if (value.Errors.Count > 0)
+                    errors.Add(value.Errors.First().ErrorMessage);
+            });
+            return errors;
         }
     }
 }

@@ -10,9 +10,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="UrlSlug" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DescriptionCategory" Type="nvarchar(max)" />
+          <Property Name="CountCategory" Type="int" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -20,7 +21,9 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostID" Type="int" Nullable="false" />
-          <Property Name="DescriptionComment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NameUserSender" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailUserSender" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DescriptionComment" Type="bit" Nullable="false" />
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" />
@@ -30,16 +33,20 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NameSenderPost" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DescriptionPost" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Meta" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="UrlSlug" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Meta" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" />
           <Property Name="Category" Type="int" Nullable="false" />
-          <Property Name="Comment" Type="int" />
+          <Property Name="ImageData" Type="varbinary(max)" />
+          <Property Name="ImageMime" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountComments" Type="int" />
+          <Property Name="IfArticle" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -56,8 +63,8 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
-          <Property Name="UrlSlug" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DescriptionTag" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Comment_Post">
@@ -146,9 +153,10 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UrlSlug" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UrlSlug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CountCategory" Type="Int32" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
         </EntityType>
         <EntityType Name="Comment">
@@ -157,7 +165,9 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PostID" Type="Int32" Nullable="false" />
-          <Property Name="DescriptionComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameUserSender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailUserSender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionComment" Type="Boolean" Nullable="false" />
           <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Precision="3" />
@@ -168,16 +178,20 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameSenderPost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionPost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Meta" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UrlSlug" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Meta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UrlSlug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
           <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <Property Name="Category" Type="Int32" Nullable="false" />
-          <Property Name="Comment" Type="Int32" />
+          <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountComments" Type="Int32" />
+          <Property Name="IfArticle" Type="Boolean" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
           <NavigationProperty Name="Tags" Relationship="Self.PostTag" FromRole="Post" ToRole="Tag" />
@@ -187,8 +201,8 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UrlSlug" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UrlSlug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Posts" Relationship="Self.PostTag" FromRole="Tag" ToRole="Post" />
         </EntityType>
@@ -251,6 +265,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UrlSlug" ColumnName="UrlSlug" />
                 <ScalarProperty Name="DescriptionCategory" ColumnName="DescriptionCategory" />
+                <ScalarProperty Name="CountCategory" ColumnName="CountCategory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -259,6 +274,8 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="NameUserSender" ColumnName="NameUserSender" />
+                <ScalarProperty Name="EmailUserSender" ColumnName="EmailUserSender" />
                 <ScalarProperty Name="DescriptionComment" ColumnName="DescriptionComment" />
                 <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
@@ -270,6 +287,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <EntityTypeMapping TypeName="DogCodingModel.Post">
               <MappingFragment StoreEntitySet="Post">
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameSenderPost" ColumnName="NameSenderPost" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
                 <ScalarProperty Name="DescriptionPost" ColumnName="DescriptionPost" />
@@ -279,7 +297,10 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
                 <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="ImageMime" ColumnName="ImageMime" />
+                <ScalarProperty Name="CountComments" ColumnName="CountComments" />
+                <ScalarProperty Name="IfArticle" ColumnName="IfArticle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

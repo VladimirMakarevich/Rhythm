@@ -2,29 +2,29 @@
 using Rhythm.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Rhythm.Domain.Model;
 
 namespace Rhythm.Controllers
 {
     public class HomeController : DefaultController
     {
         public int PageSize = 8;
-        public HomeController(IRepository postRepository)
+        public HomeController(IRepository repository)
         {
-            this.repository = postRepository;
+            this.repository = repository;
+            ViewBag.Title = "DOGCODING";
+            ViewBag.Text = "DogBlog - Vladimir Makarevich - junior backend Developer ASP.NET MVC";
+            ViewBag.WordFirst = "C#";
+            ViewBag.WordSecond = "ASP.NET MVC";
+            ViewBag.WordThird = "WEB";
         }
 
-        // GET: BlogHome
-        public ActionResult Index()
-        {
-            ViewBag.Title = "Blog - DogCoding, by Vladimir Makarevich";
-            ViewBag.DogCoding = "DogCoding";
-            return View();
-        }
-
-        public ViewResult List(int page = 1)
+        public ViewResult Index(int page = 1)
         {
             PostListViewModel model = new PostListViewModel
             {
@@ -42,6 +42,29 @@ namespace Rhythm.Controllers
             };
 
             return View(model);
+        }
+
+        public ActionResult Post(int? id)
+        {
+            //TODO: change
+            if (id == 0)
+            {
+                id++;
+            }
+            if (id >= repository.Post.Count())
+            {
+                id--;
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
         }
     }
 }

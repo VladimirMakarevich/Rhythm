@@ -55,16 +55,14 @@ namespace Rhythm
 
 
             
-            bundles.Add(new StyleBundle("~/Content/css/css")
-                .Include("~/Content/css/animate.min.css")
-                .Include("~/Content/css/bootstrap.min.css")
-                .Include("~/Content/css/magnific-popup.css")
-                .Include("~/Content/css/owl.carousel.css")
-                .Include("~/Content/css/style-responsive.css")
-                .Include("~/Content/css/style.css")
-                .Include("~/Content/css/vertical-rhythm.min.css"));
-
-            BundleTable.EnableOptimizations = true;
+            bundles.Add(new StyleBundle("~/Content/css")
+                .Include("~/Content/css/style.css",
+                "~/Content/css/animate.min.css",
+                "~/Content/css/bootstrap.min.css",
+                "~/Content/css/magnific-popup.css",
+                "~/Content/css/owl.carousel.css",
+                "~/Content/css/style-responsive.css",
+                "~/Content/css/vertical-rhythm.min.css"));
         }
     }
 }
