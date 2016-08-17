@@ -31,7 +31,6 @@ namespace Rhythm.Controllers
         }
 
 
-
         [ChildActionOnly]
         public ActionResult RecentPosts()
         {
@@ -50,7 +49,7 @@ namespace Rhythm.Controllers
         public ActionResult RecentArticleWidgets()
         {
             var articleWidget = repository.GetArticleWidget();
-            
+
             return PartialView("RecentArticleWidgets", articleWidget);
         }
 
@@ -65,6 +64,18 @@ namespace Rhythm.Controllers
         {
             var posts = repository.Post.OrderBy(p => p.ID).ToList();
             return posts;
+        }
+
+        [ChildActionOnly]
+        public ActionResult AddComment()
+        {
+            CommentViewModel comment = new CommentViewModel()
+            {
+                EmailSender = "type your mail",
+                IsHuman = false,
+                NameSender = "type your name"
+            };
+            return PartialView(comment);
         }
     }
 }

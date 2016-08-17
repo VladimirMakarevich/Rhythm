@@ -317,6 +317,7 @@
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
     <Content Include="Views\Shared\testComment.cshtml" />
+    <Content Include="Views\Recents\AddComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

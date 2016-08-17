@@ -51,7 +51,7 @@ namespace Rhythm.Controllers
             {
                 id++;
             }
-            if (id >= repository.Post.Count())
+            if (id > repository.Post.Count())
             {
                 id--;
             }

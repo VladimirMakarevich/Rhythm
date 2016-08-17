@@ -66,5 +66,27 @@ namespace Rhythm.Controllers
             }
             return View(post);
         }
+
+        public ActionResult PostSecond(int? id)
+        {
+            if (id == 0)
+            {
+                id++;
+            }
+            if (id > repository.Post.Count())
+            {
+                id--;
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
     }
 }
