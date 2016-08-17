@@ -29,6 +29,7 @@ namespace Rhythm.Controllers
         {
 
             commentViewModel.Comment.PostID = commentViewModel.ID;
+            commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
             repository.AddComment(commentViewModel.Comment);
 
             return AllComments(commentViewModel.Comment.ID);

@@ -42,7 +42,10 @@ namespace Rhythm.Domain.EfRepository
         public void AddComment(Comment comment)
         {
             comment.PostedOn = DateTime.Now;
+            comment.Post.CountComments++;
+            comment.DescriptionComment = false;
             context.SaveChanges();
+
         }
     }
 }
