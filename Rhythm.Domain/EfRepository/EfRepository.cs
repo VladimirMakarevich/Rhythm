@@ -12,6 +12,5 @@ namespace Rhythm.Domain.EfRepository
     public partial class EfRepository : IRepository
     {
         private DogCodingEntities context = new DogCodingEntities();
-
     }
 }

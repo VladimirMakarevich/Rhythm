@@ -11,10 +11,12 @@
             <div class="media-body">
                 <div class="comment-item-data">
                     <div class="comment-author">
-                        <a href="#">@comment.NameUserSender</a>
+                        <a href="">@comment.NameUserSender</a>
                     </div>
-                    @comment.PostedOn<span class="separator">&mdash;</span>
-                    <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                    <div class="local-scroll">
+                        @comment.PostedOn<span class="separator">&mdash;</span>
+                        <a href="#add-comment"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                    </div>
                 </div>
                 <p>
                     @comment.Comment1
@@ -29,10 +31,12 @@
                 <div class="media-body">
                     <div class="comment-item-data">
                         <div class="comment-author">
-                            <a href="#">@comment.NameUserSender</a>
+                            <a href="">@comment.NameUserSender</a>
                         </div>
-                        @comment.PostedOn<span class="separator">&mdash;</span>
-                        <a href="#"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                        <div class="local-scroll">
+                            @comment.PostedOn<span class="separator">&mdash;</span>
+                            <a href="#add-comment" id="@comment.DescriptionComment"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                        </div>
                     </div>
                     <p>
                         @comment.Comment1
@@ -45,11 +49,4 @@
     </li>
         <!-- End Comment Item -->
 }
-<hr class="mb-70 mb-xs-30" />
-<!-- Add Comment -->
-<div class="mb-80 mb-xs-40">
-    <h4 class="blog-page-title font-alt">Leave a comment</h4>
-    @Html.Action("AddComment", "Recents")
-</div>
 
-<!-- End Add Comment -->

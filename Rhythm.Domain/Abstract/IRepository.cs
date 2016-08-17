@@ -16,6 +16,7 @@ namespace Rhythm.Domain.Abstract
         IQueryable<Comment> Comment { get; }
         List<RecentComment> GetFiveCommentsList();
         RecentArticleWidget GetArticleWidget();
+        void AddComment(Comment comment); 
 
     }
 }

@@ -67,13 +67,14 @@ namespace Rhythm.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult AddComment()
+        public ActionResult AddComment(int id)
         {
+
             CommentViewModel comment = new CommentViewModel()
             {
-                EmailSender = "type your mail",
-                IsHuman = false,
-                NameSender = "type your name"
+                EmailSender = "Type your mail",
+                NameSender = "Type your name",
+                ID = id
             };
             return PartialView(comment);
         }

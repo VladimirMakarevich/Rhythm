@@ -53,6 +53,10 @@ namespace Rhythm
             bundles.Add(new ScriptBundle("~/bundles/rhythm/wow")
                 .Include("~/Scripts/rhythm/wow.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/rhythm/jqueryval").Include(
+                "~/scripts/jquery.validate*",
+                "~/scripts/jquery.unobtrusive*"));
+
 
             
             bundles.Add(new StyleBundle("~/Content/css")

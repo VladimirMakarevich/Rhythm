@@ -27,18 +27,11 @@ namespace Rhythm.Controllers
 
         public ActionResult Add(CommentViewModel commentViewModel)
         {
-            bool flagCheck = false;
-            if (commentViewModel.NameSender != null && commentViewModel.IsHuman == true)
-            {
-                commentViewModel.Comment.PostID = commentViewModel.Post.ID;
-                flagCheck = true;
-            }
-            else
-            {
-                TempData["CommentErrors"] = GetModelErrors();
-            }
 
-            return View(); 
+            commentViewModel.Comment.PostID = commentViewModel.ID;
+            repository.AddComment(commentViewModel.Comment);
+
+            return AllComments(commentViewModel.Comment.ID);
         }
 
         private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
@@ -46,15 +39,15 @@ namespace Rhythm.Controllers
             return RiderectByPostType(commentViewModel, flagCheck);
         }
 
-        private List<string> GetModelErrors()
-        {
-            var errors = new List<string>();
-            ModelState.Values.ToList().ForEach(value =>
-            {
-                if (value.Errors.Count > 0)
-                    errors.Add(value.Errors.First().ErrorMessage);
-            });
-            return errors;
-        }
+        //private List<string> GetModelErrors()
+        //{
+        //    var errors = new List<string>();
+        //    ModelState.Values.ToList().ForEach(value =>
+        //    {
+        //        if (value.Errors.Count > 0)
+        //            errors.Add(value.Errors.First().ErrorMessage);
+        //    });
+        //    return errors;
+        //}
     }
 }

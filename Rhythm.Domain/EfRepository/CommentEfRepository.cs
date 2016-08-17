@@ -3,6 +3,7 @@ using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System.Linq;
 using Rhythm.Domain.Concrete;
+using System;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -36,6 +37,12 @@ namespace Rhythm.Domain.EfRepository
             });
 
             return recent;
+        }
+
+        public void AddComment(Comment comment)
+        {
+            comment.PostedOn = DateTime.Now;
+            context.SaveChanges();
         }
     }
 }

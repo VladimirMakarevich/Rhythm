@@ -8,6 +8,7 @@ namespace Rhythm.Models
 {
     public class CommentViewModel
     {
+        public int ID { get; set; }
         public Post Post { get; set; }
         public Comment Comment { get; set; }
         public string NameSender { get; set; }

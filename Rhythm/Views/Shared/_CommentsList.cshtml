@@ -5,5 +5,12 @@
     <ul class="media-list text comment-list clearlist">
         @Html.Action("AllComments", "Comments")
     </ul>
+    <hr class="mb-70 mb-xs-30" id="add-comment" />
+    <!-- Add Comment -->
+    <div class="mb-80 mb-xs-40">
+        <h4 class="blog-page-title font-alt">Leave a comment</h4>
+        @Html.Action("AddComment", "Recents", new { id = Model.ID})
+    </div>
+    <!-- End Add Comment -->
 </div>
 <!-- End Comments -->

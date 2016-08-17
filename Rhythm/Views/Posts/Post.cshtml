@@ -22,11 +22,10 @@
                 </div>
                 <!-- End Post -->
                 @Html.Partial("_CommentsList")
-                @Html.Partial("_AddComment")
                 <!-- Prev/Next Post -->
                 <div class="clearfix mt-40">
                     @Html.ActionLink("Prev post", "Post", new { id = Model.ID - 1 }, new { @class = "blog-item-more left" })
-                    @Html.ActionLink("Prev post", "Post", new { id = Model.ID + 1 }, new { @class = "blog-item-more right" })
+                    @Html.ActionLink("Next post", "Post", new { id = Model.ID + 1 }, new { @class = "blog-item-more right" })
                 </div>
                 <!-- End Prev/Next Post -->
             </div>
