@@ -211,6 +211,13 @@
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\rhythm\all.js" />
     <Content Include="scripts\rhythm\bootstrap.js" />
@@ -316,7 +323,6 @@
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
-    <Content Include="Views\Shared\testComment.cshtml" />
     <Content Include="Views\Recents\AddComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

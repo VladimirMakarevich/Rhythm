@@ -7,7 +7,7 @@
         @foreach(var c in Model)
         {
             <li>
-               @c.NameUserSender on <a href="#" title="">@c.CommentContent (@c.PostAddedDate)</a>
+               @c.NameUserSender on <a href="#" title="@c.CommentContent">@c.CommentContent (@c.PostAddedDate)</a>
             </li>
         }
     </ul>

@@ -12,7 +12,7 @@ namespace Rhythm.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "About Me";
-            ViewBag.Text = "DogBlog - Vladimir Makarevich - junior backend Developer ASP.NET MVC";
+            ViewBag.Text = "";
             ViewBag.WordFirst = "C#";
             ViewBag.WordSecond = "ASP.NET MVC";
             ViewBag.WordThird = "WEB";
