@@ -25,3 +25,5 @@
 2016-08-18 01:32:27.0467|INFO|Rhythm.MvcApplication|Application Start
 2016-08-18 01:34:33.0582|INFO|Rhythm.MvcApplication|Application Start
 2016-08-18 01:35:49.0607|INFO|Rhythm.MvcApplication|Application Start
+2016-08-18 05:55:29.5645|INFO|Rhythm.MvcApplication|Application Start
+2016-08-18 05:56:42.9732|INFO|Rhythm.MvcApplication|Application Start
