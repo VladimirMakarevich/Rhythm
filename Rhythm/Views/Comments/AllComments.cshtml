@@ -8,20 +8,20 @@
         @if (@comment.DescriptionComment)
         {
             <a class="pull-left" href="#"><img src="~/Content/img/feature-2.png" alt="" width="90" height="90"></a>
-            <div class="media-body">
-                <div class="comment-item-data">
-                    <div class="comment-author">
-                        <a href="">@comment.NameUserSender</a>
+                <div class="media-body">
+                    <div class="comment-item-data">
+                        <div class="comment-author">
+                            <a href="">@comment.NameUserSender</a>
+                        </div>
+                        <div class="local-scroll">
+                            @comment.PostedOn<span class="separator">&mdash;</span>
+                            <a href="#add-comment"><i class="fa fa-comment"></i>&nbsp;Reply</a>
+                        </div>
                     </div>
-                    <div class="local-scroll">
-                        @comment.PostedOn<span class="separator">&mdash;</span>
-                        <a href="#add-comment"><i class="fa fa-comment"></i>&nbsp;Reply</a>
-                    </div>
+                    <p>
+                        @comment.Comment1
+                    </p>
                 </div>
-                <p>
-                    @comment.Comment1
-                </p>
-            </div>
         }
         else
         {
@@ -49,4 +49,3 @@
     </li>
         <!-- End Comment Item -->
 }
-

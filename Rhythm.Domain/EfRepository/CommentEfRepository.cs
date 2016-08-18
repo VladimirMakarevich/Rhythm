@@ -27,7 +27,7 @@ namespace Rhythm.Domain.EfRepository
 
             topComment.ForEach(comment =>
             {
-                var post = allPost.Single(p => p.ID == comment.ID);
+                var post = allPost.SingleOrDefault(p => p.ID == comment.ID);
                 recent.Add(new RecentComment
                 {
                     CommentContent = comment.Comment1,
@@ -44,6 +44,7 @@ namespace Rhythm.Domain.EfRepository
             comment.PostedOn = DateTime.Now;
             comment.Post.CountComments++;
             comment.DescriptionComment = false;
+            context.Comments.Add(comment);
             context.SaveChanges();
 
         }

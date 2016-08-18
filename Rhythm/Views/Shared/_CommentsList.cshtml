@@ -1,16 +1,33 @@
 ﻿@model Rhythm.Domain.Model.Post
+@{
+    var options = new AjaxOptions()
+    {
+        UpdateTargetId = "commentList",
+        Url = Url.Action("AllComments", "Comments")
+    };
+}
+
+@using (Ajax.BeginForm(options))
+{
 <!-- Comments -->
 <div class="mb-80 mb-xs-40">
     <h4 class="blog-page-title font-alt">Comments<small class="number">(@Model.CountComments)</small></h4>
-    <ul class="media-list text comment-list clearlist">
+    <ul class="media-list text comment-list clearlist" id="commentList">
         @Html.Action("AllComments", "Comments")
     </ul>
-    <hr class="mb-70 mb-xs-30" id="add-comment" />
-    <!-- Add Comment -->
-    <div class="mb-80 mb-xs-40">
-        <h4 class="blog-page-title font-alt">Leave a comment</h4>
-        @Html.Action("AddComment", "Recents", new { id = Model.ID})
-    </div>
-    <!-- End Add Comment -->
 </div>
 <!-- End Comments -->
+}
+<!-- Add Comment -->
+<div class="mb-80 mb-xs-40">
+    <h4 class="blog-page-title font-alt">Leave a comment</h4>
+    @Html.Action("AddComment", "Recents", new { id = Model.ID })
+</div>
+<!-- End Add Comment -->
+
+
+
+@section scripts
+{
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

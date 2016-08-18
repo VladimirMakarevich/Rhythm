@@ -15,10 +15,10 @@ namespace Rhythm
         private static Logger logger = LogManager.GetCurrentClassLogger();
         protected void Application_Start()
         {
-            logger.Info("Application Start");
-            logger.Debug("Application Debug");
-            logger.Error("Application Error");
-            logger.Trace("Application Trace");
+            //logger.Info("Application Start");
+            //logger.Debug("Application Debug");
+            //logger.Error("Application Error");
+            //logger.Trace("Application Trace");
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

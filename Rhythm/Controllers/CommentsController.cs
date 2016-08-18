@@ -22,7 +22,7 @@ namespace Rhythm.Controllers
         {
             var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
 
-            return PartialView("AllComments", allComment);
+            return PartialView(allComment);
         }
 
         public ActionResult Add(CommentViewModel commentViewModel)
@@ -32,13 +32,15 @@ namespace Rhythm.Controllers
             commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
             repository.AddComment(commentViewModel.Comment);
 
-            return AllComments(commentViewModel.Comment.ID);
+            //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
+            //return PartialView(allComment);
+            return PartialView("AllComments");
         }
 
-        private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
-        {
-            return RiderectByPostType(commentViewModel, flagCheck);
-        }
+        //private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
+        //{
+        //    return RiderectByPostType(commentViewModel, flagCheck);
+        //}
 
         //private List<string> GetModelErrors()
         //{

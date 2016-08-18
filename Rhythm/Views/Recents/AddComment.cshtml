@@ -23,42 +23,7 @@
         @Html.CheckBoxFor(model => model.IsHuman, false)
     </div>
             <!-- Send Button -->
-    <button type="submit" class="btn btn-mod btn-medium btn-round btn-round">
+    <button type="submit" value="Submit" class="btn btn-mod btn-medium btn-round btn-round">
         Send comment
     </button>
-}
-<!-- End Form -->
-@*@using (Ajax.BeginForm(name))
-    {
-            <!-- Form -->
-        @Html.HiddenFor(id => Model.Post.ID)
-        <div class="row mb-20 mb-md-10">
-            <div class="col-md-6 mb-md-10">
-                <!-- Name -->
-                @Html.TextBoxFor(model => model.Comment.NameUserSender, new { @Value = "Name", @class = "input-md form-control required" })
-            </div>
-            <div class="col-md-6">
-                <!-- Email -->
-                @Html.TextBoxFor(model => model.Comment.EmailUserSender, new { @Value = "Email", @class = "input-md form-control required" })
-            </div>
-        </div>
-                <!-- Comment -->
-            <div class="mb-30 mb-md-10">
-                @Html.TextAreaFor(model => model.Comment.Comment1, new { @class = "input-md form-control", rows = "6" })
-            </div>
-            <div class="mb-30 mb-md-10">
-                <label class="hs-line-4 font-alt black">Are you like Dogs?</label>
-                @Html.CheckBoxFor(model => model.IsHuman)
-            </div>
-
-                <!-- Send Button -->
-            <button type="submit" class="btn btn-mod btn-medium btn-round btn-round">
-                Send comment
-            </button>
-     <!-- End Form -->
-    }*@
-
-@section scripts
-{
-    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
 }
