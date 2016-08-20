@@ -190,6 +190,26 @@
     <Content Include="Content\img\user-bone.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="logs\2016-08-11\debug.txt" />
+    <Content Include="logs\2016-08-11\error.txt" />
+    <Content Include="logs\2016-08-11\info.txt" />
+    <Content Include="logs\2016-08-11\trace.txt" />
+    <Content Include="logs\2016-08-13\debug.txt" />
+    <Content Include="logs\2016-08-13\error.txt" />
+    <Content Include="logs\2016-08-13\info.txt" />
+    <Content Include="logs\2016-08-13\trace.txt" />
+    <Content Include="logs\2016-08-14\debug.txt" />
+    <Content Include="logs\2016-08-14\error.txt" />
+    <Content Include="logs\2016-08-14\info.txt" />
+    <Content Include="logs\2016-08-14\trace.txt" />
+    <Content Include="logs\2016-08-15\debug.txt" />
+    <Content Include="logs\2016-08-15\error.txt" />
+    <Content Include="logs\2016-08-15\info.txt" />
+    <Content Include="logs\2016-08-15\trace.txt" />
+    <Content Include="logs\2016-08-16\debug.txt" />
+    <Content Include="logs\2016-08-16\error.txt" />
+    <Content Include="logs\2016-08-16\info.txt" />
+    <Content Include="logs\2016-08-16\trace.txt" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="Content\css\ytp-regular.eot" />
@@ -326,6 +346,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
+    <Folder Include="logs\2016-08-10\" />
+    <Folder Include="logs\2016-08-18\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

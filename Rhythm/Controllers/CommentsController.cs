@@ -34,7 +34,7 @@ namespace Rhythm.Controllers
 
             //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
             //return PartialView(allComment);
-            return PartialView("AllComments");
+            return RedirectToRoutePermanent("Post", commentViewModel.ID);
         }
 
         //private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
