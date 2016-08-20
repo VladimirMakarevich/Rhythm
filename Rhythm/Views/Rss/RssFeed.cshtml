@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Rhythm.Models.Rss>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+                    @*<a href="@i.Link" target="_blank">@Html.Encode(i.Title)</a>
+                </td>
+                <td>
+                    @System.Web.HttpUtility.HtmlDecode(i.Description)
+                </td>
+                <td>
+                    <a href="@i.Link" target="_blank">Mode</a>*@
+
+
+@Html.Partial("_HeadSection")
+
+<!-- for renderBody -->
+<section class="page-section">
+    <div class="container relative">
+        <div class="row">
+            <!-- for renderBody -->
+            <!-- Content -->
+            <div class="col-sm-8">
+                @foreach (var i in Model)
+                {
+                    <!-- Post -->
+                    <div class="blog-item">
+                        <!-- Post Title -->
+                        <h2 class="blog-item-title font-alt">@Html.Encode(i.Title)</h2>
+                        <!-- Author, Categories, Comments -->
+                        <div class="blog-item-data">
+                            <a href="@i.Link"><i class="fa fa-clock-o"></i>@i.PubDate</a>
+                            <span class="separator">&nbsp;</span>
+                            <a href="@i.Link"><i class="fa fa-user"></i>@ViewBag.Site</a>
+                            <span class="separator">&nbsp;</span>
+                            <i class="fa fa-folder-open"></i>
+                            <a href="@i.Link">@ViewBag.News</a>
+                            <span class="separator">&nbsp;</span>
+                            <a href="@i.Link"><i class="fa fa-user"></i>IT</a>
+                        </div>
+                        <!-- Text Intro -->
+                        <div class="blog-item-body">
+                            <p>
+                                @System.Web.HttpUtility.HtmlDecode(i.Description)
+
+                            </p>
+                        </div>
+                        <!-- Read More Link -->
+                        <div class="blog-item-foot">
+                            <a href="@i.Link" target="_blank" class="btn btn-mod btn-round  btn-small">Read More</a>
+                        </div>
+                    </div>
+                <!-- End Post -->
+                }
+                <div class="pagination">
+                    <a href=""><i class="fa fa-angle-left"></i></a>
+                   @*@Html.PageLinks(, x => Url.Action("List", new { Page = x }))*@
+                    <a href=""><i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            <!-- End Content -->
+            @Html.Partial("_Sidebar")
+        </div>
+    </div>
+</section>
