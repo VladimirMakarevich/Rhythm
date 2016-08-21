@@ -1,10 +1,17 @@
 ﻿@model Rhythm.Models.CommentViewModel
 @{
+        var options = new AjaxOptions()
+        {
+            UpdateTargetId = "add",
+            Url = Url.Action("addComments", "Posts", new { id = Model.ID, @class = "form" })
+    };
 }
 
 <!-- Form -->
-<div class="form">
-    <div class="row mb-20 mb-md-10">
+@using (Ajax.BeginForm(options))
+    @*@using (Html.BeginForm("addComments", "Posts", new { id = Model.ID }, FormMethod.Post, new { @class = "form" }))*@
+{
+    <div class="row mb-20 mb-md-10" id="add">
         <div class="col-md-6 mb-md-10">
             <!-- Name -->
             @Html.TextBoxFor(model => model.Comment.NameUserSender, new { @Value = Model.NameSender, @class = "input-md form-control required" })
@@ -14,7 +21,7 @@
             @Html.TextBoxFor(model => model.Comment.EmailUserSender, new { @Value = Model.EmailSender, @class = "input-md form-control required" })
         </div>
     </div>
-    <!-- Comment -->
+            <!-- Comment -->
     <div class="mb-30 mb-md-10">
         @Html.TextAreaFor(model => model.Comment.Comment1, new { @class = "input-md form-control", rows = "6" })
     </div>
@@ -22,6 +29,14 @@
         <label class="hs-line-4 font-alt black">Are you like Dogs?</label>
         @Html.CheckBoxFor(model => model.IsHuman, false)
     </div>
-    <!-- Send Button -->
-    <input type="submit" value="Send comment" class="btn btn-mod btn-medium btn-round btn-round"/>
-</div>
+            <!-- Send Button -->
+    <button type="submit" value="Submit" class="btn btn-mod btn-medium btn-round btn-round">
+        Send comment
+    </button>
+}
+
+
+@section scripts
+{
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

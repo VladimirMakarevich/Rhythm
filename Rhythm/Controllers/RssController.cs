@@ -1,8 +1,10 @@
 ﻿using Rhythm.Domain.Abstract;
+using Rhythm.Domain.Model;
 using Rhythm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,21 +16,192 @@ namespace Rhythm.Controllers
         public RssController(IRepository repository)
         {
             this.repository = repository;
-            ViewBag.Title = "Dev.by";
-            ViewBag.Text = "";
-            ViewBag.WordFirst = "dev.by";
+        }
+
+        public ActionResult Index()
+        {
+            ViewBag.Title = "RSS";
+            ViewBag.WordFirst = "NEWS";
             ViewBag.WordSecond = "IT";
-            ViewBag.WordThird = "Belarus";
+            ViewBag.WordThird = "WEB";
+            return View();
         }
         // GET: Rss
-        public ActionResult RssFeed()
+        public ActionResult Devby()
         {
+            ViewBag.Title = "Dev.by";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Belarus";
 
             ViewBag.Site = "Dev.by";
             ViewBag.News = "News";
-
-            return View(RssReader.GetRssFeedDevBy());
+            return View("RSS", RssReader.GetRssFeed("Dev"));
         }
 
+
+        public ActionResult EventsDevby()
+        {
+            ViewBag.Title = "Events Dev.by";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Belarus";
+
+            ViewBag.Site = "Events.Dev.by";
+            ViewBag.News = "Events";
+            return View("RSS", RssReader.GetRssFeed("EventsDev"));
+        }
+
+        public ActionResult DZoneweb()
+        {
+            ViewBag.Title = "DZone WEB";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "WEB";
+
+            ViewBag.Site = "DZone";
+            ViewBag.News = "News WEB";
+            return View("RSS", RssReader.GetRssFeed("DZoneweb"));
+        }
+
+        public ActionResult DZoneagile()
+        {
+            ViewBag.Title = "DZone Agile";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "AGILE";
+
+            ViewBag.Site = "DZone";
+            ViewBag.News = "News Agile";
+            return View("RSS", RssReader.GetRssFeed("DZoneagile"));
+        }
+
+        public ActionResult Codeproject()
+        {
+            ViewBag.Title = "Codeproject";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Article";
+
+            ViewBag.Site = "Codeproject";
+            ViewBag.News = "News All";
+            return View("RSS", RssReader.GetRssFeed("Codeproject"));
+        }
+
+        public ActionResult CodeprojectCsharp()
+        {
+
+            ViewBag.Title = "Codeproject C#";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "C#";
+
+            ViewBag.Site = "Codeproject";
+            ViewBag.News = "News C#";
+            return View("RSS", RssReader.GetRssFeed("CodeprojectCsharp"));
+        }
+
+        public ActionResult CodeprojectAspnet()
+        {
+            ViewBag.Title = "Codeproject ASP.NET";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "MVC";
+
+            ViewBag.Site = "Codeproject";
+            ViewBag.News = "News ASP.NET";
+            return View("RSS", RssReader.GetRssFeed("CodeprojectAspnet"));
+        }
+
+        public ActionResult CodeprojectDotnet()
+        {
+            ViewBag.Title = "Codeproject .NET";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = ".NET";
+
+            ViewBag.Site = "Codeproject";
+            ViewBag.News = "News .NET";
+            return View("RSS", RssReader.GetRssFeed("CodeprojectDotnet"));
+        }
+
+        public ActionResult Habrahabr()
+        {
+            ViewBag.Title = "Habrahabr";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "HUB";
+
+            ViewBag.Site = "Hub";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("habrahabr"));
+        }
+
+        public ActionResult Hanselman()
+        {
+            ViewBag.Title = "Hanselman Blog";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Blog";
+
+            ViewBag.Site = "Hanselman";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("Hanselman"));
+        }
+
+        public ActionResult ScottGu()
+        {
+            ViewBag.Title = "ScottGu's Blog";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Blog";
+
+            ViewBag.Site = "ScottGu's";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("ScottGu"));
+        }
+        //public ViewResult Index(int page = 1)
+        //{
+        //    PostListViewModel model = new PostListViewModel
+        //    {
+        //        Posts = repository.Post
+        //        .OrderBy(s => s.ID)
+        //        .Where(p => p.IfArticle == true)
+        //        .Skip((page - 1) * PageSize)
+        //        .Take(PageSize),
+
+        //        PagingView = new ListView
+        //        {
+        //            CurrentPage = page,
+        //            PostsPerPage = PageSize,
+        //            TotalPosts = repository.Post.Count()
+        //        }
+        //    };
+
+        //    return View(model);
+        //}
+
+        //public ActionResult Article(int? id)
+        //{
+        //    //TODO: change
+        //    if (id == 0)
+        //    {
+        //        id++;
+        //    }
+        //    if (id > repository.Post.Count())
+        //    {
+        //        id--;
+        //    }
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+        //    if (post == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(post);
+        //}
     }
 }

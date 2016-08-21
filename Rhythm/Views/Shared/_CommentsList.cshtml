@@ -1,31 +1,52 @@
-﻿@model Rhythm.Domain.Model.Post
+﻿@model Rhythm.Models.CommentViewModel
 @{
     var options = new AjaxOptions()
     {
-        UpdateTargetId = "commentList",
-        Url = Url.Action("AllComments", "Comments")
+        UpdateTargetId = "add",
+        Url = Url.Action("addComments", "Comments", new { id = Model.ID })
     };
 }
 
 @using (Ajax.BeginForm(options))
 {
-<!-- Comments -->
-<div class="mb-80 mb-xs-40">
-    <h4 class="blog-page-title font-alt">Comments<small class="number">(@Model.CountComments)</small></h4>
-    <ul class="media-list text comment-list clearlist" id="commentList">
-        @Html.Action("AllComments", "Comments")
-    </ul>
-</div>
-<!-- End Comments -->
+    <!-- Comments -->
+    <div class="mb-80 mb-xs-40">
+        <h4 class="blog-page-title font-alt">Comments<small class="number">(@Model.Post.CountComments)</small></h4>
+        <ul class="media-list text comment-list clearlist" id="add">
+            @Html.Action("AllComments", "Comments")
+        </ul>
+    </div>
+    <!-- End Comments -->
+    <!-- Add Comment -->
+    <div class="mb-80 mb-xs-40">
+        <h4 class="blog-page-title font-alt">Leave a comment</h4>
+        @*@Html.Action("AddComment", "Recents", new { id = Model.ID })*@
+        <!-- Form -->
+        <div class="form">
+            <div class="row mb-20 mb-md-10">
+                <div class="col-md-6 mb-md-10">
+                    <!-- Name -->
+                    @Html.TextBoxFor(model => model.Comment.NameUserSender, new { @Value = Model.NameSender, @class = "input-md form-control required" })
+                </div>
+                <div class="col-md-6">
+                    <!-- Email -->
+                    @Html.TextBoxFor(model => model.Comment.EmailUserSender, new { @Value = Model.EmailSender, @class = "input-md form-control required" })
+                </div>
+            </div>
+            <!-- Comment -->
+            <div class="mb-30 mb-md-10">
+                @Html.TextAreaFor(model => model.Comment.Comment1, new { @class = "input-md form-control", rows = "6" })
+            </div>
+            <div class="mb-30 mb-md-10">
+                <label class="hs-line-4 font-alt black">Are you like Dogs?</label>
+                @Html.CheckBoxFor(model => model.IsHuman, false)
+            </div>
+            <!-- Send Button -->
+            <input type="submit" value="Send comment" class="btn btn-mod btn-medium btn-round btn-round" />
+        </div>
+    </div>
+    <!-- End Add Comment -->
 }
-<!-- Add Comment -->
-<div class="mb-80 mb-xs-40">
-    <h4 class="blog-page-title font-alt">Leave a comment</h4>
-    @Html.Action("AddComment", "Recents", new { id = Model.ID })
-</div>
-<!-- End Add Comment -->
-
-
 
 @section scripts
 {

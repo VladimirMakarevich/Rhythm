@@ -1,16 +1,8 @@
 ﻿@model IEnumerable<Rhythm.Models.Rss>
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-                    @*<a href="@i.Link" target="_blank">@Html.Encode(i.Title)</a>
-                </td>
-                <td>
-                    @System.Web.HttpUtility.HtmlDecode(i.Description)
-                </td>
-                <td>
-                    <a href="@i.Link" target="_blank">Mode</a>*@
-
 
 @Html.Partial("_HeadSection")
 
@@ -26,17 +18,17 @@
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title font-alt">@Html.Encode(i.Title)</h2>
+                        <h2 class="blog-item-title font-alt">@System.Web.HttpUtility.HtmlDecode(i.Title)</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a href="@i.Link"><i class="fa fa-clock-o"></i>@i.PubDate</a>
+                            <a href="@i.Link" target="_blank"><i class="fa fa-clock-o"></i>@i.PubDate</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="@i.Link"><i class="fa fa-user"></i>@ViewBag.Site</a>
+                            <a href="@i.Link" target="_blank"><i class="fa fa-user"></i>@ViewBag.Site</a>
                             <span class="separator">&nbsp;</span>
                             <i class="fa fa-folder-open"></i>
-                            <a href="@i.Link">@ViewBag.News</a>
+                            <a href="@i.Link" target="_blank">@ViewBag.News</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="@i.Link"><i class="fa fa-user"></i>IT</a>
+                            <a href="@i.Link" target="_blank"><i class="fa fa-user"></i>IT</a>
                         </div>
                         <!-- Text Intro -->
                         <div class="blog-item-body">
@@ -53,9 +45,9 @@
                 <!-- End Post -->
                 }
                 <div class="pagination">
-                    <a href=""><i class="fa fa-angle-left"></i></a>
-                   @*@Html.PageLinks(, x => Url.Action("List", new { Page = x }))*@
-                    <a href=""><i class="fa fa-angle-right"></i></a>
+                    @*<a href=""><i class="fa fa-angle-left"></i></a>*@
+                    @*@Html.PageLinks(, x => Url.Action("List", new { Page = x }))*@
+                    @*<a href=""><i class="fa fa-angle-right"></i></a>*@
                 </div>
             </div>
             <!-- End Content -->

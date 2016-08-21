@@ -173,22 +173,16 @@
     <Content Include="Content\img\apple-touch-icon-114x114.png" />
     <Content Include="Content\img\apple-touch-icon-72x72.png" />
     <Content Include="Content\img\apple-touch-icon.png" />
-    <Content Include="Content\img\face-dog-second.png" />
-    <Content Include="Content\img\face-dog.png" />
+    <Content Include="Content\img\bx_loader.gif" />
+    <Content Include="Content\img\controls.png" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\favicon.png" />
-    <Content Include="Content\img\feature-1.png" />
-    <Content Include="Content\img\feature-2.png" />
-    <Content Include="Content\img\feature-3.png" />
-    <Content Include="Content\img\foot-dog-main-10.png" />
-    <Content Include="Content\img\foot-dog-main.png" />
-    <Content Include="Content\img\foot-dog.png" />
-    <Content Include="Content\img\house-dog.png" />
+    <Content Include="Content\img\loader.gif" />
     <Content Include="Content\img\logo-dark.png" />
-    <Content Include="Content\img\logo-footer-dog-shit.png" />
     <Content Include="Content\img\logo-footer.png" />
-    <Content Include="Content\img\user-bone.png" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\img\logo-white.png" />
+    <Content Include="Content\img\map-marker.png" />
+    <Content Include="Content\img\pattern-bg-2.png" />
     <Content Include="Global.asax" />
     <Content Include="logs\2016-08-11\debug.txt" />
     <Content Include="logs\2016-08-11\error.txt" />
@@ -210,17 +204,13 @@
     <Content Include="logs\2016-08-16\error.txt" />
     <Content Include="logs\2016-08-16\info.txt" />
     <Content Include="logs\2016-08-16\trace.txt" />
-    <Content Include="scripts\bootstrap.js" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="Content\css\ytp-regular.eot" />
-    <Content Include="Content\css\ytp-regular.ttf" />
-    <Content Include="Content\css\ytp-regular.woff" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\ChiefAdmin\Views\web.config" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\_ViewStart.cshtml" />
+    <Content Include="Content\css\ytp-regular.ttf" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -233,7 +223,6 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\rhythm\all.js" />
-    <Content Include="scripts\rhythm\bootstrap.js" />
     <Content Include="scripts\rhythm\bootstrap.min.js" />
     <Content Include="scripts\rhythm\contact-form.js" />
     <Content Include="scripts\rhythm\imagesloaded.pkgd.min.js" />
@@ -253,6 +242,7 @@
     <Content Include="scripts\rhythm\jquery.viewport.mini.js" />
     <Content Include="scripts\rhythm\masonry.pkgd.min.js" />
     <Content Include="scripts\rhythm\owl.carousel.min.js" />
+    <Content Include="scripts\rhythm\placeholder.js" />
     <Content Include="scripts\rhythm\SmoothScroll.js" />
     <Content Include="scripts\rhythm\wow.min.js" />
     <Content Include="Web.config" />
@@ -264,7 +254,7 @@
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
-    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -273,7 +263,6 @@
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RecentsController.cs" />
-    <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -283,7 +272,6 @@
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Models\Rss.cs" />
-    <Compile Include="Models\RssListViewModel.cs" />
     <Compile Include="Models\RssReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
@@ -318,7 +306,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_HeadSection.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Recents\RecentCategories.cshtml" />
     <Content Include="Views\Recents\RecentTags.cshtml" />
     <Content Include="Views\Recents\RecentPosts.cshtml" />
@@ -339,7 +326,10 @@
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
     <Content Include="Views\Recents\AddComment.cshtml" />
-    <Content Include="Views\Rss\RssFeed.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Rss\RSS.cshtml" />
+    <Content Include="Views\Comments\AddComment.cshtml" />
+    <Content Include="Views\Rss\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

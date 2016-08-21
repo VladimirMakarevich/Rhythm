@@ -26,9 +26,9 @@ namespace Rhythm
             );
 
             routes.MapRoute(
-                name: "Articles",
+                name: "Rss",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Articles", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Rss", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

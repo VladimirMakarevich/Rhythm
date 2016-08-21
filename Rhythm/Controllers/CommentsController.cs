@@ -18,14 +18,14 @@ namespace Rhythm.Controllers
 
 
         [ChildActionOnly]
-        public ActionResult AllComments(int? id)
+        public ActionResult AllComments(int id)
         {
             var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
 
             return PartialView(allComment);
         }
 
-        public ActionResult Add(CommentViewModel commentViewModel)
+        public ActionResult addComments(CommentViewModel commentViewModel)
         {
 
             commentViewModel.Comment.PostID = commentViewModel.ID;
@@ -34,8 +34,19 @@ namespace Rhythm.Controllers
 
             //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
             //return PartialView(allComment);
-            return RedirectToRoutePermanent("Post", commentViewModel.ID);
+            return null;
         }
+        //[ChildActionOnly]
+        //public ActionResult AddComment(int id)
+        //{
+        //    CommentViewModel comment = new CommentViewModel()
+        //    {
+        //        EmailSender = "Type your mail",
+        //        NameSender = "Type your name",
+        //        ID = id
+        //    };
+        //    return PartialView(comment);
+        //}
 
         //private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)
         //{

@@ -1,5 +1,0 @@
-2016-07-30 15:49:52.1752|ERROR|Rhythm.MvcApplication|Application Error
-2016-07-30 15:50:55.6992|ERROR|Rhythm.MvcApplication|Application Error
-2016-07-30 15:51:54.5163|ERROR|Rhythm.MvcApplication|Application Error
-2016-07-30 15:52:03.6002|ERROR|Rhythm.MvcApplication|Application Error
-2016-07-30 15:52:33.0132|ERROR|Rhythm.MvcApplication|Application Error

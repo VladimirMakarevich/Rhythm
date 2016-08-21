@@ -29,7 +29,6 @@ namespace Rhythm.Controllers
             {
                 Posts = repository.Post
                 .OrderBy(s => s.ID)
-                .Where(p => p.IfArticle == false)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -66,5 +65,18 @@ namespace Rhythm.Controllers
             }
             return View(post);
         }
+
+
+        //public ActionResult addComments(CommentViewModel commentViewModel)
+        //{
+
+        //    commentViewModel.Comment.PostID = commentViewModel.ID;
+        //    commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
+        //    repository.AddComment(commentViewModel.Comment);
+
+        //    //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
+        //    //return PartialView(allComment);
+        //    return null;
+        //}
     }
 }
