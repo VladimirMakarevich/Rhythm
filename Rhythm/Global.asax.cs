@@ -20,7 +20,13 @@ namespace Rhythm
             //logger.Error("Application Error");
             //logger.Trace("Application Trace");
 
+            //var adminArea = new ChiefAdminAreaRegistration();
+            //var adminAreaContext = new AreaRegistrationContext(adminArea.AreaName, RouteTable.Routes);
+            //adminArea.RegisterArea(adminAreaContext);
+
             AreaRegistration.RegisterAllAreas();
+
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 

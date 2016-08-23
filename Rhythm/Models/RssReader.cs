@@ -43,12 +43,12 @@ namespace Rhythm.Models
                 case "Hanselman":
                     blogURL = "http://feeds.hanselman.com/scotthanselman";
                     break;
-                //case "":
-                //    blogURL = "";
-                //    break;
-                //case "":
-                //    blogURL = "";
-                //    break;
+                case "asp.net":
+                    blogURL = "http://forums.asp.net/f/rss/1146";
+                    break;
+                case "StephenWalther":
+                    blogURL = "http://feeds.feedburner.com/StephenWalther?format=xml";
+                    break;
                 //case "":
                 //    blogURL = "";
                 //    break;

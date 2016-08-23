@@ -160,6 +160,30 @@ namespace Rhythm.Controllers
             ViewBag.News = "News";
             return View("RSS", RssReader.GetRssFeed("ScottGu"));
         }
+
+        public ActionResult AspDotNetQuestion()
+        {
+            ViewBag.Title = "Forum asp.net mvc";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Forum";
+
+            ViewBag.Site = "Forum asp.net mvc";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("asp.net")); 
+        }
+
+        public ActionResult StephenWalther()
+        {
+            ViewBag.Title = "StephenWalther Blog";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Blog";
+
+            ViewBag.Site = "StephenWalther";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("StephenWalther"));
+        }
         //public ViewResult Index(int page = 1)
         //{
         //    PostListViewModel model = new PostListViewModel

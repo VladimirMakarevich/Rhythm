@@ -206,11 +206,16 @@
     <Content Include="logs\2016-08-16\trace.txt" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\css\ytp-regular.ttf" />
     <Content Include="Areas\ChiefAdmin\Views\web.config" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\_ViewStart.cshtml" />
-    <Content Include="Content\css\ytp-regular.ttf" />
+    <Content Include="Areas\ChiefAdmin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\ViewContent\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\UpdateContent\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\DeleteContent\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\AddContent\Index.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -251,6 +256,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\AddContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\DeleteContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\UpdateContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\ViewContentController.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
@@ -263,12 +274,14 @@
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RecentsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Models\Rss.cs" />
@@ -311,7 +324,6 @@
     <Content Include="Views\Recents\RecentPosts.cshtml" />
     <Content Include="Views\Recents\RecentComments.cshtml" />
     <Content Include="Views\Recents\RecentArchives.cshtml" />
-    <Content Include="Views\Home\Post.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Articles\Article.cshtml" />
@@ -330,6 +342,7 @@
     <Content Include="Views\Rss\RSS.cshtml" />
     <Content Include="Views\Comments\AddComment.cshtml" />
     <Content Include="Views\Rss\Index.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -339,7 +352,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ChiefAdmin\Controllers\" />
     <Folder Include="Areas\ChiefAdmin\Models\" />
     <Folder Include="logs\2016-08-10\" />
     <Folder Include="logs\2016-08-18\" />

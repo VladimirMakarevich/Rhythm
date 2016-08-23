@@ -12,8 +12,7 @@ namespace Rhythm.Domain.EfRepository
         public RecentArticleWidget GetArticleWidget()
         {
             Random r = new Random();
-            var count =context.Posts.OrderBy(p => p.ID)
-                .Where(p => p.IfArticle == true).ToArray();
+            var count =context.Posts.OrderBy(p => p.ID).ToArray();
             var countArticle = r.Next(1, count.Length);
 
             var repositoryArticle = context.Posts.Single(p => p.ID == countArticle);
@@ -21,7 +20,8 @@ namespace Rhythm.Domain.EfRepository
             var articleWidget = new RecentArticleWidget()
             {
                 ArticleContent = repositoryArticle.ShortDescription,
-                Title = repositoryArticle.Title
+                Title = repositoryArticle.Title,
+                ID = repositoryArticle.ID
             };
 
             return articleWidget;

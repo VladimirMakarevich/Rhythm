@@ -6,7 +6,7 @@
     <div class="tags">
         @foreach (var t in Model)
         {
-            <a href="" title="@t.Name">@t.Name</a>
+            <a href="@Url.Action("SearchByTag", "Search", new { id = t.ID })" title="@t.Name">@t.Name</a>
         }
     </div>
 </div>

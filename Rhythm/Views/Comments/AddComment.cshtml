@@ -2,16 +2,15 @@
 @{
         var options = new AjaxOptions()
         {
-            UpdateTargetId = "add",
+            UpdateTargetId = "add2",
             Url = Url.Action("addComments", "Posts", new { id = Model.ID, @class = "form" })
     };
 }
 
 <!-- Form -->
 @using (Ajax.BeginForm(options))
-    @*@using (Html.BeginForm("addComments", "Posts", new { id = Model.ID }, FormMethod.Post, new { @class = "form" }))*@
 {
-    <div class="row mb-20 mb-md-10" id="add">
+    <div class="row mb-20 mb-md-10" id="add2">
         <div class="col-md-6 mb-md-10">
             <!-- Name -->
             @Html.TextBoxFor(model => model.Comment.NameUserSender, new { @Value = Model.NameSender, @class = "input-md form-control required" })

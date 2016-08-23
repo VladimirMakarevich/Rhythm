@@ -32,7 +32,8 @@ namespace Rhythm.Domain.EfRepository
                 {
                     CommentContent = comment.Comment1,
                     PostAddedDate = comment.PostedOn,
-                    NameUserSender = comment.NameUserSender
+                    NameUserSender = comment.NameUserSender,
+                    ID = comment.PostID
                 });
             });
 

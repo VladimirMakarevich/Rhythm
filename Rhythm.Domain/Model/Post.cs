@@ -26,7 +26,6 @@ namespace Rhythm.Domain.Model
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string DescriptionPost { get; set; }
-        public string Meta { get; set; }
         public string UrlSlug { get; set; }
         public bool Published { get; set; }
         public System.DateTime PostedOn { get; set; }
@@ -35,7 +34,6 @@ namespace Rhythm.Domain.Model
         public byte[] ImageData { get; set; }
         public string ImageMime { get; set; }
         public Nullable<int> CountComments { get; set; }
-        public Nullable<bool> IfArticle { get; set; }
     
         public virtual Category Category1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

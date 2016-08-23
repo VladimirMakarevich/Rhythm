@@ -16,17 +16,17 @@
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title font-alt">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
+                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a href="#"><i class="fa fa-clock-o"></i>@p.PostedOn</a>
+                            <a><i class="fa fa-clock-o"></i>@p.PostedOn</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="#"><i class="fa fa-user"></i>@p.NameSenderPost</a>
+                            <a><i class="fa fa-user"></i>@p.NameSenderPost</a>
                             <span class="separator">&nbsp;</span>
                             <i class="fa fa-folder-open"></i>
-                            <a href="#">@p.Category1.Name</a>
+                            <a>@p.Category1.Name</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="#"><i class="fa fa-comments"></i>Comments @p.CountComments</a>
+                            <a><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
                         <div class="blog-item-body">
                             <p>

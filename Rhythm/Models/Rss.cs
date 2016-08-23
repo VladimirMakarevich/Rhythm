@@ -12,7 +12,7 @@ namespace Rhythm.Models
     {
         public string Link { get; set; }
         public string Title { get; set; }
-        private string description { get ; set; }
+        private string description { get; set; }
         public string PubDate { get; set; }
 
         public string Description

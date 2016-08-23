@@ -8,7 +8,7 @@
         @foreach (var c in Model)
         {
             <li>
-                <a href="#" title="@c.Name">@c.Name</a>
+                <a href="@Url.Action("SearchByCategory", "Search", new { id = c.ID })" title="@c.Name">@c.Name</a>
                 <small>
                     - @c.CountCategory
                 </small>

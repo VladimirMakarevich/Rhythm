@@ -27,7 +27,6 @@ namespace Rhythm
                 .Include("~/scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/rhythm/allJS")
-                .Include("~/scripts/rhythm/contact-form.js")
                             .Include("~/scripts/rhythm/imagesloaded.pkgd.min.js")
                             .Include("~/scripts/rhythm/isotope.pkgd.min.js")
                             .Include("~/scripts/rhythm/masonry.pkgd.min.js")

@@ -15,9 +15,9 @@ namespace Rhythm.Areas.ChiefAdmin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "ChiefAdmin_default",
+                "ChiefAdmin",
                 "ChiefAdmin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Default", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

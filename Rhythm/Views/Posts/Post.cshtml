@@ -12,16 +12,18 @@
                 <div class="blog-item mb-80 mb-xs-40">
                     <!-- Text -->
                     <div class="blog-item-body">
-                        <h1 class="mt-0 font-alt">@Model.Title</h1>
+                        <h1 class="mt-0">@Model.Title</h1>
                         <div class="lead">
+                            <hr class="mb-40" />
                             @Model.ShortDescription
                         </div>
+                        <hr class="mb-40" />
                         @Model.DescriptionPost
                     </div>
                     <!-- End Text -->
                 </div>
                 <!-- End Post -->
-                @Html.Partial("_CommentsList")
+                @*@Html.Partial("_CommentsList")*@
                 <!-- Prev/Next Post -->
                 <div class="clearfix mt-40">
                     @Html.ActionLink("Prev post", "Post", new { id = Model.ID - 1 }, new { @class = "blog-item-more left" })

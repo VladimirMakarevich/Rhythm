@@ -1,8 +1,8 @@
 ﻿@model Rhythm.Models.PostListViewModel
-
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_HeadSection")
 <!-- for renderBody -->
 <section class="page-section">
@@ -16,7 +16,7 @@
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title">@p.Title</h2>
+                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
                             <a><i class="fa fa-clock-o"></i>@p.PostedOn</a>
@@ -36,7 +36,7 @@
                         </div>
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
-                            @Html.ActionLink("Read More", "Post", "Posts", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                            @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
                         </div>
                     </div>
                 <!-- End Post -->
