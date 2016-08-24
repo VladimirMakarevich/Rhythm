@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,25 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             this.repository = repository;
         }
         // GET: ChiefAdmin/ViewContent
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            Content content = new Content
+            {
+                Posts = repository.Post
+                .OrderBy(p => p.ID).ToList(),
+
+                Categories = repository.Category
+                .OrderBy(c => c.ID).ToList(),
+
+                Tags = repository.Tag
+                .OrderBy(t => t.ID).ToList(),
+
+                Comments = repository.Comment
+                .OrderBy(co => co.ID).ToList()
+
+            };
+
+            return View(content);
         }
     }
 }

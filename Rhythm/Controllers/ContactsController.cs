@@ -30,7 +30,7 @@ namespace Rhythm.Controllers
                     MailMessage msz = new MailMessage();
                     msz.From = new MailAddress(contact.Email);
                     msz.To.Add("justadreampictures@gmail.com");
-                    msz.Body = String.Format(contact.Email + " " + contact.Name + " " + contact.Message);
+                    msz.Body = String.Format("Name: " + contact.Name + "\n\nE-mail: " + contact.Email + "\n\nMessage: " + contact.Message);
                     msz.Subject = "site - DogCoding";
 
                     SmtpClient smpt = new SmtpClient();
@@ -50,6 +50,7 @@ namespace Rhythm.Controllers
                     ViewBag.Message = $"Sorry we are facing Problem here {ex.Message}";
                 }
             }
+            else { ViewBag.MessageError = "you have entered invalid data"; }
 
             return View();
         }

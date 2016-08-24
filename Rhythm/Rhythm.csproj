@@ -211,7 +211,7 @@
     <Content Include="Content\css\ytp-regular.ttf" />
     <Content Include="Areas\ChiefAdmin\Views\web.config" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Home\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\ViewContent\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\UpdateContent\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\DeleteContent\Index.cshtml" />
@@ -259,9 +259,10 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\AddContentController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\DeleteContentController.cs" />
-    <Compile Include="Areas\ChiefAdmin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateContentController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\ViewContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
@@ -352,7 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ChiefAdmin\Models\" />
     <Folder Include="logs\2016-08-10\" />
     <Folder Include="logs\2016-08-18\" />
   </ItemGroup>

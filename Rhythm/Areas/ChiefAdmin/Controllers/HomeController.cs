@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-    public class AdminController : DefaultController
+    public class HomeController : DefaultController
     {
         // GET: ChiefAdmin/Home
         public ActionResult Index()
