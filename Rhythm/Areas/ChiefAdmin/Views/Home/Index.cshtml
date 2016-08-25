@@ -1,4 +1,141 @@
-﻿
+﻿@model Rhythm.Areas.ChiefAdmin.Models.Content
+
 @{
+    <link href="~/Content/table.css" rel="stylesheet" />
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
+
+
+<div class="container relative">
+    <h1 class="align-center font-alt uppercase">Post</h1>
+    <div class="blog-item-body container">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Published</th>
+                <th>PostedOn</th>
+                <th>Action</th>
+
+            </tr>
+            @foreach (var p in Model.Posts)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Title)</td>
+                    <td>@Html.DisplayFor(m => p.Published)</td>
+                    <td>@Html.DisplayFor(m => p.PostedOn)</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdatePost", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
+                        @Html.ActionLink("Delete", "DeletePost", "DeleteContent", new { id = p.ID })
+                    </td>
+                </tr>
+            }
+        </table>
+        <!-- Read More Link -->
+        <div class="blog-item-foot">
+            <a href="@Url.Action("EditPost", "EditContent")" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+        </div>
+    </div>
+
+
+    <hr class="mb-40" />
+
+    <h1 class="align-center font-alt uppercase">Category</h1>
+    <div class="blog-item-body container">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th> </th>
+                <th> </th>
+                <th>Action</th>
+            </tr>
+            @foreach (var p in Model.Categories)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Name)</td>
+                    <td> </td>
+                    <td> </td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateCategory", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
+                        @Html.ActionLink("Delete", "DeleteCategory", "DeleteContent", new { id = p.ID })
+                    </td>
+                </tr>
+            }
+        </table>
+        <!-- Read More Link -->
+        <div class="blog-item-foot">
+            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+        </div>
+    </div>
+
+    <hr class="mb-40" />
+
+    <h1 class="align-center font-alt uppercase">Tag</h1>
+    <div class="blog-item-body container">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th> </th>
+                <th> </th>
+                <th>Action</th>
+            </tr>
+            @foreach (var p in Model.Tags)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Name)</td>
+                    <td> </td>
+                    <td> </td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateTag", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
+                        @Html.ActionLink("Delete", "DeleteTag", "DeleteContent", new { id = p.ID })
+                    </td>
+                </tr>
+            }
+        </table>
+        <!-- Read More Link -->
+        <div class="blog-item-foot">
+            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+        </div>
+    </div>
+    <hr class="mb-40" />
+
+
+    <h1 class="align-center font-alt uppercase">Comments</h1>
+    <div class="blog-item-body container">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Post</th>
+                <th>NameUserSender</th>
+                <th>PostedOn</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var p in Model.Comments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Post.Title)</td>
+                    <td>@Html.DisplayFor(m => p.NameUserSender)</td>
+                    <td>@Html.DisplayFor(m => p.PostedOn)</td>
+                    <td>
+                        @Html.ActionLink("Update", "UpdateComments", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
+                        @Html.ActionLink("Delete", "DeleteComments", "DeleteContent", new { id = p.ID })
+                    </td>
+                </tr>
+            }
+        </table>
+        <!-- Read More Link -->
+        <div class="blog-item-foot">
+            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+        </div>
+    </div>
+</div>

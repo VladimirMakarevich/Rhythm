@@ -164,12 +164,16 @@
     <Content Include="Content\css\AjaxLoader.gif" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\et-line.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\grabbing.png" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\style-responsive.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\vertical-rhythm.min.css" />
+    <Content Include="Content\fonts\et-line.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\img\apple-touch-icon-114x114.png" />
     <Content Include="Content\img\apple-touch-icon-72x72.png" />
     <Content Include="Content\img\apple-touch-icon.png" />
@@ -183,6 +187,7 @@
     <Content Include="Content\img\logo-white.png" />
     <Content Include="Content\img\map-marker.png" />
     <Content Include="Content\img\pattern-bg-2.png" />
+    <Content Include="Content\table.css" />
     <Content Include="Global.asax" />
     <Content Include="logs\2016-08-11\debug.txt" />
     <Content Include="logs\2016-08-11\error.txt" />
@@ -212,10 +217,17 @@
     <Content Include="Areas\ChiefAdmin\Views\web.config" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\ViewContent\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\UpdateContent\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\DeleteContent\Index.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\AddContent\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\EditContent\Index.cshtml" />
+    <Content Include="Content\fonts\et-line.eot" />
+    <Content Include="Content\fonts\et-line.ttf" />
+    <Content Include="Content\fonts\et-line.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\ChiefAdmin\Views\EditContent\EditPost.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -256,13 +268,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ChiefAdmin\ChiefAdminAreaRegistration.cs" />
-    <Compile Include="Areas\ChiefAdmin\Controllers\AddContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\EditContentController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\DeleteContentController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateContentController.cs" />
-    <Compile Include="Areas\ChiefAdmin\Controllers\ViewContentController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
@@ -325,9 +338,7 @@
     <Content Include="Views\Recents\RecentPosts.cshtml" />
     <Content Include="Views\Recents\RecentComments.cshtml" />
     <Content Include="Views\Recents\RecentArchives.cshtml" />
-    <Content Include="Views\Articles\Index.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
-    <Content Include="Views\Articles\Article.cshtml" />
     <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\_CommentsList.cshtml" />
     <Content Include="Views\Comments\AllComments.cshtml" />

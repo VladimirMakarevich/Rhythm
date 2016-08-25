@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Ninject.Infrastructure.Language;
+using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Domain.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +11,32 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     public class HomeController : DefaultController
     {
-        // GET: ChiefAdmin/Home
-        public ActionResult Index()
+        public HomeController(IRepository repository)
         {
-            return View();
+            this.repository = repository;
+        }
+        // GET: ChiefAdmin/Home
+        public ViewResult Index()
+        {
+            Content content = new Content
+            {
+                Posts = repository.Post
+                .OrderBy(p => p.ID)
+                .Take(15).ToArray().Reverse(),
+
+                Categories = repository.Category
+                .OrderBy(c => c.ID).ToList(),
+
+                Tags = repository.Tag
+                .OrderBy(t => t.ID).ToList(),
+
+                Comments = repository.Comment
+                .OrderBy(co => co.ID)
+                .Take(15).ToArray().Reverse()
+
+            };
+
+            return View(content);
         }
     }
 }

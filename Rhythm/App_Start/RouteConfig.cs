@@ -23,37 +23,43 @@ namespace Rhythm
             routes.MapRoute(
                 name: "Posts",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Rss",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Rss", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Rss", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Library",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Library", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Library", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Portfolio",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Portfolio", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Portfolio", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
 
             routes.MapRoute(
                 name: "AboutMe",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AboutMe", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "AboutMe", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
 
             routes.MapRoute(
                 name: "Contacts",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Contacts", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Contacts", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
             );
         }
     }

@@ -1,5 +1,4 @@
-﻿@using System.Web.Optimization
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -45,10 +44,41 @@
                 <div class="inner-nav desktop-nav">
                     <ul class="clearlist">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("View", "Index", "ViewContent")</li>
-                        <li>@Html.ActionLink("Add", "Index", "AddContent")</li>
-                        <li>@Html.ActionLink("Update", "Index", "UpdateContent")</li>
-                        <li>@Html.ActionLink("Delete", "Index", "DeleteContent")</li>
+                        <li>
+                            <a href="#" class="mn-has-sub">Edit <i class="fa fa-angle-down"></i></a>
+                            <!-- Sub -->
+                            <ul class="mn-sub">
+                                <li>
+                                    <a href="@Url.Action("EditPost","EditContent")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("EditCategory","EditContent")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("EditTag","EditContent")">Tag <i class="fa fa-angle"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="mn-has-sub">Update <i class="fa fa-angle-down"></i></a>
+                            <!-- Sub -->
+                            <ul class="mn-sub">
+                                <li>
+                                    <a href="@Url.Action("UpdatePost","UpdateContent")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("UpdateCategory","UpdateContent")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("UpdateTag","UpdateContent")">Tag <i class="fa fa-angle"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="mn-has-sub">Delete <i class="fa fa-angle-down"></i></a>
+                            <!-- Sub -->
+                            <ul class="mn-sub">
+                                <li>
+                                    <a href="@Url.Action("DeletePost","DeleteContent")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("DeleteCategory","DeleteContent")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("DeleteTag","DeleteContent")">Tag <i class="fa fa-angle"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>&nbsp;</a></li>
+                        <li><a>&nbsp;</a></li>
                         <li><a>&nbsp;</a></li>
                     </ul>
                 </div>

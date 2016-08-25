@@ -21,14 +21,14 @@
                         <h2 class="blog-item-title">@System.Web.HttpUtility.HtmlDecode(i.Title)</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a href="@i.Link" target="_blank"><i class="fa fa-clock-o"></i>@i.PubDate</a>
+                            <a><i class="fa fa-clock-o"></i>@i.PubDate</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="@i.Link" target="_blank"><i class="fa fa-user"></i>@ViewBag.Site</a>
+                            <a><i class="fa fa-user"></i>@ViewBag.Site</a>
                             <span class="separator">&nbsp;</span>
                             <i class="fa fa-folder-open"></i>
-                            <a href="@i.Link" target="_blank">@ViewBag.News</a>
+                            <a>@ViewBag.News</a>
                             <span class="separator">&nbsp;</span>
-                            <a href="@i.Link" target="_blank"><i class="fa fa-user"></i>IT</a>
+                            <a><i class="fa fa-user"></i>IT</a>
                         </div>
                         <!-- Text Intro -->
                         <div class="blog-item-body">

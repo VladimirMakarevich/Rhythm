@@ -1,8 +1,12 @@
-﻿
+﻿@model Rhythm.Areas.ChiefAdmin.Models.Content
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
+
+@foreach(var c in Model.Posts)
+{
+    @Html.DisplayFor(p => c.Title)
+    <br />
+}

@@ -49,6 +49,8 @@ namespace Rhythm
                 "~/Content/css/animate.min.css",
                 "~/Content/css/bootstrap.min.css",
                 "~/Content/css/magnific-popup.css",
+                "~/Content/css/et-line.css",
+                "~/Content/css/font-awesome.min.css",
                 "~/Content/css/owl.carousel.css",
                 "~/Content/css/style-responsive.css",
                 "~/Content/css/vertical-rhythm.min.css"));

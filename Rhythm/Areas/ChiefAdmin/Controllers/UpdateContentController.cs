@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             this.repository = repository;
         }
-        // GET: ChiefAdmin/UpdateContent
-        public ActionResult Index()
+        // GET: ChiefAdmin/ViewContent
+        public ViewResult Index()
         {
+
             return View();
         }
     }
