@@ -49,9 +49,9 @@ namespace Rhythm.Models
                 case "StephenWalther":
                     blogURL = "http://feeds.feedburner.com/StephenWalther?format=xml";
                     break;
-                //case "":
-                //    blogURL = "";
-                //    break;
+                case "PrideParrot":
+                    blogURL = "http://feeds.feedburner.com/prideparrot?format=xml";
+                    break;
                 //case "":
                 //    blogURL = "";
                 //    break;

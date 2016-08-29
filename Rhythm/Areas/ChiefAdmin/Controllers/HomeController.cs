@@ -6,16 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+
     public class HomeController : DefaultController
     {
         public HomeController(IRepository repository)
         {
             this.repository = repository;
         }
-        // GET: ChiefAdmin/Home
+
         public ViewResult Index()
         {
             Content content = new Content

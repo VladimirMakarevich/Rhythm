@@ -1,0 +1,62 @@
+﻿@model Rhythm.Areas.ChiefAdmin.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Login.cshtml";
+}
+
+
+
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+    <div class="container relative">
+        <!-- Contact Form -->
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm("Index", "Contacts", FormMethod.Post, new { @class = "form contact-form" }))
+                {
+                    @Html.ValidationSummary("", new { @class = "form-tip pt-20", @style = "color:red;" })
+                    <div class="validation-summary-error" data-valmsg-summary="true">
+                        <div class="clearfix">
+                            <div class="cf-left-col">
+                                <!-- Name -->
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
+                                </div>
+                            </div>
+                            <div class="cf-right-col">
+                                <div class="form-group">
+                                    <!-- Password -->
+                                    @Html.PasswordFor(m => m.Password, new { @class = "input-md round form-control", @placeholder = "Password", @pattern = ".{3,100}" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="cf-left-col">
+                                <!-- Inform Tip -->
+                                <div class="form-tip pt-20">
+                                    <i class="fa fa-info-circle"></i> All the fields are required
+                                </div>
+                            </div>
+                            @Html.Hidden("ReturnUrl")
+                            @Html.AntiForgeryToken()
+                            <div class="cf-right-col">
+                                <!-- Send Button -->
+                                <div class="align-right pt-10">
+                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn" value="Login">Submit Message</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="result"></div>
+                    </div>
+                }
+
+                <!-- End Contact Form -->
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts {
+    @*<script src="~/scripts/jquery-3.1.0.min.js"></script>*@
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+}

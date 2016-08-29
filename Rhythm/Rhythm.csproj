@@ -232,6 +232,8 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\ChiefAdmin\Views\EditContent\EditPost.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Shared\_Login.cshtml" />
     <None Include="scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="scripts\jquery-3.1.0.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
@@ -286,6 +288,8 @@
     <Compile Include="Areas\ChiefAdmin\Models\CategoreDropDownList.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\LoginModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
     <Compile Include="Collections\Archive.cs" />

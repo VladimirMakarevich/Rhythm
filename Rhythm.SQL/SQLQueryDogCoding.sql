@@ -16,6 +16,7 @@ DROP TABLE blog.PostTag
 DROP TABLE blog.Tag
 DROP TABLE blog.Post
 DROP TABLE blog.Category
+DROP TABLE blog.BlogRole
 
 
 /****** Object:  Table blog.Post ******/
@@ -56,6 +57,24 @@ CREATE TABLE blog.Tag
 	Name nvarchar(100) NOT NULL,
 	UrlSlug nvarchar(100) NOT NULL,
 	DescriptionTag nvarchar(MAX) NULL
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/****** Object:  Table blog.BlogRole ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE blog.BlogRole
+(
+	ID int IDENTITY(1,1) NOT NULL,
+	NameUser nvarchar(50) NOT NULL,
+	PasswordUser nvarchar(50) NOT NULL,
+	EmailUser nvarchar(50) NULL
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -143,6 +162,7 @@ DELETE blog.Post
 DELETE blog.PostTag
 DELETE blog.Comment
 DELETE blog.Category
+DELETE blog.BlogRole
 
 INSERT INTO blog.Tag
 	VALUES (N'C#', N'csharp', NULL)
@@ -158,6 +178,9 @@ INSERT INTO blog.Tag
 	VALUES (N'Core', N'core', NULL)
 INSERT INTO blog.Tag
 	VALUES (N'JS', N'java-script', NULL)
+
+INSERT INTO blog.BlogRole
+	VALUES (N'DogAdmin', N'12345', NULL)
 
 INSERT INTO blog.Category
 	VALUES (N'Programming', N'programming', NULL, 1)

@@ -184,6 +184,18 @@ namespace Rhythm.Controllers
             ViewBag.News = "News";
             return View("RSS", RssReader.GetRssFeed("StephenWalther"));
         }
+
+        public ActionResult PrideParrot()
+        {
+            ViewBag.Title = "Pride Parrot Blog";
+            ViewBag.WordFirst = "NEWS";
+            ViewBag.WordSecond = "IT";
+            ViewBag.WordThird = "Blog";
+
+            ViewBag.Site = "PrideParrot";
+            ViewBag.News = "News";
+            return View("RSS", RssReader.GetRssFeed("PrideParrot"));
+        }
         //public ViewResult Index(int page = 1)
         //{
         //    PostListViewModel model = new PostListViewModel
