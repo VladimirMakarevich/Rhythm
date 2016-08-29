@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Domain.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,44 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             this.repository = repository;
         }
-        // GET: ChiefAdmin/DeleteContent
-        public ActionResult Index()
+
+
+        public ViewResult DeletePost()
         {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult DeletePost(PostViewModel post)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteTag()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTag(TagViewModel tag)
+        {
+
+            return View();
+        }
+
+        public ActionResult DeleteCategory()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(CategoryViewModel category)
+        {
+
             return View();
         }
     }

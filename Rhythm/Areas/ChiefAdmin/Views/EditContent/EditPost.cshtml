@@ -14,34 +14,34 @@
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Name -->
-                @Html.TextBoxFor(m => m.Name, new { @name = "Name", @id = "Name", @class = "input-md form-control", @placeholder = "Name" })
+                @Html.TextBoxFor(m => m.Post.NameSenderPost, new { @name = "Name", @id = "Name", @class = "input-md form-control", @placeholder = "Name" })
             </div>
 
             @Html.Label("Title: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Title -->
-                @Html.TextBoxFor(m => m.Title, new { @name = "Title", @id = "Title", @class = "input-md form-control", @placeholder = "Title" })
+                @Html.TextBoxFor(m => m.Post.Title, new { @name = "Title", @id = "Title", @class = "input-md form-control", @placeholder = "Title" })
             </div>
 
             @Html.Label("Short Description: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.TextAreaFor(m => m.ShortDescription, new { @name = "ShortDescription", @id = "ShortDescription", @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Short Description" })
+                @Html.TextAreaFor(m => m.Post.ShortDescription, new { @name = "ShortDescription", @id = "ShortDescription", @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Short Description" })
             </div>
 
             @Html.Label("Post: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.TextAreaFor(m => m.PostDescription, new { @name = "PostDescription", @id = "PostDescription", @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Post" })
+                @Html.TextAreaFor(m => m.Post.DescriptionPost, new { @name = "PostDescription", @id = "PostDescription", @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Post" })
             </div>
 
             @Html.Label("Url Slug: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- URL -->
-                @Html.TextBoxFor(m => m.UrlSlug, new { @name = "UrlSlug", @id = "UrlSlug", @class = "input-md form-control", @placeholder = "Url Slug" })
+                @Html.TextBoxFor(m => m.Post.UrlSlug, new { @name = "UrlSlug", @id = "UrlSlug", @class = "input-md form-control", @placeholder = "Url Slug" })
             </div>
             @Html.Label("Published?: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <label class="checkbox-inline">
-                    @Html.CheckBoxFor(m => m.Published)
+                    @Html.CheckBoxFor(m => m.Post.Published)
                 </label>
             </div>
 
@@ -60,12 +60,12 @@
             @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Description -->
-                @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
+                @Html.TextBoxFor(m => m.Post.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
             </div>
 
             @Html.Label("Load Photo: ")
             <div class="mb-20 mb-md-10">
-                @Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
+                @Html.TextBoxFor(m => m.Post.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
                 <p class="help-block">
                     Choose photo
                 </p>

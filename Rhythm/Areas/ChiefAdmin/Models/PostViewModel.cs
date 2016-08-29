@@ -8,6 +8,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
 {
     public class PostViewModel
     {
+        public Post Post { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }

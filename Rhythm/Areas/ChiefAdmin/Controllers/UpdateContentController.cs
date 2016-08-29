@@ -14,8 +14,42 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             this.repository = repository;
         }
-        // GET: ChiefAdmin/ViewContent
-        public ViewResult Index()
+
+
+        public ViewResult UpdatePost()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult UpdatePost(PostViewModel post)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult UpdateTag()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateTag(TagViewModel tag)
+        {
+
+            return View();
+        }
+
+        public ActionResult UpdateCategory()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCategory(CategoryViewModel category)
         {
 
             return View();

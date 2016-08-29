@@ -19,7 +19,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ActionResult EditPost()
         {
-            CategoryViewModel Categories = new CategoryViewModel
+            CategoreDropDownList Categories = new CategoreDropDownList
             {
                 Category = repository.Category
                     .OrderBy(c => c.ID)
@@ -36,11 +36,47 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             if (ModelState.IsValid)
             {
-                
+                try
+                {
+                    Post p = new Post
+                    {
+                        Title = post.Title
+                        //TODO: Automapper
+
+                    };
+                }
+                catch (Exception)
+                {
+
+                }
             }
+            return RedirectToAction("Index", "Home");
+        }
 
+        public ActionResult EditTag()
+        {
 
-                return View();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditTag(TagViewModel tag)
+        {
+
+            return View();
+        }
+
+        public ActionResult EditCategory()
+        {
+
+            return View();
+        }
+        
+        [HttpPost]
+        public ActionResult EditCategory(CategoryViewModel category)
+        {
+
+            return View();
         }
     }
 }
