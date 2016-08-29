@@ -12,5 +12,10 @@ namespace Rhythm.Domain.EfRepository
         {
             get { return context.Posts; }
         }
+
+        public void AddPost(Post post)
+        {
+
+        }
     }
 }

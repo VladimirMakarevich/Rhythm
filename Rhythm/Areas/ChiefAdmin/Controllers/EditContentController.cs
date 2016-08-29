@@ -36,11 +36,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             if (ModelState.IsValid)
             {
-                
+                try
+                {
+                    repository.AddPost(post.Post);
+                }
+                catch (Exception)
+                {
+
+                }
             }
-
-
-                return View();
+                return RedirectToAction("Index","Home");
         }
     }
 }
