@@ -6,22 +6,24 @@ using System.Web.Mvc;
 using Rhythm.Models;
 using System.Web.Security;
 using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Authenticated;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     [Authorize]
     public class LoginController : DefaultController
     {
+        private readonly IAuthoProvider authoProvider;
+        public LoginController(IAuthoProvider authoProvider)
+        {
+            this.authoProvider = authoProvider;
+        }
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    return Redirect(returnUrl);
-
-                return RedirectToAction("Home");
-            }
+            if (authoProvider.IsLoggedIn)
+                return Redirect(returnUrl);
 
             ViewBag.ReturnUrl = returnUrl;
 
@@ -31,24 +33,38 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
-            {
-                if (Membership.ValidateUser(model.UserName, model.Password))
-                {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+            if (ModelState.IsValid && authoProvider.Login(model.UserName, model.Password))
+                return RedirectToRoute(returnUrl);
 
-                    if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return Redirect(returnUrl);
+            ModelState.AddModelError("", "The user name or password provided is incorrect!");
 
-                    return RedirectToAction("Home");
+            return View(model);
+        }
 
-                }
-
-                ModelState.AddModelError("", "The user name or password provided is incorrect!");
-            }
-
+        public ActionResult Manage()
+        {
             return View();
         }
 
+
+
+        public ActionResult Logout()
+        {
+            authoProvider.Logout();
+
+            return RedirectToAction("Login", "Login");
+        }
+
+        private ActionResult RedirectToUrl(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Home");
+            }
+        }
     }
 }

@@ -292,6 +292,8 @@
     <Compile Include="Areas\ChiefAdmin\Models\LoginModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
+    <Compile Include="Authenticated\AuthoProvider.cs" />
+    <Compile Include="Authenticated\IAuthoProvider.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />

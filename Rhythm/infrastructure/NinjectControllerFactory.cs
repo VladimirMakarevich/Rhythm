@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.EfRepository;
+using Rhythm.Authenticated;
 
 namespace Rhythm.infrastructure
 {
@@ -29,6 +30,7 @@ namespace Rhythm.infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IRepository>().To<EfRepository>();
+            ninjectKernel.Bind<IAuthoProvider>().To<AuthoProvider>();
         }
     }
 }
