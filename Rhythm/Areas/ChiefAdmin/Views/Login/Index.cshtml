@@ -12,7 +12,7 @@
         <!-- Contact Form -->
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                @using (Html.BeginForm("Index", "Contacts", FormMethod.Post, new { @class = "form contact-form" }))
+                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form contact-form" }))
                 {
                     @Html.ValidationSummary("", new { @class = "form-tip pt-20", @style = "color:red;" })
                     <div class="validation-summary-error" data-valmsg-summary="true">

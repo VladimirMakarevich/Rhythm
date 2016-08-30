@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Controllers
 {
-    public class DefaultController : Controller
+    public abstract class DefaultController : Controller
     {
         public IRepository repository { get; set; }
     }

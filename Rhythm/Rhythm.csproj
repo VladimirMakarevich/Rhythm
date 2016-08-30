@@ -232,7 +232,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\ChiefAdmin\Views\EditContent\EditPost.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Login\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Login.cshtml" />
     <None Include="scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="scripts\jquery-3.1.0.js" />
@@ -292,8 +292,14 @@
     <Compile Include="Areas\ChiefAdmin\Models\LoginModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
+    <Compile Include="Authenticated\Authentication.cs" />
+    <Compile Include="Authenticated\AuthHttpModule.cs" />
     <Compile Include="Authenticated\AuthoProvider.cs" />
+    <Compile Include="Authenticated\IAuthentication.cs" />
     <Compile Include="Authenticated\IAuthoProvider.cs" />
+    <Compile Include="Authenticated\IUserProvider.cs" />
+    <Compile Include="Authenticated\UserIdentity.cs" />
+    <Compile Include="Authenticated\UserProvider.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />

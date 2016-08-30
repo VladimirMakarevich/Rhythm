@@ -12,6 +12,9 @@
         <AssociationConnector Association="DogCodingModel.FK_Post_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.FK_Comment_Post" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.PostTag" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DogCodingModel.DogRole" Width="1.5" PointX="7.375" PointY="1.5" />
+        <EntityTypeShape EntityType="DogCodingModel.DogUser" Width="1.5" PointX="9.625" PointY="1" />
+        <AssociationConnector Association="DogCodingModel.UserRole" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

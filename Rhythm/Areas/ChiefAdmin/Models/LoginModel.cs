@@ -14,5 +14,6 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "Password is required!")]
         [Display(Name = "Password (*)")]
         public string Password { get; set; }
+        public bool isPersistent { get; set; }
     }
 }

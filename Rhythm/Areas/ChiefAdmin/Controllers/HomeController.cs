@@ -10,12 +10,16 @@ using System.Web.Security;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-
+    [Authorize]
     public class HomeController : DefaultController
     {
         public HomeController(IRepository repository)
         {
             this.repository = repository;
+        }
+        public ActionResult UserLogin()
+        {
+            return View(CurrentUser);
         }
 
         public ViewResult Index()

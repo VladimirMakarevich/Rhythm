@@ -1,70 +1,97 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Rhythm.Models;
-using System.Web.Security;
+﻿using System.Web.Mvc;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Authenticated;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    /// <summary>
+    /// TODO: Ограничить доступ к определнным областям приложения. 
+    /// Как проверять аутенцификацию пользователя при запросах к ограниченным областям, представлениям.
+    /// </summary>
     [Authorize]
     public class LoginController : DefaultController
     {
-        private readonly IAuthoProvider authoProvider;
-        public LoginController(IAuthoProvider authoProvider)
+        public LoginController()
         {
-            this.authoProvider = authoProvider;
+
         }
 
+        [HttpGet]
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Index()
         {
-            if (authoProvider.IsLoggedIn)
-                return Redirect(returnUrl);
-
-            ViewBag.ReturnUrl = returnUrl;
-
-            return View();
+            return View(new LoginModel());
         }
 
-        [HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Index(LoginModel model)
         {
-            if (ModelState.IsValid && authoProvider.Login(model.UserName, model.Password))
-                return RedirectToRoute(returnUrl);
-
-            ModelState.AddModelError("", "The user name or password provided is incorrect!");
-
+            if (ModelState.IsValid)
+            {
+                var user = Auth.Login(model.UserName, model.Password, model.isPersistent);
+                if (user != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState["Password"].Errors.Add("Password not exist!");
+            }
             return View(model);
         }
 
-        public ActionResult Manage()
-        {
-            return View();
-        }
-
-
-
+        [AllowAnonymous]
         public ActionResult Logout()
         {
-            authoProvider.Logout();
-
-            return RedirectToAction("Login", "Login");
+            Auth.LogOut();
+            return RedirectToAction("Index", "Home");
         }
 
-        private ActionResult RedirectToUrl(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Home");
-            }
-        }
+        //private readonly IAuthoProvider authoProvider;
+        //public LoginController(IAuthoProvider authoProvider)
+        //{
+        //    this.authoProvider = authoProvider;
+        //}
+
+        //[AllowAnonymous]
+        //public ActionResult Login(string returnUrl)
+        //{
+        //    if (authoProvider.IsLoggedIn)
+        //        return Redirect(returnUrl);
+
+        //    ViewBag.ReturnUrl = returnUrl;
+
+        //    return View();
+        //}
+
+        //[HttpPost, AllowAnonymous, ValidateAntiForgeryToken]
+        //public ActionResult Login(LoginModel model, string returnUrl)
+        //{
+        //    if (ModelState.IsValid && authoProvider.Login(model.UserName, model.Password))
+        //        return RedirectToRoute(returnUrl);
+
+        //    ModelState.AddModelError("", "The user name or password provided is incorrect!");
+
+        //    return View(model);
+        //}
+
+
+
+        //public ActionResult Logout()
+        //{
+        //    authoProvider.Logout();
+
+        //    return RedirectToAction("Login", "Login");
+        //}
+
+        //private ActionResult RedirectToUrl(string returnUrl)
+        //{
+        //    if (Url.IsLocalUrl(returnUrl))
+        //    {
+        //        return Redirect(returnUrl);
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index","Home");
+        //    }
+        //}
     }
 }

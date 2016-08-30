@@ -17,7 +17,7 @@ namespace Rhythm.Areas.ChiefAdmin
             context.MapRoute(
                 name: "ChiefAdmin",
                 url: "ChiefAdmin/{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional },
                 namespaces: new[] { "Rhythm.Areas.ChiefAdmin.Controllers" }
                 );
 

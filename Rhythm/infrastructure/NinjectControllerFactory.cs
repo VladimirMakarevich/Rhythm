@@ -30,7 +30,7 @@ namespace Rhythm.infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IRepository>().To<EfRepository>();
-            ninjectKernel.Bind<IAuthoProvider>().To<AuthoProvider>();
+            ninjectKernel.Bind<IAuthentication>().To<Authentication>();
         }
     }
 }
