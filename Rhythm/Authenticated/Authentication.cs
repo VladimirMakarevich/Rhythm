@@ -23,11 +23,11 @@ namespace Rhythm.Authenticated
         {
             get
             {
-                if(currentUser == null)
+                if (currentUser == null)
                 {
                     try
                     {
-                        HttpCookie authCookie = HttpContext.Request.Cookies.Get(cookieName);
+                        HttpCookie authCookie = HttpContext.Current.Request.Cookies.Get(cookieName);
                         if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                         {
                             var ticket = FormsAuthentication.Decrypt(authCookie.Value);
@@ -96,8 +96,9 @@ namespace Rhythm.Authenticated
                 Value = encTicket,
                 Expires = DateTime.Now.Add(FormsAuthentication.Timeout)
             };
+
+            HttpContext.Current.Response.Cookies.Set(AuthCookie);
             //HttpContext.Response.Cookies.Set(AuthCookie);
-            //HttpContext.Request.Cookies.Set(AuthCookie);
         }
 
         public void LogOut()

@@ -10,6 +10,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class LoginController : DefaultController
     {
+
+
         public LoginController()
         {
 
