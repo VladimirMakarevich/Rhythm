@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-    [Authorize]
+
     public class UpdateContentController : DefaultController
     {
         public UpdateContentController(IRepository repository)

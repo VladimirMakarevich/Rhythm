@@ -286,7 +286,7 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\DeleteContentController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateContentController.cs" />
-    <Compile Include="Areas\ChiefAdmin\Models\CategoreDropDownList.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\DropDownList.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />

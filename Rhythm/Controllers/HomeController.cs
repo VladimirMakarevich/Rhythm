@@ -32,7 +32,8 @@ namespace Rhythm.Controllers
                 Posts = repository.Post
                 .OrderBy(p => p.ID)
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize),
+                .Take(PageSize).ToArray().Reverse(),
+
 
                 PagingView = new ListView
                 {
@@ -52,7 +53,7 @@ namespace Rhythm.Controllers
         //        Name = "Test_cookie",
         //        Value = DateTime.Now.ToString("dd.MM.yyyy"),
         //        Expires = DateTime.Now.AddMinutes(10),
-                
+
 
         //    };
         //    Response.SetCookie(cookie);

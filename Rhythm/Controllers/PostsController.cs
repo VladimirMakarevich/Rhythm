@@ -30,7 +30,7 @@ namespace Rhythm.Controllers
                 Posts = repository.Post
                 .OrderBy(s => s.ID)
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize),
+                .Take(PageSize).ToArray().Reverse(),
 
                 PagingView = new ListView
                 {

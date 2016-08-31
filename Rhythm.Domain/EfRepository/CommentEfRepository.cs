@@ -47,7 +47,6 @@ namespace Rhythm.Domain.EfRepository
             comment.DescriptionComment = false;
             context.Comments.Add(comment);
             context.SaveChanges();
-
         }
     }
 }

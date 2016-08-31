@@ -9,9 +9,14 @@ using System.Collections;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
-    public class CategoreDropDownList
+    public class CategoryDropDownList
     {
         public IEnumerable<Category> Category { get; internal set; }
 
+    }
+
+    public class TagDropDownList
+    {
+        public IEnumerable<Tag> Tag { get; internal set; }
     }
 }
