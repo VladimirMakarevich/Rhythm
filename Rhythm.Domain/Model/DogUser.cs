@@ -19,8 +19,7 @@ namespace Rhythm.Domain.Model
         {
             this.DogRoles = new HashSet<DogRole>();
         }
-
-
+    
         public int ID { get; set; }
         public string NameUser { get; set; }
         public string PasswordUser { get; set; }

@@ -58,7 +58,6 @@
           <Property Name="Title" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DescriptionPost" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Meta" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
@@ -67,7 +66,6 @@
           <Property Name="ImageData" Type="varbinary(max)" />
           <Property Name="ImageMime" Type="nvarchar" MaxLength="100" />
           <Property Name="CountComments" Type="int" />
-          <Property Name="IfArticle" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -263,8 +261,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <NavigationProperty Name="Category1" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
           <NavigationProperty Name="Tags" Relationship="Self.PostTag" FromRole="Post" ToRole="Tag" />
-          <Property Name="Meta" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IfArticle" Type="Boolean" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -389,8 +385,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="DogCodingModel.Post">
               <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="IfArticle" ColumnName="IfArticle" />
-                <ScalarProperty Name="Meta" ColumnName="Meta" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameSenderPost" ColumnName="NameSenderPost" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

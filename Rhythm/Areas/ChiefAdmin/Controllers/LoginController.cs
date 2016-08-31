@@ -28,7 +28,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = Auth.Login(model.UserName, model.Password, model.isPersistent);
+                var user = Auth.Login(model.UserEmail, model.Password, model.isPersistent);
                 if (user != null)
                 {
                     return RedirectToAction("Index", "Home");
