@@ -8,7 +8,7 @@
     <div class="container relative">
 
         <!-- Form -->
-        @using (Html.BeginForm("EditPost", "EditContent", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
+        @using (Html.BeginForm("Post", "EditContent", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
         {
 
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
@@ -52,7 +52,7 @@
 
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.ListBox("Tag", (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
+                @Html.ListBoxFor(m => m.Tag, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
             </div>
 
             @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })

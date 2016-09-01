@@ -66,7 +66,18 @@ namespace Rhythm.Controllers
             return View(post);
         }
 
-
+        public FileContentResult GetImage(int id)
+        {
+            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+            if (post != null)
+            {
+                return File(post.ImageData, post.ImageMime);
+            }
+            else
+            {
+                return null;
+            }
+        }
         //public ActionResult addComments(CommentViewModel commentViewModel)
         //{
 

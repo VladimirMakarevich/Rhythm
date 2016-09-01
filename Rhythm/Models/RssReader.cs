@@ -63,7 +63,7 @@ namespace Rhythm.Models
                 default:
                     break;
             }
-
+            //TODO: Try catch
             XDocument feedXml = XDocument.Load(blogURL);
             var feeds = from feed in feedXml.Descendants("item")
                         select new Rss

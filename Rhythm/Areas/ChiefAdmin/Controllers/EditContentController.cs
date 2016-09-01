@@ -3,6 +3,7 @@ using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
         // GET: ChiefAdmin/AddContent
 
-        public ActionResult EditPost()
+        public ActionResult Post()
         {
             CategoryDropDownList Categories = new CategoryDropDownList
             {
@@ -41,13 +42,20 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditPost(PostViewModel post)
+        public ActionResult Post(PostViewModel post)
         {
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    var recent = new ICollection<post.Tag>;
+
+                    var tag = repository.Tag
+                        .OrderBy(c => c.ID)
+                        .ToList();
+
+                    tag.ForEach(t => { var p = });
                     byte[] image = new byte[post.imageData.ContentLength];
                     post.imageData.InputStream.Read(image, 0, image.Length);
 
@@ -60,7 +68,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         UrlSlug = post.UrlSlug,
                         Published = post.Published,
                         Category = post.Category,
-                        //Tags = post.Tag,
+                        Tags = post.Tag,
                         ImageData = image,
                         ImageMime = post.ImageMime,
                         

@@ -14,6 +14,7 @@
                     <div class="blog-item-body">
                         <h1 class="mt-0">@Model.Title</h1>
                         <div class="lead">
+                            <img width="150" height="150" src="@Url.Action("GetImage", "Post", new { Model.ID })" />
                             <hr class="mb-40" />
                             @Model.ShortDescription
                         </div>
