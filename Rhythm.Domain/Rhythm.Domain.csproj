@@ -104,6 +104,9 @@
     <Compile Include="Model\Post.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PostTag.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Tag.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>

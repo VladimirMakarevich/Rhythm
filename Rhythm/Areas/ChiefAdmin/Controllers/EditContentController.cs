@@ -41,21 +41,40 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View();
         }
 
+
+        public ICollection<PostTag> TagCollection(List<int> item)
+        {
+            var tagList = new List<PostTag>();
+
+            foreach (var i in item)
+            {
+                var q = repository.Tag.FirstOrDefault(t => t.PostTags == null);
+                var tt = repository.Post.FirstOrDefault(p => p.PostTags == null);
+
+                tagList.Add();
+            }
+            //if (tags.Length > 0)
+            //{
+            //    post.Tags = new List<Tag>();
+
+            //    foreach (var tag in tags)
+            //    {
+            //        post.Tags.Add(_blogRepository.Tag(int.Parse(tag.Trim())));
+            //    }
+            //}
+            return tagList;
+        }
+
         [HttpPost]
         public ActionResult Post(PostViewModel post)
         {
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var recent = new ICollection<post.Tag>;
 
-                    var tag = repository.Tag
-                        .OrderBy(c => c.ID)
-                        .ToList();
+                    var tagList = TagCollection(post.Tag);
 
-                    tag.ForEach(t => { var p = });
                     byte[] image = new byte[post.imageData.ContentLength];
                     post.imageData.InputStream.Read(image, 0, image.Length);
 
@@ -68,19 +87,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         UrlSlug = post.UrlSlug,
                         Published = post.Published,
                         Category = post.Category,
-                        Tags = post.Tag,
                         ImageData = image,
                         ImageMime = post.ImageMime,
+                        PostTags = 
+                                         
                         
                     };
 
                     repository.AddPost(p);
-                    var postID = repository.Post.FirstOrDefault(c => c.UrlSlug == post.UrlSlug);
-
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    //TODO: NLog
                 }
             }
             return RedirectToAction("Index", "Home");

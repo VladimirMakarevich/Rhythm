@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DogCodingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DogCodingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
@@ -67,13 +67,11 @@
           <Property Name="ImageMime" Type="nvarchar" MaxLength="100" />
           <Property Name="CountComments" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PostTag">
           <Key>
-            <PropertyRef Name="PostID" />
-            <PropertyRef Name="TagID" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="PostID" Type="int" Nullable="false" />
           <Property Name="TagID" Type="int" Nullable="false" />
         </EntityType>
@@ -174,13 +172,8 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <EntitySet Name="DogRole" EntityType="Self.DogRole" Schema="blog" store:Type="Tables" />
           <EntitySet Name="DogUser" EntityType="Self.DogUser" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="blog" store:Type="Tables" />
+          <EntitySet Name="PostTag" EntityType="Self.PostTag" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="blog" store:Type="Tables" />
-          <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" store:Schema="blog">
-            <DefiningQuery>SELECT 
-    [PostTag].[PostID] AS [PostID], 
-    [PostTag].[TagID] AS [TagID]
-    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="UserRole" EntityType="Self.UserRole" store:Type="Tables" store:Schema="blog">
             <DefiningQuery>SELECT 
     [UserRole].[DogRoleID] AS [DogRoleID], 
@@ -212,7 +205,8 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             <End Role="PostTag" EntitySet="PostTag" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DogCodingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -241,6 +235,29 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
         </EntityType>
+        <EntityType Name="DogRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DogUsers" Relationship="Self.UserRole" FromRole="DogRole" ToRole="DogUser" />
+        </EntityType>
+        <EntityType Name="DogUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActivatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastVisitDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AvatarPath" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="DogRoles" Relationship="Self.UserRole" FromRole="DogUser" ToRole="DogRole" />
+        </EntityType>
         <EntityType Name="Post">
           <Key>
             <PropertyRef Name="ID" />
@@ -260,7 +277,17 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="CountComments" Type="Int32" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
-          <NavigationProperty Name="Tags" Relationship="Self.PostTag" FromRole="Post" ToRole="Tag" />
+          <NavigationProperty Name="PostTags" Relationship="Self.FK_Post_Tag" FromRole="Post" ToRole="PostTag" />
+        </EntityType>
+        <EntityType Name="PostTag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="TagID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Post_Tag" FromRole="PostTag" ToRole="Post" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK_Tag_Post" FromRole="PostTag" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
@@ -270,7 +297,7 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UrlSlug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Posts" Relationship="Self.PostTag" FromRole="Tag" ToRole="Post" />
+          <NavigationProperty Name="PostTags" Relationship="Self.FK_Tag_Post" FromRole="Tag" ToRole="PostTag" />
         </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
@@ -296,14 +323,41 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PostTag">
-          <End Role="Post" Type="Self.Post" Multiplicity="*" />
-          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        <Association Name="FK_Post_Tag">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostTag">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Post">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="PostTag" Type="Self.PostTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PostTag">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserRole">
+          <End Role="DogRole" Type="Self.DogRole" Multiplicity="*" />
+          <End Role="DogUser" Type="Self.DogUser" Multiplicity="*" />
         </Association>
         <EntityContainer Name="DogCodingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="DogRoles" EntityType="Self.DogRole" />
+          <EntitySet Name="DogUsers" EntityType="Self.DogUser" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="PostTags" EntityType="Self.PostTag" />
           <EntitySet Name="Tags" EntityType="Self.Tag" />
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
             <End Role="Category" EntitySet="Categories" />
@@ -313,44 +367,19 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             <End Role="Post" EntitySet="Posts" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="PostTag" Association="Self.PostTag">
+          <AssociationSet Name="FK_Post_Tag" Association="Self.FK_Post_Tag">
             <End Role="Post" EntitySet="Posts" />
-            <End Role="Tag" EntitySet="Tags" />
+            <End Role="PostTag" EntitySet="PostTags" />
           </AssociationSet>
-          <EntitySet Name="DogRoles" EntityType="DogCodingModel.DogRole" />
-          <EntitySet Name="DogUsers" EntityType="DogCodingModel.DogUser" />
-          <AssociationSet Name="UserRole" Association="DogCodingModel.UserRole">
+          <AssociationSet Name="FK_Tag_Post" Association="Self.FK_Tag_Post">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="PostTag" EntitySet="PostTags" />
+          </AssociationSet>
+          <AssociationSet Name="UserRole" Association="Self.UserRole">
             <End Role="DogRole" EntitySet="DogRoles" />
             <End Role="DogUser" EntitySet="DogUsers" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="DogRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DogUsers" Relationship="DogCodingModel.UserRole" FromRole="DogRole" ToRole="DogUser" />
-        </EntityType>
-        <EntityType Name="DogUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PasswordUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ActivatedDate" Type="DateTime" Precision="3" />
-          <Property Name="LastVisitDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="AvatarPath" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="DogRoles" Relationship="DogCodingModel.UserRole" FromRole="DogUser" ToRole="DogRole" />
-        </EntityType>
-        <Association Name="UserRole">
-          <End Type="DogCodingModel.DogRole" Role="DogRole" Multiplicity="*" />
-          <End Type="DogCodingModel.DogUser" Role="DogUser" Multiplicity="*" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -382,6 +411,29 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DogRoles">
+            <EntityTypeMapping TypeName="DogCodingModel.DogRole">
+              <MappingFragment StoreEntitySet="DogRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DogUsers">
+            <EntityTypeMapping TypeName="DogCodingModel.DogUser">
+              <MappingFragment StoreEntitySet="DogUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+                <ScalarProperty Name="EmailUser" ColumnName="EmailUser" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ActivatedDate" ColumnName="ActivatedDate" />
+                <ScalarProperty Name="LastVisitDate" ColumnName="LastVisitDate" />
+                <ScalarProperty Name="AvatarPath" ColumnName="AvatarPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="DogCodingModel.Post">
               <MappingFragment StoreEntitySet="Post">
@@ -401,6 +453,15 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PostTags">
+            <EntityTypeMapping TypeName="DogCodingModel.PostTag">
+              <MappingFragment StoreEntitySet="PostTag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="DogCodingModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
@@ -411,43 +472,12 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PostTag" TypeName="DogCodingModel.PostTag" StoreEntitySet="PostTag">
-            <EndProperty Name="Post">
-              <ScalarProperty Name="ID" ColumnName="PostID" />
-            </EndProperty>
-            <EndProperty Name="Tag">
-              <ScalarProperty Name="ID" ColumnName="TagID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="DogRoles">
-            <EntityTypeMapping TypeName="DogCodingModel.DogRole">
-              <MappingFragment StoreEntitySet="DogRole">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DogUsers">
-            <EntityTypeMapping TypeName="DogCodingModel.DogUser">
-              <MappingFragment StoreEntitySet="DogUser">
-                <ScalarProperty Name="AvatarPath" ColumnName="AvatarPath" />
-                <ScalarProperty Name="LastVisitDate" ColumnName="LastVisitDate" />
-                <ScalarProperty Name="ActivatedDate" ColumnName="ActivatedDate" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="EmailUser" ColumnName="EmailUser" />
-                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
-                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="UserRole" TypeName="DogCodingModel.UserRole" StoreEntitySet="UserRole">
-            <EndProperty Name="DogUser">
-              <ScalarProperty Name="ID" ColumnName="DogUserID" />
-            </EndProperty>
             <EndProperty Name="DogRole">
               <ScalarProperty Name="ID" ColumnName="DogRoleID" />
+            </EndProperty>
+            <EndProperty Name="DogUser">
+              <ScalarProperty Name="ID" ColumnName="DogUserID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
