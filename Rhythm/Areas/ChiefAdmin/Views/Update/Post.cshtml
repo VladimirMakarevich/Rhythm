@@ -8,7 +8,7 @@
     <div class="container relative">
 
         <!-- Form -->
-        @using (Html.BeginForm("Post", "EditContent", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
+        @using (Html.BeginForm("Post", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
         {
 
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
@@ -45,7 +45,7 @@
                 </label>
             </div>
 
-            @Html.Label("Choose category: ", new { @for = "exampleInputFile" })
+            @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 @Html.DropDownList("Category", (IEnumerable<SelectListItem>) ViewBag.Category)
             </div>
@@ -78,7 +78,7 @@
                 <div class="cf-right-col">
                     <!-- Send Button -->
                     <div class="align-right pt-10">
-                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Edit Post</button>
+                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Post</button>
                     </div>
                 </div>
             </div>

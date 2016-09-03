@@ -16,8 +16,8 @@
                 <th>Title</th>
                 <th>Published</th>
                 <th>PostedOn</th>
-                <th>Action</th>
-
+                <th>Change</th>
+                <th>Delete</th>
             </tr>
             @foreach (var p in Model.Posts)
             {
@@ -27,15 +27,21 @@
                     <td>@Html.DisplayFor(m => p.Published)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
-                        @Html.ActionLink("Update", "UpdatePost", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
-                        @Html.ActionLink("Delete", "DeletePost", "DeleteContent", new { id = p.ID })
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Post", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Post", "Delete", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Delete </a>
+                        </div>
                     </td>
                 </tr>
             }
         </table>
         <!-- Read More Link -->
         <div class="blog-item-foot">
-            <a href="@Url.Action("EditPost", "EditContent")" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+            <a href="@Url.Action("listPosts", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 
@@ -49,27 +55,34 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th> </th>
-                <th> </th>
-                <th>Action</th>
+                <th>Description </th>
+                <th>Count </th>
+                <th>Change</th>
+                <th>Delete</th>
             </tr>
             @foreach (var p in Model.Categories)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.ID)</td>
                     <td>@Html.DisplayFor(m => p.Name)</td>
-                    <td> </td>
-                    <td> </td>
+                    <td>@Html.DisplayFor(m => p.DescriptionCategory)</td>
+                    <td>@Html.DisplayFor(m => p.CountCategory)</td>
                     <td>
-                        @Html.ActionLink("Update", "UpdateCategory", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
-                        @Html.ActionLink("Delete", "DeleteCategory", "DeleteContent", new { id = p.ID })
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Category", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Category", "Delete", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Delete </a>
+                        </div>
                     </td>
                 </tr>
             }
         </table>
         <!-- Read More Link -->
         <div class="blog-item-foot">
-            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+            <a href="@Url.Action("listCategories", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 
@@ -82,27 +95,34 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th> </th>
-                <th> </th>
-                <th>Action</th>
+                <th>Descroption </th>
+                <th>Url </th>
+                <th>Change</th>
+                <th>Delete</th>
             </tr>
             @foreach (var p in Model.Tags)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.ID)</td>
                     <td>@Html.DisplayFor(m => p.Name)</td>
-                    <td> </td>
-                    <td> </td>
+                    <td>@Html.DisplayFor(m => p.DescriptionTag)</td>
+                    <td>@Html.DisplayFor(m => p.UrlSlug)</td>
                     <td>
-                        @Html.ActionLink("Update", "UpdateTag", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
-                        @Html.ActionLink("Delete", "DeleteTag", "DeleteContent", new { id = p.ID })
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Tag", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Tag", "Delete", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Delete </a>
+                        </div>
                     </td>
                 </tr>
             }
         </table>
         <!-- Read More Link -->
         <div class="blog-item-foot">
-            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+            <a href="@Url.Action("listTags", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
     <hr class="mb-40" />
@@ -117,7 +137,8 @@
                 <th>Post</th>
                 <th>NameUserSender</th>
                 <th>PostedOn</th>
-                <th>Action</th>
+                <th>Change</th>
+                <th>Delete</th>
             </tr>
             @foreach (var p in Model.Comments)
             {
@@ -127,15 +148,21 @@
                     <td>@Html.DisplayFor(m => p.NameUserSender)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
-                        @Html.ActionLink("Update", "UpdateComments", "UpdateContent", new { id = p.ID })<a>&nbsp;</a>
-                        @Html.ActionLink("Delete", "DeleteComments", "DeleteContent", new { id = p.ID })
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Comment", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Comment", "Delete", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Delete </a>
+                        </div>
                     </td>
                 </tr>
             }
         </table>
         <!-- Read More Link -->
         <div class="blog-item-foot">
-            <a href="@Url.Action()" target="_blank" class="btn btn-mod btn-round  btn-small">Посмотреть все записи</a>
+            <a href="@Url.Action("listComments", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 </div>

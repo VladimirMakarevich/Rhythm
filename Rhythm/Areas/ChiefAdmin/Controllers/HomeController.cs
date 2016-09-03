@@ -44,5 +44,27 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             return View(content);
         }
+
+        public ViewResult listCategories()
+        {
+            var model = repository.Category.OrderBy(c => c.ID).ToList();
+            return View(model);
+        }
+        public ViewResult listTags()
+        {
+            var model = repository.Tag.OrderBy(c => c.ID).ToList();
+
+            return View(model);
+        }
+        public ViewResult listPosts()
+        {
+            var model = repository.Post.OrderBy(c => c.ID).ToList();
+            return View(model);
+        }
+        public ViewResult listComments()
+        {
+            var model = repository.Comment.OrderBy(c => c.ID).ToList();
+            return View(model);
+        }
     }
 }

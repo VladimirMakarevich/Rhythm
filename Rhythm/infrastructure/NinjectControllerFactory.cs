@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.EfRepository;
 using Rhythm.Authenticated;
+using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.infrastructure
 {
@@ -31,6 +32,8 @@ namespace Rhythm.infrastructure
         {
             ninjectKernel.Bind<IRepository>().To<EfRepository>();
             ninjectKernel.Bind<IAuthentication>().To<Authentication>();
+            //ninjectKernel.Bind<IMapperTag>().To<MapperTagConfig>();
+            //ninjectKernel.Bind<IMapperCategory>().To<MapperCategoryConfig>();
         }
     }
 }

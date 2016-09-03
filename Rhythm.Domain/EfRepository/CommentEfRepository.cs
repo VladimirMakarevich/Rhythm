@@ -4,6 +4,7 @@ using Rhythm.Domain.Model;
 using System.Linq;
 using Rhythm.Domain.Concrete;
 using System;
+using System.Data.Entity;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -42,11 +43,58 @@ namespace Rhythm.Domain.EfRepository
 
         public void AddComment(Comment comment)
         {
-            comment.PostedOn = DateTime.Now;
-            comment.Post.CountComments++;
-            comment.DescriptionComment = false;
-            context.Comments.Add(comment);
-            context.SaveChanges();
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    comment.PostedOn = DateTime.Now;
+                    comment.Post.CountComments++;
+                    comment.DescriptionComment = false;
+                    context.Comments.Add(comment);
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    //TODO: Nlog
+                }
+            }
+        }
+
+        public void ChangeComment(Comment comment)
+        {
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    comment.Modified = DateTime.Now;
+                    context.Entry(comment).State = EntityState.Modified;
+                    context.SaveChanges();
+
+                    contextDb.Commit();
+                }
+                catch (System.Exception)
+                {
+                    //TODO: Nlog
+
+                }
+            }
+        }
+
+        public void DeleteComment(Comment comment)
+        {
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    context.Comments.Remove(comment);
+                    context.SaveChanges();
+                    contextDb.Commit();
+                }
+                catch (System.Exception)
+                {
+                    //TODO: Nlog
+                }
+            }
         }
     }
 }

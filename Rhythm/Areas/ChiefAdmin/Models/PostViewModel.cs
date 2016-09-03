@@ -19,7 +19,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public string DescriptionPost { get; set; }
         public string UrlSlug { get; set; }
         public bool Published { get; set; }
-        public int Category { get; set; }
+        public int model { get; set; }
         public List<int> Tag { get; set; }
         public HttpPostedFileBase imageData { get; set; }
         public string ImageMime { get; set; }

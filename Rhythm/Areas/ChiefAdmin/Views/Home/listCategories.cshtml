@@ -1,0 +1,41 @@
+﻿@model List<Rhythm.Domain.Model.Category>
+@{
+    <link href="~/Content/table.css" rel="stylesheet" />
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container relative">
+    <h1 class="align-center font-alt uppercase">Category</h1>
+    <div class="blog-item-body container">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Count</th>
+                <th>Change</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Name)</td>
+                    <td>@Html.DisplayFor(m => p.DescriptionCategory)</td>
+                    <td>@Html.DisplayFor(m => p.CountCategory)</td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Category", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Category", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

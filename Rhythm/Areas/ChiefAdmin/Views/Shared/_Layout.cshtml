@@ -34,7 +34,7 @@
                     <a href="@Url.Action("Index", "Home")" class="logo">
                         Admin
                     </a>
-                    <a>@Html.Action("UserLogin", "Home")</a>
+                    @*<a>@Html.Action("UserLogin", "Home")</a>*@
                 </div>
                 <div class="mobile-nav">
                     <img src="" alt="" />
@@ -50,20 +50,21 @@
                             <!-- Sub -->
                             <ul class="mn-sub">
                                 <li>
-                                    <a href="@Url.Action("Post","EditContent")">Post <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Category","EditContent")">Category <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Tag","EditContent")">Tag <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("Post","Edit")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("Category","Edit")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("Tag","Edit")">Tag <i class="fa fa-angle"></i></a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="mn-has-sub">Update <i class="fa fa-angle-down"></i></a>
+                            <a href="#" class="mn-has-sub">Change <i class="fa fa-angle-down"></i></a>
                             <!-- Sub -->
                             <ul class="mn-sub">
                                 <li>
-                                    <a href="@Url.Action("Post","UpdateContent")">Post <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Category","UpdateContent")">Category <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Tag","UpdateContent")">Tag <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listPosts","Home")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listCategories","Home")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listTags","Home")">Tag <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listComments","Home")">Comment <i class="fa fa-angle"></i></a>
                                 </li>
                             </ul>
                         </li>
@@ -72,9 +73,10 @@
                             <!-- Sub -->
                             <ul class="mn-sub">
                                 <li>
-                                    <a href="@Url.Action("Post","DeleteContent")">Post <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Category","DeleteContent")">Category <i class="fa fa-angle"></i></a>
-                                    <a href="@Url.Action("Tag","DeleteContent")">Tag <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listPosts","Home")">Post <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listCategories","Home")">Category <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listTags","Home")">Tag <i class="fa fa-angle"></i></a>
+                                    <a href="@Url.Action("listComments","Home")">Comment <i class="fa fa-angle"></i></a>
                                 </li>
                             </ul>
                         </li>

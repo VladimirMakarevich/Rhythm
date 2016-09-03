@@ -26,9 +26,9 @@ namespace Rhythm
 
             AreaRegistration.RegisterAllAreas();
 
-
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MappingConfig.RegisterMapping();
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }

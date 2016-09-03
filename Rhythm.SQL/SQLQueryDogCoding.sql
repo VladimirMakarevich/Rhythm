@@ -152,6 +152,8 @@ CREATE TABLE blog.Comment
 	Comment nvarchar(MAX) NOT NULL,
 	PostedOn datetime NOT NULL,
 	Modified datetime NULL
+	/*добавить в следующей версии удаление и редактирование комментария администрацией
+	услови, если коментарий редактировался то дату и причину, если коментарий удалили то выводим причину и тд*/
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC

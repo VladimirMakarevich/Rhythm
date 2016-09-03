@@ -22,14 +22,14 @@ namespace Rhythm.Controllers
             this.repository = repository;
         }
         // GET: Search
-        //public ActionResult Search(Category item)
+        //public ActionResult Search(model item)
         //{
-        //    //item = new Category();
-        //    var search = repository.Post.Where(i => i.Category == item.ID).ToList();
+        //    //item = new model();
+        //    var search = repository.Post.Where(i => i.model == item.ID).ToList();
         //    return PartialView("Search", search);
         //}
 
-        public ViewResult SearchByCategory(Category item, int page = 1)
+        public ViewResult SearchBymodel(Category item, int page = 1)
         {
             ViewBag.Title = "Search by categories";
             PostListViewModel search = new PostListViewModel
@@ -46,7 +46,7 @@ namespace Rhythm.Controllers
                     TotalPosts = repository.Post.Count()
                 }
             };
-            ViewBag.Text = String.Format(@"A list of posts by category ""{0}""", item.Name);
+            ViewBag.Text = String.Format(@"A list of posts by model ""{0}""", item.Name);
 
             return View("Search", search);
         }

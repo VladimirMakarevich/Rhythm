@@ -3,6 +3,7 @@ using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System.Linq;
 using System;
+using System.Data.Entity;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -15,11 +16,60 @@ namespace Rhythm.Domain.EfRepository
 
         public void AddPost(Post post)
         {
-            post.Modified = DateTime.Now;
-            post.CountComments = 0;
-            post.PostedOn = DateTime.Now;
-            context.Posts.Add(post);
-            context.SaveChanges();
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    post.Modified = DateTime.Now;
+                    post.CountComments = 0;
+                    post.PostedOn = DateTime.Now;
+                    context.Posts.Add(post);
+                    context.SaveChanges();
+
+                    contextDb.Commit();
+                }
+                catch (System.Exception)
+                {
+                    //TODO: Nlog
+                }
+            }
+        }
+
+        public void ChangePost(Post post)
+        {
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    post.Modified = DateTime.Now;
+                    context.Entry(post).State = EntityState.Modified;
+                    context.SaveChanges();
+
+                    contextDb.Commit();
+                }
+                catch (System.Exception)
+                {
+                    //TODO: Nlog
+
+                }
+            }
+        }
+
+        public void DeletePost(Post post)
+        {
+            using (var contextDb = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    context.Posts.Remove(post);
+                    context.SaveChanges();
+                    contextDb.Commit();
+                }
+                catch (System.Exception)
+                {
+                    //TODO: Nlog
+                }
+            }
         }
     }
 }

@@ -916,7 +916,7 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="layout" minOccurs="0" maxOccurs="1" type="Layout" />
-          <xs:element name="category" minOccurs="0" maxOccurs="1" type="Layout" />
+          <xs:element name="model" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="eventId" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="log" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="machineName" minOccurs="0" maxOccurs="1" type="xs:string" />
@@ -935,9 +935,9 @@
             <xs:documentation>Layout used to format log messages.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="category" type="SimpleLayoutAttribute">
+        <xs:attribute name="model" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Layout that renders event Category.</xs:documentation>
+            <xs:documentation>Layout that renders event model.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="eventId" type="SimpleLayoutAttribute">
@@ -1951,7 +1951,7 @@
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="autoCreate" minOccurs="0" maxOccurs="1" type="xs:boolean" />
-          <xs:element name="categoryName" minOccurs="0" maxOccurs="1" type="xs:string" />
+          <xs:element name="modelName" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterHelp" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterName" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterType" minOccurs="0" maxOccurs="1" type="System.Diagnostics.PerformanceCounterType" />
@@ -1968,9 +1968,9 @@
             <xs:documentation>Indicates whether performance counter should be automatically created.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="categoryName" type="xs:string">
+        <xs:attribute name="modelName" type="xs:string">
           <xs:annotation>
-            <xs:documentation>Name of the performance counter category.</xs:documentation>
+            <xs:documentation>Name of the performance counter model.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="counterHelp" type="xs:string">

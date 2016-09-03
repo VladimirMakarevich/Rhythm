@@ -12,13 +12,12 @@ using System.Web.Mvc;
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
 
-    public class EditContentController : DefaultController
+    public class EditController : DefaultController
     {
-        public EditContentController(IRepository repository)
+        public EditController(IRepository repository)
         {
             this.repository = repository;
         }
-        // GET: ChiefAdmin/AddContent
 
         public ActionResult Post()
         {
@@ -51,7 +50,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 var q = repository.Tag.FirstOrDefault(t => t.PostTags == null);
                 var tt = repository.Post.FirstOrDefault(p => p.PostTags == null);
 
-                tagList.Add();
+                //tagList.Add();
             }
             //if (tags.Length > 0)
             //{
@@ -72,7 +71,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-
                     var tagList = TagCollection(post.Tag);
 
                     byte[] image = new byte[post.imageData.ContentLength];
@@ -86,48 +84,79 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         DescriptionPost = post.DescriptionPost,
                         UrlSlug = post.UrlSlug,
                         Published = post.Published,
-                        Category = post.Category,
+                        Category = post.model,
                         ImageData = image,
                         ImageMime = post.ImageMime,
-                        PostTags = 
-                                         
-                        
+                        //PostTags = 
+
+
                     };
 
                     repository.AddPost(p);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //TODO: NLog
+
                 }
             }
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult EditTag()
+        public ActionResult Tag()
         {
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult EditTag(TagViewModel tag)
+        public ActionResult Tag(TagViewModel tagModel)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //var model = (Tag)modelMapperTag.Map(tagModel, typeof(TagViewModel), typeof(Tag));
+                    IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
+                    Tag context = model.Map<Tag>(tagModel);
 
-            return View();
+
+                    repository.AddTag(context);
+                }
+                catch (Exception)
+                {
+                    //TODOL Nlog
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult EditCategory()
+        public ActionResult Category()
         {
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult EditCategory(CategoryViewModel category)
+        public ActionResult Category(CategoryViewModel categoryModel)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //var model = (Category)modelMapperCategory.Map(categoryModel, typeof(CategoryViewModel), typeof(Category));
+                    IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
+                    Category context = model.Map<Category>(categoryModel);
 
-            return View();
+
+                    repository.AddCategory(context);
+                }
+                catch (Exception)
+                {
+                    //TODOL Nlog
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

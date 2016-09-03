@@ -1,0 +1,47 @@
+﻿@model Rhythm.Areas.ChiefAdmin.Models.TagViewModel
+
+@{
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
+<!-- Section -->
+<section class="page-section">
+    <div class="container relative">
+
+        <!-- Form -->
+        @using (Html.BeginForm("Tag", "Update", FormMethod.Post, new { @class = "form" }))
+        {
+
+            @Html.Label("Name: ", new { @for = "exampleInputFile" })
+            <div class="mb-20 mb-md-10">
+                <!-- Name -->
+                @Html.TextBoxFor(m => m.Name, new { @class = "input-md form-control", @placeholder = "Name" })
+            </div>
+
+            @Html.Label("UrlSlug: ", new { @for = "exampleInputFile" })
+            <div class="mb-20 mb-md-10">
+                <!-- Title -->
+                @Html.TextBoxFor(m => m.UrlSlug, new { @class = "input-md form-control", @placeholder = "UrlSlug" })
+            </div>
+
+            @Html.Label("Description Tag: ", new { @for = "exampleInputFile" })
+            <div class="mb-20 mb-md-10">
+                @Html.TextAreaFor(m => m.DescriptionTag, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Description Tag" })
+            </div>
+
+            <div class="clearfix">
+                <div class="cf-left-col">
+                    <!-- Inform Tip -->
+                    <div class="form-tip pt-20">
+                        <i class="fa fa-info-circle"></i> All the fields are required
+                    </div>
+                </div>
+                <div class="cf-right-col">
+                    <!-- Send Button -->
+                    <div class="align-right pt-10">
+                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Tag</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
