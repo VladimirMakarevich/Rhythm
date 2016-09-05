@@ -81,12 +81,12 @@
                         <div class="cf-left-col">
                             <!-- Name -->
                             <div class="form-group">
-                                @Html.TextBoxFor(m => m.Name, new { @name = "Name", @id = "Name", @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
                                 @*<input type="text" name="name" id="name" class="input-md round form-control" placeholder="Name" pattern=".{3,100}" required>*@
                             </div>
                             <!-- Email -->
                             <div class="form-group">
-                                @Html.TextBoxFor(m => m.Email, new { @name = "Email", @id = "Email", @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })
                                 @*      <input type="email" name="email" id="email" class="input-md round form-control" placeholder="Email" pattern=".{5,100}" required>*@
                             </div>
                             @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "form-tip pt-20", @style = "color:red;" })*@
@@ -94,7 +94,7 @@
                         <div class="cf-right-col">
                             <!-- Message -->
                             <div class="form-group">
-                                @Html.TextAreaFor(m => m.Message, new { @name = "Message", @id = "Message", @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })
+                                @Html.TextAreaFor(m => m.Message, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })
                                 @*<textarea name="message" id="message" class="input-md round form-control" style="height: 84px;" placeholder="Message"></textarea>*@
                             </div>
                         </div>

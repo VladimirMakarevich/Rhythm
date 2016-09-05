@@ -1,4 +1,4 @@
-﻿@model Rhythm.Domain.Model.Post
+﻿@model Rhythm.Models.PostViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,23 +12,35 @@
                 <div class="blog-item mb-80 mb-xs-40">
                     <!-- Text -->
                     <div class="blog-item-body">
-                        <h1 class="mt-0">@Model.Title</h1>
+                        <h1 class="mt-0">@Model.Post.Title</h1>
                         <div class="lead">
-                            <img width="150" height="150" src="@Url.Action("GetImage", "Post", new { Model.ID })" />
                             <hr class="mb-40" />
-                            @Model.ShortDescription
+                            @Model.Post.ShortDescription
                         </div>
                         <hr class="mb-40" />
-                        @Model.DescriptionPost
-                    </div>
+                        @Model.Post.DescriptionPost
+                    </div
                     <!-- End Text -->
                 </div>
                 <!-- End Post -->
-                @*@Html.Partial("_CommentsList")*@
+                @Html.Partial("_CommentsList")
                 <!-- Prev/Next Post -->
                 <div class="clearfix mt-40">
-                    @Html.ActionLink("Prev post", "Post", new { id = Model.ID - 1 }, new { @class = "blog-item-more left" })
-                    @Html.ActionLink("Next post", "Post", new { id = Model.ID + 1 }, new { @class = "blog-item-more right" })
+                    @if (Model.Post.ID == 1)
+                    {
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Prev post", "Post", new { id = Model.Post.ID - 1 }, new { @class = "blog-item-more left" })
+                    }
+
+                    @if (Model.Post.ID >= ViewBag.Count)
+                    {
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Next post", "Post", new { id = Model.Post.ID + 1 }, new { @class = "blog-item-more right" })
+                    }
                 </div>
                 <!-- End Prev/Next Post -->
             </div>

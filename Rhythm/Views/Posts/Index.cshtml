@@ -23,12 +23,15 @@
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-user"></i>@p.NameSenderPost</a>
                             <span class="separator">&nbsp;</span>
-                            <i class="fa fa-folder-open"></i>
+                            <i class="fa fa-clock-o"></i>
                             <a>@p.Category1.Name</a>
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
+                        @if(p.ImageData != null)
+                        { 
                         <img width="150" height="150" src="@Url.Action("GetImage", "Post", new { p.ID })" />
+                        }
                         <div class="blog-item-body">
                             <p>
                                 @p.ShortDescription

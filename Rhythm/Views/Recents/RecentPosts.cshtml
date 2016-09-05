@@ -6,10 +6,14 @@
         @foreach (var p in Model)
         {
             <li class="clearfix">
-                <a href="#"><img src="~/Content/img/feature-3.png" alt="" width="100" class="widget-posts-img" /></a>
                 <div class="widget-posts-descr">
                     <a href="@Url.Action("Post","Posts", new { id = p.ID})" title="@p.Title">@p.Title</a>
                     Posted by @p.NameSenderPost in @p.PostedOn
+                </div>
+                <div class="fa fa-examples">
+                    <i class="fa fa-fw">&#xf0f6</i>
+                    <i class="fa fa-fw">&#xf0f6</i>
+                    <i class="fa fa-fw">&#xf0f6</i>
                 </div>
             </li>
         }

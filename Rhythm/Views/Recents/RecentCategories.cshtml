@@ -8,11 +8,15 @@
         @foreach (var c in Model)
         {
             <li>
-                <a href="@Url.Action("SearchByCategory", "Search", new { id = c.ID })" title="@c.Name">@c.Name</a>
+                <a href="@Url.Action("Category", "Search", new { id = c.ID, Name = c.Name })" title="@c.Name">@c.Name</a>
                 <small>
                     - @c.CountCategory
                 </small>
+                <div class="fa fa-examples">
+                    <i class="fa fa-fw">&#xf0a5</i>
+                </div>
             </li>
+
         }
     </ul>
 </div>

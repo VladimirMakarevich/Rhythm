@@ -8,6 +8,7 @@ namespace Rhythm
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/rhythm/jquery")
+                .Include("~/scripts/rhythm/jquery-3.1.0.min.js")
                 .Include("~/scripts/rhythm/jquery-1.11.2.min.js")
                 .Include("~/scripts/rhythm/jquery.ajaxchimp.min.js")
                 .Include("~/scripts/rhythm/jquery.appear.js")
@@ -20,8 +21,9 @@ namespace Rhythm
                 .Include("~/scripts/rhythm/jquery.scrollTo.min.js")
                 .Include("~/scripts/rhythm/jquery.simple-text-rotator.min.js")
                 .Include("~/scripts/rhythm/jquery.sticky.js")
-                .Include("~/scripts/rhythm/jquery.viewport.mini.js")
-                .Include("~/scripts/rhythm/bootstrap.min.js"));
+                .Include("~/scripts/rhythm/jquery.viewport.mini.js"));
+
+
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr")
                 .Include("~/scripts/modernizr-*"));
@@ -34,8 +36,8 @@ namespace Rhythm
                             .Include("~/scripts/rhythm/SmoothScroll.js")
                             .Include("~/scripts/rhythm/wow.min.js")
                             .Include("~/scripts/rhythm/placeholder.js")
-                            .Include("~/scripts/rhythm/all.js"));
-
+                            .Include("~/scripts/rhythm/all.js")
+                            .Include("~/scripts/rhythm/bootstrap.min.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/rhythm/jqueryval").Include(

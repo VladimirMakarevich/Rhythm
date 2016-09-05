@@ -3,8 +3,29 @@
 <h5 class="widget-title font-alt">Text widget</h5>
 <div class="widget-body">
     <div class="widget-text clearfix">
-        <img src="~/Content/img/feature-1.png" alt="" width="120" class="img-circle left img-left">
-        <a href="@Url.Action("Post","Posts", new { id = Model.ID})" title="@Model.Title">@Model.Title</a>
+        @if (Model.ImageData != null)
+        {
+            <img width="100" height="100" src="@Url.Action("GetImage", "Post", new { Model.ID })" />
+        }
+        @*<a href="@Url.Action("Post","Posts", new { id = Model.ID})" title="@Model.Title">@Model.Title</a>*@
+        <h2 class="blog-item-title">
+            @Html.ActionLink(Model.Title, "Post", "Posts", new { id = Model.ID }, new { @class = ""})
+        </h2>
         @Model.ArticleContent
     </div>
+
+
 </div>
+
+
+@*<div class="widget-body">
+    <div class="widget-text clearfix">
+
+        <img src="images/user-avatar.png" alt="" width="70" class="img-circle left img-left">
+
+        Consectetur adipiscing elit. Quisque magna ante eleifend eleifend.
+        Purus ut dignissim consectetur, nulla erat ultrices purus, ut consequat sem elit non sem.
+        Quisque magna ante eleifend eleifend.
+
+    </div>
+</div>*@

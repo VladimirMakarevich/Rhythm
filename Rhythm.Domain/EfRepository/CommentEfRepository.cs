@@ -47,15 +47,16 @@ namespace Rhythm.Domain.EfRepository
             {
                 try
                 {
-                    comment.PostedOn = DateTime.Now;
                     comment.Post.CountComments++;
-                    comment.DescriptionComment = false;
                     context.Comments.Add(comment);
                     context.SaveChanges();
+                    contextDb.Commit();
+
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //TODO: Nlog
+                    contextDb.Rollback();
                 }
             }
         }
@@ -69,13 +70,12 @@ namespace Rhythm.Domain.EfRepository
                     comment.Modified = DateTime.Now;
                     context.Entry(comment).State = EntityState.Modified;
                     context.SaveChanges();
-
                     contextDb.Commit();
                 }
                 catch (System.Exception)
                 {
                     //TODO: Nlog
-
+                    contextDb.Rollback();
                 }
             }
         }
@@ -86,6 +86,7 @@ namespace Rhythm.Domain.EfRepository
             {
                 try
                 {
+                    comment.Post.CountComments--;
                     context.Comments.Remove(comment);
                     context.SaveChanges();
                     contextDb.Commit();
@@ -93,6 +94,7 @@ namespace Rhythm.Domain.EfRepository
                 catch (System.Exception)
                 {
                     //TODO: Nlog
+                    contextDb.Rollback();
                 }
             }
         }

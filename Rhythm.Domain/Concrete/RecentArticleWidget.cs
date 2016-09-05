@@ -22,5 +22,6 @@ namespace Rhythm.Domain.Concrete
         }
         public string Title { get; set; }
         public int ID { get; set; }
+        public byte[] ImageData { get; set; }
     }
 }

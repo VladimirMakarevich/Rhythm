@@ -45,15 +45,8 @@ namespace Rhythm.Controllers
 
         public ActionResult Post(int? id)
         {
-            //TODO: change
-            if (id == 0)
-            {
-                id++;
-            }
-            if (id > repository.Post.Count())
-            {
-                id--;
-            }
+            ViewBag.Count = repository.Post.Count();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -63,7 +56,11 @@ namespace Rhythm.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+            PostViewModel postView = new PostViewModel
+            {
+                Post = post
+            };
+            return View(postView);
         }
 
         public FileContentResult GetImage(int id)
@@ -78,16 +75,39 @@ namespace Rhythm.Controllers
                 return null;
             }
         }
-        //public ActionResult addComments(CommentViewModel commentViewModel)
-        //{
 
-        //    commentViewModel.Comment.PostID = commentViewModel.ID;
-        //    commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
-        //    repository.AddComment(commentViewModel.Comment);
+        [HttpPost]
+        public ActionResult Post(PostViewModel commentViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Comment model = new Comment
+                    {
+                        PostID = commentViewModel.Post.ID,
+                        NameUserSender = commentViewModel.Comment.NameUserSender,
+                        EmailUserSender = commentViewModel.Comment.EmailUserSender,
+                        Comment1 = commentViewModel.Comment.Comment1,
+                        DescriptionComment = commentViewModel.Comment.DescriptionComment,
+                        Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID),
+                        PostedOn = DateTime.Now
+                    };
 
-        //    //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
-        //    //return PartialView(allComment);
-        //    return null;
-        //}
+                    repository.AddComment(model);
+                }
+                catch (Exception)
+                {
+                    //TODO: NLog
+                }
+            }
+
+            PostViewModel post = new PostViewModel
+            {
+                Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID)
+            };
+
+            return View(post);
+        }
     }
 }

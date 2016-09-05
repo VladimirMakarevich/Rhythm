@@ -10,15 +10,15 @@ namespace Rhythm.Models
     public class CommentViewModel
     {
         public int ID { get; set; }
-        public Post Post { get; set; }
-        public Comment Comment { get; set; }
-        [Required]
-        [StringLength(50)]
-        public string NameSender { get; set; }
-        [Required]
-        public bool IsHuman { get; set; }
-        [Required]
-        [EmailAddress]
-        public string EmailSender { get; set; }
+        public int PostID { get; set; }
+        [Required(ErrorMessage = "all the fields are required")]
+        public string NameUserSender { get; set; }
+        [Required(ErrorMessage = "all the fields are required")]
+        [EmailAddress(ErrorMessage = "the Email field is not a valid e - mail addres")]
+        public string EmailUserSender { get; set; }
+        [Required(ErrorMessage = "all the fields are required")]
+        public bool DescriptionComment { get; set; }
+        [Required(ErrorMessage = "all the fields are required")]
+        public string Comment1 { get; set; }
     }
 }

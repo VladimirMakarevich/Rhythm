@@ -29,7 +29,7 @@ namespace Rhythm.Controllers
         //    return PartialView("Search", search);
         //}
 
-        public ViewResult SearchBymodel(Category item, int page = 1)
+        public ViewResult Category(Category item, int page = 1)
         {
             ViewBag.Title = "Search by categories";
             PostListViewModel search = new PostListViewModel
@@ -51,7 +51,7 @@ namespace Rhythm.Controllers
             return View("Search", search);
         }
 
-        public ViewResult SearchByTag(Tag item, int page = 1)
+        public ViewResult Tag(Tag item, int page = 1)
         {
             ViewBag.Title = "Search by tags";
 

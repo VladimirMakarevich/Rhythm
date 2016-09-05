@@ -37,7 +37,7 @@ CREATE TABLE blog.Post
 	Published bit NOT NULL,
 	PostedOn datetime NOT NULL,
 	Modified datetime NULL,
-	Category int NOT NULL,
+	Category int NOT NULL DEFAULT (1),
 	ImageData varbinary(MAX) NULL,
 	ImageMime nvarchar(100) NULL,
     CountComments int DEFAULT 0
@@ -173,29 +173,37 @@ CREATE TABLE blog.PostTag
 ) ON [PRIMARY]
 GO
 
+
+
+
 /****** Object:  Foreign Key FK_Post_Category ******/
 ALTER TABLE blog.Post
 WITH CHECK ADD CONSTRAINT FK_Post_Category
 FOREIGN KEY (Category) REFERENCES blog.Category(ID)
+ON DELETE SET DEFAULT
+ON UPDATE CASCADE
 GO
 /****** Object:  Foreign Key FK_Tag_Post ******/
 ALTER TABLE blog.PostTag
 WITH CHECK ADD CONSTRAINT FK_Tag_Post
-FOREIGN KEY (TagID) REFERENCES blog.Tag(ID);
+FOREIGN KEY (TagID) REFERENCES blog.Tag(ID)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 ALTER TABLE blog.PostTag CHECK CONSTRAINT FK_Tag_Post
 GO
 /****** Object:  Foreign Key FK_Post_Tag ******/
 ALTER TABLE blog.PostTag
 WITH CHECK ADD CONSTRAINT FK_Post_Tag
-FOREIGN KEY (PostID) REFERENCES blog.Post(ID);
+FOREIGN KEY (PostID) REFERENCES blog.Post(ID)
+ON DELETE CASCADE
+ON UPDATE CASCADE
 GO
 /****** Object:  Foreign Key FK_Comment_Post ******/
 ALTER TABLE blog.Comment
 WITH CHECK ADD CONSTRAINT FK_Comment_Post
-FOREIGN KEY (PostID) REFERENCES blog.Post(ID);
+FOREIGN KEY (PostID) REFERENCES blog.Post(ID)
+ON UPDATE CASCADE
 GO
-
-
 /****** Object:  Foreign Key FK_DogUser_Role ******/
 ALTER TABLE blog.UserRole
 WITH CHECK ADD CONSTRAINT FK_DogUser_Role

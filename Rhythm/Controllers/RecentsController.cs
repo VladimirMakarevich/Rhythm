@@ -6,6 +6,8 @@ using Rhythm.Domain.Model;
 using Rhythm.Collections;
 using System;
 using Rhythm.Models;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Rhythm.Controllers
 {
@@ -49,34 +51,28 @@ namespace Rhythm.Controllers
         public ActionResult RecentArticleWidgets()
         {
             var articleWidget = repository.GetArticleWidget();
-
+            if (articleWidget == null)
+            {
+                return null;
+            }
             return PartialView("RecentArticleWidgets", articleWidget);
         }
 
         [ChildActionOnly]
         public ActionResult RecentArchives()
         {
-            var model = new ArchiveCollection(GetPosts());
+            var model = new ArchiveCollection(GetPost());
             return PartialView(model);
         }
-
-        public List<Post> GetPosts()
+        public List<Post> GetPost()
         {
             var posts = repository.Post.OrderBy(p => p.ID).ToList();
             return posts;
         }
-
-        [ChildActionOnly]
-        public ActionResult AddComment(int id)
+        public List<Post> GetPosts()
         {
-
-            CommentViewModel comment = new CommentViewModel()
-            {
-                EmailSender = "Type your mail",
-                NameSender = "Type your name",
-                ID = id
-            };
-            return PartialView(comment);
+            var posts = repository.Post.OrderBy(p => p.ID).ToList();
+            return posts;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Concrete;
+using Rhythm.Domain.Model;
 using Rhythm.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace Rhythm.Controllers
         }
 
 
-        [ChildActionOnly]
         public ActionResult AllComments(int id)
         {
             var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
@@ -25,27 +25,46 @@ namespace Rhythm.Controllers
             return PartialView(allComment);
         }
 
-        public ActionResult addComments(CommentViewModel commentViewModel)
+        [HttpPost]
+        public ActionResult addComment(PostViewModel commentViewModel)
         {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Comment model = new Comment
+                    {
+                        PostID = commentViewModel.Post.ID,
+                        NameUserSender = commentViewModel.Comment.NameUserSender,
+                        EmailUserSender = commentViewModel.Comment.EmailUserSender,
+                        Comment1 = commentViewModel.Comment.Comment1,
+                        DescriptionComment = commentViewModel.Comment.DescriptionComment,
+                        Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID),
+                        PostedOn = DateTime.Now
+                    };
 
-            commentViewModel.Comment.PostID = commentViewModel.ID;
-            commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
-            repository.AddComment(commentViewModel.Comment);
+                    repository.AddComment(model);
+                }
+                catch (Exception)
+                {
+                    //TODO: NLog
+                }
+
+            }
+            //commentViewModel.Comment.PostID = commentViewModel.ID;
+            //commentViewModel.Comment.Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.ID);
+            //repository.AddComment(commentViewModel.Comment);
 
             //var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == commentViewModel.ID).ToList();
             //return PartialView(allComment);
-            return null;
+            return RedirectToAction("Post", "Posts", commentViewModel.Post.ID);
         }
+
         //[ChildActionOnly]
-        //public ActionResult AddComment(int id)
+        //public ActionResult addComment(int id)
         //{
-        //    CommentViewModel comment = new CommentViewModel()
-        //    {
-        //        EmailSender = "Type your mail",
-        //        NameSender = "Type your name",
-        //        ID = id
-        //    };
-        //    return PartialView(comment);
+
+        //    return PartialView();
         //}
 
         //private ActionResult RiderectByPostType(CommentViewModel commentViewModel, bool flagCheck)

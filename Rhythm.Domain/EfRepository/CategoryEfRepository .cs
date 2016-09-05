@@ -26,6 +26,7 @@ namespace Rhythm.Domain.EfRepository
                 catch (System.Exception)
                 {
                     //TODO: Nlog
+                    contextDb.Rollback();
                 }
             }
         }
@@ -44,7 +45,7 @@ namespace Rhythm.Domain.EfRepository
                 catch (System.Exception)
                 {
                     //TODO: Nlog
-
+                    contextDb.Rollback();
                 }
             }
         }
@@ -62,6 +63,7 @@ namespace Rhythm.Domain.EfRepository
                 catch (System.Exception)
                 {
                     //TODO: Nlog
+                    contextDb.Rollback();
                 }
             }
         }

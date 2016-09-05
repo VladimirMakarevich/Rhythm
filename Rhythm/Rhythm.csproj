@@ -242,7 +242,6 @@
     <Content Include="Areas\ChiefAdmin\Views\Home\listPosts.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Home\listComments.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Update\Comment.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\Delete\Tag.cshtml" />
     <None Include="scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="scripts\jquery-3.1.0.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
@@ -266,6 +265,8 @@
     <Content Include="scripts\rhythm\imagesloaded.pkgd.min.js" />
     <Content Include="scripts\rhythm\isotope.pkgd.min.js" />
     <Content Include="scripts\rhythm\jquery-1.11.2.min.js" />
+    <Content Include="scripts\rhythm\jquery-1.8.2.min.js" />
+    <Content Include="scripts\rhythm\jquery-3.1.0.min.js" />
     <Content Include="scripts\rhythm\jquery.ajaxchimp.min.js" />
     <Content Include="scripts\rhythm\jquery.appear.js" />
     <Content Include="scripts\rhythm\jquery.countTo.js" />
@@ -336,6 +337,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
+    <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\Rss.cs" />
     <Compile Include="Models\RssReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -387,10 +389,8 @@
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
-    <Content Include="Views\Recents\AddComment.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Rss\RSS.cshtml" />
-    <Content Include="Views\Comments\AddComment.cshtml" />
     <Content Include="Views\Rss\Index.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="scripts\jquery-3.1.0.slim.min.map" />

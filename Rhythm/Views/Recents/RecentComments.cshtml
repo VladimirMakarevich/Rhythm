@@ -4,11 +4,17 @@
 
 <div class="widget-body">
     <ul class="clearlist widget-comments">
-        @foreach(var c in Model)
+        @foreach (var c in Model)
         {
             <li>
-               @c.NameUserSender on <a href="@Url.Action("Post","Posts", new { id = c.ID } )" title="@c.CommentContent">@c.CommentContent (@c.PostAddedDate)</a>
+                @c.NameUserSender on <a href="@Url.Action("Post","Posts", new { id = c.ID } )" title="@c.CommentContent">@c.CommentContent (@c.PostAddedDate)</a>
+                <div class="fa fa-examples">
+                    <i class="fa fa-fw">&#xf0e5</i>
+                    <i class="fa fa-fw">&#xf0e5</i>
+                    <i class="fa fa-fw">&#xf0e5</i>
+                </div>
             </li>
+
         }
     </ul>
 </div>
