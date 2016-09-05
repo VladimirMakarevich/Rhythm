@@ -18,7 +18,7 @@ namespace Rhythm.Domain.Model
         public Post()
         {
             this.Comments = new HashSet<Comment>();
-            this.PostTags = new HashSet<PostTag>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public int ID { get; set; }
@@ -39,6 +39,6 @@ namespace Rhythm.Domain.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostTag> PostTags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

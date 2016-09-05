@@ -13,11 +13,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         // GET: ChiefAdmin/Default
         [Inject]
         public IRepository repository { get; set; }
-        //[Inject]
-        //public IMapperTag modelMapperTag { get; set; }
-        //[Inject]
-        //public IMapperCategory modelMapperCategory { get; set; }
-
         [Inject]
         public IAuthentication Auth { get; set; }
         public DogUser CurrentUser

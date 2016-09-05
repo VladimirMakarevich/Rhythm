@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using NLog;
+using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using Rhythm.Models;
 using System;
@@ -12,6 +13,7 @@ namespace Rhythm.Controllers
 {
     public class PostsController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public int PageSize = 8;
         public PostsController(IRepository repository)
         {
@@ -25,6 +27,8 @@ namespace Rhythm.Controllers
 
         public ViewResult Index(int page = 1)
         {
+            logger.Info("simple text into info.");
+
             PostListViewModel model = new PostListViewModel
             {
                 Posts = repository.Post
@@ -45,6 +49,8 @@ namespace Rhythm.Controllers
 
         public ActionResult Post(int? id)
         {
+            logger.Info("simple text into info.");
+
             ViewBag.Count = repository.Post.Count();
 
             if (id == null)

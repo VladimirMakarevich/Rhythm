@@ -40,30 +40,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View();
         }
 
-
-        public ICollection<PostTag> TagCollection(List<int> item)
-        {
-            var tagList = new List<PostTag>();
-
-            foreach (var i in item)
-            {
-                var q = repository.Tag.FirstOrDefault(t => t.PostTags == null);
-                var tt = repository.Post.FirstOrDefault(p => p.PostTags == null);
-
-                //tagList.Add();
-            }
-            //if (tags.Length > 0)
-            //{
-            //    post.Tags = new List<Tag>();
-
-            //    foreach (var tag in tags)
-            //    {
-            //        post.Tags.Add(_blogRepository.Tag(int.Parse(tag.Trim())));
-            //    }
-            //}
-            return tagList;
-        }
-
         [HttpPost]
         public ActionResult Post(PostViewModel post)
         {
@@ -71,10 +47,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    var tagList = TagCollection(post.Tag);
+                    List<Tag> listTag = new List<Tag>();
+                    foreach (var item in post.intTag)
+                    {
+                        var tag = repository.Tag.SingleOrDefault(m => m.ID == item);
+                        listTag.Add(tag);
+                    }
+                    var category = repository.Category.SingleOrDefault(m => m.ID == post.Category);
 
-                    byte[] image = new byte[post.imageData.ContentLength];
-                    post.imageData.InputStream.Read(image, 0, image.Length);
+                    byte[] image = new byte[post.ImageData.ContentLength];
+                    post.ImageData.InputStream.Read(image, 0, image.Length);
 
                     Post p = new Post
                     {
@@ -84,20 +66,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         DescriptionPost = post.DescriptionPost,
                         UrlSlug = post.UrlSlug,
                         Published = post.Published,
-                        Category = post.model,
+                        Category = post.Category,
                         ImageData = image,
                         ImageMime = post.ImageMime,
-                        //PostTags = 
-
+                        Tags = listTag,
+                        Category1 = category
 
                     };
-
                     repository.AddPost(p);
                 }
                 catch (Exception)
                 {
                     //TODO: NLog
-
                 }
             }
             return RedirectToAction("Index", "Home");

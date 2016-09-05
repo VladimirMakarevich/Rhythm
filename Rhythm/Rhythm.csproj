@@ -284,7 +284,9 @@
     <Content Include="scripts\rhythm\placeholder.js" />
     <Content Include="scripts\rhythm\SmoothScroll.js" />
     <Content Include="scripts\rhythm\wow.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -300,14 +302,11 @@
     <Compile Include="Areas\ChiefAdmin\Models\DropDownList.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
-    <Compile Include="Areas\ChiefAdmin\Models\IMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\LoginModel.cs" />
-    <Compile Include="Areas\ChiefAdmin\Models\Mapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
     <Compile Include="Authenticated\Authentication.cs" />
-    <Compile Include="AuthHttpModule.cs" />
     <Compile Include="Authenticated\AuthoProvider.cs" />
     <Compile Include="Authenticated\IAuthentication.cs" />
     <Compile Include="Authenticated\IAuthoProvider.cs" />
@@ -327,7 +326,6 @@
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\RecentsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="CustomAutherize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

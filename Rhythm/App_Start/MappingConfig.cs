@@ -10,31 +10,40 @@ namespace Rhythm
 {
     public static class MappingConfig
     {
+        //Определяем поля, типа MapperConfiguration
         public static MapperConfiguration MapperConfigCategory;
         public static MapperConfiguration MapperConfigTag;
         public static MapperConfiguration MapperConfigComment;
+        public static MapperConfiguration MapperConfigPost;
 
         public static void RegisterMapping()
         {
-            MapperConfigCategory = new MapperConfiguration(cfg => {
+            // Создаем связь Категорий
+            MapperConfigCategory = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Category, CategoryViewModel>().ReverseMap();
             });
-
-            MapperConfigTag = new MapperConfiguration(cfg => {
+            // Создаем связь Тэга
+            MapperConfigTag = new MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<Tag, TagViewModel>().ReverseMap();
             });
-
-            MapperConfigComment = new MapperConfiguration(cfg => {
-                cfg.CreateMap<CommentViewModel, Comment>().ReverseMap();
+            // Создаем связь Комментариев
+            MapperConfigComment = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Comment, CommentViewModel>().ReverseMap();
+            });
+            // Создаем связь Постов
+            MapperConfigPost = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Post, PostViewModel>().ReverseMap();
+                    //.ForMember("imageData", opt => opt.MapFrom(src => src.ImageData))
+                //.ForMember()
+                //.ForMember()
+                //.ForMember()
+                //.ForMember()
+                //.ForMember()
             });
         }
-        //public static MapperConfiguration MapperConfig;
-
-        //public static void RegisterMappingCategory()
-        //{
-        //    MapperConfig = new MapperConfiguration(cfg => {
-        //        cfg.CreateMap<TagViewModel, Tag>();
-        //    });
-        //}
     }
 }

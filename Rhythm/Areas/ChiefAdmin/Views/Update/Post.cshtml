@@ -53,7 +53,7 @@
 
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.ListBoxFor(m => m.Tag, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
+                @Html.ListBoxFor(m => m.Tags, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
             </div>
 
             @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
@@ -64,7 +64,7 @@
 
             @Html.Label("Load Photo: ")
             <div class="mb-20 mb-md-10">
-                @Html.TextBoxFor(m => m.imageData, new { @type = "file", id = "ImageData", @value = "Save" })
+                @*@Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })*@
                 <p class="help-block">
                     Choose photo
                 </p>

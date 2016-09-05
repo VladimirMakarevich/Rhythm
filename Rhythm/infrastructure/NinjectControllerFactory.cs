@@ -32,8 +32,6 @@ namespace Rhythm.infrastructure
         {
             ninjectKernel.Bind<IRepository>().To<EfRepository>();
             ninjectKernel.Bind<IAuthentication>().To<Authentication>();
-            //ninjectKernel.Bind<IMapperTag>().To<MapperTagConfig>();
-            //ninjectKernel.Bind<IMapperCategory>().To<MapperCategoryConfig>();
         }
     }
 }

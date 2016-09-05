@@ -1,24 +1,24 @@
 ﻿/****** Object:  DB / DogCoding / Blog ******/
 
 USE master
-DROP DATABASE DogCoding
+DROP DATABASE [DogCoding]
 
 
-CREATE DATABASE DogCoding
+CREATE DATABASE [DogCoding]
 
-USE DogCoding
+USE [DogCoding]
 GO
 
-CREATE SCHEMA blog
+CREATE SCHEMA [blog]
 
-DROP TABLE blog.Comment
-DROP TABLE blog.PostTag
-DROP TABLE blog.Tag
-DROP TABLE blog.Post
-DROP TABLE blog.Category
-DROP TABLE blog.DogRole
-DROP TABLE blog.DogUser
-DROP TABLE blog.UserRole
+DROP TABLE [blog.Comment]
+DROP TABLE [blog.PostTag]
+DROP TABLE [blog.Tag]
+DROP TABLE [blog.Post]
+DROP TABLE [blog.Category]
+DROP TABLE [blog.DogUser]
+DROP TABLE [blog.DogRole]
+DROP TABLE [blog.UserRole]
 
 
 /****** Object:  Table blog.Post ******/
@@ -26,7 +26,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.Post
+CREATE TABLE [blog.Post]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	NameSenderPost nvarchar(50) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE blog.Post
 	Category int NOT NULL DEFAULT (1),
 	ImageData varbinary(MAX) NULL,
 	ImageMime nvarchar(100) NULL,
-    CountComments int DEFAULT 0
+    CountComments int NOT NULL DEFAULT 0
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -53,7 +53,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.Tag
+CREATE TABLE [blog.Tag]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	Name nvarchar(100) NOT NULL,
@@ -71,7 +71,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.DogRole
+CREATE TABLE [blog.DogRole]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	Code nvarchar(50) NOT NULL,
@@ -88,7 +88,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.UserRole
+CREATE TABLE [blog.UserRole]
 (
 	DogRoleID int NOT NULL,
 	DogUserID int NOT NULL
@@ -101,7 +101,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.DogUser
+CREATE TABLE [blog.DogUser]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	NameUser nvarchar(50) NOT NULL,
@@ -123,13 +123,13 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.Category
+CREATE TABLE [blog.Category]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	Name nvarchar(100) NOT NULL,
 	UrlSlug nvarchar(100) NOT NULL,
 	DescriptionCategory nvarchar(MAX) NULL,
-	CountCategory int DEFAULT 0, 
+	CountCategory int NOT NULL DEFAULT 0 
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -142,7 +142,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.Comment
+CREATE TABLE [blog.Comment]
 (
 	ID int IDENTITY(1,1) NOT NULL,
 	PostID int NOT NULL,
@@ -166,7 +166,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE blog.PostTag
+CREATE TABLE [blog.PostTag]
 (
 	PostID int NOT NULL,
 	TagID int NOT NULL
@@ -197,6 +197,7 @@ WITH CHECK ADD CONSTRAINT FK_Post_Tag
 FOREIGN KEY (PostID) REFERENCES blog.Post(ID)
 ON DELETE CASCADE
 ON UPDATE CASCADE
+ALTER TABLE blog.PostTag CHECK CONSTRAINT FK_Post_Tag
 GO
 /****** Object:  Foreign Key FK_Comment_Post ******/
 ALTER TABLE blog.Comment
@@ -289,23 +290,37 @@ INSERT INTO blog.DogUser
 INSERT INTO blog.UserRole
 	VALUES (1, 1)
 
-SELECT
-	*
-FROM blog.Post
-SELECT
-	*
-FROM blog.PostTag
-SELECT
-	*
-FROM blog.Category
-SELECT
-	*
-FROM blog.Comment
-SELECT
-	*
-FROM blog.Tag
-
+SELECT * FROM blog.Post
+SELECT * FROM blog.PostTag
+SELECT * FROM blog.Category
+SELECT * FROM blog.Comment
+SELECT * FROM blog.Tag
 
 SELECT * FROM blog.DogUser 
 SELECT * FROM blog.DogRole
 SELECT * FROM blog.UserRole
+
+
+
+
+CREATE SCHEMA [log]
+
+CREATE TABLE [Logger]
+
+CREATE TABLE [log].[Logger](  
+    [Id] [int] IDENTITY(1,1) NOT NULL,
+    [EventDateTime] [datetime] NOT NULL,
+    [EventLevel] [nvarchar](100) NOT NULL,
+    [UserName] [nvarchar](100) NOT NULL,
+    [MachineName] [nvarchar](100) NOT NULL,
+    [EventMessage] [nvarchar](max) NOT NULL,
+    [ErrorSource] [nvarchar](100) NULL,
+    [ErrorClass] [nvarchar](500) NULL,
+    [ErrorMethod] [nvarchar](max) NULL,
+    [ErrorMessage] [nvarchar](max) NULL,
+    [InnerErrorMessage] [nvarchar](max) NULL,
+    CONSTRAINT [PK_Logs] PRIMARY KEY CLUSTERED 
+    (
+        [Id] ASC
+    )
+)

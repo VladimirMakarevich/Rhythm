@@ -55,7 +55,7 @@ namespace Rhythm.Controllers
         {
             ViewBag.Title = "Search by tags";
 
-            var posts = repository.Post.Where(p => p.PostTags.Any(t => t.Tag.ID.Equals(item.ID))).ToList();
+            var posts = repository.Post.Where(p => p.Tags.Any(t => t.ID.Equals(item.ID))).ToList();
             var postIds = posts.Select(p => p.ID).ToList();
 
             PostListViewModel search = new PostListViewModel
@@ -81,7 +81,7 @@ namespace Rhythm.Controllers
         {
             ViewBag.Title = "Search Result";
 
-            var posts = repository.Post.Where(p => p.Title.Contains(item) || p.ShortDescription.Contains(item) || p.Category1.Name.Contains(item) || p.PostTags.Any(t => t.Tag.Name.Contains(item)));
+            var posts = repository.Post.Where(p => p.Title.Contains(item) || p.ShortDescription.Contains(item) || p.Category1.Name.Contains(item) || p.Tags.Any(t => t.Name.Contains(item)));
             var postIds = posts.Select(p => p.ID).ToList();
 
             PostListViewModel search = new PostListViewModel

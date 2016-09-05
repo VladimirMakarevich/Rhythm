@@ -8,11 +8,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Rhythm.Domain.Model;
+using NLog;
 
 namespace Rhythm.Controllers
 {
     public class HomeController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public int PageSize = 8;
         public HomeController(IRepository repository)
         {
@@ -26,7 +28,7 @@ namespace Rhythm.Controllers
 
         public ViewResult Index(int page = 1)
         {
-
+            logger.Info("simple text into info.");
             PostListViewModel model = new PostListViewModel
             {
                 Posts = repository.Post
@@ -45,19 +47,5 @@ namespace Rhythm.Controllers
 
             return View(model);
         }
-
-        //public ActionResult Index()
-        //{
-        //    var cookie = new HttpCookie()
-        //    {
-        //        Name = "Test_cookie",
-        //        Value = DateTime.Now.ToString("dd.MM.yyyy"),
-        //        Expires = DateTime.Now.AddMinutes(10),
-
-
-        //    };
-        //    Response.SetCookie(cookie);
-        //    return View();
-        //}
     }
 }

@@ -53,7 +53,7 @@ namespace Rhythm.Domain.EfRepository
                     contextDb.Commit();
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //TODO: Nlog
                     contextDb.Rollback();

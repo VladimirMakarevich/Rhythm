@@ -31,7 +31,7 @@ namespace Rhythm.Areas.ChiefAdmin
             context.MapRoute(
                 name: "View",
                 url: "ChiefAdmin/{controller}/{action}/{id}",
-                defaults: new { controller = "ViewContent", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Edit", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Rhythm.Areas.ChiefAdmin.Controllers" }
                 );
 
@@ -39,7 +39,7 @@ namespace Rhythm.Areas.ChiefAdmin
             context.MapRoute(
                 name: "Add",
                 url: "ChiefAdmin/{controller}/{action}/{id}",
-                defaults: new { controller = "AddContent", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Rhythm.Areas.ChiefAdmin.Controllers" }
                 );
 
@@ -47,17 +47,9 @@ namespace Rhythm.Areas.ChiefAdmin
             context.MapRoute(
                 name: "Update",
                 url: "ChiefAdmin/{controller}/{action}/{id}",
-                defaults: new { controller = "UpdateContent", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Update", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Rhythm.Areas.ChiefAdmin.Controllers" }
                 );
-
-            context.MapRoute(
-                name: "Delete",
-                url: "ChiefAdmin/{controller}/{action}/{id}",
-                defaults: new { controller = "DeleteContent", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Rhythm.Areas.ChiefAdmin.Controllers" }
-                );
-
 
         }
     }

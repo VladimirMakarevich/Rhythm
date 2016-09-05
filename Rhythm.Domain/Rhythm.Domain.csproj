@@ -90,6 +90,9 @@
     <Compile Include="Model\DogUser.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Logger.cs">
+      <DependentUpon>ModelDb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\ModelDb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,9 +109,6 @@
       <DependentUpon>ModelDb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Post.cs">
-      <DependentUpon>ModelDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PostTag.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Tag.cs">

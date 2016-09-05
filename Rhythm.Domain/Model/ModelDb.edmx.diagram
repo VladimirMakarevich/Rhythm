@@ -4,19 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b357586e25ce466d90dbcbaed15551e9" Name="Diagram1">
+      <Diagram DiagramId="615822454ac44831bf31dbfbb62a7a59" Name="Diagram1">
         <EntityTypeShape EntityType="DogCodingModel.Category" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.Comment" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.DogRole" Width="1.5" PointX="8.75" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.DogUser" Width="1.5" PointX="11" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.Comment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.DogRole" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.DogUser" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.Post" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.PostTag" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.Tag" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.Tag" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <AssociationConnector Association="DogCodingModel.FK_Post_Category" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.FK_Comment_Post" ManuallyRouted="false" />
-        <AssociationConnector Association="DogCodingModel.FK_Post_Tag" ManuallyRouted="false" />
-        <AssociationConnector Association="DogCodingModel.FK_Tag_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="DogCodingModel.PostTag" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DogCodingModel.Logger" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

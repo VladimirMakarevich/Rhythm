@@ -48,12 +48,12 @@
 
             @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.DropDownList("Category", (IEnumerable<SelectListItem>) ViewBag.Category)
+                @Html.DropDownListFor(m => m.Category, (IEnumerable<SelectListItem>)ViewBag.Category)
             </div>
 
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.ListBoxFor(m => m.Tag, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
+                @Html.ListBoxFor(m => m.intTag, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
             </div>
 
             @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
@@ -64,7 +64,7 @@
 
             @Html.Label("Load Photo: ")
             <div class="mb-20 mb-md-10">
-                @Html.TextBoxFor(m => m.imageData, new { @type = "file", id = "ImageData", @value = "Save" })
+                @Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
                 <p class="help-block">
                     Choose photo
                 </p>

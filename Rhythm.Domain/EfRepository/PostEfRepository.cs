@@ -20,8 +20,7 @@ namespace Rhythm.Domain.EfRepository
             {
                 try
                 {
-                    post.Modified = DateTime.Now;
-                    post.CountComments = 0;
+                    post.Category1.CountCategory++;
                     post.PostedOn = DateTime.Now;
                     context.Posts.Add(post);
                     context.SaveChanges();

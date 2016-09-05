@@ -17,7 +17,7 @@ namespace Rhythm.Domain.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            this.PostTags = new HashSet<PostTag>();
+            this.Posts = new HashSet<Post>();
         }
     
         public int ID { get; set; }
@@ -26,6 +26,6 @@ namespace Rhythm.Domain.Model
         public string DescriptionTag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostTag> PostTags { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }
