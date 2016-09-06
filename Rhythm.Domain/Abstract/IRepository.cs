@@ -16,18 +16,18 @@ namespace Rhythm.Domain.Abstract
         IQueryable<DogRole> Role { get; }
         List<RecentComment> GetFiveCommentsList();
         RecentArticleWidget GetArticleWidget();
-        void AddComment(Comment comment);
-        void AddPost(Post post);
-        void AddTag(Tag tag);
-        void AddCategory(Category category);
-        void ChangeTag(Tag tag);
-        void ChangeCategory(Category category);
-        void ChangePost(Post post);
-        void ChangeComment(Comment comment);
-        void DeleteTag(Tag tag);
-        void DeleteCategory(Category category);
-        void DeletePost(Post post);
-        void DeleteComment(Comment comment);
+        string AddComment(Comment comment);
+        string AddPost(Post post);
+        string AddTag(Tag tag);
+        string AddCategory(Category category);
+        string ChangeTag(Tag tag);
+        string ChangeCategory(Category category);
+        string ChangePost(Post post);
+        string ChangeComment(Comment comment);
+        string DeleteTag(Tag tag);
+        string DeleteCategory(Category category);
+        string DeletePost(Post post);
+        string DeleteComment(Comment comment);
         DogUser Login(string email, string password);
         DogUser GetUser(string email);
     }

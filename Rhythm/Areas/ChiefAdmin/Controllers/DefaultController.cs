@@ -1,7 +1,6 @@
 ﻿
 using Ninject;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Authenticated;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System.Web.Mvc;
@@ -13,14 +12,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         // GET: ChiefAdmin/Default
         [Inject]
         public IRepository repository { get; set; }
-        [Inject]
-        public IAuthentication Auth { get; set; }
-        public DogUser CurrentUser
-        {
-            get
-            {
-                return ((IUserProvider)Auth.CurrentUser.Identity).User;
-            }
-        }
+
     }
 }

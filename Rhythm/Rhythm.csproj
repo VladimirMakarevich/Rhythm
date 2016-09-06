@@ -115,6 +115,10 @@
       <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NLog.Web, Version=0.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.Web.4.2.1\lib\net35\NLog.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -193,26 +197,6 @@
     <Content Include="Content\img\pattern-bg-2.png" />
     <Content Include="Content\table.css" />
     <Content Include="Global.asax" />
-    <Content Include="logs\2016-08-11\debug.txt" />
-    <Content Include="logs\2016-08-11\error.txt" />
-    <Content Include="logs\2016-08-11\info.txt" />
-    <Content Include="logs\2016-08-11\trace.txt" />
-    <Content Include="logs\2016-08-13\debug.txt" />
-    <Content Include="logs\2016-08-13\error.txt" />
-    <Content Include="logs\2016-08-13\info.txt" />
-    <Content Include="logs\2016-08-13\trace.txt" />
-    <Content Include="logs\2016-08-14\debug.txt" />
-    <Content Include="logs\2016-08-14\error.txt" />
-    <Content Include="logs\2016-08-14\info.txt" />
-    <Content Include="logs\2016-08-14\trace.txt" />
-    <Content Include="logs\2016-08-15\debug.txt" />
-    <Content Include="logs\2016-08-15\error.txt" />
-    <Content Include="logs\2016-08-15\info.txt" />
-    <Content Include="logs\2016-08-15\trace.txt" />
-    <Content Include="logs\2016-08-16\debug.txt" />
-    <Content Include="logs\2016-08-16\error.txt" />
-    <Content Include="logs\2016-08-16\info.txt" />
-    <Content Include="logs\2016-08-16\trace.txt" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -301,18 +285,10 @@
     <Compile Include="Areas\ChiefAdmin\Models\CommentViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\DropDownList.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
-    <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\LoginModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
-    <Compile Include="Authenticated\Authentication.cs" />
-    <Compile Include="Authenticated\AuthoProvider.cs" />
-    <Compile Include="Authenticated\IAuthentication.cs" />
-    <Compile Include="Authenticated\IAuthoProvider.cs" />
-    <Compile Include="Authenticated\IUserProvider.cs" />
-    <Compile Include="Authenticated\UserIdentity.cs" />
-    <Compile Include="Authenticated\UserProvider.cs" />
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
@@ -402,8 +378,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="logs\2016-08-10\" />
-    <Folder Include="logs\2016-08-18\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

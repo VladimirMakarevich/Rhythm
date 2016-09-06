@@ -28,7 +28,6 @@ namespace Rhythm.Controllers
 
         public ViewResult Index(int page = 1)
         {
-            logger.Info("simple text into info.");
             PostListViewModel model = new PostListViewModel
             {
                 Posts = repository.Post

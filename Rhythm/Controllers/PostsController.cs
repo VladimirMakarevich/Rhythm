@@ -27,8 +27,6 @@ namespace Rhythm.Controllers
 
         public ViewResult Index(int page = 1)
         {
-            logger.Info("simple text into info.");
-
             PostListViewModel model = new PostListViewModel
             {
                 Posts = repository.Post
@@ -49,8 +47,6 @@ namespace Rhythm.Controllers
 
         public ActionResult Post(int? id)
         {
-            logger.Info("simple text into info.");
-
             ViewBag.Count = repository.Post.Count();
 
             if (id == null)
@@ -102,9 +98,9 @@ namespace Rhythm.Controllers
 
                     repository.AddComment(model);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: NLog
+                    logger.Error("Faild in PostController ActionResult Post [HttpPost]: ", ex.Message);
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NLog;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
@@ -15,6 +16,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
     public class UpdateController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public UpdateController(IRepository repository)
         {
             this.repository = repository;
@@ -35,6 +37,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
             PostViewModel context = model.Map<PostViewModel>(postModel);
+
             CategoryDropDownList Categories = new CategoryDropDownList
             {
                 Category = repository.Category
@@ -58,7 +61,20 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         public ActionResult Post(PostViewModel post)
         {
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    string src = "UpdatePost";
+                    if (src != null)
+                        logger.Error(src);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: ", ex.Message);
+                }
+            }
+            return RedirectToAction("listTags", "Home");
         }
 
         public ActionResult Tag(int? id)
@@ -89,27 +105,17 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
                     Tag context = model.Map<Tag>(tagModel);
 
-                    repository.ChangeTag(context);
+                    string src = repository.ChangeTag(context);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: NLog
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Tag: ", ex.Message);
                 }
             }
             return RedirectToAction("listTags", "Home");
         }
-
-        //public ActionResult allCategory()
-        //{
-        //    var listCat = repository.Category.OrderBy(c => c.ID).ToList();
-        //    return View(listCat);
-        //}
-
-        //public ActionResult Category()
-        //{
-        //    var listCat = repository.Category.OrderBy(c => c.ID).ToList();
-        //    return View(listCat);
-        //}
 
         public ActionResult Category(int? id)
         {
@@ -138,11 +144,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
                     Category context = model.Map<Category>(categoryModel);
 
-                    repository.ChangeCategory(context);
+                    string src = repository.ChangeCategory(context);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: NLog
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Category: ", ex.Message);
                 }
             }
             return RedirectToAction("listCategories", "Home");
@@ -176,11 +184,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigComment.CreateMapper();
                     Comment context = model.Map<Comment>(commentModel);
 
-                    repository.ChangeComment(context);
+                    string src = repository.ChangeComment(context);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: NLog
+                    logger.Error("Faild in ChiefAdmin/UpadateController/ActionResult Comment: ", ex.Message);
                 }
             }
             return RedirectToAction("listComments", "Home");

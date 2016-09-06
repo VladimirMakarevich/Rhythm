@@ -14,7 +14,7 @@ namespace Rhythm.Domain.EfRepository
             get { return context.Posts; }
         }
 
-        public void AddPost(Post post)
+        public string AddPost(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -27,15 +27,17 @@ namespace Rhythm.Domain.EfRepository
 
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error AddPost: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void ChangePost(Post post)
+        public string ChangePost(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -47,15 +49,17 @@ namespace Rhythm.Domain.EfRepository
 
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error ChangePost: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void DeletePost(Post post)
+        public string DeletePost(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -65,11 +69,13 @@ namespace Rhythm.Domain.EfRepository
                     context.SaveChanges();
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error DeletePost: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
     }

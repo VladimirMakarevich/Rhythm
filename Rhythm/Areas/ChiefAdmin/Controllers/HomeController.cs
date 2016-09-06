@@ -17,10 +17,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             this.repository = repository;
         }
-        public ActionResult UserLogin()
-        {
-            return View(CurrentUser);
-        }
 
         public ViewResult Index()
         {

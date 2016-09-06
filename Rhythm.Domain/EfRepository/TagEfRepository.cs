@@ -3,6 +3,7 @@ using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System.Linq;
 using System.Data.Entity;
+using System;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -13,7 +14,7 @@ namespace Rhythm.Domain.EfRepository
             get { return context.Tags; }
         }
 
-        public void AddTag(Tag tag)
+        public string AddTag(Tag tag)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -24,15 +25,17 @@ namespace Rhythm.Domain.EfRepository
 
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error AddTag: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void ChangeTag(Tag tag)
+        public string ChangeTag(Tag tag)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -43,15 +46,17 @@ namespace Rhythm.Domain.EfRepository
 
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error ChangeTag: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void DeleteTag(Tag tag)
+        public string DeleteTag(Tag tag)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -61,11 +66,13 @@ namespace Rhythm.Domain.EfRepository
                     context.SaveChanges();
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error DeleteTag: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
     }

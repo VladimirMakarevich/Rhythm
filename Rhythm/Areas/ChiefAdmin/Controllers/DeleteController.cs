@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NLog;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Abstract;
 using System;
@@ -13,6 +14,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
     public class DeleteController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public DeleteController(IRepository repository)
         {
             this.repository = repository;
@@ -32,11 +34,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                repository.DeletePost(postModel);
+                string src = repository.DeletePost(postModel);
+                if (src != null)
+                    logger.Error(src);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: NLog
+                logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: ", ex.Message);
+
             }
             return RedirectToAction("listPosts", "Home");
         }
@@ -55,11 +60,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                repository.DeleteTag(tagModel);
+                string src = repository.DeleteTag(tagModel);
+                if (src != null)
+                    logger.Error(src);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: NLog
+                logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Tag: ", ex.Message);
+
             }
             return RedirectToAction("listTags", "Home");
         }
@@ -77,11 +85,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                repository.DeleteCategory(categoryModel);
+                string src = repository.DeleteCategory(categoryModel);
+                if (src != null)
+                    logger.Error(src);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: NLog
+                logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Category: ", ex.Message);
+
             }
             return RedirectToAction("listCategories", "Home");
         }
@@ -99,11 +110,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                repository.DeleteComment(commentModel);
+                string src = repository.DeleteComment(commentModel);
+                if (src != null)
+                    logger.Error(src);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //TODO: NLog
+                logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Comment: ", ex.Message);
+
             }
             return RedirectToAction("listComments", "Home");
         }

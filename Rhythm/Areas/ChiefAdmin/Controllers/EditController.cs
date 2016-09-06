@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NLog;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
@@ -11,9 +12,10 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-
     public class EditController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+
         public EditController(IRepository repository)
         {
             this.repository = repository;
@@ -73,11 +75,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         Category1 = category
 
                     };
-                    repository.AddPost(p);
+
+                    string src = repository.AddPost(p);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: NLog
+                    logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: ", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");
@@ -96,16 +101,17 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    //var model = (Tag)modelMapperTag.Map(tagModel, typeof(TagViewModel), typeof(Tag));
                     IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
                     Tag context = model.Map<Tag>(tagModel);
 
 
-                    repository.AddTag(context);
+                    string src = repository.AddTag(context);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODOL Nlog
+                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Tag: ", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");
@@ -124,16 +130,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    //var model = (Category)modelMapperCategory.Map(categoryModel, typeof(CategoryViewModel), typeof(Category));
                     IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
                     Category context = model.Map<Category>(categoryModel);
 
-
-                    repository.AddCategory(context);
+                    string src = repository.AddCategory(context);
+                    if (src != null)
+                        logger.Error(src);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODOL Nlog
+                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Category: ", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");

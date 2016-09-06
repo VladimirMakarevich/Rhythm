@@ -21,13 +21,6 @@ namespace Rhythm.Controllers
             ViewBag.WordThird = "WEB";
             this.repository = repository;
         }
-        // GET: Search
-        //public ActionResult Search(model item)
-        //{
-        //    //item = new model();
-        //    var search = repository.Post.Where(i => i.model == item.ID).ToList();
-        //    return PartialView("Search", search);
-        //}
 
         public ViewResult Category(Category item, int page = 1)
         {

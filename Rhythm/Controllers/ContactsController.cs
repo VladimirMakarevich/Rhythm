@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using Rhythm.Models;
 using System.Threading.Tasks;
+using NLog;
 
 namespace Rhythm.Controllers
 {
     public class ContactsController : DefaultController
     {
-        // GET: Contacts
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -47,7 +49,7 @@ namespace Rhythm.Controllers
                 catch (Exception ex)
                 {
                     ModelState.Clear();
-                    ViewBag.Message = $"Sorry we are facing Problem here {ex.Message}";
+                    logger.Error("Faild in ContactsController async Task<ActionResult> Index [HttpPost]: ", ex.Message);
                 }
             }
             else { ViewBag.MessageError = "you have entered invalid data"; }

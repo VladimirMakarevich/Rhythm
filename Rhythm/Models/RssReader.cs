@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,12 +10,14 @@ namespace Rhythm.Models
 {
     public class RssReader
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private static string blogURL = "https://dev.by/rss";
         public static IEnumerable<Rss> GetRssFeed(string RSS)
         {
             switch (RSS)
             {
-                case "Dev": blogURL = "https://dev.by/rss";
+                case "Dev":
+                    blogURL = "https://dev.by/rss";
                     break;
                 case "EventsDev":
                     blogURL = "https://events.dev.by/rss";
@@ -39,7 +42,7 @@ namespace Rhythm.Models
                     break;
                 case "habrahabr":
                     blogURL = "https://habrahabr.ru/rss/feed/posts/52561a1f341aed2649a3121af8009a18/";
-                   break;
+                    break;
                 case "Hanselman":
                     blogURL = "http://feeds.hanselman.com/scotthanselman";
                     break;
@@ -52,29 +55,32 @@ namespace Rhythm.Models
                 case "PrideParrot":
                     blogURL = "http://feeds.feedburner.com/prideparrot?format=xml";
                     break;
-                //case "":
-                //    blogURL = "";
-                //    break;
-                //case "":
-                //    blogURL = "";
-                //    break;
-                case "ScottGu": blogURL = "https://weblogs.asp.net/scottgu/rss?containerid=13";
+                case "ScottGu":
+                    blogURL = "https://weblogs.asp.net/scottgu/rss?containerid=13";
                     break;
                 default:
                     break;
             }
-            //TODO: Try catch
-            XDocument feedXml = XDocument.Load(blogURL);
-            var feeds = from feed in feedXml.Descendants("item")
-                        select new Rss
-                        {
-                            Title = feed.Element("title").Value,
-                            Link = feed.Element("link").Value,
-                            Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
-                            PubDate = feed.Element("pubDate").Value
-                        };
-            //HttpServerUtilityBase.HtmlDecode
-            return (feeds);
+            try
+            {
+                XDocument feedXml = XDocument.Load(blogURL);
+                var feeds = from feed in feedXml.Descendants("item")
+                            select new Rss
+                            {
+                                Title = feed.Element("title").Value,
+                                Link = feed.Element("link").Value,
+                                Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
+                                PubDate = feed.Element("pubDate").Value
+                            };
+                //HttpServerUtilityBase.HtmlDecode
+                return (feeds);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Faild in RssRader IEnumerable<Rss> GetRssFeed: ", ex.Message);
+            }
+
+            return null;
         }
 
         //"^.{1,180}\b(?<!\s)"

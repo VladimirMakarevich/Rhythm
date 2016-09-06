@@ -41,7 +41,7 @@ namespace Rhythm.Domain.EfRepository
             return recent;
         }
 
-        public void AddComment(Comment comment)
+        public string AddComment(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -53,15 +53,17 @@ namespace Rhythm.Domain.EfRepository
                     contextDb.Commit();
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error AddComment: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void ChangeComment(Comment comment)
+        public string ChangeComment(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -72,15 +74,17 @@ namespace Rhythm.Domain.EfRepository
                     context.SaveChanges();
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error ChangeComment: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
 
-        public void DeleteComment(Comment comment)
+        public string DeleteComment(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -91,11 +95,13 @@ namespace Rhythm.Domain.EfRepository
                     context.SaveChanges();
                     contextDb.Commit();
                 }
-                catch (System.Exception)
+                catch (System.Exception ex)
                 {
-                    //TODO: Nlog
+                    string src = String.Format("Error DeleteComment: {0}", ex.Message);
                     contextDb.Rollback();
+                    return src;
                 }
+                return null;
             }
         }
     }

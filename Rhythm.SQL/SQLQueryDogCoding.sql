@@ -305,8 +305,6 @@ SELECT * FROM blog.UserRole
 
 CREATE SCHEMA [log]
 
-CREATE TABLE [Logger]
-
 CREATE TABLE [log].[Logger](  
     [Id] [int] IDENTITY(1,1) NOT NULL,
     [EventDateTime] [datetime] NOT NULL,
