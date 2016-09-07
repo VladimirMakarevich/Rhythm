@@ -37,12 +37,6 @@ namespace Rhythm
             MapperConfigPost = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Post, PostViewModel>().ReverseMap();
-                    //.ForMember("imageData", opt => opt.MapFrom(src => src.ImageData))
-                //.ForMember()
-                //.ForMember()
-                //.ForMember()
-                //.ForMember()
-                //.ForMember()
             });
         }
     }

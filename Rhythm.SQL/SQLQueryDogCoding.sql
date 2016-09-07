@@ -16,9 +16,6 @@ DROP TABLE [blog.PostTag]
 DROP TABLE [blog.Tag]
 DROP TABLE [blog.Post]
 DROP TABLE [blog.Category]
-DROP TABLE [blog.DogUser]
-DROP TABLE [blog.DogRole]
-DROP TABLE [blog.UserRole]
 
 
 /****** Object:  Table blog.Post ******/
@@ -66,57 +63,6 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
-/****** Object:  Table blog.DogRole ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [blog.DogRole]
-(
-	ID int IDENTITY(1,1) NOT NULL,
-	Code nvarchar(50) NOT NULL,
-	Name nvarchar(50) NOT NULL
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-/****** Object:  Table blog.UserRole ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [blog.UserRole]
-(
-	DogRoleID int NOT NULL,
-	DogUserID int NOT NULL
-) ON [PRIMARY]
-GO
-
-
-/****** Object:  Table blog.DogUser ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [blog.DogUser]
-(
-	ID int IDENTITY(1,1) NOT NULL,
-	NameUser nvarchar(50) NOT NULL,
-	PasswordUser nvarchar(50) NOT NULL,
-	EmailUser nvarchar(50) NOT NULL,
-	AddedDate datetime NOT NULL,
-	ActivatedDate datetime NULL,
-	LastVisitDate datetime NOT NULL,
-	AvatarPath varbinary(MAX) NULL
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
 /****** Object:  Table blog.Category ******/
 SET ANSI_NULLS ON
@@ -136,6 +82,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 /****** Object:  Table blog.Comment******/
 SET ANSI_NULLS ON
@@ -160,6 +107,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 /****** Object:  Table blog.PostTag ******/
 SET ANSI_NULLS ON
@@ -205,18 +153,6 @@ WITH CHECK ADD CONSTRAINT FK_Comment_Post
 FOREIGN KEY (PostID) REFERENCES blog.Post(ID)
 ON UPDATE CASCADE
 GO
-/****** Object:  Foreign Key FK_DogUser_Role ******/
-ALTER TABLE blog.UserRole
-WITH CHECK ADD CONSTRAINT FK_DogUser_Role
-FOREIGN KEY (DogUserID) REFERENCES blog.DogUser(ID);
-ALTER TABLE blog.UserRole CHECK CONSTRAINT FK_DogUser_Role
-GO
-/****** Object:  Foreign Key FK_DogRole_Role *****/
-ALTER TABLE blog.UserRole
-WITH CHECK ADD CONSTRAINT FK_DogRole_Role
-FOREIGN KEY (DogRoleID) REFERENCES blog.DogRole(ID)
-GO
-
 
 
 
@@ -226,10 +162,6 @@ DELETE blog.Tag
 DELETE blog.PostTag
 DELETE blog.Comment
 DELETE blog.Category
-DELETE blog.DogRole
-DELETE blog.DogUser
-DELETE blog.UserRole
-
 
 INSERT INTO blog.Tag
 	VALUES (N'C#', N'csharp', NULL)
@@ -282,26 +214,15 @@ INSERT INTO blog.PostTag
 INSERT INTO blog.PostTag
 	VALUES (2, 7)
 
-
-INSERT INTO blog.DogRole
-	VALUES (N'DogAdmin', N'Administrator')
-INSERT INTO blog.DogUser
-	VALUES ('Vladi Makarevich','cntgkth2332Q!@','business.makarevich@outlook.com', GETDATE(), GETDATE(), GETDATE(), NULL)
-INSERT INTO blog.UserRole
-	VALUES (1, 1)
-
 SELECT * FROM blog.Post
 SELECT * FROM blog.PostTag
 SELECT * FROM blog.Category
 SELECT * FROM blog.Comment
 SELECT * FROM blog.Tag
 
-SELECT * FROM blog.DogUser 
-SELECT * FROM blog.DogRole
-SELECT * FROM blog.UserRole
 
 
-
+DROP TABLE [log].[Logger]
 
 CREATE SCHEMA [log]
 
@@ -322,3 +243,13 @@ CREATE TABLE [log].[Logger](
         [Id] ASC
     )
 )
+
+
+
+
+CREATE SCHEMA [identity]/****** Object:  Table [identity].[Roles]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[Roles]([Id] [nvarchar](128) NOT NULL,[Name] [nvarchar](256) NOT NULL,CONSTRAINT [PK_identity.Roles] PRIMARY KEY CLUSTERED (  [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+GO/****** Object:  Table [identity].[UserClaims]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserClaims](   [Id] [int] IDENTITY(1,1) NOT NULL,   [UserId] [nvarchar](128) NOT NULL,   [ClaimType] [nvarchar](max) NULL,   [ClaimValue] [nvarchar](max) NULL,CONSTRAINT [PK_identity.UserClaims] PRIMARY KEY CLUSTERED (   [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO/****** Object:  Table [identity].[UserLogins]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserLogins](    [LoginProvider] [nvarchar](128) NOT NULL,    [ProviderKey] [nvarchar](128) NOT NULL,    [UserId] [nvarchar](128) NOT NULL,CONSTRAINT [PK_identity.UserLogins] PRIMARY KEY CLUSTERED (    [LoginProvider] ASC,    [ProviderKey] ASC,    [UserId] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+GO/****** Object:  Table [identity].[UserRoles]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserRoles](   [UserId] [nvarchar](128) NOT NULL,   [RoleId] [nvarchar](128) NOT NULL,CONSTRAINT [PK_identity.UserRoles] PRIMARY KEY CLUSTERED (    [UserId] ASC,    [RoleId] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+GO/****** Object:  Table [identity].[Users]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[Users](    [Id] [nvarchar](128) NOT NULL,    [Email] [nvarchar](256) NULL,    [EmailConfirmed] [bit] NOT NULL,    [PasswordHash] [nvarchar](max) NULL,    [SecurityStamp] [nvarchar](max) NULL,    [PhoneNumber] [nvarchar](max) NULL,    [PhoneNumberConfirmed] [bit] NOT NULL,    [TwoFactorEnabled] [bit] NOT NULL,    [LockoutEndDateUtc] [datetime] NULL,    [LockoutEnabled] [bit] NOT NULL,    [AccessFailedCount] [int] NOT NULL,    [UserName] [nvarchar](256) NOT NULL,CONSTRAINT [PK_identity.Users] PRIMARY KEY CLUSTERED (    [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO ALTER TABLE [identity].[UserClaims]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserClaims] CHECK CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId] GO ALTER TABLE [identity].[UserLogins]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserLogins] CHECK CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId] GO ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId] FOREIGN KEY([RoleId]) REFERENCES [identity].[Roles] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId] GO ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId] GO

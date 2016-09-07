@@ -12,10 +12,7 @@ namespace Rhythm
         private static Logger logger = LogManager.GetCurrentClassLogger();
         protected void Application_Start()
         {
-            logger.Info("Application Start");
-            logger.Debug("Application Debug");
-            logger.Error("Application Error");
-            logger.Trace("Application Trace");
+            logger.Info("Applicetion Start.");
 
             string nlogPath = Server.MapPath("nlog-web.log");
             InternalLogger.LogFile = nlogPath;
@@ -24,8 +21,14 @@ namespace Rhythm
             AreaRegistration.RegisterAllAreas();
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             MappingConfig.RegisterMapping();
+
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            GlobalFilters.Filters.Add(new WatchConfig());
+
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }

@@ -27,8 +27,27 @@ namespace Rhythm.Controllers
             return View();
         }
         // GET: Rss
-        public ActionResult Devby()
+        public ActionResult Devby(string src, int page = 1)
         {
+            var n = RssReader.GetRssFeed("Devby");
+            RssListViewModel model = new RssListViewModel
+            {
+                Source = src,
+
+                RssReaders = n.OrderBy(m => m.PubDate)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToArray()
+                .Reverse(),
+
+                PagingView = new ListView
+                {
+                    CurrentPage = page,
+                    PostsPerPage = PageSize,
+                    TotalPosts = n.Count()
+                }
+            };
+
             ViewBag.Title = "Dev.by";
             ViewBag.WordFirst = "NEWS";
             ViewBag.WordSecond = "IT";
@@ -36,12 +55,30 @@ namespace Rhythm.Controllers
 
             ViewBag.Site = "Dev.by";
             ViewBag.News = "News";
-            return View("RSS", RssReader.GetRssFeed("Dev"));
+            return View("RSS", model);
         }
 
 
-        public ActionResult EventsDevby()
+        public ActionResult EventsDevby(string src, int page = 1)
         {
+            var n = RssReader.GetRssFeed("Devby");
+            RssListViewModel model = new RssListViewModel
+            {
+                Source = src,
+
+                RssReaders = n.OrderBy(m => m.PubDate)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToArray()
+                .Reverse(),
+
+                PagingView = new ListView
+                {
+                    CurrentPage = page,
+                    PostsPerPage = PageSize,
+                    TotalPosts = n.Count()
+                }
+            };
             ViewBag.Title = "Events Dev.by";
             ViewBag.WordFirst = "NEWS";
             ViewBag.WordSecond = "IT";
@@ -49,7 +86,7 @@ namespace Rhythm.Controllers
 
             ViewBag.Site = "Events.Dev.by";
             ViewBag.News = "Events";
-            return View("RSS", RssReader.GetRssFeed("EventsDev"));
+            return View("RSS", model);
         }
 
         public ActionResult DZoneweb()

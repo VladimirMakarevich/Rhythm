@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public class EditController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
@@ -23,6 +24,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ActionResult Post()
         {
+            //TODO: Must modefied!!!!!
             CategoryDropDownList Categories = new CategoryDropDownList
             {
                 Category = repository.Category
@@ -57,26 +59,32 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     }
                     var category = repository.Category.SingleOrDefault(m => m.ID == post.Category);
 
-                    byte[] image = new byte[post.ImageData.ContentLength];
-                    post.ImageData.InputStream.Read(image, 0, image.Length);
+                    //byte[] image = new byte[post.ImageData.ContentLength];
+                    //post.ImageData.InputStream.Read(image, 0, image.Length);
+                    post.Tags = listTag;
+                    post.Category1 = category;
 
-                    Post p = new Post
-                    {
-                        NameSenderPost = post.NameSenderPost,
-                        Title = post.Title,
-                        ShortDescription = post.ShortDescription,
-                        DescriptionPost = post.DescriptionPost,
-                        UrlSlug = post.UrlSlug,
-                        Published = post.Published,
-                        Category = post.Category,
-                        ImageData = image,
-                        ImageMime = post.ImageMime,
-                        Tags = listTag,
-                        Category1 = category
 
-                    };
+                    //Post p = new Post
+                    //{
+                    //    NameSenderPost = post.NameSenderPost,
+                    //    Title = post.Title,
+                    //    ShortDescription = post.ShortDescription,
+                    //    DescriptionPost = post.DescriptionPost,
+                    //    UrlSlug = post.UrlSlug,
+                    //    Published = post.Published,
+                    //    Category = post.Category,
+                    //    ImageData = image,
+                    //    ImageMime = post.ImageMime,
+                    //    Tags = post.Tags,
+                    //    Category1 = post.Category1
 
-                    string src = repository.AddPost(p);
+                    //};
+
+                    IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
+                    Post context = model.Map<Post>(post);
+
+                    string src = repository.AddPost(context);
                     if (src != null)
                         logger.Error(src);
                 }

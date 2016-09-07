@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-
+    [Authorize]
     public class DeleteController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();

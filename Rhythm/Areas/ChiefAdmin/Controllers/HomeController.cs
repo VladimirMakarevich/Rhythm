@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-
+    [Authorize]
     public class HomeController : DefaultController
     {
         public HomeController(IRepository repository)

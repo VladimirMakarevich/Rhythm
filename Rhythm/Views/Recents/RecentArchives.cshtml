@@ -8,7 +8,7 @@
         <ul class="clearlist widget-menu">
             <li>
                 @*@{ var url = Url.RouteUrl("PostByYearMonth", new { year = archive.Year, month = archive.Month }); }*@
-                <a href="" title="@archive.MonthYear">@archive.MonthYear</a>
+                <a href="@Url.Action("Archive", "Search", new { archive.Year, archive.Month })" title="@archive.MonthYear">@archive.MonthYear</a>
                 <div class="fa fa-examples">
                     <i class="fa fa-fw">&#xf0c2</i>
                     <i class="fa fa-fw">&#xf0c2</i>

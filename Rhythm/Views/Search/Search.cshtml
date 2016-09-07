@@ -31,21 +31,28 @@
                         <!-- Text Intro -->
                         <div class="blog-item-body">
                             <p>
-                                @p.ShortDescription
+                                @Html.Raw(p.ShortDescription)
                             </p>
                         </div>
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
-                            @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                            @Html.ActionLink("Read More", "Post", "Posts", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
                         </div>
                     </div>
                 <!-- End Post -->
                 }
+                @if (Model.PagingView.TotalPages < 2)
+                {
+
+                }
+                else
+                { 
                 <div class="pagination">
                     <a href=""><i class="fa fa-angle-left"></i></a>
                     @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x }))
                     <a href=""><i class="fa fa-angle-right"></i></a>
                 </div>
+                }
             </div>
             <!-- End Content -->
             @Html.Partial("_Sidebar")

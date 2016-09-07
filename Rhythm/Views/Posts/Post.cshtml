@@ -15,11 +15,11 @@
                         <h1 class="mt-0">@Model.Post.Title</h1>
                         <div class="lead">
                             <hr class="mb-40" />
-                            @Model.Post.ShortDescription
+                            @Html.Raw(Model.Post.ShortDescription)
                         </div>
                         <hr class="mb-40" />
-                        @Model.Post.DescriptionPost
-                    </div
+                        @Html.Raw(Model.Post.DescriptionPost)
+                    </div>
                     <!-- End Text -->
                 </div>
                 <!-- End Post -->

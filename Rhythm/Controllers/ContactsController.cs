@@ -14,7 +14,6 @@ namespace Rhythm.Controllers
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
 
-        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.Message = "Contact with me";
@@ -22,6 +21,7 @@ namespace Rhythm.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(ContactViewModel contact)
         {
 
@@ -44,15 +44,16 @@ namespace Rhythm.Controllers
                     await smpt.SendMailAsync(msz);
 
                     ModelState.Clear();
-                    ViewBag.Message = "Thank you for Contacting me ";
+                    ViewBag.Message = "Thank you for Contacting me.";
                 }
                 catch (Exception ex)
                 {
+                    ViewBag.MessageError = "Sorry, but a problem occured on the server, please try again after some time.";
                     ModelState.Clear();
-                    logger.Error("Faild in ContactsController async Task<ActionResult> Index [HttpPost]: ", ex.Message);
+                    logger.Error("Faild in ContactsController async Task<ActionResult> Index [HttpPost]: ", ex.Source, ex.InnerException, ex.StackTrace, ex.HelpLink, ex.TargetSite, ex.HResult);
                 }
             }
-            else { ViewBag.MessageError = "you have entered invalid data"; }
+            else { ViewBag.MessageError = "You have entered invalid data."; }
 
             return View();
         }

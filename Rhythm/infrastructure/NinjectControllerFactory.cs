@@ -8,6 +8,8 @@ using System.Web.Routing;
 using Rhythm.Domain.Abstract;
 using Rhythm.Domain.EfRepository;
 using Rhythm.Areas.ChiefAdmin.Models;
+using Microsoft.AspNet.Identity;
+using Rhythm.Authentication;
 
 namespace Rhythm.infrastructure
 {

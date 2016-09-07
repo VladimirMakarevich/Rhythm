@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Rhythm.Models.Rss>
+﻿@model Rhythm.Models.RssListViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,7 +13,7 @@
             <!-- for renderBody -->
             <!-- Content -->
             <div class="col-sm-8">
-                @foreach (var i in Model)
+                @foreach (var i in Model.RssReaders)
                 {
                     <!-- Post -->
                     <div class="blog-item">
@@ -44,10 +44,12 @@
                     </div>
                 <!-- End Post -->
                 }
+                @Html.HiddenFor(m => m.Source)
                 <div class="pagination">
-                    @*<a href=""><i class="fa fa-angle-left"></i></a>*@
-                    @*@Html.PageLinks(, x => Url.Action("List", new { Page = x }))*@
-                    @*<a href=""><i class="fa fa-angle-right"></i></a>*@
+                    <a href=""><i class="fa fa-angle-left"></i></a>
+                    @Html.PageLinks(Model.PagingView, x => Url.Action(Model.Source, new { src = Model.Source, Page = x }, new { @class = "fa fa-angle-left" }))
+                    @Html.PageLinks(Model.PagingView, x => Url.Action(Model.Source, new { src = Model.Source, Page = x }))
+                    <a href=""><i class="fa fa-angle-right"></i></a>
                 </div>
             </div>
             <!-- End Content -->

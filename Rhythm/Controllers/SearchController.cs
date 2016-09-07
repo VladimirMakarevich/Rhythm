@@ -1,4 +1,5 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using Rhythm.Collections;
+using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using Rhythm.Models;
 using System;
@@ -29,8 +30,9 @@ namespace Rhythm.Controllers
             {
                 Posts = repository.Post
                 .Where(i => i.Category == item.ID)
-                .OrderBy(p => p.PostedOn)
-                .ToList(),
+                    .OrderBy(p => p.ID)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize).ToArray().Reverse(),
 
                 PagingView = new ListView
                 {
@@ -55,8 +57,9 @@ namespace Rhythm.Controllers
             {
                 Posts = repository.Post
                 .Where(p => postIds.Contains(p.ID))
-                .OrderBy(p => p.PostedOn)
-                .ToList(),
+                    .OrderBy(p => p.ID)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize).ToArray().Reverse(),
 
                 PagingView = new ListView
                 {
@@ -70,19 +73,25 @@ namespace Rhythm.Controllers
             return View("Search", search);
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         public ViewResult Search(string item, int page = 1)
         {
             ViewBag.Title = "Search Result";
 
-            var posts = repository.Post.Where(p => p.Title.Contains(item) || p.ShortDescription.Contains(item) || p.Category1.Name.Contains(item) || p.Tags.Any(t => t.Name.Contains(item)));
-            var postIds = posts.Select(p => p.ID).ToList();
+            var posts = repository.Post.Where(p => p.Title.Contains(item) ||
+            p.ShortDescription.Contains(item) ||
+            p.Category1.Name.Contains(item) ||
+            p.Tags.Any(t => t.Name.Contains(item)))
+                .Select(p => p.ID).ToList();
 
             PostListViewModel search = new PostListViewModel
             {
                 Posts = repository.Post
-                .Where(p => postIds.Contains(p.ID))
-                .OrderBy(p => p.PostedOn)
-                .ToList(),
+                    .Where(p => posts.Contains(p.ID))
+                    .OrderBy(p => p.ID)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize).ToArray().Reverse(),
 
                 PagingView = new ListView
                 {
@@ -101,6 +110,42 @@ namespace Rhythm.Controllers
                 ViewBag.Text = String.Format(@"List of posts found for search text ""{0}""", item);
             }
             return View("Search", search);
+        }
+
+        public ViewResult Archive(string Year, string Month, int page = 1)
+        {
+            int year = Int32.Parse(Year);
+            int month = Int32.Parse(Month);
+
+            ViewBag.Title = "Archive result";
+            var posts = repository.Post.Where(m => m.PostedOn.Month == month && m.PostedOn.Year == year).Select(p => p.ID).ToList();
+
+            PostListViewModel source = new PostListViewModel
+            {
+                Posts = repository.Post
+                    .Where(p => posts.Contains(p.ID))
+                    .OrderBy(p => p.ID)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize).ToArray().Reverse(),
+
+                PagingView = new ListView
+                {
+                    CurrentPage = page,
+                    PostsPerPage = PageSize,
+                    TotalPosts = repository.Post.Count()
+                }
+            };
+
+            if (Year == null && Month == null)
+            {
+                ViewBag.Text = String.Format(@"Your search - ""{0}, {1}"" - did not match any documents.", Year, Month);
+            }
+            else
+            {
+                ViewBag.Text = String.Format(@"List of posts found for search archive year - ""{0}"", month - ""{1}""", Year, Month);
+            }
+
+            return View("Search", source);
         }
     }
 }

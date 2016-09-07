@@ -1,14 +1,15 @@
 ﻿using Rhythm.Domain.Abstract;
 using Rhythm.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Rhythm.Domain.Model;
 using NLog;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System.Threading.Tasks;
+using Rhythm.Authentication;
+using System.Security.Claims;
+using System;
 
 namespace Rhythm.Controllers
 {

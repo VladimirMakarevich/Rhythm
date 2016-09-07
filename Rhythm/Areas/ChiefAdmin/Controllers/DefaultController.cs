@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public abstract class DefaultController : Controller
     {
         // GET: ChiefAdmin/Default

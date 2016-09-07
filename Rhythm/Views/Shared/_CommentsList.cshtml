@@ -19,6 +19,7 @@
     <!-- Form -->
     @using (Html.BeginForm("Post", "Posts", FormMethod.Post, new { @class = "form contact-form" }))
     {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "form-tip pt-20", @style = "color:red;" })
         <div class="validation-summary-error" data-valmsg-summary="true">
             <div class="row mb-20 mb-md-10">

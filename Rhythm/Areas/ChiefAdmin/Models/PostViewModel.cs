@@ -25,11 +25,11 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public string UrlSlug { get; set; }
         [Required(ErrorMessage = "the field are required!")]
         public bool Published { get; set; }
+        [Required(ErrorMessage = "the field are required!")]
         public int Category { get; set; }
+        public Category Category1 { get; set; }
         [Required(ErrorMessage = "the field are required!")]
         public List<int> intTag { get; set; }
-        public HttpPostedFileBase ImageData { get; set; }
-        public string ImageMime { get; set; }
 
 
         public int ID { get; set; }

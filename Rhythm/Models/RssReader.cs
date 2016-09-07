@@ -8,6 +8,36 @@ using System.Xml.Linq;
 
 namespace Rhythm.Models
 {
+    #region RssListViewModel 
+    public class RssListViewModel
+    {
+        public IEnumerable<Rss> RssReaders { get; set; }
+        public ListView PagingView { get; set; }
+        public string Source { get; set; }
+    }
+    #endregion
+
+    #region Rss
+    public class Rss
+    {
+        public string Link { get; set; }
+        public string Title { get; set; }
+        private string description { get; set; }
+        public string PubDate { get; set; }
+        public string Description
+        {
+            get { return GetPlainText(description, 500); }
+            set { description = value; }
+        }
+        private string GetPlainText(string htmlContent, int lenght = 0)
+        {
+            return lenght > 0 && htmlContent.Length > lenght ? htmlContent.Substring(0, lenght) + "..." : htmlContent;
+
+        }
+    }
+    #endregion
+
+    #region RssReader
     public class RssReader
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
@@ -72,6 +102,7 @@ namespace Rhythm.Models
                                 Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
                                 PubDate = feed.Element("pubDate").Value
                             };
+
                 //HttpServerUtilityBase.HtmlDecode
                 return (feeds);
             }
@@ -93,4 +124,5 @@ namespace Rhythm.Models
 
         //}
     }
+    #endregion
 }

@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
-
+    [Authorize]
     public class UpdateController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
@@ -38,22 +38,23 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
             PostViewModel context = model.Map<PostViewModel>(postModel);
 
+            //TODO: Must modefied!!!!!
             CategoryDropDownList Categories = new CategoryDropDownList
             {
                 Category = repository.Category
                 .OrderBy(c => c.ID)
                 .ToList()
             };
-
             TagDropDownList Tags = new TagDropDownList
             {
                 Tag = repository.Tag
                 .OrderBy(c => c.ID)
                 .ToList()
             };
-
             ViewBag.Category = new SelectList(Categories.Category, "ID", "Name", 1);
             ViewBag.Tag = new SelectList(Tags.Tag, "ID", "Name", 1);
+
+            //TODO: Need update view, add all properties and initilize them
             return View(context);
         }
 
@@ -74,7 +75,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: ", ex.Message);
                 }
             }
-            return RedirectToAction("listTags", "Home");
+            return RedirectToAction("listPosts", "Home");
         }
 
         public ActionResult Tag(int? id)

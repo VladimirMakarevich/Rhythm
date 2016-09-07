@@ -46,7 +46,7 @@
                 </label>
             </div>
 
-            @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
+            @*@Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 @Html.DropDownList("Category", (IEnumerable<SelectListItem>) ViewBag.Category)
             </div>
@@ -54,21 +54,22 @@
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 @Html.ListBoxFor(m => m.Tags, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
-            </div>
+            </div>*@
 
-            @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
-            <div class="mb-20 mb-md-10">
-                <!-- Description -->
-                @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
-            </div>
+            @*@Html.Label("Load Photo: ")
+                @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
+                <div class="mb-20 mb-md-10">
+                    <!-- Description -->
+                    @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
+                </div>
 
-            @Html.Label("Load Photo: ")
-            <div class="mb-20 mb-md-10">
-                @*@Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })*@
-                <p class="help-block">
-                    Choose photo
-                </p>
-            </div>
+                <div class="mb-20 mb-md-10">
+                    @Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
+                    <p class="help-block">
+                        Choose photo
+                    </p>
+                </div>*@
+
             <div class="clearfix">
                 <div class="cf-left-col">
                     <!-- Inform Tip -->

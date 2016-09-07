@@ -79,6 +79,7 @@ namespace Rhythm.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Post(PostViewModel commentViewModel)
         {
             if (ModelState.IsValid)
@@ -96,10 +97,15 @@ namespace Rhythm.Controllers
                         PostedOn = DateTime.Now
                     };
 
-                    repository.AddComment(model);
+                    string src = repository.AddComment(model);
+                    if (src != null)
+                        logger.Error(src);
+
+                    ModelState.Clear();
                 }
                 catch (Exception ex)
                 {
+                    ModelState.Clear();
                     logger.Error("Faild in PostController ActionResult Post [HttpPost]: ", ex.Message);
                 }
             }
