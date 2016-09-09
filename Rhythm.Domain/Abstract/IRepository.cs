@@ -2,7 +2,7 @@
 using Rhythm.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using System.Threading.Tasks;
 
 namespace Rhythm.Domain.Abstract
 {
@@ -12,23 +12,20 @@ namespace Rhythm.Domain.Abstract
         IQueryable<Tag> Tag { get; }
         IQueryable<Category> Category { get; }
         IQueryable<Comment> Comment { get; }
-        IQueryable<DogUser> User { get; }
-        IQueryable<DogRole> Role { get; }
         List<RecentComment> GetFiveCommentsList();
         RecentArticleWidget GetArticleWidget();
-        string AddComment(Comment comment);
-        string AddPost(Post post);
-        string AddTag(Tag tag);
-        string AddCategory(Category category);
-        string ChangeTag(Tag tag);
-        string ChangeCategory(Category category);
-        string ChangePost(Post post);
-        string ChangeComment(Comment comment);
-        string DeleteTag(Tag tag);
-        string DeleteCategory(Category category);
-        string DeletePost(Post post);
-        string DeleteComment(Comment comment);
-        DogUser Login(string email, string password);
-        DogUser GetUser(string email);
+        Task<string> AddCommentAsync(Comment comment);
+        Task<string> AddPostAsync(Post post);
+        Task<Post> GetPostAsync(int? post, bool? flag);
+        Task<string> AddTagAsync(Tag tag);
+        Task<string> AddCategoryAsync(Category category);
+        Task<string> ChangeTagAsync(Tag tag);
+        Task<string> ChangeCategoryAsync(Category category);
+        Task<string> ChangePostAsync(Post post);
+        Task<string> ChangeCommentAsync(Comment comment);
+        Task<string> DeleteTagAsync(Tag tag);
+        Task<string> DeleteCategoryAsync(Category category);
+        Task<string> DeletePostAsync(Post post);
+        Task<string> DeleteCommentAsync(Comment comment);
     }
 }

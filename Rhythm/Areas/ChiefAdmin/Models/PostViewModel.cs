@@ -1,13 +1,7 @@
-﻿using Ninject;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using Rhythm.Models;
+﻿using Rhythm.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
@@ -28,8 +22,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "the field are required!")]
         public int Category { get; set; }
         public Category Category1 { get; set; }
-        [Required(ErrorMessage = "the field are required!")]
-        public List<int> intTag { get; set; }
+
 
 
         public int ID { get; set; }

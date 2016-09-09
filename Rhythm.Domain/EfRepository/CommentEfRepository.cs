@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System.Linq;
 using Rhythm.Domain.Concrete;
 using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -41,7 +41,7 @@ namespace Rhythm.Domain.EfRepository
             return recent;
         }
 
-        public string AddComment(Comment comment)
+        public async Task<string> AddCommentAsync(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -49,7 +49,7 @@ namespace Rhythm.Domain.EfRepository
                 {
                     comment.Post.CountComments++;
                     context.Comments.Add(comment);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                     contextDb.Commit();
 
                 }
@@ -63,7 +63,7 @@ namespace Rhythm.Domain.EfRepository
             }
         }
 
-        public string ChangeComment(Comment comment)
+        public async Task<string> ChangeCommentAsync(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -71,7 +71,7 @@ namespace Rhythm.Domain.EfRepository
                 {
                     comment.Modified = DateTime.Now;
                     context.Entry(comment).State = EntityState.Modified;
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)
@@ -84,7 +84,7 @@ namespace Rhythm.Domain.EfRepository
             }
         }
 
-        public string DeleteComment(Comment comment)
+        public async Task<string> DeleteCommentAsync(Comment comment)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -92,7 +92,7 @@ namespace Rhythm.Domain.EfRepository
                 {
                     comment.Post.CountComments--;
                     context.Comments.Remove(comment);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)

@@ -75,48 +75,42 @@
                 @using (Html.BeginForm("Index", "Contacts", FormMethod.Post, new { @class = "form contact-form", @id = "contact_form" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary("", new {  @class="form-tip pt-20", @style="color:red;"})
-                        <div class="validation-summary-error" data-valmsg-summary="true">
-                    <div class="clearfix">
-                        @*@Html.ValidationMessageFor(m => m.Name, "", new { @class = "form-tip pt-20", @style = "color:red;" })*@
-                        <div class="cf-left-col">
-                            <!-- Name -->
-                            <div class="form-group">
-                                @Html.TextBoxFor(m => m.Name, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
-                                @*<input type="text" name="name" id="name" class="input-md round form-control" placeholder="Name" pattern=".{3,100}" required>*@
+                    @Html.ValidationSummary("", new { @class = "form-tip pt-20", @style = "color:red;" })
+                    <div class="validation-summary-error" data-valmsg-summary="true">
+                        <div class="clearfix">
+                            <div class="cf-left-col">
+                                <!-- Name -->
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
+                                </div>
+                                <!-- Email -->
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })
+                                </div>
                             </div>
-                            <!-- Email -->
-                            <div class="form-group">
-                                @Html.TextBoxFor(m => m.Email, new { @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })
-                                @*      <input type="email" name="email" id="email" class="input-md round form-control" placeholder="Email" pattern=".{5,100}" required>*@
-                            </div>
-                            @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "form-tip pt-20", @style = "color:red;" })*@
-                        </div>
-                        <div class="cf-right-col">
-                            <!-- Message -->
-                            <div class="form-group">
-                                @Html.TextAreaFor(m => m.Message, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })
-                                @*<textarea name="message" id="message" class="input-md round form-control" style="height: 84px;" placeholder="Message"></textarea>*@
+                            <div class="cf-right-col">
+                                <!-- Message -->
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.Message, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })
+                                </div>
                             </div>
                         </div>
-                        @*@Html.ValidationMessageFor(m => m.Message, "", new { @class = "form-tip pt-20", @style = "color:red;" })*@
-                    </div>
-                    <div class="clearfix">
-                        <div class="cf-left-col">
-                            <!-- Inform Tip -->
-                            <div class="form-tip pt-20">
-                                <i class="fa fa-info-circle"></i> All the fields are required
+                        <div class="clearfix">
+                            <div class="cf-left-col">
+                                <!-- Inform Tip -->
+                                <div class="form-tip pt-20">
+                                    <i class="fa fa-info-circle"></i> All the fields are required
+                                </div>
+                            </div>
+                            <div class="cf-right-col">
+                                <!-- Send Button -->
+                                <div class="align-right pt-10">
+                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="cf-right-col">
-                            <!-- Send Button -->
-                            <div class="align-right pt-10">
-                                <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
-                            </div>
-                        </div>
-                    </div>
                         <div id="result"></div>
-                        </div>
+                    </div>
                 }
 
             </div>

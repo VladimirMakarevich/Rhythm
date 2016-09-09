@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rhythm.Domain.Concrete
+﻿namespace Rhythm.Domain.Concrete
 {
     public class RecentArticleWidget
     {

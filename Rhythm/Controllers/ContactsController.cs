@@ -24,7 +24,6 @@ namespace Rhythm.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(ContactViewModel contact)
         {
-
             if (ModelState.IsValid)
             {
                 try

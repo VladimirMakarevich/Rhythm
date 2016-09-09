@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
+﻿using Rhythm.Domain.Model;
 using System.Linq;
 using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Rhythm.Domain.EfRepository
 {
@@ -14,7 +13,7 @@ namespace Rhythm.Domain.EfRepository
             get { return context.Posts; }
         }
 
-        public string AddPost(Post post)
+        public async Task<string> AddPostAsync(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -23,7 +22,7 @@ namespace Rhythm.Domain.EfRepository
                     post.Category1.CountCategory++;
                     post.PostedOn = DateTime.Now;
                     context.Posts.Add(post);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -37,7 +36,7 @@ namespace Rhythm.Domain.EfRepository
             }
         }
 
-        public string ChangePost(Post post)
+        public async Task<string> ChangePostAsync(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
@@ -45,7 +44,7 @@ namespace Rhythm.Domain.EfRepository
                 {
                     post.Modified = DateTime.Now;
                     context.Entry(post).State = EntityState.Modified;
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -59,14 +58,15 @@ namespace Rhythm.Domain.EfRepository
             }
         }
 
-        public string DeletePost(Post post)
+        public async Task<string> DeletePostAsync(Post post)
         {
             using (var contextDb = context.Database.BeginTransaction())
             {
                 try
                 {
+                    post.Category1.CountCategory--;
                     context.Posts.Remove(post);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)
@@ -77,6 +77,38 @@ namespace Rhythm.Domain.EfRepository
                 }
                 return null;
             }
+        }
+
+        public async Task<Post> GetPostAsync(int? post, bool? flag)
+        {
+            var findPost = new Post();
+            if (post != null)
+            {
+                if (flag == false)
+                {
+                    do
+                    {
+                        int? newPost = post;
+                        findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == newPost);
+                        post = newPost - 1;
+                    } while (findPost == null);
+                }
+                else if (flag == true)
+                {
+                    do
+                    {
+                        int? newPost = post;
+                        findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == post);
+                        post = newPost + 1;
+                    } while (findPost == null);
+                }
+                else
+                {
+                    findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == post);
+                }
+                return findPost;
+            }
+            return null;
         }
     }
 }

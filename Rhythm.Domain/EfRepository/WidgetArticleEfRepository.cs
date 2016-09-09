@@ -1,49 +1,45 @@
 ﻿using Rhythm.Domain.Concrete;
+using Rhythm.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rhythm.Domain.EfRepository
 {
     public partial class EfRepository
     {
         private RecentArticleWidget articleWidget;
+        private Post repositoryArticle;
 
         public RecentArticleWidget GetArticleWidget()
         {
             int countArticle;
             Random r = new Random();
-            try
-            {
-                var count = context.Posts.OrderBy(p => p.ID).ToArray();
 
-                if (count != null)
+            var count = context.Posts.Max(p => p.ID);
+            List<int> q = new List<int>();
+            do
+            {
+                countArticle = r.Next(1, count);
+                if (q.Contains(countArticle) == true)
                 {
-                    countArticle = r.Next(1, count.Length);
+                    continue;
                 }
                 else
                 {
-                    return articleWidget;
+                    repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle);
+                    q.Add(countArticle);
                 }
-
-                var repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle);
-
-                articleWidget = new RecentArticleWidget()
-                {
-                    ArticleContent = repositoryArticle.ShortDescription,
-                    Title = repositoryArticle.Title,
-                    ID = repositoryArticle.ID,
-                    ImageData = repositoryArticle.ImageData
-                };
             }
-            catch (Exception)
+            while (repositoryArticle == null);
+
+            articleWidget = new RecentArticleWidget()
             {
-                //NLog
-            }
-
-
+                ArticleContent = repositoryArticle.ShortDescription,
+                Title = repositoryArticle.Title,
+                ID = repositoryArticle.ID,
+                ImageData = repositoryArticle.ImageData
+            };
             return articleWidget;
         }
     }

@@ -1,9 +1,4 @@
-﻿using Rhythm.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
@@ -16,5 +11,6 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "the field are required!")]
         public string UrlSlug { get; set; }
         public string DescriptionTag { get; set; }
+        public bool Assigned { get; set; }
     }
 }

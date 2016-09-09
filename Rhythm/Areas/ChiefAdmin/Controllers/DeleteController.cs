@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using NLog;
-using Rhythm.Areas.ChiefAdmin.Models;
+﻿using NLog;
 using Rhythm.Domain.Abstract;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
@@ -21,7 +18,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
 
-        public ActionResult Post(int? id)
+        public async Task<ActionResult> Post(int? id)
         {
             try
             {
@@ -34,20 +31,19 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                string src = repository.DeletePost(postModel);
+                string src = await repository.DeletePostAsync(postModel);
                 if (src != null)
                     logger.Error(src);
             }
             catch (Exception ex)
             {
                 logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: ", ex.Message);
-
             }
             return RedirectToAction("listPosts", "Home");
         }
 
 
-        public ActionResult Tag(int? id)
+        public async Task<ActionResult> Tag(int? id)
         {
             try
             {
@@ -60,19 +56,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                string src = repository.DeleteTag(tagModel);
+                string src = await repository.DeleteTagAsync(tagModel);
                 if (src != null)
                     logger.Error(src);
             }
             catch (Exception ex)
             {
                 logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Tag: ", ex.Message);
-
             }
             return RedirectToAction("listTags", "Home");
         }
 
-        public ActionResult Category(int? id)
+        public async Task<ActionResult> Category(int? id)
         {
             try
             {
@@ -85,19 +80,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                string src = repository.DeleteCategory(categoryModel);
+                string src = await repository.DeleteCategoryAsync(categoryModel);
                 if (src != null)
                     logger.Error(src);
             }
             catch (Exception ex)
             {
                 logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Category: ", ex.Message);
-
             }
             return RedirectToAction("listCategories", "Home");
         }
 
-        public ActionResult Comment(int? id)
+        public async Task<ActionResult> Comment(int? id)
         {
             try
             {
@@ -110,14 +104,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return HttpNotFound();
                 }
-                string src = repository.DeleteComment(commentModel);
+                string src = await repository.DeleteCommentAsync(commentModel);
                 if (src != null)
                     logger.Error(src);
             }
             catch (Exception ex)
             {
                 logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Comment: ", ex.Message);
-
             }
             return RedirectToAction("listComments", "Home");
         }

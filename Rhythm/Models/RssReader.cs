@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
+using System.Data.Entity;
 
 namespace Rhythm.Models
 {
@@ -94,18 +96,19 @@ namespace Rhythm.Models
             try
             {
                 XDocument feedXml = XDocument.Load(blogURL);
-                var feeds = from feed in feedXml.Descendants("item")
-                            select new Rss
-                            {
-                                Title = feed.Element("title").Value,
-                                Link = feed.Element("link").Value,
-                                Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
-                                PubDate = feed.Element("pubDate").Value
-                            };
+                var feeds = feedXml.Descendants("item")
+                    .Select(feed => new Rss
+                    {
+                        Title = feed.Element("title").Value,
+                        Link = feed.Element("link").Value,
+                        Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
+                        PubDate = feed.Element("pubDate").Value
+                    });
 
                 //HttpServerUtilityBase.HtmlDecode
                 return (feeds);
             }
+
             catch (Exception ex)
             {
                 logger.Error("Faild in RssRader IEnumerable<Rss> GetRssFeed: ", ex.Message);

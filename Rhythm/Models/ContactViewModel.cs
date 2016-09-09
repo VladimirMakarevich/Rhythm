@@ -9,7 +9,7 @@ namespace Rhythm.Models
     public class ContactViewModel
     {
         [Required(ErrorMessage = "all the fields are required")]
-        [StringLength(30, MinimumLength = 4)]
+        [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
         [Required(ErrorMessage = "all the fields are required")]
         [EmailAddress(ErrorMessage = "the Email field is not a valid e - mail addres")]

@@ -36,8 +36,8 @@ namespace Rhythm.Authentication
             };
             //Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(10);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 10;
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
 
             var dataProtection = options.DataProtectionProvider;
             if (dataProtection != null)

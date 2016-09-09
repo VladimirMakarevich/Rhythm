@@ -3,15 +3,17 @@
 @{
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
+<br /><br /><br />
 <h2 class="align-center font-alt uppercase">Change Post</h2>
 <!-- Section -->
 <section class="page-section">
     <div class="container relative">
 
         <!-- Form -->
-        @using (Html.BeginForm("Post", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
+        @using (Html.BeginForm("Post", "Update", FormMethod.Post, new { @role = "form", @class = "form" }))
         {
-
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.PostedOn)
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Name -->
@@ -46,30 +48,32 @@
                 </label>
             </div>
 
-            @*@Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
+            @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.DropDownList("Category", (IEnumerable<SelectListItem>) ViewBag.Category)
+                @Html.DropDownList("Category")
             </div>
 
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
-            <div class="mb-20 mb-md-10">
-                @Html.ListBoxFor(m => m.Tags, (IEnumerable<SelectListItem>) ViewBag.Tag, new { size = 7, @class = "form-control" })
-            </div>*@
+            <table>
+                <tr>
+                    @{
+                        List<Rhythm.Areas.ChiefAdmin.Models.TagViewModel> tags = ViewBag.Tag;
 
-            @*@Html.Label("Load Photo: ")
-                @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
-                <div class="mb-20 mb-md-10">
-                    <!-- Description -->
-                    @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
-                </div>
-
-                <div class="mb-20 mb-md-10">
-                    @Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
-                    <p class="help-block">
-                        Choose photo
-                    </p>
-                </div>*@
-
+                        foreach (var tag in tags)
+                        {
+                            <td>
+                                <input type="checkbox"
+                                       name="selectedTag"
+                                       value="@tag.ID"
+                                       @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
+                            </td>
+                            <td>
+                                <div><a>&nbsp;</a> - @tag.Name <a>&nbsp;</a></div>
+                            </td>
+                        }
+                    }
+                </tr>
+            </table>
             <div class="clearfix">
                 <div class="cf-left-col">
                     <!-- Inform Tip -->
@@ -84,6 +88,20 @@
                     </div>
                 </div>
             </div>
-        }
+                        }
     </div>
 </section>
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    var editor = CKEDITOR.instances['DescriptionPost'];
+    if (editor) { editor.destroy(true); }
+    CKEDITOR.replace('DescriptionPost', { enterMode: CKEDITOR.ENTER_BR, });
+</script>
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    var editor = CKEDITOR.instances['ShortDescription'];
+    if (editor) { editor.destroy(true); }
+    CKEDITOR.replace('ShortDescription', { enterMode: CKEDITOR.ENTER_BR, });
+</script>

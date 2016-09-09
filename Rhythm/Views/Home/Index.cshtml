@@ -30,8 +30,9 @@
                         </div>
                         @if (p.ImageData != null)
                         {
-                            <img width="300" height="300" src="@Url.Action("GetImage", "Post", new { p.ID })" />
+                            <img width="300" height="300" src="@Url.Action("GetImage", "Posts", new { p.ID })" />
                         }
+                        <br /><br />
                         <!-- Text Intro -->
                         <div class="blog-item-body">
                             <p>

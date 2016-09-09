@@ -28,10 +28,11 @@
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i>Comments @p.CountComments</a>
                         </div>
-                        @if(p.ImageData != null)
-                        { 
-                        <img width="150" height="150" src="@Url.Action("GetImage", "Post", new { p.ID })" />
+                        @if (p.ImageData != null)
+                        {
+                        <img width="300" height="600" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
                         }
+                        <br />
                         <div class="blog-item-body">
                             <p>
                                 @Html.Raw(p.ShortDescription)

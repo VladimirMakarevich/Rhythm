@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,15 +46,14 @@ namespace Rhythm.Controllers
             return View(model);
         }
 
-        public ActionResult Post(int? id)
+        public async Task<ActionResult> Post(int? id, bool? flag)
         {
             ViewBag.Count = repository.Post.Count();
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+            var post = await repository.GetPostAsync(id, flag);
             if (post == null)
             {
                 return HttpNotFound();
@@ -65,12 +65,13 @@ namespace Rhythm.Controllers
             return View(postView);
         }
 
+        // TODO: async
         public FileContentResult GetImage(int id)
         {
             Post post = repository.Post.FirstOrDefault(p => p.ID == id);
             if (post != null)
             {
-                return File(post.ImageData, post.ImageMime);
+                return File(post.ImageData, "image/png");
             }
             else
             {
@@ -80,7 +81,7 @@ namespace Rhythm.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Post(PostViewModel commentViewModel)
+        public async Task<ActionResult> Post(PostViewModel commentViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +98,7 @@ namespace Rhythm.Controllers
                         PostedOn = DateTime.Now
                     };
 
-                    string src = repository.AddComment(model);
+                    string src = await repository.AddCommentAsync(model);
                     if (src != null)
                         logger.Error(src);
 

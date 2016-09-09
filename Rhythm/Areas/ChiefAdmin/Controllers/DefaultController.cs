@@ -10,7 +10,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public abstract class DefaultController : Controller
     {
-        // GET: ChiefAdmin/Default
         [Inject]
         public IRepository repository { get; set; }
 

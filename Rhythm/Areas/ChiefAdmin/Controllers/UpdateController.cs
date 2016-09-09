@@ -5,10 +5,9 @@ using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
@@ -21,8 +20,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             this.repository = repository;
         }
-
-
+        #region post
         public ActionResult Post(int? id)
         {
             if (id == null)
@@ -38,35 +36,53 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
             PostViewModel context = model.Map<PostViewModel>(postModel);
 
-            //TODO: Must modefied!!!!!
-            CategoryDropDownList Categories = new CategoryDropDownList
-            {
-                Category = repository.Category
-                .OrderBy(c => c.ID)
-                .ToList()
-            };
-            TagDropDownList Tags = new TagDropDownList
-            {
-                Tag = repository.Tag
-                .OrderBy(c => c.ID)
-                .ToList()
-            };
-            ViewBag.Category = new SelectList(Categories.Category, "ID", "Name", 1);
-            ViewBag.Tag = new SelectList(Tags.Tag, "ID", "Name", 1);
+            DropDownListCategory(context.Category);
+            TagData(context);
 
-            //TODO: Need update view, add all properties and initilize them
             return View(context);
         }
 
+        private void TagData(PostViewModel post)
+        {
+            var allTag = repository.Tag;
+            var postTag = new HashSet<int>(post.Tags.Select(c => c.ID));
+            var viewModel = new List<TagViewModel>();
+            foreach (var tag in allTag)
+            {
+                viewModel.Add(new TagViewModel
+                {
+                    ID = tag.ID,
+                    Name = tag.Name,
+                    Assigned = postTag.Contains(tag.ID)
+                });
+            }
+            ViewBag.Tag = viewModel;
+        }
 
         [HttpPost]
-        public ActionResult Post(PostViewModel post)
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public async Task<ActionResult> Post(PostViewModel post, int[] selectedTag)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    string src = "UpdatePost";
+                    List<Tag> listTag = new List<Tag>();
+                    foreach (var item in selectedTag)
+                    {
+                        var tag = repository.Tag.SingleOrDefault(m => m.ID == item);
+                        listTag.Add(tag);
+                    }
+                    var category = repository.Category.SingleOrDefault(m => m.ID == post.Category);
+
+                    post.Tags = listTag;
+                    post.Category1 = category;
+
+                    IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
+                    Post context = model.Map<Post>(post);
+
+                    string src = await repository.ChangePostAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -77,7 +93,47 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
             return RedirectToAction("listPosts", "Home");
         }
+        #endregion
 
+        #region image
+        public ActionResult Image(int id)
+        {
+            ImageViewModel model = new ImageViewModel
+            {
+                PostID = id
+            };
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Image(ImageViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    byte[] image = new byte[model.ImageData.ContentLength];
+                    model.ImageData.InputStream.Read(image, 0, image.Length);
+                    var post = repository.Post.SingleOrDefault(m => m.ID == model.PostID);
+                    post.ImageData = image;
+                    post.ImageMime = model.ImageMime;
+
+                    string src = await repository.ChangePostAsync(post);
+                    if (src != null)
+                        logger.Error(src);
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: ", ex.Message);
+                }
+            }
+            return RedirectToAction("listPosts", "Home");
+        }
+        #endregion
+
+        #region tag
         public ActionResult Tag(int? id)
         {
             if (id == null)
@@ -97,7 +153,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Tag(TagViewModel tagModel)
+        public async Task<ActionResult> Tag(TagViewModel tagModel)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +162,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
                     Tag context = model.Map<Tag>(tagModel);
 
-                    string src = repository.ChangeTag(context);
+                    string src = await repository.ChangeTagAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -117,7 +173,9 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
             return RedirectToAction("listTags", "Home");
         }
+        #endregion
 
+        #region category
         public ActionResult Category(int? id)
         {
             if (id == null)
@@ -136,7 +194,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Category(CategoryViewModel categoryModel)
+        public async Task<ActionResult> Category(CategoryViewModel categoryModel)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +203,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
                     Category context = model.Map<Category>(categoryModel);
 
-                    string src = repository.ChangeCategory(context);
+                    string src = await repository.ChangeCategoryAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -156,7 +214,9 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
             return RedirectToAction("listCategories", "Home");
         }
+        #endregion
 
+        #region comment
         public ActionResult Comment(int? id)
         {
             if (id == null)
@@ -175,7 +235,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Comment(CommentViewModel commentModel)
+        public async Task<ActionResult> Comment(CommentViewModel commentModel)
         {
 
             if (ModelState.IsValid)
@@ -185,7 +245,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigComment.CreateMapper();
                     Comment context = model.Map<Comment>(commentModel);
 
-                    string src = repository.ChangeComment(context);
+                    string src = await repository.ChangeCommentAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -196,5 +256,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
             return RedirectToAction("listComments", "Home");
         }
+        #endregion
+
+        #region drop
+        private void DropDownListCategory(object selectedItem = null)
+        {
+            var Query = from m in repository.Category
+                        orderby m.ID
+                        select m;
+            ViewBag.Category = new SelectList(Query, "ID", "Name", selectedItem);
+        }
+        #endregion
     }
 }

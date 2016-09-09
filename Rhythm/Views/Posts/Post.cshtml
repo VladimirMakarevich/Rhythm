@@ -28,18 +28,20 @@
                 <div class="clearfix mt-40">
                     @if (Model.Post.ID == 1)
                     {
+                        <a href="#"></a>
                     }
                     else
                     {
-                        @Html.ActionLink("Prev post", "Post", new { id = Model.Post.ID - 1 }, new { @class = "blog-item-more left" })
+                        @Html.ActionLink("Prev post", "Post", new { id = Model.Post.ID - 1, flag = false }, new { @class = "blog-item-more left" })
                     }
 
                     @if (Model.Post.ID >= ViewBag.Count)
                     {
+                        <a href="#"></a>
                     }
                     else
                     {
-                        @Html.ActionLink("Next post", "Post", new { id = Model.Post.ID + 1 }, new { @class = "blog-item-more right" })
+                        @Html.ActionLink("Next post", "Post", new { id = Model.Post.ID + 1, flag = true }, new { @class = "blog-item-more right" })
                     }
                 </div>
                 <!-- End Prev/Next Post -->
