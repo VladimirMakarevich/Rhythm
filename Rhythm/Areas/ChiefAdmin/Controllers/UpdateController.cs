@@ -88,7 +88,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: {0}", ex.Message);
                 }
             }
             return RedirectToAction("listPosts", "Home");
@@ -126,7 +126,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: {0}", ex.Message);
                 }
             }
             return RedirectToAction("listPosts", "Home");
@@ -168,7 +168,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Tag: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Tag: {0}", ex.Message);
                 }
             }
             return RedirectToAction("listTags", "Home");
@@ -209,7 +209,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Category: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Category: {0}", ex.Message);
                 }
             }
             return RedirectToAction("listCategories", "Home");
@@ -251,7 +251,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/UpadateController/ActionResult Comment: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/UpadateController/ActionResult Comment: {0}", ex.Message);
                 }
             }
             return RedirectToAction("listComments", "Home");

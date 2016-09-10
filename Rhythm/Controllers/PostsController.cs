@@ -32,6 +32,7 @@ namespace Rhythm.Controllers
             {
                 Posts = repository.Post
                 .OrderBy(s => s.ID)
+                .Where(m => m.Published == true)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize).ToArray().Reverse(),
 
@@ -48,7 +49,7 @@ namespace Rhythm.Controllers
 
         public async Task<ActionResult> Post(int? id, bool? flag)
         {
-            ViewBag.Count = repository.Post.Count();
+            ViewBag.Count = repository.Post.Where(p => p.Published == true).Max(m => m.ID);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -65,18 +66,25 @@ namespace Rhythm.Controllers
             return View(postView);
         }
 
-        // TODO: async
         public FileContentResult GetImage(int id)
         {
-            Post post = repository.Post.FirstOrDefault(p => p.ID == id);
-            if (post != null)
+            try
             {
-                return File(post.ImageData, "image/png");
+                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+                if (post != null)
+                {
+                    return File(post.ImageData, "image/png");
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
             }
+            return null;
         }
 
         [HttpPost]
@@ -107,7 +115,7 @@ namespace Rhythm.Controllers
                 catch (Exception ex)
                 {
                     ModelState.Clear();
-                    logger.Error("Faild in PostController ActionResult Post [HttpPost]: ", ex.Message);
+                    logger.Error("Faild in PostController ActionResult Post [HttpPost]: {0}", ex.Message);
                 }
             }
 

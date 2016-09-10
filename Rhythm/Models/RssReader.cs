@@ -111,7 +111,7 @@ namespace Rhythm.Models
 
             catch (Exception ex)
             {
-                logger.Error("Faild in RssRader IEnumerable<Rss> GetRssFeed: ", ex.Message);
+                logger.Error("Faild in RssRader IEnumerable<Rss> GetRssFeed: {0}", ex.Message);
             }
 
             return null;

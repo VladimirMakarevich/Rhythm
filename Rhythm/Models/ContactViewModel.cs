@@ -12,10 +12,12 @@ namespace Rhythm.Models
         [StringLength(30, MinimumLength = 5)]
         public string Name { get; set; }
         [Required(ErrorMessage = "all the fields are required")]
-        [EmailAddress(ErrorMessage = "the Email field is not a valid e - mail addres")]
+        [EmailAddress(ErrorMessage = "the email field is not a valid e - mail addres")]
         public string Email { get; set; }
         [Required(ErrorMessage = "all the fields are required")]
         public string Message { get; set; }
+        [IsValidBool]
+        public bool AreLikeDogs { get; set; }
     }
 }
 

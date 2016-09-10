@@ -82,31 +82,37 @@ namespace Rhythm.Domain.EfRepository
         public async Task<Post> GetPostAsync(int? post, bool? flag)
         {
             var findPost = new Post();
-            if (post != null)
+            findPost = null;
+            int? newPost = 1;
+            using (DogCodingEntities db = new DogCodingEntities())
             {
-                if (flag == false)
+                if (post != null)
                 {
-                    do
+                    if (flag == false)
                     {
-                        int? newPost = post;
-                        findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == newPost);
-                        post = newPost - 1;
-                    } while (findPost == null);
-                }
-                else if (flag == true)
-                {
-                    do
+                        while (findPost == null && newPost > 0)
+                        {
+                            newPost = post;
+                            findPost = await db.Posts.FirstOrDefaultAsync(m => m.ID == newPost && m.Published == true);
+                            post = newPost - 1;
+                        } 
+                    }
+                    else if (flag == true)
                     {
-                        int? newPost = post;
-                        findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == post);
-                        post = newPost + 1;
-                    } while (findPost == null);
+                        var maxPost = db.Posts.Where(p => p.Published == true).Max(m => m.ID);
+                        while (findPost == null && newPost < maxPost)
+                        {
+                            newPost = post;
+                            findPost = await db.Posts.FirstOrDefaultAsync(m => m.ID == newPost && m.Published == true);
+                            post = newPost + 1;
+                        } 
+                    }
+                    else
+                    {
+                        findPost = await db.Posts.FirstOrDefaultAsync(m => m.ID == post && m.Published == true);
+                    }
+                    return findPost;
                 }
-                else
-                {
-                    findPost = await context.Posts.FirstOrDefaultAsync(m => m.ID == post);
-                }
-                return findPost;
             }
             return null;
         }

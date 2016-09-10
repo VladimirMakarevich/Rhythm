@@ -33,6 +33,7 @@ namespace Rhythm.Controllers
             {
                 Posts = repository.Post
                 .OrderBy(p => p.ID)
+                .Where(m => m.Published == true)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize).ToArray().Reverse(),
 

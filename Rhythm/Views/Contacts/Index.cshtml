@@ -103,6 +103,10 @@
                                 </div>
                             </div>
                             <div class="cf-right-col">
+                                <div class="align-right pt-10">
+                                    <label class="hs-line-4 font-alt black">Are you like Dogs?</label>
+                                    @Html.CheckBoxFor(model => model.AreLikeDogs)
+                                </div>
                                 <!-- Send Button -->
                                 <div class="align-right pt-10">
                                     <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
@@ -122,7 +126,13 @@
 
 <!-- End Contact Section -->
 @section scripts {
-    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/scripts/rhythm/contact-form.js"></script>
+    <script>
+        jQuery.validator.addMethod("isvalidbool", function (value, element, param) {
+            return element.checked;
+        });
+        jQuery.validator.unobtrusive.adapters.addBool("isvalidbood");
+    </script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/rhythm/contact-form.js"></script>
 }

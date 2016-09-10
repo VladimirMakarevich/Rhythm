@@ -74,7 +74,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: {0}", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");
@@ -104,7 +104,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Tag: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Tag: {0}", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");
@@ -133,7 +133,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Category: ", ex.Message);
+                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Category: {0}", ex.Message);
                 }
             }
             return RedirectToAction("Index", "Home");

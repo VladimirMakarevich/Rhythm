@@ -27,7 +27,7 @@ namespace Rhythm.Domain.EfRepository
                 }
                 else
                 {
-                    repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle);
+                    repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
                     q.Add(countArticle);
                 }
             }

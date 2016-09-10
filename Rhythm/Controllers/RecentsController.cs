@@ -51,10 +51,7 @@ namespace Rhythm.Controllers
         public ActionResult RecentArticleWidgets()
         {
             var articleWidget = repository.GetArticleWidget();
-            if (articleWidget == null)
-            {
-                return null;
-            }
+
             return PartialView("RecentArticleWidgets", articleWidget);
         }
 
@@ -66,12 +63,12 @@ namespace Rhythm.Controllers
         }
         public List<Post> GetPost()
         {
-            var posts = repository.Post.OrderBy(p => p.ID).ToList();
+            var posts = repository.Post.OrderBy(p => p.ID).Where(m => m.Published == true).ToList();
             return posts;
         }
-        public List<Post> GetPosts()
+        public IEnumerable<Post> GetPosts()
         {
-            var posts = repository.Post.OrderBy(p => p.ID).ToList();
+            var posts = repository.Post.OrderBy(p => p.ID).Where(m => m.Published == true).ToArray().Reverse();
             return posts;
         }
     }

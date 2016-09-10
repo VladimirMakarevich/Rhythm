@@ -8,41 +8,41 @@ namespace Rhythm
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/rhythm/jquery")
-                .Include("~/scripts/rhythm/jquery-3.1.0.min.js")
-                .Include("~/scripts/rhythm/jquery-1.11.2.min.js")
-                .Include("~/scripts/rhythm/jquery.ajaxchimp.min.js")
-                .Include("~/scripts/rhythm/jquery.appear.js")
-                .Include("~/scripts/rhythm/jquery.countTo.js")
-                .Include("~/scripts/rhythm/jquery.easing.1.3.js")
-                .Include("~/scripts/rhythm/jquery.fitvids.js")
-                .Include("~/scripts/rhythm/jquery.localScroll.min.js")
-                .Include("~/scripts/rhythm/jquery.magnific-popup.min.js")
-                .Include("~/scripts/rhythm/jquery.parallax-1.1.3.js")
-                .Include("~/scripts/rhythm/jquery.scrollTo.min.js")
-                .Include("~/scripts/rhythm/jquery.simple-text-rotator.min.js")
-                .Include("~/scripts/rhythm/jquery.sticky.js")
-                .Include("~/scripts/rhythm/jquery.viewport.mini.js"));
+                .Include("~/Scripts/rhythm/jquery-3.1.0.min.js")
+                .Include("~/Scripts/rhythm/jquery-1.11.2.min.js")
+                .Include("~/Scripts/rhythm/jquery.ajaxchimp.min.js")
+                .Include("~/Scripts/rhythm/jquery.appear.js")
+                .Include("~/Scripts/rhythm/jquery.countTo.js")
+                .Include("~/Scripts/rhythm/jquery.easing.1.3.js")
+                .Include("~/Scripts/rhythm/jquery.fitvids.js")
+                .Include("~/Scripts/rhythm/jquery.localScroll.min.js")
+                .Include("~/Scripts/rhythm/jquery.magnific-popup.min.js")
+                .Include("~/Scripts/rhythm/jquery.parallax-1.1.3.js")
+                .Include("~/Scripts/rhythm/jquery.scrollTo.min.js")
+                .Include("~/Scripts/rhythm/jquery.simple-text-rotator.min.js")
+                .Include("~/Scripts/rhythm/jquery.sticky.js")
+                .Include("~/Scripts/rhythm/jquery.viewport.mini.js"));
 
 
 
             bundles.Add(new ScriptBundle("~/bundles/modernizr")
-                .Include("~/scripts/modernizr-*"));
+                .Include("~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/rhythm/allJS")
-                            .Include("~/scripts/rhythm/imagesloaded.pkgd.min.js")
-                            .Include("~/scripts/rhythm/isotope.pkgd.min.js")
-                            .Include("~/scripts/rhythm/masonry.pkgd.min.js")
-                            .Include("~/scripts/rhythm/owl.carousel.min.js")
-                            .Include("~/scripts/rhythm/SmoothScroll.js")
-                            .Include("~/scripts/rhythm/wow.min.js")
-                            .Include("~/scripts/rhythm/placeholder.js")
-                            .Include("~/scripts/rhythm/all.js")
-                            .Include("~/scripts/rhythm/bootstrap.min.js"));
+                            .Include("~/Scripts/rhythm/imagesloaded.pkgd.min.js")
+                            .Include("~/Scripts/rhythm/isotope.pkgd.min.js")
+                            .Include("~/Scripts/rhythm/masonry.pkgd.min.js")
+                            .Include("~/Scripts/rhythm/owl.carousel.min.js")
+                            .Include("~/Scripts/rhythm/SmoothScroll.js")
+                            .Include("~/Scripts/rhythm/wow.min.js")
+                            .Include("~/Scripts/rhythm/placeholder.js")
+                            .Include("~/Scripts/rhythm/all.js")
+                            .Include("~/Scripts/rhythm/bootstrap.min.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/rhythm/jqueryval").Include(
-                "~/scripts/jquery.validate*",
-                "~/scripts/jquery.unobtrusive*"));
+                "~/Scripts/jquery.validate*",
+                "~/Scripts/jquery.unobtrusive*"));
 
 
 

@@ -16,6 +16,7 @@
     <!-- End Comments -->
     <br />
     <h4 class="blog-page-title font-alt" id="add">Add Comment</h4>
+
     <!-- Form -->
     @using (Html.BeginForm("Post", "Posts", FormMethod.Post, new { @class = "form contact-form" }))
     {
@@ -51,6 +52,12 @@
 
 <!-- End Contact Section -->
 @section scripts {
-    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script>
+        jQuery.validator.addMethod("isvalidbool", function (value, element, param) {
+            return element.checked;
+        });
+        jQuery.validator.unobtrusive.adapters.addBool("isvalidbood");
+    </script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
 }
