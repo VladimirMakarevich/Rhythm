@@ -4,7 +4,14 @@
  */
 
 CKEDITOR.editorConfig = function (config) {
-    //config.allowedContent = true;
+
+    config.filebrowserImageBrowseUrl = "/Scripts/ckeditor/ImageBrowser.aspx";
+    config.filebrowserImageWindowWidth = 780;
+    config.filebrowserImageWindowHeight = 720;
+    config.filebrowserBrowseUrl = "/Scripts/ckeditor/LinkBrowser.aspx";
+    config.filebrowserWindowWidth = 500;
+    config.filebrowserWindowHeight = 650;
+    config.allowedContent = true;
     //// protect <anytag class="preserve"></anytag>
     //config.protectedSource.push(/<([\S]+)[^>]*class="preserve"[^>]*>.*<\/\1>/g);
     //// protect <anytag class="preserve" /><
@@ -13,7 +20,7 @@ CKEDITOR.editorConfig = function (config) {
     //config.protectedSource.push(/<([\S]+)[^>]*class="preserve"[^>]*>(.|\n)*<\/\1>/g);
 	//// config.language = 'fr';
     //// config.uiColor = '#AADC6E';
-    //config.pasteFilter = null;
+    config.pasteFilter = null;
 };
 
 //CKEDITOR.editorConfig = function (config) {
