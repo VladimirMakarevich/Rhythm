@@ -16,6 +16,12 @@
                         <div class="lead">
                             <hr class="mb-40" />
                             @Html.Raw(Model.Post.ShortDescription)
+                            <div>
+                                @if (Model.Post.ImageData != null)
+                                {
+                                    <img width="1000" height="1000" src="@Url.Action("GetImage", "Posts", new { id = Model.Post.ID })" />
+                                }
+                            </div>
                         </div>
                         <hr class="mb-40" />
                         @Html.Raw(Model.Post.DescriptionPost)

@@ -28,7 +28,7 @@
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Post", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Post", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
@@ -40,8 +40,9 @@
             }
         </table>
         <!-- Read More Link -->
-        <div class="blog-item-foot">
-            <a href="@Url.Action("listPosts", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
+        <br />
+        <div class="align-right pt-10">
+            <a href="@Url.Action("listPosts", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 
@@ -69,7 +70,7 @@
                     <td>@Html.DisplayFor(m => p.CountCategory)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Category", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Category", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
@@ -81,8 +82,9 @@
             }
         </table>
         <!-- Read More Link -->
-        <div class="blog-item-foot">
-            <a href="@Url.Action("listCategories", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
+        <br />
+        <div class="align-right pt-10">
+            <a href="@Url.Action("listCategories", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 
@@ -109,7 +111,7 @@
                     <td>@Html.DisplayFor(m => p.UrlSlug)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Tag", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Tag", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
@@ -121,8 +123,9 @@
             }
         </table>
         <!-- Read More Link -->
-        <div class="blog-item-foot">
-            <a href="@Url.Action("listTags", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
+        <br />
+        <div class="align-right pt-10">
+            <a href="@Url.Action("listTags", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
     <hr class="mb-40" />
@@ -149,7 +152,7 @@
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Comment", "Update", new { id = p.ID })" target="_blank" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Comment", "Update", new { id = p.ID })"  class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
@@ -161,8 +164,9 @@
             }
         </table>
         <!-- Read More Link -->
-        <div class="blog-item-foot">
-            <a href="@Url.Action("listComments", "Home")" target="_blank" class="btn btn-mod btn-round  btn-small">View all </a>
+        <br />
+        <div class="align-right pt-10">
+            <a href="@Url.Action("listComments", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
         </div>
     </div>
 </div>

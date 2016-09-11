@@ -26,6 +26,13 @@
                         Choose photo
                     </p>
                 </div>
+                @Html.Label("Now: ")
+                <div class="mb-20 mb-md-10">
+                    @if (Model.ImageDataByte != null)
+                    {
+                        <img width="600" height="600" src="@Url.Action("GetImage", "Home", new { id = Model.PostID })" />
+                    }
+                </div>
                         <div class="clearfix">
                             <div class="cf-left-col">
                                 <!-- Inform Tip -->

@@ -66,27 +66,6 @@ namespace Rhythm.Controllers
             return View(postView);
         }
 
-        public FileContentResult GetImage(int id)
-        {
-            try
-            {
-                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
-                if (post != null)
-                {
-                    return File(post.ImageData, "image/png");
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
-            }
-            return null;
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Post(PostViewModel commentViewModel)
@@ -118,13 +97,34 @@ namespace Rhythm.Controllers
                     logger.Error("Faild in PostController ActionResult Post [HttpPost]: {0}", ex.Message);
                 }
             }
-
+            ModelState.Clear();
             PostViewModel post = new PostViewModel
             {
                 Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID)
             };
 
             return View(post);
+        }
+
+        public FileContentResult GetImage(int id)
+        {
+            try
+            {
+                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+                if (post != null)
+                {
+                    return File(post.ImageData, "image/png");
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
+            }
+            return null;
         }
     }
 }

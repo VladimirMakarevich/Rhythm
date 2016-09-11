@@ -14,6 +14,8 @@
         {
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.PostedOn)
+            @Html.HiddenFor(m => m.ImageMime)
+            @Html.HiddenFor(m => m.ImageData)
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Name -->
@@ -52,43 +54,51 @@
             <div class="mb-20 mb-md-10">
                 @Html.DropDownList("Category")
             </div>
+            <div class="mb-20 mb-md-10">
+                @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
+                <table>
+                    <tr>
+                        @{
+                            List<Rhythm.Areas.ChiefAdmin.Models.TagViewModel> tags = ViewBag.Tag;
 
-            @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
-            <table>
-                <tr>
-                    @{
-                        List<Rhythm.Areas.ChiefAdmin.Models.TagViewModel> tags = ViewBag.Tag;
-
-                        foreach (var tag in tags)
-                        {
-                            <td>
-                                <input type="checkbox"
-                                       name="selectedTag"
-                                       value="@tag.ID"
-                                       @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
-                            </td>
-                            <td>
-                                <div><a>&nbsp;</a> - @tag.Name <a>&nbsp;</a></div>
-                            </td>
+                            foreach (var tag in tags)
+                            {
+                                <td>
+                                    <input type="checkbox"
+                                           name="selectedTag"
+                                           value="@tag.ID"
+                                           @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
+                                </td>
+                                <td>
+                                    <div><a>&nbsp;</a> - @tag.Name <a>&nbsp;</a></div>
+                                </td>
+                            }
                         }
-                    }
-                </tr>
-            </table>
-            <div class="clearfix">
-                <div class="cf-left-col">
-                    <!-- Inform Tip -->
-                    <div class="form-tip pt-20">
-                        <i class="fa fa-info-circle"></i> All the fields are required
-                    </div>
-                </div>
-                <div class="cf-right-col">
-                    <!-- Send Button -->
-                    <div class="align-right pt-10">
-                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Post</button>
-                    </div>
-                </div>
+                    </tr>
+                </table>
             </div>
-                        }
+            @Html.LabelFor(m => m.ImageMime, new { @for = "exampleInputFile" })
+                            <div class="mb-20 mb-md-10">
+                                @if (Model.ImageData != null)
+                                {
+                                    <img width="1000" height="1000" src="@Url.Action("GetImage", "Home", new { id = Model.ID })" />
+                                }
+                            </div>
+                            <div class="clearfix">
+                                <div class="cf-left-col">
+                                    <!-- Inform Tip -->
+                                    <div class="form-tip pt-20">
+                                        <i class="fa fa-info-circle"></i> All the fields are required
+                                    </div>
+                                </div>
+                                <div class="cf-right-col">
+                                    <!-- Send Button -->
+                                    <div class="align-right pt-10">
+                                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Post</button>
+                                    </div>
+                                </div>
+                            </div>
+                            }
     </div>
 </section>
 

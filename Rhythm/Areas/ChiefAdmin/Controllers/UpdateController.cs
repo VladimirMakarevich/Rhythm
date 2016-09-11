@@ -98,9 +98,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         #region image
         public ActionResult Image(int id)
         {
+            var post = repository.Post.FirstOrDefault(m => m.ID == id);
             ImageViewModel model = new ImageViewModel
             {
-                PostID = id
+                PostID = id,
+                ImageDataByte = post.ImageData,
+                ImageMime = post.ImageMime
             };
             
             return View(model);
@@ -131,6 +134,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
             return RedirectToAction("listPosts", "Home");
         }
+
         #endregion
 
         #region tag

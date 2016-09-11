@@ -1,6 +1,8 @@
 ﻿using Ninject.Infrastructure.Language;
+using NLog;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Abstract;
+using Rhythm.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class HomeController : DefaultController
     {
+        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public HomeController(IRepository repository)
         {
             this.repository = repository;
@@ -61,6 +64,27 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             var model = repository.Comment.OrderBy(c => c.ID).ToList();
             return View(model);
+        }
+
+        public FileContentResult GetImage(int id)
+        {
+            try
+            {
+                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+                if (post != null)
+                {
+                    return File(post.ImageData, "image/png");
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
+            }
+            return null;
         }
     }
 }

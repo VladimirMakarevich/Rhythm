@@ -14,6 +14,7 @@
                 <th>Sender</th>
                 <th>Title</th>
                 <th>Date</th>
+                <th>Img</th>
                 <th>Change</th>
                 <th>Image</th>
                 <th>Delete</th>
@@ -25,6 +26,12 @@
                     <td>@Html.DisplayFor(m => p.NameSenderPost)</td>
                     <td>@Html.DisplayFor(m => p.Title)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
+                    <td>
+                        @if (p.ImageData != null)
+                        {
+                            <img width="150" height="150" src="@Url.Action("GetImage", "Home", new { id = p.ID })" />
+                        }
+                    </td>
                     <td>
                         <div class="blog-item-foot">
                             <a href="@Url.Action("Post", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
