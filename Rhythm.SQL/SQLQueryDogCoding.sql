@@ -37,7 +37,7 @@ CREATE TABLE [blog.Post]
 	Category int NOT NULL DEFAULT (1),
 	ImageData varbinary(MAX) NULL,
 	ImageMime nvarchar(100) NULL,
-    CountComments int NOT NULL DEFAULT 0
+    CountComments int NOT NULL DEFAULT (0)
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -75,7 +75,7 @@ CREATE TABLE [blog.Category]
 	Name nvarchar(100) NOT NULL,
 	UrlSlug nvarchar(100) NOT NULL,
 	DescriptionCategory nvarchar(MAX) NULL,
-	CountCategory int NOT NULL DEFAULT 0 
+	CountCategory int NOT NULL DEFAULT (0) 
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC

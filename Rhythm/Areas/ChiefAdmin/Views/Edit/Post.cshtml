@@ -95,23 +95,16 @@
 
 @section scripts {
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-    <script>
-        var editor = CKEDITOR.instances['DescriptionPost'];
-        if (editor) { editor.destroy(true); }
-        CKEDITOR.replace('DescriptionPost', {
-            enterMode: CKEDITOR.ENTER_BR,
-            allowedContent: true,
-            allowedContent: 'script; div(alert,alert-info)'
-        });
-    </script>
+<script>
+    var editor = CKEDITOR.instances['DescriptionPost'];
+    if (editor) { editor.destroy(true); }
+    CKEDITOR.replace('DescriptionPost', { enterMode: CKEDITOR.ENTER_BR, });
+</script>
 
-    <script>
-        var editor = CKEDITOR.instances['ShortDescription'];
-        if (editor) { editor.destroy(true); }
-        CKEDITOR.replace('ShortDescription', {
-            enterMode: CKEDITOR.ENTER_BR,
-            allowedContent: true,
-            allowedContent: 'script; div(alert,alert-info)'
-        });
-    </script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script>
+    var editor = CKEDITOR.instances['ShortDescription'];
+    if (editor) { editor.destroy(true); }
+    CKEDITOR.replace('ShortDescription', { enterMode: CKEDITOR.ENTER_BR, });
+</script>
 }

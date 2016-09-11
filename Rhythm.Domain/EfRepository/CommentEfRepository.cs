@@ -23,8 +23,9 @@ namespace Rhythm.Domain.EfRepository
 
             var topComment = context.Comments
                 .OrderBy(c => c.PostedOn)
-                .Take(5)
-                .ToList();
+                .AsEnumerable()
+                .Reverse()
+                .Take(5).ToList();
 
             topComment.ForEach(comment =>
             {

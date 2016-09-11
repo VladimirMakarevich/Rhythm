@@ -15,7 +15,7 @@ namespace Rhythm.Controllers
     public class PostsController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 8;
+        public int PageSize = 4;
         public PostsController(IRepository repository)
         {
             this.repository = repository;
@@ -33,8 +33,10 @@ namespace Rhythm.Controllers
                 Posts = repository.Post
                 .OrderBy(s => s.ID)
                 .Where(m => m.Published == true)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize).ToArray().Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {

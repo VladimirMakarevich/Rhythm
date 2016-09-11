@@ -19,12 +19,12 @@ namespace Rhythm.HtmlHelpers
         //{
         //    StringBuilder result = new StringBuilder();
 
-        //    for (int i = 1; i <= listView.listView.listView.TotalPages; i++)
+        //    for (int i = 1; i <= listView.TotalPages; i++)
         //    {
         //        TagBuilder tag = new TagBuilder("a");
         //        tag.MergeAttribute("href", pageUrl(i));
         //        tag.InnerHtml = i.ToString();
-        //        if (i == listView.listView.            listView.CurrentPage)
+        //        if (i == listView.CurrentPage)
         //            tag.AddCssClass("selected");
         //        result.Append(tag.ToString());
         //    }

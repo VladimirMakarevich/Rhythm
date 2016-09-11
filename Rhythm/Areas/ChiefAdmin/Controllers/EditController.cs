@@ -60,8 +60,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         listTag.Add(tag);
                     }
                     var category = repository.Category.SingleOrDefault(m => m.ID == post.Category);
-                    //byte[] image = new byte[post.ImageData.ContentLength];
-                    //post.ImageData.InputStream.Read(image, 0, image.Length);
+
                     post.Tags = listTag;
                     post.Category1 = category;
 

@@ -16,7 +16,7 @@
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title">@p.Title</h2>
+                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", "Posts", new { id = p.ID }, null)</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
                             <a><i class="fa fa-clock-o"></i>@p.PostedOn</a>
@@ -29,7 +29,7 @@
                         </div>
                         @if (p.ImageData != null)
                         {
-                            <img width="300" height="300" src="@Url.Action("GetImage", "Posts", new { p.ID })" />
+                            <img width="300" height="600" src="@Url.Action("GetImage", "Posts", new { p.ID })" />
                         }
                         <br /><br />
                         <!-- Text Intro -->
@@ -46,9 +46,9 @@
                 <!-- End Post -->
                 }
                 <div class="pagination">
-                    <a href=""><i class="fa fa-angle-left"></i></a>
-                    @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x }))
-                    <a href=""><i class="fa fa-angle-right"></i></a>
+                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action("Index", new { Page = x }))
+                    @Html.PageLinks(Model.PagingView, x => Url.Action("Index", new { Page = x }))
+                    @Html.PageLinksRight(Model.PagingView, x => Url.Action("Index", new { Page = x }))
                 </div>
             </div>
             <!-- End Content -->

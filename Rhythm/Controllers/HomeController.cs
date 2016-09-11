@@ -16,7 +16,7 @@ namespace Rhythm.Controllers
     public class HomeController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 8;
+        public int PageSize = 4;
         public HomeController(IRepository repository)
         {
             this.repository = repository;
@@ -34,9 +34,10 @@ namespace Rhythm.Controllers
                 Posts = repository.Post
                 .OrderBy(p => p.ID)
                 .Where(m => m.Published == true)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize).ToArray().Reverse(),
-
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {

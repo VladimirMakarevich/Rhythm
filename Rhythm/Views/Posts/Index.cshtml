@@ -45,9 +45,9 @@
                 <!-- End Post -->
                 }
                 <div class="pagination">
-                    <a href=""><i class="fa fa-angle-left"></i></a>
-                    @Html.PageLinks(Model.PagingView, x => Url.Action("List", new { Page = x }))
-                    <a href=""><i class="fa fa-angle-right"></i></a>
+                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action("Index", new {  Page = x }))
+                    @Html.PageLinks(Model.PagingView, x => Url.Action("Index", new { Page = x }))
+                    @Html.PageLinksRight(Model.PagingView, x => Url.Action("Index", new { Page = x }))
                 </div>
             </div>
             <!-- End Content -->
