@@ -68,7 +68,7 @@ namespace Rhythm.Controllers
         }
         public IEnumerable<Post> GetPosts()
         {
-            var posts = repository.Post.OrderBy(p => p.ID).Where(m => m.Published == true).ToArray().Reverse();
+            var posts = repository.Post.OrderBy(p => p.ID).Where(m => m.Published == true).Take(5).ToArray().Reverse();
             return posts;
         }
     }

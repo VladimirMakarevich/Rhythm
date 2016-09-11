@@ -151,7 +151,9 @@ GO
 ALTER TABLE blog.Comment
 WITH CHECK ADD CONSTRAINT FK_Comment_Post
 FOREIGN KEY (PostID) REFERENCES blog.Post(ID)
+ON DELETE CASCADE
 ON UPDATE CASCADE
+ALTER TABLE blog.Comment CHECK CONSTRAINT FK_Comment_Post
 GO
 
 
@@ -247,9 +249,124 @@ CREATE TABLE [log].[Logger](
 
 
 
-CREATE SCHEMA [identity]/****** Object:  Table [identity].[Roles]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[Roles]([Id] [nvarchar](128) NOT NULL,[Name] [nvarchar](256) NOT NULL,CONSTRAINT [PK_identity.Roles] PRIMARY KEY CLUSTERED (  [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO/****** Object:  Table [identity].[UserClaims]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserClaims](   [Id] [int] IDENTITY(1,1) NOT NULL,   [UserId] [nvarchar](128) NOT NULL,   [ClaimType] [nvarchar](max) NULL,   [ClaimValue] [nvarchar](max) NULL,CONSTRAINT [PK_identity.UserClaims] PRIMARY KEY CLUSTERED (   [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO/****** Object:  Table [identity].[UserLogins]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserLogins](    [LoginProvider] [nvarchar](128) NOT NULL,    [ProviderKey] [nvarchar](128) NOT NULL,    [UserId] [nvarchar](128) NOT NULL,CONSTRAINT [PK_identity.UserLogins] PRIMARY KEY CLUSTERED (    [LoginProvider] ASC,    [ProviderKey] ASC,    [UserId] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO/****** Object:  Table [identity].[UserRoles]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[UserRoles](   [UserId] [nvarchar](128) NOT NULL,   [RoleId] [nvarchar](128) NOT NULL,CONSTRAINT [PK_identity.UserRoles] PRIMARY KEY CLUSTERED (    [UserId] ASC,    [RoleId] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO/****** Object:  Table [identity].[Users]    Script Date: 16-Aug-15 6:52:25 PM ******/SET ANSI_NULLS ONGOSET QUOTED_IDENTIFIER ONGOCREATE TABLE [identity].[Users](    [Id] [nvarchar](128) NOT NULL,    [Email] [nvarchar](256) NULL,    [EmailConfirmed] [bit] NOT NULL,    [PasswordHash] [nvarchar](max) NULL,    [SecurityStamp] [nvarchar](max) NULL,    [PhoneNumber] [nvarchar](max) NULL,    [PhoneNumberConfirmed] [bit] NOT NULL,    [TwoFactorEnabled] [bit] NOT NULL,    [LockoutEndDateUtc] [datetime] NULL,    [LockoutEnabled] [bit] NOT NULL,    [AccessFailedCount] [int] NOT NULL,    [UserName] [nvarchar](256) NOT NULL,CONSTRAINT [PK_identity.Users] PRIMARY KEY CLUSTERED (    [Id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO ALTER TABLE [identity].[UserClaims]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserClaims] CHECK CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId] GO ALTER TABLE [identity].[UserLogins]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserLogins] CHECK CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId] GO ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId] FOREIGN KEY([RoleId]) REFERENCES [identity].[Roles] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId] GO ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId] FOREIGN KEY([UserId]) REFERENCES [identity].[Users] ([Id]) ON DELETE CASCADE GO ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId] GO
+/*
+CREATE SCHEMA [identity]
+
+/****** Object:  Table [identity].[Roles]    Script Date: 16-Aug-15 6:52:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [identity].[Roles](
+[Id] [nvarchar](128) NOT NULL,
+[Name] [nvarchar](256) NOT NULL,
+CONSTRAINT [PK_identity.Roles] PRIMARY KEY CLUSTERED 
+(
+  [Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+/****** Object:  Table [identity].[UserClaims]    Script Date: 16-Aug-15 6:52:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [identity].[UserClaims](
+   [Id] [int] IDENTITY(1,1) NOT NULL,
+   [UserId] [nvarchar](128) NOT NULL,
+   [ClaimType] [nvarchar](max) NULL,
+   [ClaimValue] [nvarchar](max) NULL,
+CONSTRAINT [PK_identity.UserClaims] PRIMARY KEY CLUSTERED 
+(
+   [Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [identity].[UserLogins]    Script Date: 16-Aug-15 6:52:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [identity].[UserLogins](
+    [LoginProvider] [nvarchar](128) NOT NULL,
+    [ProviderKey] [nvarchar](128) NOT NULL,
+    [UserId] [nvarchar](128) NOT NULL,
+CONSTRAINT [PK_identity.UserLogins] PRIMARY KEY CLUSTERED 
+(
+    [LoginProvider] ASC,
+    [ProviderKey] ASC,
+    [UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+/****** Object:  Table [identity].[UserRoles]    Script Date: 16-Aug-15 6:52:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [identity].[UserRoles](
+   [UserId] [nvarchar](128) NOT NULL,
+   [RoleId] [nvarchar](128) NOT NULL,
+CONSTRAINT [PK_identity.UserRoles] PRIMARY KEY CLUSTERED 
+(
+    [UserId] ASC,
+    [RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+/****** Object:  Table [identity].[Users]    Script Date: 16-Aug-15 6:52:25 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [identity].[Users](
+    [Id] [nvarchar](128) NOT NULL,
+    [Email] [nvarchar](256) NULL,
+    [EmailConfirmed] [bit] NOT NULL,
+    [PasswordHash] [nvarchar](max) NULL,
+    [SecurityStamp] [nvarchar](max) NULL,
+    [PhoneNumber] [nvarchar](max) NULL,
+    [PhoneNumberConfirmed] [bit] NOT NULL,
+    [TwoFactorEnabled] [bit] NOT NULL,
+    [LockoutEndDateUtc] [datetime] NULL,
+    [LockoutEnabled] [bit] NOT NULL,
+    [AccessFailedCount] [int] NOT NULL,
+    [UserName] [nvarchar](256) NOT NULL,
+CONSTRAINT [PK_identity.Users] PRIMARY KEY CLUSTERED 
+(
+    [Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+ ALTER TABLE [identity].[UserClaims]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId] FOREIGN KEY([UserId])
+ REFERENCES [identity].[Users] ([Id])
+ ON DELETE CASCADE
+ GO
+ ALTER TABLE [identity].[UserClaims] CHECK CONSTRAINT [FK_identity.UserClaims_identity.Users_UserId]
+ GO
+ ALTER TABLE [identity].[UserLogins]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId] FOREIGN KEY([UserId])
+ REFERENCES [identity].[Users] ([Id])
+ ON DELETE CASCADE
+ GO
+ ALTER TABLE [identity].[UserLogins] CHECK CONSTRAINT [FK_identity.UserLogins_identity.Users_UserId]
+ GO
+ ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId] FOREIGN KEY([RoleId])
+ REFERENCES [identity].[Roles] ([Id])
+ ON DELETE CASCADE
+ GO
+ ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Roles_RoleId]
+ GO
+ ALTER TABLE [identity].[UserRoles]  WITH CHECK ADD  CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId] FOREIGN KEY([UserId])
+ REFERENCES [identity].[Users] ([Id])
+ ON DELETE CASCADE
+ GO
+ ALTER TABLE [identity].[UserRoles] CHECK CONSTRAINT [FK_identity.UserRoles_identity.Users_UserId]
+ GO
+ */

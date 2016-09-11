@@ -113,7 +113,9 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="InnerErrorMessage" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Comment_Post">
-          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Post">
@@ -196,11 +198,11 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <EntitySet Name="Post" EntityType="Self.Post" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Logger" EntityType="Self.Logger" Schema="log" store:Type="Tables" />
-          <EntitySet Name="PostTag" EntityType="Self.PostTag" Schema="blog" store:Type="Tables">
-            <!--<DefiningQuery>SELECT 
+          <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" store:Schema="blog">
+            <DefiningQuery>SELECT 
     [PostTag].[PostID] AS [PostID], 
     [PostTag].[TagID] AS [TagID]
-    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>-->
+    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserRole" EntityType="Self.UserRole" store:Type="Tables" store:Schema="blog">
             <DefiningQuery>SELECT 

@@ -29,6 +29,5 @@ namespace Rhythm.Authentication
         {
             return new DogIdentityDbContext();
         }
-
     }
 }
