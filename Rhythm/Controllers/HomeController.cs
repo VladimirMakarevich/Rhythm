@@ -49,5 +49,10 @@ namespace Rhythm.Controllers
 
             return View(model);
         }
+
+        public ActionResult BadAction()
+        {
+            throw new Exception("You forgot to implement this ACTION!");
+        }
     }
 }

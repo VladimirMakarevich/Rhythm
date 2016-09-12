@@ -393,7 +393,7 @@ namespace Rhythm.Controllers
         #region AspDotNetQuestion
         public ActionResult AspDotNetQuestion(string src, int page = 1)
         {
-            var n = RssReader.GetRssFeed("StephenWalther");
+            var n = RssReader.GetRssFeed("asp.net");
             RssListViewModel model = new RssListViewModel
             {
                 Source = src,

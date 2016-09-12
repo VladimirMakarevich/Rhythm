@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@Html.Partial("_NavigationPanel")
 @Html.Partial("_HeadSection")
 <!-- for renderBody -->
 <section class="page-section">
@@ -16,7 +16,7 @@
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
+                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", "Posts", new { id = p.ID }, null)</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
                             <a><i class="fa fa-clock-o"></i>@p.PostedOn</a>

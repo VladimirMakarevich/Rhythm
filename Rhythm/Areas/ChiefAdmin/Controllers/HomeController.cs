@@ -40,7 +40,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 .Take(15).ToArray().Reverse()
 
             };
-
+            if (content == null)
+            {
+                return null;
+            }
             return View(content);
         }
 

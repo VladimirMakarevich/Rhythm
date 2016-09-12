@@ -2,8 +2,9 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.Partial("_NavigationPanel")
 @Html.Partial("_HeadSection")
-  <!-- Section -->
+  @*<!-- Section -->
     <section class="page-section">
         <div class="relative container">
 
@@ -11,7 +12,7 @@
                 <p>
                     Данный раздел предназначен в первую очередь для тех, кто хочет научиться программировать на C#, и освоить WEB программирование. Сдесь собраны наиболее полезные материалы, которые помогут Вам в дастижении цели.                </p>
                 <p>
-                    @Html.Partial("_messageNote")
+
                 </p>
             </div>
 
@@ -20,4 +21,5 @@
         <hr class="mb-70 mb-xs-30" />
         <!-- End Divider -->
     </section>
-    <!-- End Section -->
+    <!-- End Section -->*@
+@Html.Partial("_messageNote")

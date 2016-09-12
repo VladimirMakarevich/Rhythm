@@ -3,6 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.Partial("_NavigationPanel")
 @Html.Partial("_HeadSection")
 <!-- for renderBody -->
 <section class="page-section">
@@ -29,7 +30,7 @@
                         </div>
                         @if (p.ImageData != null)
                         {
-                        <img width="300" height="600" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
+                            <img width="500" height="500" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
                         }
                         <br />
                         <div class="blog-item-body">

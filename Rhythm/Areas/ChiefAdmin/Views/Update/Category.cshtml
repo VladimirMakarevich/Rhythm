@@ -12,7 +12,7 @@
         <!-- Form -->
         @using (Html.BeginForm("Category", "Update", FormMethod.Post, new { @class = "form" }))
         {
-
+            @Html.HiddenFor(m => m.CountCategory)
             @Html.Label("Name: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Name -->

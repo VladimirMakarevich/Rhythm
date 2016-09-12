@@ -4441,10 +4441,10 @@ a.blog-item-more:hover{
 }
 .comment-avatar{
 	width: 50px;
-    margin-right: 10px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
+    margin-right: 30px;
+	-webkit-border-radius: 20%;
+	-moz-border-radius: 20%;
+	border-radius: 20%;
 }
 .comment-item-data{
 	margin: 0 0 5px;

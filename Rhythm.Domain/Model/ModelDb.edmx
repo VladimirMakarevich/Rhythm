@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DogCodingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DogCodingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,7 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DescriptionCategory" Type="nvarchar(max)" />
-          <Property Name="CountCategory" Type="int" />
+          <Property Name="CountCategory" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -27,27 +27,6 @@
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" />
-        </EntityType>
-        <EntityType Name="DogRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DogUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NameUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="PasswordUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EmailUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="AddedDate" Type="datetime" Nullable="false" />
-          <Property Name="ActivatedDate" Type="datetime" />
-          <Property Name="LastVisitDate" Type="datetime" Nullable="false" />
-          <Property Name="AvatarPath" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -65,7 +44,7 @@
           <Property Name="Category" Type="int" Nullable="false" />
           <Property Name="ImageData" Type="varbinary(max)" />
           <Property Name="ImageMime" Type="nvarchar" MaxLength="100" />
-          <Property Name="CountComments" Type="int" />
+          <Property Name="CountComments" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -85,16 +64,6 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DescriptionTag" Type="nvarchar(max)" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="DogRoleID" />
-            <PropertyRef Name="DogUserID" />
-          </Key>
-          <Property Name="DogRoleID" Type="int" Nullable="false" />
-          <Property Name="DogUserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Logger">
           <Key>
@@ -123,30 +92,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             </Principal>
             <Dependent Role="Comment">
               <PropertyRef Name="PostID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DogRole_Role">
-          <End Role="DogRole" Type="Self.DogRole" Multiplicity="1" />
-          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DogRole">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="DogRoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DogUser_Role">
-          <End Role="DogUser" Type="Self.DogUser" Multiplicity="1" />
-          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DogUser">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="UserRole">
-              <PropertyRef Name="DogUserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,34 +138,14 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
         <EntityContainer Name="DogCodingModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="blog" store:Type="Tables" />
-          <EntitySet Name="DogRole" EntityType="Self.DogRole" Schema="blog" store:Type="Tables" />
-          <EntitySet Name="DogUser" EntityType="Self.DogUser" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Logger" EntityType="Self.Logger" Schema="log" store:Type="Tables" />
           <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" Schema="blog">
-            <!--<DefiningQuery>SELECT 
-    [PostTag].[PostID] AS [PostID], 
-    [PostTag].[TagID] AS [TagID]
-    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>-->
-          </EntitySet>
-          <EntitySet Name="UserRole" EntityType="Self.UserRole" store:Type="Tables" store:Schema="blog">
-            <DefiningQuery>SELECT 
-    [UserRole].[DogRoleID] AS [DogRoleID], 
-    [UserRole].[DogUserID] AS [DogUserID]
-    FROM [blog].[UserRole] AS [UserRole]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DogRole_Role" Association="Self.FK_DogRole_Role">
-            <End Role="DogRole" EntitySet="DogRole" />
-            <End Role="UserRole" EntitySet="UserRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DogUser_Role" Association="Self.FK_DogUser_Role">
-            <End Role="DogUser" EntitySet="DogUser" />
-            <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
             <End Role="Category" EntitySet="Category" />
@@ -235,7 +160,8 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             <End Role="PostTag" EntitySet="PostTag" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DogCodingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -247,7 +173,7 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UrlSlug" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DescriptionCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CountCategory" Type="Int32" />
+          <Property Name="CountCategory" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
         </EntityType>
         <EntityType Name="Comment">
@@ -263,29 +189,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
-        </EntityType>
-        <EntityType Name="DogRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DogUsers" Relationship="Self.UserRole" FromRole="DogRole" ToRole="DogUser" />
-        </EntityType>
-        <EntityType Name="DogUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EmailUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ActivatedDate" Type="DateTime" Precision="3" />
-          <Property Name="LastVisitDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="AvatarPath" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="DogRoles" Relationship="Self.UserRole" FromRole="DogUser" ToRole="DogRole" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -303,7 +206,7 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="Category" Type="Int32" Nullable="false" />
           <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ImageMime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CountComments" Type="Int32" />
+          <Property Name="CountComments" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category1" Relationship="Self.FK_Post_Category" FromRole="Post" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Post" FromRole="Post" ToRole="Comment" />
           <NavigationProperty Name="Tags" Relationship="Self.PostTag" FromRole="Post" ToRole="Tag" />
@@ -318,6 +221,22 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <Property Name="DescriptionTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Posts" Relationship="Self.PostTag" FromRole="Tag" ToRole="Post" />
         </EntityType>
+        <EntityType Name="Logger">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ErrorSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InnerErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
@@ -331,7 +250,9 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comment_Post">
-          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Post">
@@ -346,17 +267,12 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
         </Association>
-        <Association Name="UserRole">
-          <End Role="DogRole" Type="Self.DogRole" Multiplicity="*" />
-          <End Role="DogUser" Type="Self.DogUser" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="DogCodingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="DogRoles" EntityType="Self.DogRole" />
-          <EntitySet Name="DogUsers" EntityType="Self.DogUser" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
           <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="Loggers" EntityType="Self.Logger" />
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Post" EntitySet="Posts" />
@@ -369,28 +285,7 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
             <End Role="Post" EntitySet="Posts" />
             <End Role="Tag" EntitySet="Tags" />
           </AssociationSet>
-          <AssociationSet Name="UserRole" Association="Self.UserRole">
-            <End Role="DogRole" EntitySet="DogRoles" />
-            <End Role="DogUser" EntitySet="DogUsers" />
-          </AssociationSet>
-          <EntitySet Name="Loggers" EntityType="DogCodingModel.Logger" />
         </EntityContainer>
-        <EntityType Name="Logger">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EventLevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MachineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EventMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InnerErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -419,29 +314,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
                 <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DogRoles">
-            <EntityTypeMapping TypeName="DogCodingModel.DogRole">
-              <MappingFragment StoreEntitySet="DogRole">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DogUsers">
-            <EntityTypeMapping TypeName="DogCodingModel.DogUser">
-              <MappingFragment StoreEntitySet="DogUser">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
-                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
-                <ScalarProperty Name="EmailUser" ColumnName="EmailUser" />
-                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
-                <ScalarProperty Name="ActivatedDate" ColumnName="ActivatedDate" />
-                <ScalarProperty Name="LastVisitDate" ColumnName="LastVisitDate" />
-                <ScalarProperty Name="AvatarPath" ColumnName="AvatarPath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -474,6 +346,23 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Loggers">
+            <EntityTypeMapping TypeName="DogCodingModel.Logger">
+              <MappingFragment StoreEntitySet="Logger">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
+                <ScalarProperty Name="EventLevel" ColumnName="EventLevel" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="EventMessage" ColumnName="EventMessage" />
+                <ScalarProperty Name="ErrorSource" ColumnName="ErrorSource" />
+                <ScalarProperty Name="ErrorClass" ColumnName="ErrorClass" />
+                <ScalarProperty Name="ErrorMethod" ColumnName="ErrorMethod" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="InnerErrorMessage" ColumnName="InnerErrorMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="PostTag" TypeName="DogCodingModel.PostTag" StoreEntitySet="PostTag">
             <EndProperty Name="Post">
               <ScalarProperty Name="ID" ColumnName="PostID" />
@@ -482,31 +371,6 @@ warning 6002: The table/view 'DogCoding.blog.UserRole' does not have a primary k
               <ScalarProperty Name="ID" ColumnName="TagID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="UserRole" TypeName="DogCodingModel.UserRole" StoreEntitySet="UserRole">
-            <EndProperty Name="DogRole">
-              <ScalarProperty Name="ID" ColumnName="DogRoleID" />
-            </EndProperty>
-            <EndProperty Name="DogUser">
-              <ScalarProperty Name="ID" ColumnName="DogUserID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Loggers">
-            <EntityTypeMapping TypeName="DogCodingModel.Logger">
-              <MappingFragment StoreEntitySet="Logger">
-                <ScalarProperty Name="InnerErrorMessage" ColumnName="InnerErrorMessage" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-                <ScalarProperty Name="ErrorMethod" ColumnName="ErrorMethod" />
-                <ScalarProperty Name="ErrorClass" ColumnName="ErrorClass" />
-                <ScalarProperty Name="ErrorSource" ColumnName="ErrorSource" />
-                <ScalarProperty Name="EventMessage" ColumnName="EventMessage" />
-                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="EventLevel" ColumnName="EventLevel" />
-                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

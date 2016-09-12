@@ -209,6 +209,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.SqlServer.sql" />
+    <Content Include="App_Readme\Elmah.SqlServer.txt" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\css\AjaxLoader.gif" />
     <Content Include="Content\css\animate.min.css" />
@@ -223,6 +225,7 @@
     <Content Include="Content\css\vertical-rhythm.min.css" />
     <Content Include="Content\fonts\et-line.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\house-dog-tr.png" />
     <Content Include="Content\img\apple-touch-icon-114x114.png" />
     <Content Include="Content\img\apple-touch-icon-72x72.png" />
     <Content Include="Content\img\apple-touch-icon.png" />
@@ -236,6 +239,7 @@
     <Content Include="Content\img\logo-white.png" />
     <Content Include="Content\img\map-marker.png" />
     <Content Include="Content\img\pattern-bg-2.png" />
+    <Content Include="Content\img\section-bg-12.jpg" />
     <Content Include="Content\table.css" />
     <Content Include="Global.asax" />
     <Content Include="NLog.config">
@@ -670,6 +674,7 @@
     <Compile Include="Collections\Archive.cs" />
     <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
@@ -754,7 +759,6 @@
     <Content Include="Views\Posts\Post.cshtml" />
     <Content Include="Views\Shared\_CommentsList.cshtml" />
     <Content Include="Views\Comments\AllComments.cshtml" />
-    <Content Include="Views\Errors\_Error_404.cshtml" />
     <Content Include="Views\AboutMe\Index.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Library\Index.cshtml" />
@@ -770,6 +774,9 @@
     <Content Include="Areas\ChiefAdmin\Views\Login\Login.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Login\Register.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\_NavigationPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -780,7 +787,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

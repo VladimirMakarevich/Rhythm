@@ -10,5 +10,6 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "the field are required!")]
         public string UrlSlug { get; set; }
         public string DescriptionCategory { get; set; }
+        public int CountCategory { get; set; }
     }
 }
