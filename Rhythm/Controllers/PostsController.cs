@@ -15,7 +15,7 @@ namespace Rhythm.Controllers
     public class PostsController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 4;
+        public int PageSize = 8;
         public PostsController(IRepository repository)
         {
             this.repository = repository;

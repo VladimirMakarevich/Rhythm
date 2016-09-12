@@ -48,6 +48,7 @@ namespace Rhythm.Domain.EfRepository
             {
                 try
                 {
+                    comment.PostedOn = DateTime.Now;
                     comment.Post.CountComments++;
                     context.Comments.Add(comment);
                     await context.SaveChangesAsync();

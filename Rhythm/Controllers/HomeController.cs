@@ -16,7 +16,7 @@ namespace Rhythm.Controllers
     public class HomeController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 4;
+        public int PageSize = 8;
         public HomeController(IRepository repository)
         {
             this.repository = repository;
