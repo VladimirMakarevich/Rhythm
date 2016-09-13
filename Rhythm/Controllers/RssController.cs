@@ -37,10 +37,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -70,10 +70,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -102,10 +102,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -135,10 +135,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -168,10 +168,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -201,10 +201,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -234,10 +234,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -267,10 +267,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -300,10 +300,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -333,10 +333,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -366,10 +366,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -399,10 +399,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -432,10 +432,10 @@ namespace Rhythm.Controllers
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -456,19 +456,19 @@ namespace Rhythm.Controllers
         }
         #endregion
 
-        #region PrideParrot
-        public ActionResult PrideParrot(string src, int page = 1)
+        #region Dotnetkick
+        public ActionResult Dotnetkick(string src, int page = 1)
         {
-            var n = RssReader.GetRssFeed("PrideParrot");
+            var n = RssReader.GetRssDNK();
             RssListViewModel model = new RssListViewModel
             {
                 Source = src,
 
                 RssReaders = n.OrderBy(m => m.PubDate)
+                .AsEnumerable()
+                .Reverse()
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize)
-                .ToArray()
-                .Reverse(),
+                .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -478,15 +478,48 @@ namespace Rhythm.Controllers
                 }
             };
 
-            ViewBag.Title = "Pride Parrot Blog";
+            ViewBag.Title = "Dot Net Kick";
             ViewBag.WordFirst = "NEWS";
             ViewBag.WordSecond = "IT";
-            ViewBag.WordThird = "Blog";
+            ViewBag.WordThird = "DNK";
 
-            ViewBag.Site = "PrideParrot";
+            ViewBag.Site = "Dot Net Kick";
             ViewBag.News = "News";
             return View("RSS", model);
         }
         #endregion
+
+        //#region SergeyTeplyakov
+        //public ActionResult Sergeyteplyakov(string src, int page = 1)
+        //{
+        //    var n = RssReader.GetRssFeed("sergeyteplyakov");
+        //    RssListViewModel model = new RssListViewModel
+        //    {
+        //        Source = src,
+
+        //        RssReaders = n.OrderBy(m => m.PubDate)
+        //        .AsEnumerable()
+        //        .Reverse()
+        //        .Skip((page - 1) * PageSize)
+        //        .Take(PageSize),
+
+        //        PagingView = new ListView
+        //        {
+        //            CurrentPage = page,
+        //            PostsPerPage = PageSize,
+        //            TotalPosts = n.Count()
+        //        }
+        //    };
+
+        //    ViewBag.Title = "Sergey Teplyakov";
+        //    ViewBag.WordFirst = "NEWS";
+        //    ViewBag.WordSecond = "IT";
+        //    ViewBag.WordThird = "Blog";
+
+        //    ViewBag.Site = "Sergey Teplyakov";
+        //    ViewBag.News = "News";
+        //    return View("RSS", model);
+        //}
+        //#endregion
     }
 }

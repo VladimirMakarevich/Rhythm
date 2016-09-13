@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml.Linq;
 using System.Data.Entity;
+using System.Xml;
 
 namespace Rhythm.Models
 {
@@ -84,11 +85,14 @@ namespace Rhythm.Models
                 case "StephenWalther":
                     blogURL = "http://feeds.feedburner.com/StephenWalther?format=xml";
                     break;
-                case "PrideParrot":
-                    blogURL = "http://feeds.feedburner.com/prideparrot?format=xml";
+                case "Dotnetkick":
+                    blogURL = "https://dotnetkicks.com/feeds/rss";
                     break;
                 case "ScottGu":
                     blogURL = "https://weblogs.asp.net/scottgu/rss?containerid=13";
+                    break;
+                case "sergeyteplyakov":
+                    blogURL = "http://feeds.feedburner.com/blogspot/Znar?format=xml";
                     break;
                 default:
                     break;
@@ -96,16 +100,14 @@ namespace Rhythm.Models
             try
             {
                 XDocument feedXml = XDocument.Load(blogURL);
-                var feeds = feedXml.Descendants("item")
-                    .Select(feed => new Rss
-                    {
-                        Title = feed.Element("title").Value,
-                        Link = feed.Element("link").Value,
-                        Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
-                        PubDate = feed.Element("pubDate").Value
-                    });
-
-                //HttpServerUtilityBase.HtmlDecode
+                var feeds = from feed in feedXml.Descendants("item")
+                            select new Rss
+                            {
+                                Title = feed.Element("title").Value,
+                                Link = feed.Element("link").Value,
+                                Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
+                                PubDate = feed.Element("pubDate").Value
+                            };
                 return (feeds);
             }
 
@@ -117,15 +119,32 @@ namespace Rhythm.Models
             return null;
         }
 
-        //"^.{1,180}\b(?<!\s)"
+        public static IEnumerable<Rss> GetRssDNK()
+        {
+            var blogURL = "https://dotnetkicks.com/feeds/rss";
+            try
+            {
+                XDocument feedXml = XDocument.Load(blogURL);
+                XNamespace ns = XNamespace.Get("http://www.w3.org/2005/Atom");
 
-        //private string GetPlainText(string htmlContent, int lenght = 0)
-        //{
-        //    string htmlTag = "<.*?>";
-        //    string plainText = Regex.Replace(htmlContent, htmlTag, string.Empty);
-        //    return lenght > 0 && plainText.Length > lenght ? plainText.Substring(0, lenght) : plainText;
+                var feeds = from feed in feedXml.Descendants("item")
+                            select new Rss
+                            {
+                                Title = feed.Element("title").Value,
+                                Link = feed.Element("link").Value,
+                                Description = Regex.Replace(feed.Element("description").Value, "<.*?>", string.Empty),
+                                PubDate = feed.Element(ns + "updated").Value
+                            };
+                return (feeds);
+            }
 
-        //}
+            catch (Exception ex)
+            {
+                logger.Error("Faild in RssRader IEnumerable<Rss> GetRssFeed: {0}", ex.Message);
+            }
+
+            return null;
+        }
     }
     #endregion
 }
