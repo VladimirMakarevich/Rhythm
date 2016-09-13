@@ -23,7 +23,14 @@ namespace Rhythm
             routes.MapRoute(
                 name: "Posts",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional, flag = UrlParameter.Optional },
+                defaults: new { controller = "Posts", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Rhythm.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Post",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Posts", action = "Post", id = UrlParameter.Optional, flag = UrlParameter.Optional },
                 namespaces: new[] { "Rhythm.Controllers" }
             );
 
