@@ -64,50 +64,50 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return Redirect(returnUrl);
         }
 
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        //    [AllowAnonymous]
+        //    public ActionResult Register()
+        //    {
+        //        return View();
+        //    }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult> Register(RegisterViewModel register)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new AppUser { UserName = register.Email, Email = register.Email };
-                var result = await UserManager.CreateAsync(user, register.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
-            return View(register);
-        }
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
-        }
+        //    [AllowAnonymous]
+        //    [HttpPost]
+        //    public async Task<ActionResult> Register(RegisterViewModel register)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            var user = new AppUser { UserName = register.Email, Email = register.Email };
+        //            var result = await UserManager.CreateAsync(user, register.Password);
+        //            if (result.Succeeded)
+        //            {
+        //                return RedirectToAction("Index", "Home");
+        //            }
+        //            AddErrors(result);
+        //        }
+        //        return View(register);
+        //    }
+        //    private ActionResult RedirectToLocal(string returnUrl)
+        //    {
+        //        if (Url.IsLocalUrl(returnUrl))
+        //        {
+        //            return Redirect(returnUrl);
+        //        }
+        //        return RedirectToAction("Index", "Home");
+        //    }
 
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
-        }
+        //    private void AddErrors(IdentityResult result)
+        //    {
+        //        foreach (var error in result.Errors)
+        //        {
+        //            ModelState.AddModelError("", error);
+        //        }
+        //    }
 
-        [HttpPost]
-        public ActionResult LogOff()
-        {
-            SignInManager.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
+        //    [HttpPost]
+        //    public ActionResult LogOff()
+        //    {
+        //        SignInManager.SignOut();
+        //        return RedirectToAction("Index", "Home");
+        //    }
     }
 }

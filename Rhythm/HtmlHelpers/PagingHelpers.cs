@@ -12,7 +12,6 @@ namespace Rhythm.HtmlHelpers
     public static class PagingHelpers
     {
         #region old
-        //TODO: tag.AddCssClass("selected"); and plus result with  object htmlAttributes
         //public static MvcHtmlString PageLinks(this HtmlHelper HTML,
         //    ListView listView,
         //    Func<int, string> pageUrl)
