@@ -43,7 +43,7 @@ namespace Rhythm.Controllers
             };
             ViewBag.Text = String.Format(@"A list of posts by model ""{0}""", item.Name);
 
-            return View("Search", search);
+            return View("Index", search);
         }
 
         public ViewResult Tag(Tag item, int page = 1)
@@ -70,12 +70,12 @@ namespace Rhythm.Controllers
             };
             ViewBag.Text = String.Format(@"A list of posts by tag ""{0}""", item.Name);
 
-            return View("Search", search);
+            return View("Index", search);
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ViewResult Search(string item, int page = 1)
+        public ViewResult Index(string item, int page = 1)
         {
             ViewBag.Title = "Search Result";
 
@@ -85,13 +85,25 @@ namespace Rhythm.Controllers
             p.Tags.Any(t => t.Name.Contains(item)))
                 .Select(p => p.ID).ToList();
 
+            if (posts == null)
+            {
+                ViewBag.Text = String.Format(@"Your search - ""{0}"" - did not match any documents.", item);
+                return View();
+            }
+            else
+            {
+                ViewBag.Text = String.Format(@"List of posts found for search text ""{0}""", item);
+            }
+
             PostListViewModel search = new PostListViewModel
             {
                 Posts = repository.Post
-                    .Where(p => posts.Contains(p.ID))
+                    .Where(p => posts.Contains(p.ID) && p.Published == true)
                     .OrderBy(p => p.ID)
+                    .AsEnumerable()
+                    .Reverse()
                     .Skip((page - 1) * PageSize)
-                    .Take(PageSize).ToArray().Reverse(),
+                    .Take(PageSize),
 
                 PagingView = new ListView
                 {
@@ -101,15 +113,7 @@ namespace Rhythm.Controllers
                 }
             };
 
-            if (item == null)
-            {
-                ViewBag.Text = String.Format(@"Your search - ""{0}"" - did not match any documents.", item);
-            }
-            else
-            {
-                ViewBag.Text = String.Format(@"List of posts found for search text ""{0}""", item);
-            }
-            return View("Search", search);
+            return View("Index", search);
         }
 
         public ViewResult Archive(string Year, string Month, int page = 1)
@@ -145,7 +149,7 @@ namespace Rhythm.Controllers
                 ViewBag.Text = String.Format(@"List of posts found for search archive year - ""{0}"", month - ""{1}""", Year, Month);
             }
 
-            return View("Search", source);
+            return View("Index", source);
         }
     }
 }

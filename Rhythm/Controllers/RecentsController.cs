@@ -4,8 +4,6 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using Rhythm.Domain.Model;
 using Rhythm.Collections;
-using System;
-using Rhythm.Models;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
@@ -21,6 +19,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentCategories()
         {
+            //TODO: Async
             var category = repository.Category.OrderBy(p => p.ID).ToList();
             return PartialView("RecentCategories", category);
         }
@@ -28,6 +27,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentTags()
         {
+            //TODO: Async
             var tag = repository.Tag.OrderBy(p => p.ID).ToList();
             return PartialView("RecentTags", tag);
         }
@@ -36,13 +36,15 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentPosts()
         {
-            var posts = GetPosts();
+            //TODO: Async
+            var posts = GetPost();
             return PartialView("RecentPosts", posts);
         }
 
         [ChildActionOnly]
         public ActionResult RecentComments()
         {
+            //TODO: Async
             var comments = repository.GetFiveCommentsList();
             return PartialView("RecentComments", comments);
         }
@@ -50,6 +52,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentArticleWidgets()
         {
+            //TODO: Async
             var articleWidget = repository.GetArticleWidget();
 
             return PartialView("RecentArticleWidgets", articleWidget);
@@ -58,6 +61,7 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentArchives()
         {
+            //TODO: Async
             var model = new ArchiveCollection(GetPost());
             return PartialView(model);
         }
@@ -77,6 +81,7 @@ namespace Rhythm.Controllers
                 .AsEnumerable()
                 .Reverse()
                 .Take(5);
+            
             return posts;
         }
     }
