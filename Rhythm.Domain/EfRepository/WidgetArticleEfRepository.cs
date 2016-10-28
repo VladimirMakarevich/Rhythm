@@ -15,7 +15,6 @@ namespace Rhythm.Domain.EfRepository
         {
             int countArticle;
             Random r = new Random();
-
             var count = context.Posts.Max(p => p.ID);
             List<int> q = new List<int>();
             do
@@ -32,7 +31,7 @@ namespace Rhythm.Domain.EfRepository
                 }
             }
             while (repositoryArticle == null);
-
+            repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == 6);
             articleWidget = new RecentArticleWidget()
             {
                 ArticleContent = repositoryArticle.ShortDescription,

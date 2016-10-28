@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/apple-touch-icon-114x114.png">
 
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Style")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="appear-animate">
@@ -124,8 +124,9 @@
     </div>
     <!-- End Page Wrap -->
     @Scripts.Render("~/bundles/rhythm/jquery")
+    @Scripts.Render("~/bundles/rhythm/jqueryval")
     @Scripts.Render("~/bundles/rhythm/allJS")
-    <!--[if lt IE 10]><script type="text/javascript" src="~/script/rhythm/placeholder.js"></script><![endif]-->
+    <!--[if lt IE 10]><script type="text/javascript" src="~/Script/rhythm/placeholder.js"></script><![endif]-->
     @RenderSection("scripts", required: false)
 </body>
 </html>

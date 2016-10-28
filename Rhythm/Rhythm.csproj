@@ -225,12 +225,12 @@
     <Content Include="Content\css\vertical-rhythm.min.css" />
     <Content Include="Content\fonts\et-line.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\Images\Common Site.png" />
-    <Content Include="Content\Images\house-dog-tr.png" />
-    <Content Include="Content\Images\photo-29679422_295474160.jpg" />
-    <Content Include="Content\Images\photo-29679422_295828646.jpg" />
-    <Content Include="Content\Images\photo-29679422_393898892.jpg" />
-    <Content Include="Content\Images\photo-29679422_395371643.jpg" />
+    <Content Include="Content\images\Common Site.png" />
+    <Content Include="Content\images\house-dog-tr.png" />
+    <Content Include="Content\images\photo-29679422_295474160.jpg" />
+    <Content Include="Content\images\photo-29679422_295828646.jpg" />
+    <Content Include="Content\images\photo-29679422_393898892.jpg" />
+    <Content Include="Content\images\photo-29679422_395371643.jpg" />
     <Content Include="Content\img\apple-touch-icon-114x114.png" />
     <Content Include="Content\img\apple-touch-icon-72x72.png" />
     <Content Include="Content\img\apple-touch-icon.png" />
@@ -852,7 +852,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Files\" />
+    <Folder Include="Content\files\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
