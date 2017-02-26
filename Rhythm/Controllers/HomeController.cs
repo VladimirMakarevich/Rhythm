@@ -52,6 +52,14 @@ namespace Rhythm.Controllers
 
         public ActionResult BadAction()
         {
+            try
+            {
+                throw new Exception("You forgot to implement this ACTION!");
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Simple error - {0}", ex.Message);
+            }
             throw new Exception("You forgot to implement this ACTION!");
         }
     }

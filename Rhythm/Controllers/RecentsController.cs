@@ -53,12 +53,12 @@ namespace Rhythm.Controllers
         public ActionResult RecentArticleWidgets()
         {
             //TODO: Async
-            //var articleWidget = repository.GetArticleWidget();
+            var articleWidget = repository.GetArticleWidget();
 
-            //if (articleWidget != null)
-            //{
-            //    return PartialView("RecentArticleWidgets", articleWidget);
-            //}
+            if (articleWidget != null)
+            {
+                return PartialView("RecentArticleWidgets", articleWidget);
+            }
             return View();
         }
 

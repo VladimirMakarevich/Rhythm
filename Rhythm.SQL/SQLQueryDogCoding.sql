@@ -223,10 +223,9 @@ SELECT * FROM blog.Comment
 SELECT * FROM blog.Tag
 
 
+CREATE SCHEMA [log]
 
 DROP TABLE [log].[Logger]
-
-CREATE SCHEMA [log]
 
 CREATE TABLE [log].[Logger](  
     [Id] [int] IDENTITY(1,1) NOT NULL,

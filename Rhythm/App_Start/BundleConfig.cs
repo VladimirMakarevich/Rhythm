@@ -40,9 +40,9 @@ namespace Rhythm
                             .Include("~/Scripts/rhythm/bootstrap.min.js"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/rhythm/jqueryval").Include(
-                "~/Scripts/jquery.validate*",
-                "~/Scripts/jquery.unobtrusive*"));
+            bundles.Add(new ScriptBundle("~/bundles/rhythm/jqueryval")
+                .Include("~/Scripts/jquery.validate*")
+                .Include("~/Scripts/jquery.unobtrusive*"));
 
 
 

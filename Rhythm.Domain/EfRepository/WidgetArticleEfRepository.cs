@@ -16,22 +16,16 @@ namespace Rhythm.Domain.EfRepository
             int countArticle;
             Random r = new Random();
             var count = context.Posts.Max(p => p.ID);
-            List<int> q = new List<int>();
+
             do
             {
                 countArticle = r.Next(1, count);
-                if (q.Contains(countArticle) == true)
-                {
-                    continue;
-                }
-                else
-                {
-                    repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
-                    q.Add(countArticle);
-                }
+
+                repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
+
             }
             while (repositoryArticle == null);
-            repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == 6);
+
             articleWidget = new RecentArticleWidget()
             {
                 ArticleContent = repositoryArticle.ShortDescription,
