@@ -16,13 +16,14 @@
                         <h1 class="mt-0">@Model.Post.Title</h1>
                         <div class="lead">
                             <hr class="mb-40" />
-                            @Html.Raw(Model.Post.ShortDescription)
                             <div>
-                                @if (Model.Post.ImageData != null)
+                                @if (Model.Post.ImageData != null && Model.Post.ImageData.Any())
                                 {
-                                    <img width="600" height="600" src="@Url.Action("GetImage", "Posts", new { id = Model.Post.ID })" />
+                                    <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = Model.Post.ID })" />
                                 }
                             </div>
+                            <hr class="mb-40" />
+                            @Html.Raw(Model.Post.ShortDescription)
                         </div>
                         <hr class="mb-40" />
                         @Html.Raw(Model.Post.DescriptionPost)

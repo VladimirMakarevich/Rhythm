@@ -28,9 +28,9 @@
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i> Comments @p.CountComments </a>
                         </div>
-                        @if (p.ImageData != null)
+                        @if (p.ImageData != null && p.ImageData.Any())
                         {
-                            <img width="500" height="300" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
+                            <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
                         }
                         <br />
                         <div class="blog-item-body">
@@ -46,7 +46,7 @@
                 <!-- End Post -->
                 }
                 <div class="pagination">
-                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action("Index", new {  Page = x }))
+                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action("Index", new { Page = x }))
                     @Html.PageLinks(Model.PagingView, x => Url.Action("Index", new { Page = x }))
                     @Html.PageLinksRight(Model.PagingView, x => Url.Action("Index", new { Page = x }))
                 </div>

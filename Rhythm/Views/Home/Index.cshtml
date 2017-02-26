@@ -27,10 +27,10 @@
                             <a><i class="fa fa-code"></i> @p.Category1.Name </a>
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i> Comments @p.CountComments </a>
-                        </div>
-                        @if (p.ImageData != null)
+                        </div> 
+                        @if (p.ImageData != null && p.ImageData.Any())
                         {
-                            <img width="500" height="300" src="@Url.Action("GetImage", "Posts", new { p.ID })" />
+                            <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { p.ID })" />
                         }
                         <br /><br />
                         <!-- Text Intro -->
