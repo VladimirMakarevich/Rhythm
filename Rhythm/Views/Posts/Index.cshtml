@@ -20,13 +20,13 @@
                         <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a><i class="fa fa-clock-o"></i>@p.PostedOn</a>
+                            <a><i class="fa fa-clock-o"></i> @p.PostedOn </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-user"></i>@p.NameSenderPost</a>
+                            <a><i class="fa fa-user"></i> @p.NameSenderPost </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-code"></i> @p.Category1.Name</a>
+                            <a><i class="fa fa-code"></i> @p.Category1.Name </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-comments"></i>Comments @p.CountComments</a>
+                            <a><i class="fa fa-comments"></i> Comments @p.CountComments </a>
                         </div>
                         @if (p.ImageData != null)
                         {

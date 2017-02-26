@@ -21,7 +21,7 @@ namespace Rhythm.Controllers
         {
             this.repository = repository;
             ViewBag.Title = "DogCoding blog by Vladimir Makarevich";
-            ViewBag.Text = "DogBlog - Vladimir Makarevich - junior backend Developer ASP.NET MVC";
+            ViewBag.Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC";
             ViewBag.WordFirst = "C#";
             ViewBag.WordSecond = "ASP.NET MVC";
             ViewBag.WordThird = "WEB";

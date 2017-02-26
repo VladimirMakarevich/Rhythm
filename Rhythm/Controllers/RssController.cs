@@ -64,7 +64,7 @@ namespace Rhythm.Controllers
         #region EventsDevby
         public ActionResult EventsDevby(string src, int page = 1)
         {
-            var n = RssReader.GetRssFeed("Devby");
+            var n = RssReader.GetRssFeed("EventsDev");
             RssListViewModel model = new RssListViewModel
             {
                 Source = src,
