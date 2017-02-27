@@ -1,6 +1,7 @@
 ﻿using Rhythm.Domain.Abstract;
 using Rhythm.Domain.Model;
 using Rhythm.Models;
+using Rhythm.Models.RssFeeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
