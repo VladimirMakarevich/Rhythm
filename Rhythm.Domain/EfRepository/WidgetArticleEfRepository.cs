@@ -14,14 +14,14 @@ namespace Rhythm.Domain.EfRepository
         public RecentArticleWidget GetArticleWidget()
         {
             int countArticle;
-            Random r = new Random();
+            var allPosts = context.Posts.OrderBy(m => m.ID).ToList();
             var count = context.Posts.Max(p => p.ID);
+            Random r = new Random();
 
             do
             {
-                countArticle = r.Next(1, count);
-
-                repositoryArticle = context.Posts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
+                countArticle = r.Next(1, count + 1);
+                repositoryArticle = allPosts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
 
             }
             while (repositoryArticle == null);
