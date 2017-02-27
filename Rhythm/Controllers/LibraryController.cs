@@ -11,11 +11,6 @@ namespace Rhythm.Controllers
         // GET: Library
         public ActionResult Index()
         {
-            ViewBag.Title = "Library";
-            ViewBag.Text = "";
-            ViewBag.WordFirst = "C#";
-            ViewBag.WordSecond = "ASP.NET MVC";
-            ViewBag.WordThird = "WEB";
             return View();
         }
     }

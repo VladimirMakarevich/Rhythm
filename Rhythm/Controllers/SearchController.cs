@@ -16,10 +16,6 @@ namespace Rhythm.Controllers
         public int PageSize = 8;
         public SearchController(IRepository repository)
         {
-            ViewBag.Text = "";
-            ViewBag.WordFirst = "C#";
-            ViewBag.WordSecond = "ASP.NET MVC";
-            ViewBag.WordThird = "WEB";
             this.repository = repository;
         }
 

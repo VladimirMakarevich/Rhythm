@@ -19,11 +19,6 @@ namespace Rhythm.Controllers
         public PostsController(IRepository repository)
         {
             this.repository = repository;
-            ViewBag.Title = "Posts";
-            ViewBag.Text = "";
-            ViewBag.WordFirst = "C#";
-            ViewBag.WordSecond = "ASP.NET MVC";
-            ViewBag.WordThird = "WEB";
         }
 
         public ViewResult Index(int page = 1)

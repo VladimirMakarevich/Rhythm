@@ -16,7 +16,6 @@ namespace Rhythm.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Contact with me";
             return View();
         }
 

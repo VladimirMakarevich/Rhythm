@@ -856,6 +856,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\files\" />
+    <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
