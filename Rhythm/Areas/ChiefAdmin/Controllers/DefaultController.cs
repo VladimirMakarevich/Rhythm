@@ -11,7 +11,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     public abstract class DefaultController : Controller
     {
         [Inject]
-        public IRepository repository { get; set; }
+        public IRepository _repository { get; set; }
 
     }
 }

@@ -18,24 +18,24 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public HomeController(IRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         public ViewResult Index()
         {
             Content content = new Content
             {
-                Posts = repository.Post
+                Posts = _repository.Post
                 .OrderBy(p => p.ID)
                 .Take(15).ToArray().Reverse(),
 
-                Categories = repository.Category
+                Categories = _repository.Category
                 .OrderBy(c => c.ID).ToList(),
 
-                Tags = repository.Tag
+                Tags = _repository.Tag
                 .OrderBy(t => t.ID).ToList(),
 
-                Comments = repository.Comment
+                Comments = _repository.Comment
                 .OrderBy(co => co.ID)
                 .Take(15).ToArray().Reverse()
 
@@ -49,23 +49,23 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ViewResult listCategories()
         {
-            var model = repository.Category.OrderBy(c => c.ID).ToList();
+            var model = _repository.Category.OrderBy(c => c.ID).ToList();
             return View(model);
         }
         public ViewResult listTags()
         {
-            var model = repository.Tag.OrderBy(c => c.ID).ToList();
+            var model = _repository.Tag.OrderBy(c => c.ID).ToList();
 
             return View(model);
         }
         public ViewResult listPosts()
         {
-            var model = repository.Post.OrderBy(c => c.ID).ToList();
+            var model = _repository.Post.OrderBy(c => c.ID).ToList();
             return View(model);
         }
         public ViewResult listComments()
         {
-            var model = repository.Comment.OrderBy(c => c.ID).ToList();
+            var model = _repository.Comment.OrderBy(c => c.ID).ToList();
             return View(model);
         }
 
@@ -73,7 +73,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             try
             {
-                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
+                Post post = _repository.Post.FirstOrDefault(p => p.ID == id);
                 if (post != null)
                 {
                     return File(post.ImageData, "image/png");

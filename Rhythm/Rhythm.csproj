@@ -666,6 +666,11 @@
     <Content Include="Content\rs-plugin\js\.DS_Store" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\ChiefAdmin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Users\Index.cshtml" />
     <None Include="Properties\PublishProfiles\dogcoding - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dogcoding - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\vladi.pubxml" />
@@ -729,6 +734,8 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Mappers\UserMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CommentViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\ImageViewModel.cs" />

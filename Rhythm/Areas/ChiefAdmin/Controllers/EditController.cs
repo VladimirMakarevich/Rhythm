@@ -18,7 +18,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public EditController(IRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
         #region post
@@ -31,7 +31,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         private void TagData()
         {
-            var allTag = repository.Tag;
+            var allTag = _repository.Tag;
             var viewModel = new List<TagViewModel>();
             foreach (var tag in allTag)
             {
@@ -56,10 +56,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     List<Tag> listTag = new List<Tag>();
                     foreach (var item in selectedTag)
                     {
-                        var tag = repository.Tag.SingleOrDefault(m => m.ID == item);
+                        var tag = _repository.Tag.SingleOrDefault(m => m.ID == item);
                         listTag.Add(tag);
                     }
-                    var category = repository.Category.SingleOrDefault(m => m.ID == post.Category);
+                    var category = _repository.Category.SingleOrDefault(m => m.ID == post.Category);
 
                     post.Tags = listTag;
                     post.Category1 = category;
@@ -67,7 +67,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
                     Post context = model.Map<Post>(post);
 
-                    string src = await repository.AddPostAsync(context);
+                    string src = await _repository.AddPostAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -97,7 +97,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     Tag context = model.Map<Tag>(tagModel);
 
 
-                    string src = await repository.AddTagAsync(context);
+                    string src = await _repository.AddTagAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -126,7 +126,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
                     Category context = model.Map<Category>(categoryModel);
 
-                    string src = await repository.AddCategoryAsync(context);
+                    string src = await _repository.AddCategoryAsync(context);
                     if (src != null)
                         logger.Error(src);
                 }
@@ -142,7 +142,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         #region drop
         private void DropDownListCategory(object selectedItem = null)
         {
-            var Query = from m in repository.Category
+            var Query = from m in _repository.Category
                         orderby m.ID
                         select m;
             ViewBag.Category = new SelectList(Query, "ID", "Name", selectedItem);

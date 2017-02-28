@@ -14,7 +14,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         public DeleteController(IRepository repository)
         {
-            this.repository = repository;
+            this._repository = repository;
         }
 
 
@@ -26,12 +26,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var postModel = repository.Post.SingleOrDefault(c => c.ID == id);
+                var postModel = _repository.Post.SingleOrDefault(c => c.ID == id);
                 if (postModel == null)
                 {
                     return HttpNotFound();
                 }
-                string src = await repository.DeletePostAsync(postModel);
+                string src = await _repository.DeletePostAsync(postModel);
                 if (src != null)
                     logger.Error(src);
             }
@@ -51,12 +51,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var tagModel = repository.Tag.SingleOrDefault(c => c.ID == id);
+                var tagModel = _repository.Tag.SingleOrDefault(c => c.ID == id);
                 if (tagModel == null)
                 {
                     return HttpNotFound();
                 }
-                string src = await repository.DeleteTagAsync(tagModel);
+                string src = await _repository.DeleteTagAsync(tagModel);
                 if (src != null)
                     logger.Error(src);
             }
@@ -75,12 +75,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var categoryModel = repository.Category.SingleOrDefault(c => c.ID == id);
+                var categoryModel = _repository.Category.SingleOrDefault(c => c.ID == id);
                 if (categoryModel == null)
                 {
                     return HttpNotFound();
                 }
-                string src = await repository.DeleteCategoryAsync(categoryModel);
+                string src = await _repository.DeleteCategoryAsync(categoryModel);
                 if (src != null)
                     logger.Error(src);
             }
@@ -99,12 +99,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var commentModel = repository.Comment.SingleOrDefault(c => c.ID == id);
+                var commentModel = _repository.Comment.SingleOrDefault(c => c.ID == id);
                 if (commentModel == null)
                 {
                     return HttpNotFound();
                 }
-                string src = await repository.DeleteCommentAsync(commentModel);
+                string src = await _repository.DeleteCommentAsync(commentModel);
                 if (src != null)
                     logger.Error(src);
             }
