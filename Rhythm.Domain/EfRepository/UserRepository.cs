@@ -1,0 +1,25 @@
+﻿using Rhythm.Domain.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Rhythm.Domain.Model;
+using System.Data.Entity;
+
+namespace Rhythm.Domain.EfRepository
+{
+    public class UserRepository : ContextDb, IUserRepository
+    {
+        public async Task<List<ChiefUser>> GetListChiefUsersAsync()
+        {
+            var chiefUsers = db.ChiefUsers.Include(c => c.Portfolio);
+            return await chiefUsers.ToListAsync();
+        }
+
+        public async Task<ChiefUser> GetUserAsync(int? chiefUser)
+        {
+            return await db.ChiefUsers.FindAsync(chiefUser);
+        }
+    }
+}

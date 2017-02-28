@@ -10,16 +10,16 @@ namespace Rhythm.Domain.EfRepository
     {
         public IQueryable<Category> Category
         {
-            get { return context.Categories; }
+            get { return db.Categories; }
         }
         public async Task<string> AddCategoryAsync(Category category)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Categories.Add(category);
-                    await context.SaveChangesAsync();
+                    db.Categories.Add(category);
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -35,12 +35,12 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> ChangeCategoryAsync(Category category)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Entry(category).State = EntityState.Modified;
-                    await context.SaveChangesAsync();
+                    db.Entry(category).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -56,12 +56,12 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> DeleteCategoryAsync(Category category)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Categories.Remove(category);
-                    await context.SaveChangesAsync();
+                    db.Categories.Remove(category);
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)

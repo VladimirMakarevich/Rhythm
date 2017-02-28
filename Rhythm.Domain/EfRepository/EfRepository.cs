@@ -4,9 +4,8 @@ using Rhythm.Domain.Model;
 
 namespace Rhythm.Domain.EfRepository
 {
-    public partial class EfRepository : IRepository
+    public partial class EfRepository : ContextDb, IRepository
     {
-        private DogCodingEntities context = new DogCodingEntities();
 
     }
 }

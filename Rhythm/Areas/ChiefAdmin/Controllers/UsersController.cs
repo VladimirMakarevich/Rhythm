@@ -18,25 +18,24 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private DogCodingEntities db = new DogCodingEntities();
 
-        public UsersController(IRepository repository)
+        public UsersController(IUserRepository userRepository)
         {
-            _repository = repository;
-        }
-        // GET: ChiefAdmin/Users
-        public async Task<ActionResult> Index()
-        {
-            var chiefUsers = db.ChiefUsers.Include(c => c.Portfolio);
-            return View(await chiefUsers.ToListAsync());
+            _userRepository = userRepository;
         }
 
-        // GET: ChiefAdmin/Users/Details/5
+        public async Task<ActionResult> Index()
+        {
+            return View(await _userRepository.GetListChiefUsersAsync());
+        }
+
+
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ChiefUser chiefUser = await db.ChiefUsers.FindAsync(id);
+            var chiefUser = await _userRepository.GetUserAsync(id);
             if (chiefUser == null)
             {
                 return HttpNotFound();
@@ -44,16 +43,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(chiefUser);
         }
 
-        // GET: ChiefAdmin/Users/Create
+
         public ActionResult Create()
         {
             ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary");
             return View();
         }
 
-        // POST: ChiefAdmin/Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUser chiefUser)
@@ -69,7 +66,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(chiefUser);
         }
 
-        // GET: ChiefAdmin/Users/Edit/5
+
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,9 +82,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(chiefUser);
         }
 
-        // POST: ChiefAdmin/Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUser chiefUser)
@@ -102,7 +97,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(chiefUser);
         }
 
-        // GET: ChiefAdmin/Users/Delete/5
+
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -117,7 +112,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(chiefUser);
         }
 
-        // POST: ChiefAdmin/Users/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
@@ -126,15 +121,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             db.ChiefUsers.Remove(chiefUser);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

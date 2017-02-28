@@ -12,6 +12,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     {
         [Inject]
         public IRepository _repository { get; set; }
+        [Inject]
+        public IUserRepository _userRepository { get; set; }
 
     }
 }

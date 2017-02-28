@@ -12,16 +12,16 @@ namespace Rhythm.Domain.EfRepository
     {
         public IQueryable<Comment> Comment
         {
-            get { return context.Comments; }
+            get { return db.Comments; }
         }
 
         public List<RecentComment> GetFiveCommentsList()
         {
             var recent = new List<RecentComment>();
 
-            var allPost = context.Posts.OrderBy(p => p.ID).ToList();
+            var allPost = db.Posts.OrderBy(p => p.ID).ToList();
 
-            var topComment = context.Comments
+            var topComment = db.Comments
                 .OrderBy(c => c.PostedOn)
                 .AsEnumerable()
                 .Reverse()
@@ -44,14 +44,14 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> AddCommentAsync(Comment comment)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     comment.PostedOn = DateTime.Now;
                     comment.Post.CountComments++;
-                    context.Comments.Add(comment);
-                    await context.SaveChangesAsync();
+                    db.Comments.Add(comment);
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
 
                 }
@@ -67,13 +67,13 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> ChangeCommentAsync(Comment comment)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     comment.Modified = DateTime.Now;
-                    context.Entry(comment).State = EntityState.Modified;
-                    await context.SaveChangesAsync();
+                    db.Entry(comment).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)
@@ -88,13 +88,13 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> DeleteCommentAsync(Comment comment)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     comment.Post.CountComments--;
-                    context.Comments.Remove(comment);
-                    await context.SaveChangesAsync();
+                    db.Comments.Remove(comment);
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)

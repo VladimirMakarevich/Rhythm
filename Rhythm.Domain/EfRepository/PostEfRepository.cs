@@ -10,19 +10,19 @@ namespace Rhythm.Domain.EfRepository
     {
         public IQueryable<Post> Post
         {
-            get { return context.Posts; }
+            get { return db.Posts; }
         }
 
         public async Task<string> AddPostAsync(Post post)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     post.Category1.CountCategory++;
                     post.PostedOn = DateTime.Now;
-                    context.Posts.Add(post);
-                    await context.SaveChangesAsync();
+                    db.Posts.Add(post);
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -38,13 +38,13 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> ChangePostAsync(Post post)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     post.Modified = DateTime.Now;
-                    context.Entry(post).State = EntityState.Modified;
-                    await context.SaveChangesAsync();
+                    db.Entry(post).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -60,13 +60,13 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> DeletePostAsync(Post post)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
                     post.Category1.CountCategory--;
-                    context.Posts.Remove(post);
-                    await context.SaveChangesAsync();
+                    db.Posts.Remove(post);
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)

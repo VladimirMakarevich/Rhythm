@@ -10,17 +10,17 @@ namespace Rhythm.Domain.EfRepository
     {
         public IQueryable<Tag> Tag
         {
-            get { return context.Tags; }
+            get { return db.Tags; }
         }
 
         public async Task<string> AddTagAsync(Tag tag)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Tags.Add(tag);
-                    await context.SaveChangesAsync();
+                    db.Tags.Add(tag);
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -36,12 +36,12 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> ChangeTagAsync(Tag tag)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Entry(tag).State = EntityState.Modified;
-                    await context.SaveChangesAsync();
+                    db.Entry(tag).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
 
                     contextDb.Commit();
                 }
@@ -57,12 +57,12 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> DeleteTagAsync(Tag tag)
         {
-            using (var contextDb = context.Database.BeginTransaction())
+            using (var contextDb = db.Database.BeginTransaction())
             {
                 try
                 {
-                    context.Tags.Remove(tag);
-                    await context.SaveChangesAsync();
+                    db.Tags.Remove(tag);
+                    await db.SaveChangesAsync();
                     contextDb.Commit();
                 }
                 catch (System.Exception ex)

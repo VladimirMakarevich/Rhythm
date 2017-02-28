@@ -14,8 +14,8 @@ namespace Rhythm.Domain.EfRepository
         public RecentArticleWidget GetArticleWidget()
         {
             int countArticle;
-            var allPosts = context.Posts.OrderBy(m => m.ID).ToList();
-            var count = context.Posts.Max(p => p.ID);
+            var allPosts = db.Posts.OrderBy(m => m.ID).ToList();
+            var count = db.Posts.Max(p => p.ID);
             Random r = new Random();
 
             do
