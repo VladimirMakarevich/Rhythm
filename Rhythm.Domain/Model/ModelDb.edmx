@@ -15,6 +15,23 @@
           <Property Name="DescriptionCategory" Type="nvarchar(max)" />
           <Property Name="CountCategory" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ChiefUser">
+          <Key>
+            <PropertyRef Name="ChiefUserID" />
+          </Key>
+          <Property Name="ChiefUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PortfolioID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HomeAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Github" Type="nvarchar" MaxLength="50" />
+          <Property Name="Linkedin" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="ID" />
@@ -27,6 +44,18 @@
           <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PostedOn" Type="datetime" Nullable="false" />
           <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioID" />
+          </Key>
+          <Property Name="PortfolioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Skills" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WorkExp" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MyProjects" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Education" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -65,22 +94,18 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="UrlSlug" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DescriptionTag" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Logger">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EventDateTime" Type="datetime" Nullable="false" />
-          <Property Name="EventLevel" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="MachineName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="EventMessage" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ErrorSource" Type="nvarchar" MaxLength="100" />
-          <Property Name="ErrorClass" Type="nvarchar" MaxLength="500" />
-          <Property Name="ErrorMethod" Type="nvarchar(max)" />
-          <Property Name="ErrorMessage" Type="nvarchar(max)" />
-          <Property Name="InnerErrorMessage" Type="nvarchar(max)" />
-        </EntityType>
+        <Association Name="FK_ChiefUser_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="ChiefUser" Type="Self.ChiefUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="PortfolioID" />
+            </Principal>
+            <Dependent Role="ChiefUser">
+              <PropertyRef Name="PortfolioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_Post">
           <End Role="Post" Type="Self.Post" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -137,12 +162,21 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
         </Association>
         <EntityContainer Name="DogCodingModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="blog" store:Type="Tables" />
+          <EntitySet Name="ChiefUser" EntityType="Self.ChiefUser" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="blog" store:Type="Tables" />
+          <EntitySet Name="Portfolio" EntityType="Self.Portfolio" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="blog" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="blog" store:Type="Tables" />
-          <EntitySet Name="Logger" EntityType="Self.Logger" Schema="log" store:Type="Tables" />
-          <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" Schema="blog">
+          <EntitySet Name="PostTag" EntityType="Self.PostTag" store:Type="Tables" store:Schema="blog">
+            <DefiningQuery>SELECT 
+    [PostTag].[PostID] AS [PostID], 
+    [PostTag].[TagID] AS [TagID]
+    FROM [blog].[PostTag] AS [PostTag]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_ChiefUser_Portfolio" Association="Self.FK_ChiefUser_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolio" />
+            <End Role="ChiefUser" EntitySet="ChiefUser" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Comment" EntitySet="Comment" />
@@ -176,6 +210,24 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="CountCategory" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Post_Category" FromRole="Category" ToRole="Post" />
         </EntityType>
+        <EntityType Name="ChiefUser">
+          <Key>
+            <PropertyRef Name="ChiefUserID" />
+          </Key>
+          <Property Name="ChiefUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PortfolioID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HomeAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Github" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Portfolio" Relationship="Self.FK_ChiefUser_Portfolio" FromRole="ChiefUser" ToRole="Portfolio" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="ID" />
@@ -189,6 +241,19 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="PostedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Modified" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Comment_Post" FromRole="Comment" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="Portfolio">
+          <Key>
+            <PropertyRef Name="PortfolioID" />
+          </Key>
+          <Property Name="PortfolioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WorkExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MyProjects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ChiefUsers" Relationship="Self.FK_ChiefUser_Portfolio" FromRole="Portfolio" ToRole="ChiefUser" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -221,22 +286,6 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="DescriptionTag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Posts" Relationship="Self.PostTag" FromRole="Tag" ToRole="Post" />
         </EntityType>
-        <EntityType Name="Logger">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EventLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MachineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EventMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ErrorSource" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InnerErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Post_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
@@ -246,6 +295,18 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             </Principal>
             <Dependent Role="Post">
               <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChiefUser_Portfolio">
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="ChiefUser" Type="Self.ChiefUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portfolio">
+              <PropertyRef Name="PortfolioID" />
+            </Principal>
+            <Dependent Role="ChiefUser">
+              <PropertyRef Name="PortfolioID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -269,13 +330,18 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
         </Association>
         <EntityContainer Name="DogCodingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="ChiefUsers" EntityType="Self.ChiefUser" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Portfolios" EntityType="Self.Portfolio" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
           <EntitySet Name="Tags" EntityType="Self.Tag" />
-          <EntitySet Name="Loggers" EntityType="Self.Logger" />
           <AssociationSet Name="FK_Post_Category" Association="Self.FK_Post_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChiefUser_Portfolio" Association="Self.FK_ChiefUser_Portfolio">
+            <End Role="Portfolio" EntitySet="Portfolios" />
+            <End Role="ChiefUser" EntitySet="ChiefUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Post" Association="Self.FK_Comment_Post">
             <End Role="Post" EntitySet="Posts" />
@@ -303,6 +369,24 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ChiefUsers">
+            <EntityTypeMapping TypeName="DogCodingModel.ChiefUser">
+              <MappingFragment StoreEntitySet="ChiefUser">
+                <ScalarProperty Name="ChiefUserID" ColumnName="ChiefUserID" />
+                <ScalarProperty Name="PortfolioID" ColumnName="PortfolioID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Github" ColumnName="Github" />
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="DogCodingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -314,6 +398,19 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
                 <ScalarProperty Name="Comment1" ColumnName="Comment" />
                 <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
                 <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portfolios">
+            <EntityTypeMapping TypeName="DogCodingModel.Portfolio">
+              <MappingFragment StoreEntitySet="Portfolio">
+                <ScalarProperty Name="PortfolioID" ColumnName="PortfolioID" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
+                <ScalarProperty Name="MyProjects" ColumnName="MyProjects" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -343,23 +440,6 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UrlSlug" ColumnName="UrlSlug" />
                 <ScalarProperty Name="DescriptionTag" ColumnName="DescriptionTag" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Loggers">
-            <EntityTypeMapping TypeName="DogCodingModel.Logger">
-              <MappingFragment StoreEntitySet="Logger">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EventDateTime" ColumnName="EventDateTime" />
-                <ScalarProperty Name="EventLevel" ColumnName="EventLevel" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
-                <ScalarProperty Name="EventMessage" ColumnName="EventMessage" />
-                <ScalarProperty Name="ErrorSource" ColumnName="ErrorSource" />
-                <ScalarProperty Name="ErrorClass" ColumnName="ErrorClass" />
-                <ScalarProperty Name="ErrorMethod" ColumnName="ErrorMethod" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-                <ScalarProperty Name="InnerErrorMessage" ColumnName="InnerErrorMessage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

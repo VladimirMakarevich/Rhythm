@@ -26,9 +26,10 @@ namespace Rhythm.Domain.Model
         }
     
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<ChiefUser> ChiefUsers { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<Logger> Loggers { get; set; }
     }
 }

@@ -10,12 +10,7 @@ USE [DogCoding]
 GO
 
 CREATE SCHEMA [blog]
-
-DROP TABLE [blog.Comment]
-DROP TABLE [blog.PostTag]
-DROP TABLE [blog.Tag]
-DROP TABLE [blog.Post]
-DROP TABLE [blog.Category]
+CREATE SCHEMA [log]
 
 
 /****** Object:  Table blog.Post ******/
@@ -44,6 +39,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 /****** Object:  Table blog.Tag ******/
 SET ANSI_NULLS ON
@@ -122,6 +118,57 @@ CREATE TABLE blog.PostTag
 GO
 
 
+/****** Object:  Table blog.Portfolio ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE blog.Portfolio
+(
+	PortfolioID int IDENTITY(1,1) NOT NULL,
+	Summary nvarchar(MAX) NOT NULL,
+	Skills nvarchar(MAX) NOT NULL,
+	WorkExp nvarchar(MAX) NOT NULL,
+	MyProjects nvarchar(MAX) NOT NULL,
+	Education nvarchar(MAX) NOT NULL,
+	AdditionalInfo nvarchar(MAX) NOT NULL
+PRIMARY KEY CLUSTERED 
+(
+	[PortfolioID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+DROP TABLE blog.ChiefUser
+DROP TABLE blog.Portfolio
+
+/****** Object:  Table blog.ChiefUser ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE blog.ChiefUser
+(
+	ChiefUserID int IDENTITY(1,1) NOT NULL,
+	PortfolioID int NOT NULL DEFAULT (1),
+	FirstName nvarchar(50) NOT NULL,
+	LastName nvarchar(50) NOT NULL,
+	MiddleName nvarchar(50) NOT NULL,
+	Birth nvarchar(50) NULL,
+	Email nvarchar(50) NOT NULL,
+	HomeAddress nvarchar(50) NULL,
+	Skype nvarchar(50) NULL,
+	Mobile nvarchar(50) NULL,
+	Github nvarchar(50) NULL,
+	Linkedin nvarchar(50) NULL
+PRIMARY KEY CLUSTERED 
+(
+	[ChiefUserID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 
 
 /****** Object:  Foreign Key FK_Post_Category ******/
@@ -155,7 +202,12 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 ALTER TABLE blog.Comment CHECK CONSTRAINT FK_Comment_Post
 
-
+/****** Object:  Foreign Key FK_Post_Category ******/
+ALTER TABLE blog.ChiefUser
+WITH CHECK ADD CONSTRAINT FK_ChiefUser_Portfolio
+FOREIGN KEY (PortfolioID) REFERENCES blog.Portfolio(PortfolioID)
+ON DELETE SET DEFAULT
+ON UPDATE CASCADE
 
 
 /****** Object:  Create Simple Data ******/
@@ -223,10 +275,11 @@ SELECT * FROM blog.Comment
 SELECT * FROM blog.Tag
 
 
-CREATE SCHEMA [log]
-
-DROP TABLE [log].[Logger]
-
+/****** Object:  Table log.Logger ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
 CREATE TABLE [log].[Logger](  
     [Id] [int] IDENTITY(1,1) NOT NULL,
     [EventDateTime] [datetime] NOT NULL,

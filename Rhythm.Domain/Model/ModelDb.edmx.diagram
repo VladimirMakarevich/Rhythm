@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f118e945d3a54d9c88a2b252947fe45b" Name="Diagram1">
+      <Diagram DiagramId="7ef241ffcf0245558c940b24fb445fd7" Name="Diagram1">
         <EntityTypeShape EntityType="DogCodingModel.Category" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.ChiefUser" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.Comment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DogCodingModel.Portfolio" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.Post" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.Tag" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DogCodingModel.Logger" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="DogCodingModel.FK_Post_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="DogCodingModel.FK_ChiefUser_Portfolio" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.FK_Comment_Post" ManuallyRouted="false" />
         <AssociationConnector Association="DogCodingModel.PostTag" ManuallyRouted="false" />
       </Diagram>
