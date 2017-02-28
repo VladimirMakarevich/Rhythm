@@ -13,9 +13,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private DogCodingEntities db = new DogCodingEntities();
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IPortfolioRepository portfolioRepository)
         {
             _userRepository = userRepository;
+            _portfolioRepository = portfolioRepository;
         }
 
         public async Task<ActionResult> Index()
@@ -115,5 +116,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             await _userRepository.DeleteUserAsync(chiefUser);
             return RedirectToAction("Index");
         }
+
+        #region drop
+        private void DropDownListUser(object selectedItem = null)
+        {
+            var query = _portfolioRepository.GetPortfolio.Sele
+                //from m in _portfolioRepository.GetPortfolio
+                //        orderby m.
+                //        select m;
+            ViewBag.Category = new SelectList(query, "PortfolioID", "Summary", selectedItem);
+        }
+        #endregion
     }
 }
