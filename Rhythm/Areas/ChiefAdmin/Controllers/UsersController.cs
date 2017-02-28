@@ -68,7 +68,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ChiefUser chiefUser = await db.ChiefUsers.FindAsync(id);
+            var chiefUser = await _userRepository.GetUserAsync(id);
             if (chiefUser == null)
             {
                 return HttpNotFound();
@@ -84,8 +84,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(chiefUser).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                await _userRepository.EditChangesUser(chiefUser);
                 return RedirectToAction("Index");
             }
             ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary", chiefUser.PortfolioID);
@@ -99,7 +98,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ChiefUser chiefUser = await db.ChiefUsers.FindAsync(id);
+            var chiefUser = await _userRepository.GetUserAsync(id);
             if (chiefUser == null)
             {
                 return HttpNotFound();
@@ -112,9 +111,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ChiefUser chiefUser = await db.ChiefUsers.FindAsync(id);
-            db.ChiefUsers.Remove(chiefUser);
-            await db.SaveChangesAsync();
+            var chiefUser = await _userRepository.GetUserAsync(id);
+            await _userRepository.DeleteUserAsync(chiefUser);
             return RedirectToAction("Index");
         }
     }

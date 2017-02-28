@@ -17,6 +17,18 @@ namespace Rhythm.Domain.EfRepository
             await db.SaveChangesAsync();
         }
 
+        public async Task DeleteUserAsync(ChiefUser chiefUser)
+        {
+            db.ChiefUsers.Remove(chiefUser);
+            await db.SaveChangesAsync();
+        }
+
+        public async Task EditChangesUser(ChiefUser chiefUser)
+        {
+            db.Entry(chiefUser).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+        }
+
         public async Task<List<ChiefUser>> GetListChiefUsersAsync()
         {
             var chiefUsers = db.ChiefUsers.Include(c => c.Portfolio);
