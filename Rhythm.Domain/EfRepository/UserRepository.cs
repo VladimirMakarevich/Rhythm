@@ -11,6 +11,12 @@ namespace Rhythm.Domain.EfRepository
 {
     public class UserRepository : ContextDb, IUserRepository
     {
+        public async Task CreateUserAsync(ChiefUser chiefUser)
+        {
+            db.ChiefUsers.Add(chiefUser);
+            await db.SaveChangesAsync();
+        }
+
         public async Task<List<ChiefUser>> GetListChiefUsersAsync()
         {
             var chiefUsers = db.ChiefUsers.Include(c => c.Portfolio);

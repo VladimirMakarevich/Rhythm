@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Rhythm.Domain.Model;
 using Rhythm.Domain.Abstract;
@@ -46,6 +41,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ActionResult Create()
         {
+            //TODO:
             ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary");
             return View();
         }
@@ -57,8 +53,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ChiefUsers.Add(chiefUser);
-                await db.SaveChangesAsync();
+                await _userRepository.CreateUserAsync(chiefUser);
                 return RedirectToAction("Index");
             }
 

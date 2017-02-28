@@ -11,6 +11,7 @@ namespace Rhythm.Domain.Abstract
     {
         Task<List<ChiefUser>> GetListChiefUsersAsync();
         Task<ChiefUser> GetUserAsync(int? chiefUser);
+        Task CreateUserAsync(ChiefUser chiefUser);
 
     }
 }
