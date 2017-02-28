@@ -12,8 +12,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     public class UsersController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        private DogCodingEntities db = new DogCodingEntities();
-
         public UsersController(IUserRepository userRepository, IPortfolioRepository portfolioRepository)
         {
             _userRepository = userRepository;

@@ -1,0 +1,67 @@
+﻿@model Rhythm.Domain.Model.Portfolio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Portfolio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skills)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skills)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkExp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkExp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MyProjects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MyProjects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalInfo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PortfolioID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

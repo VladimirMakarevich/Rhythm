@@ -671,6 +671,11 @@
     <Content Include="Areas\ChiefAdmin\Views\Users\Details.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Portfolios\Create.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Portfolios\Delete.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Portfolios\Details.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Portfolios\Edit.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Portfolios\Index.cshtml" />
     <None Include="Properties\PublishProfiles\dogcoding - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dogcoding - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\vladi.pubxml" />
@@ -733,6 +738,7 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\DeleteController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\HomeController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\PortfoliosController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\ChiefAdmin\Mappers\UserMapper.cs" />
