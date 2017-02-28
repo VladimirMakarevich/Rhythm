@@ -21,10 +21,6 @@ namespace Rhythm.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "RSS";
-            ViewBag.WordFirst = "NEWS";
-            ViewBag.WordSecond = "IT";
-            ViewBag.WordThird = "WEB";
             return View();
         }
 
@@ -37,9 +33,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -70,9 +64,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -83,6 +75,7 @@ namespace Rhythm.Controllers
                     TotalPosts = n.Count()
                 }
             };
+
             ViewBag.Title = "Events Dev.by";
             ViewBag.WordFirst = "NEWS";
             ViewBag.WordSecond = "IT";
@@ -102,9 +95,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -135,9 +126,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -168,9 +157,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -201,9 +188,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -234,9 +219,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -267,9 +250,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -300,9 +281,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -333,9 +312,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -366,9 +343,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -399,9 +374,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -432,9 +405,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
@@ -465,9 +436,7 @@ namespace Rhythm.Controllers
             {
                 Source = src,
 
-                RssReaders = n.OrderBy(m => m.PubDate)
-                .AsEnumerable()
-                .Reverse()
+                RssReaders = n.AsEnumerable()
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
 
