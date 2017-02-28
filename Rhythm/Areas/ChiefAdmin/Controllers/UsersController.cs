@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Rhythm.Domain.Model;
 using Rhythm.Domain.Abstract;
 using NLog;
+using System.Linq;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
@@ -42,8 +43,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ActionResult Create()
         {
-            //TODO:
-            ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary");
+            DropDownListUser();
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary", chiefUser.PortfolioID);
+            DropDownListUser(chiefUser.PortfolioID);
             return View(chiefUser);
         }
 
@@ -74,7 +74,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary", chiefUser.PortfolioID);
+            DropDownListUser(chiefUser.PortfolioID);
             return View(chiefUser);
         }
 
@@ -88,7 +88,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 await _userRepository.EditChangesUser(chiefUser);
                 return RedirectToAction("Index");
             }
-            ViewBag.PortfolioID = new SelectList(db.Portfolios, "PortfolioID", "Summary", chiefUser.PortfolioID);
+            DropDownListUser(chiefUser.PortfolioID);
             return View(chiefUser);
         }
 
@@ -120,11 +120,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         #region drop
         private void DropDownListUser(object selectedItem = null)
         {
-            var query = _portfolioRepository.GetPortfolio.Sele
-                //from m in _portfolioRepository.GetPortfolio
-                //        orderby m.
-                //        select m;
-            ViewBag.Category = new SelectList(query, "PortfolioID", "Summary", selectedItem);
+            var query = from m in _portfolioRepository.GetPortfolio
+                            orderby m.PortfolioID
+                            select m;
+            ViewBag.PortfolioID = new SelectList(query, "PortfolioID", "Summary", selectedItem);
         }
         #endregion
     }
