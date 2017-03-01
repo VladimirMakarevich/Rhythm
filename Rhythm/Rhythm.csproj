@@ -742,9 +742,11 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\ChiefAdmin\Mappers\UserMapper.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\ChiefUserViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CommentViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\Content.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\ImageViewModel.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\PortfolioViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\PostViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
