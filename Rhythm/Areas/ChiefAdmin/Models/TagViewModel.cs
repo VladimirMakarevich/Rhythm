@@ -4,7 +4,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
 {
     public class TagViewModel
     {
-        [Required(ErrorMessage = "fthe field are required!")]
+        [Required(ErrorMessage = "the field are required!")]
         public int ID { get; set; }
         [Required(ErrorMessage = "the field are required!")]
         public string Name { get; set; }
