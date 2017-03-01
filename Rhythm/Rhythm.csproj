@@ -741,6 +741,7 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\PortfoliosController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Mappers\PortfolioMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Mappers\UserMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\ChiefUserViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CommentViewModel.cs" />
