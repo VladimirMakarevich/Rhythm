@@ -1,16 +1,21 @@
 ﻿/****** Object:  DB / DogCoding / Blog ******/
 
 USE master
+GO
 DROP DATABASE [DogCoding]
+GO
 
 
 CREATE DATABASE [DogCoding]
+GO
 
 USE [DogCoding]
 GO
 
 CREATE SCHEMA [blog]
+GO
 CREATE SCHEMA [log]
+GO
 
 
 /****** Object:  Table blog.Post ******/
@@ -140,9 +145,6 @@ PRIMARY KEY CLUSTERED
 GO
 
 
-DROP TABLE blog.ChiefUser
-DROP TABLE blog.Portfolio
-
 /****** Object:  Table blog.ChiefUser ******/
 SET ANSI_NULLS ON
 GO
@@ -151,7 +153,7 @@ GO
 CREATE TABLE blog.ChiefUser
 (
 	ChiefUserID int IDENTITY(1,1) NOT NULL,
-	PortfolioID int NOT NULL DEFAULT (1),
+	PortfolioID int NULL,
 	FirstName nvarchar(50) NOT NULL,
 	LastName nvarchar(50) NOT NULL,
 	MiddleName nvarchar(50) NOT NULL,
