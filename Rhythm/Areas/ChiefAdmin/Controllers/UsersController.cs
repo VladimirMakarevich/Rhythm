@@ -110,8 +110,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            var chiefUser = await _userRepository.GetUserAsync(id);
-            await _userRepository.DeleteUserAsync(chiefUser);
+            await _userRepository.DeleteUserAsync(id);
             return RedirectToAction("Index");
         }
 

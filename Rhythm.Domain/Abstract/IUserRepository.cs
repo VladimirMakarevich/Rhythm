@@ -9,10 +9,11 @@ namespace Rhythm.Domain.Abstract
 {
     public interface IUserRepository
     {
+        IQueryable<ChiefUser> GetUser { get; }
         Task<List<ChiefUser>> GetListChiefUsersAsync();
         Task<ChiefUser> GetUserAsync(int? chiefUser);
         Task CreateUserAsync(ChiefUser chiefUser);
         Task EditChangesUser(ChiefUser chiefUser);
-        Task DeleteUserAsync(ChiefUser chiefUser);
+        Task DeleteUserAsync(int id);
     }
 }

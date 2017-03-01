@@ -10,5 +10,10 @@ namespace Rhythm.Domain.Abstract
     public interface IPortfolioRepository
     {
         IQueryable<Portfolio> GetPortfolio { get; }
+        Task<List<Portfolio>> GetListPortfolioAsync();
+        Task<Portfolio> GetPortfolioAsync(int? portfolio);
+        Task CreatePortfolioAsync(Portfolio portfolio);
+        Task EditPortfolioAsync(Portfolio portfolio);
+        Task DeletePortfolioAsync(int id);
     }
 }

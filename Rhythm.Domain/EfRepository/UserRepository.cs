@@ -11,14 +11,23 @@ namespace Rhythm.Domain.EfRepository
 {
     public class UserRepository : ContextDb, IUserRepository
     {
+        public IQueryable<ChiefUser> GetUser
+        {
+            get
+            {
+                return db.ChiefUsers;
+            }
+        }
+
         public async Task CreateUserAsync(ChiefUser chiefUser)
         {
             db.ChiefUsers.Add(chiefUser);
             await db.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(ChiefUser chiefUser)
+        public async Task DeleteUserAsync(int id)
         {
+            var chiefUser = await db.ChiefUsers.FindAsync(id);
             db.ChiefUsers.Remove(chiefUser);
             await db.SaveChangesAsync();
         }
