@@ -15,6 +15,8 @@ namespace Rhythm
         public static MapperConfiguration MapperConfigTag;
         public static MapperConfiguration MapperConfigComment;
         public static MapperConfiguration MapperConfigPost;
+        public static MapperConfiguration MapperConfigPortfolio;
+        public static MapperConfiguration MapperConfigChiefUser;
 
         public static void RegisterMapping()
         {
@@ -37,6 +39,14 @@ namespace Rhythm
             MapperConfigPost = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Post, PostViewModel>().ReverseMap();
+            });
+            MapperConfigPortfolio = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Portfolio, PortfolioViewModel>().ReverseMap();
+            });
+            MapperConfigChiefUser = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ChiefUser, ChiefUserViewModel>().ReverseMap();
             });
         }
     }
