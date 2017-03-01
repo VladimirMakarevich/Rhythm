@@ -2,9 +2,6 @@
 
 USE master
 GO
-DROP DATABASE [DogCoding]
-GO
-
 
 CREATE DATABASE [DogCoding]
 GO
