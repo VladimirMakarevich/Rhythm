@@ -30,15 +30,20 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> ChangeCategoryAsync(Category category)
         {
-            try
+            using (var contextDb = db.Database.BeginTransaction())
             {
-                db.Entry(category).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-            }
-            catch (System.Exception ex)
-            {
-                string src = String.Format("Error ChangeCategory: {0}", ex.Message);
-                return src;
+                try
+                {
+                    db.Entry(category).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    contextDb.Commit();
+                }
+                catch (System.Exception ex)
+                {
+                    string src = String.Format("Error ChangeCategory: {0}", ex.Message);
+                    contextDb.Rollback();
+                    return src;
+                }
             }
             return null;
         }

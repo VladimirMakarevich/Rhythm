@@ -15,23 +15,17 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> AddTagAsync(Tag tag)
         {
-            using (var contextDb = db.Database.BeginTransaction())
+            try
             {
-                try
-                {
-                    db.Tags.Add(tag);
-                    await db.SaveChangesAsync();
-
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error AddTag: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
+                db.Tags.Add(tag);
+                await db.SaveChangesAsync();
             }
+            catch (System.Exception ex)
+            {
+                string src = String.Format("Error AddTag: {0}", ex.Message);
+                return src;
+            }
+            return null;
         }
 
         public async Task<string> ChangeTagAsync(Tag tag)
@@ -57,22 +51,17 @@ namespace Rhythm.Domain.EfRepository
 
         public async Task<string> DeleteTagAsync(Tag tag)
         {
-            using (var contextDb = db.Database.BeginTransaction())
+            try
             {
-                try
-                {
-                    db.Tags.Remove(tag);
-                    await db.SaveChangesAsync();
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error DeleteTag: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
+                db.Tags.Remove(tag);
+                await db.SaveChangesAsync();
             }
+            catch (System.Exception ex)
+            {
+                string src = String.Format("Error DeleteTag: {0}", ex.Message);
+                return src;
+            }
+            return null;
         }
     }
 }
