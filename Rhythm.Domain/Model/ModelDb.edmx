@@ -20,7 +20,7 @@
             <PropertyRef Name="ChiefUserID" />
           </Key>
           <Property Name="ChiefUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PortfolioID" Type="int" Nullable="false" />
+          <Property Name="PortfolioID" Type="int" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -95,7 +95,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           <Property Name="DescriptionTag" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_ChiefUser_Portfolio">
-          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
           <End Role="ChiefUser" Type="Self.ChiefUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Portfolio">
@@ -215,7 +215,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="ChiefUserID" />
           </Key>
           <Property Name="ChiefUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PortfolioID" Type="Int32" Nullable="false" />
+          <Property Name="PortfolioID" Type="Int32" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -299,7 +299,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChiefUser_Portfolio">
-          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="1" />
+          <End Role="Portfolio" Type="Self.Portfolio" Multiplicity="0..1" />
           <End Role="ChiefUser" Type="Self.ChiefUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Portfolio">

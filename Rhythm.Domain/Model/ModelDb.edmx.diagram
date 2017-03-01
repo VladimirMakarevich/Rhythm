@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ef241ffcf0245558c940b24fb445fd7" Name="Diagram1">
+      <Diagram DiagramId="cec579fa1de7413eb71b93c8ad02cc65" Name="Diagram1">
         <EntityTypeShape EntityType="DogCodingModel.Category" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.ChiefUser" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DogCodingModel.Comment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />

@@ -15,7 +15,7 @@ namespace Rhythm.Domain.Model
     public partial class ChiefUser
     {
         public int ChiefUserID { get; set; }
-        public int PortfolioID { get; set; }
+        public Nullable<int> PortfolioID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }

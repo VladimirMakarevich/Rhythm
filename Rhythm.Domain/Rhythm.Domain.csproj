@@ -159,6 +159,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\ModelDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
