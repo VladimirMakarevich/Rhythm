@@ -19,7 +19,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentCategories()
         {
-            //TODO: Async
             var category = repository.Category.OrderBy(p => p.ID).ToList();
             return PartialView("RecentCategories", category);
         }
@@ -27,7 +26,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentTags()
         {
-            //TODO: Async
             var tag = repository.Tag.OrderBy(p => p.ID).ToList();
             return PartialView("RecentTags", tag);
         }
@@ -36,7 +34,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentPosts()
         {
-            //TODO: Async
             var posts = GetPost();
             return PartialView("RecentPosts", posts);
         }
@@ -44,7 +41,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentComments()
         {
-            //TODO: Async
             var comments = repository.GetFiveCommentsList();
             return PartialView("RecentComments", comments);
         }
@@ -52,7 +48,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentArticleWidgets()
         {
-            //TODO: Async
             var articleWidget = repository.GetArticleWidget();
 
             if (articleWidget != null)
@@ -65,7 +60,6 @@ namespace Rhythm.Controllers
         [ChildActionOnly]
         public ActionResult RecentArchives()
         {
-            //TODO: Async
             var model = new ArchiveCollection(GetPost());
             return PartialView(model);
         }
