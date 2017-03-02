@@ -6,21 +6,29 @@ using Rhythm.Domain.Model;
 using Rhythm.Domain.Abstract;
 using NLog;
 using System.Linq;
+using Rhythm.Areas.ChiefAdmin.Mappers;
+using Rhythm.Areas.ChiefAdmin.Models;
+using System;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     public class UsersController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public UsersController(IUserRepository userRepository, IPortfolioRepository portfolioRepository)
+        private UserMapper _userMapper;
+        public UsersController(IUserRepository userRepository, IPortfolioRepository portfolioRepository, UserMapper userMapper)
         {
             _userRepository = userRepository;
             _portfolioRepository = portfolioRepository;
+            _userMapper = userMapper;
         }
 
         public async Task<ActionResult> Index()
         {
-            return View(await _userRepository.GetListChiefUsersAsync());
+            var users = await _userRepository.GetListChiefUsersAsync();
+            var usersListViewModel = _userMapper.ToListUsersViewModel(users);
+
+            return View(usersListViewModel);
         }
 
 
@@ -31,11 +39,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var chiefUser = await _userRepository.GetUserAsync(id);
-            if (chiefUser == null)
+            var userViewModel = _userMapper.ToUserViewModel(chiefUser);
+            if (userViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(chiefUser);
+            return View(userViewModel);
         }
 
 
@@ -48,16 +57,23 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUser chiefUser)
+        public async Task<ActionResult> Create([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUserViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {
-                await _userRepository.CreateUserAsync(chiefUser);
-                return RedirectToAction("Index");
+                try
+                {
+                    var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
+                    await _userRepository.CreateUserAsync(chiefUser);
+                    return RedirectToAction("Index");
+                }
+                catch (System.Exception ex)
+                {
+                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                }
             }
-
-            DropDownListUser(chiefUser.PortfolioID);
-            return View(chiefUser);
+            DropDownListUser(chiefUserViewModel.PortfolioID);
+            return View(chiefUserViewModel);
         }
 
 
@@ -68,26 +84,35 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var chiefUser = await _userRepository.GetUserAsync(id);
-            if (chiefUser == null)
+            var userViewModel = _userMapper.ToUserViewModel(chiefUser);
+            if (userViewModel == null)
             {
                 return HttpNotFound();
             }
-            DropDownListUser(chiefUser.PortfolioID);
-            return View(chiefUser);
+            DropDownListUser(userViewModel.PortfolioID);
+            return View(userViewModel);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUser chiefUser)
+        public async Task<ActionResult> Edit([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUserViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {
-                await _userRepository.EditChangesUser(chiefUser);
-                return RedirectToAction("Index");
+                try
+                {
+                    var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
+                    await _userRepository.EditChangesUser(chiefUser);
+                    return RedirectToAction("Index");
+                }
+                catch (System.Exception ex)
+                {
+                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                }
             }
-            DropDownListUser(chiefUser.PortfolioID);
-            return View(chiefUser);
+            DropDownListUser(chiefUserViewModel.PortfolioID);
+            return View(chiefUserViewModel);
         }
 
 
@@ -98,11 +123,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var chiefUser = await _userRepository.GetUserAsync(id);
-            if (chiefUser == null)
+            var userViewModel = _userMapper.ToUserViewModel(chiefUser);
+            if (userViewModel == null)
             {
                 return HttpNotFound();
             }
-            return View(chiefUser);
+            DropDownListUser(userViewModel.PortfolioID);
+            return View(userViewModel);
         }
 
 
@@ -110,7 +137,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await _userRepository.DeleteUserAsync(id);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _userRepository.DeleteUserAsync(id);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                }
+            }
             return RedirectToAction("Index");
         }
 
