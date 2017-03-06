@@ -5,63 +5,70 @@
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container relative">
+    <h2 class="align-center font-alt uppercase">Details Porfolio</h2>
+    <div class="blog-item-body container">
+        <h2>Details</h2>
 
-<div>
-    <h4>Portfolio</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
+        <div>
+            <h4>Portfolio</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Summary)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Summary)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Skills)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Skills)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Skills)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Skills)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.WorkExp)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.WorkExp)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.WorkExp)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.WorkExp)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MyProjects)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MyProjects)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MyProjects)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.MyProjects)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Education)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Education)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Education)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Education)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AdditionalInfo)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.AdditionalInfo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdditionalInfo)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.AdditionalInfo)
+                </dd>
 
-    </dl>
+            </dl>
+        </div>
+        <p>
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Edit", "Portfolios", new { id = Model.PortfolioID })" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn"> Edit </a> |
+                <a href="@Url.Action("Index", "Portfolios")" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn"> Back to List </a>
+            </div>
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PortfolioID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

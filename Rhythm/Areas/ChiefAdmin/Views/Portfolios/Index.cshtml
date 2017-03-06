@@ -9,14 +9,16 @@
     <h2 class="align-center font-alt uppercase">Posts</h2>
     <div class="blog-item-body container">
         <p>
-            @Html.ActionLink("Create New", "Create")
+            <div class="blog-item-foot">
+                <a href="@Url.Action("Create", "Portfolios")" class="btn btn-mod btn-round  btn-small"> Create New </a>
+            </div>
         </p>
         <table class="table">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Summary)
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.Skills)
                 </th>
                 <th>
@@ -30,7 +32,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.AdditionalInfo)
-                </th>
+                </th>*@
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
 
@@ -40,7 +44,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Summary)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Skills)
                     </td>
                     <td>
@@ -54,12 +58,25 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.AdditionalInfo)
+                    </td>*@
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Edit", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Edit </a>
+                        </div>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PortfolioID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.PortfolioID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.PortfolioID })
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Details", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Details </a>
+                        </div>
                     </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Delete", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Delete </a>
+                        </div>
+                    </td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.PortfolioID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PortfolioID })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PortfolioID })*@
                 </tr>
             }
 
