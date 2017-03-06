@@ -678,6 +678,7 @@
     <Content Include="Areas\ChiefAdmin\Views\Portfolios\Index.cshtml" />
     <None Include="Properties\PublishProfiles\dogcoding - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dogcoding - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\makarevich.pubxml" />
     <None Include="Properties\PublishProfiles\SERVER-23.pubxml" />
     <None Include="Properties\PublishProfiles\vladi.pubxml" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />

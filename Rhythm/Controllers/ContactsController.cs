@@ -36,13 +36,13 @@ namespace Rhythm.Controllers
                     SmtpClient smpt = new SmtpClient();
                     smpt.Host = "smtp.gmail.com";
                     smpt.Port = 587;
-                    smpt.Credentials = new System.Net.NetworkCredential("justadreampictures", "q26s4hcxz23");
+                    smpt.Credentials = new System.Net.NetworkCredential("justadreampictures", "q26s4hcxz2332Q!@W");
 
                     smpt.EnableSsl = true;
                     await smpt.SendMailAsync(msz);
 
                     ModelState.Clear();
-                    ViewBag.Message = "Thank you for Contacting me.";
+                    ViewBag.ThxMessage = "Thank you for Contacting me.";
                 }
                 catch (Exception ex)
                 {

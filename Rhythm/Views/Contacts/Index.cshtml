@@ -16,7 +16,15 @@
 <section class="page-section" id="contact">
     <div class="container relative">
         <h1 class="section-title font-alt mb-70 mb-sm-40">
-            @ViewBag.Message
+            @if (ViewBag.ThxMessage == null)
+            {
+                @ViewBag.Message
+            }
+            else
+            {
+                @ViewBag.ThxMessage
+            }
+            <br />
             <a style="color:red">@ViewBag.MessageError</a>
         </h1>
         <div class="row mb-60 mb-xs-40">

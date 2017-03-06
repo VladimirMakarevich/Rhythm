@@ -82,6 +82,7 @@
     <Compile Include="EfRepository\PortfolioRepository.cs" />
     <Compile Include="EfRepository\UserRepository.cs" />
     <Compile Include="EfRepository\WidgetArticleEfRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
     </Compile>
