@@ -252,6 +252,10 @@ INSERT INTO blog.Comment
 INSERT INTO blog.Comment
 	VALUES (2, N'SuperAdmin', N'SuperAdmin@outlook.com', 0, N'That doesnt matter because the concept are still the same. You still deal with the models.', GETDATE(), NULL)
 
+INSERT INTO AspNetUsers (Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, UserName)
+	VALUES ('048a4312-be42-4352-bab0-d0ffc76d4994', 'makarevich.dev@outlook.com', 1, 'AOUYxY9lOeKLChqZhlL3p62WYtm1qjjRFNbYYQzCzBVEQoLn28h0hTAiq6Y/nyLLlw==', 'fc717dab-905b-4bb8-b97f-7f97dfe5254d', '+375291024485', 1, 1, GETDATE(), 1, 0, 'makarevich.dev@outlook.com')
+
+
 INSERT INTO blog.PostTag
 	VALUES (1, 1)
 INSERT INTO blog.PostTag
