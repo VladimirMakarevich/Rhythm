@@ -12,12 +12,12 @@
     <div class="container relative">
         <h2>Edit Users</h2>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { @role = "form", @class = "form" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>ChiefUser</h4>
+                <h4>User</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.ChiefUserID)
@@ -124,6 +124,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         }
 
         <div>
