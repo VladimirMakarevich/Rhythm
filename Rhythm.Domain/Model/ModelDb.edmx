@@ -50,6 +50,7 @@
             <PropertyRef Name="PortfolioID" />
           </Key>
           <Property Name="PortfolioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NamePortfolio" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Summary" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Skills" Type="nvarchar(max)" Nullable="false" />
           <Property Name="WorkExp" Type="nvarchar(max)" Nullable="false" />
@@ -247,6 +248,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <PropertyRef Name="PortfolioID" />
           </Key>
           <Property Name="PortfolioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamePortfolio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WorkExp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -405,6 +407,7 @@ warning 6002: The table/view 'DogCoding.blog.PostTag' does not have a primary ke
             <EntityTypeMapping TypeName="DogCodingModel.Portfolio">
               <MappingFragment StoreEntitySet="Portfolio">
                 <ScalarProperty Name="PortfolioID" ColumnName="PortfolioID" />
+                <ScalarProperty Name="NamePortfolio" ColumnName="NamePortfolio" />
                 <ScalarProperty Name="Summary" ColumnName="Summary" />
                 <ScalarProperty Name="Skills" ColumnName="Skills" />
                 <ScalarProperty Name="WorkExp" ColumnName="WorkExp" />
