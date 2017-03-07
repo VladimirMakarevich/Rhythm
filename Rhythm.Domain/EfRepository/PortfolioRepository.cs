@@ -10,9 +10,12 @@ namespace Rhythm.Domain.EfRepository
 {
     public class PortfolioRepository : ContextDb, IPortfolioRepository
     {
-        public IQueryable<Portfolio> GetPortfolio
+        public IQueryable<Portfolio> GetPortfolioProperty
         {
-            get { return db.Portfolios; }
+            get
+            {
+                return db.Portfolios;
+            }
         }
 
         public async Task CreatePortfolioAsync(Portfolio portfolio)
@@ -42,6 +45,11 @@ namespace Rhythm.Domain.EfRepository
         public async Task<Portfolio> GetPortfolioAsync(int? portfolio)
         {
             return await db.Portfolios.FindAsync(portfolio);
+        }
+
+        public Portfolio GetPortfolio(int portfolio)
+        {
+            return db.Portfolios.Find(portfolio);
         }
     }
 }

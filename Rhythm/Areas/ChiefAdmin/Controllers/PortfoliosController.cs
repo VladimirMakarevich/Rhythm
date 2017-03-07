@@ -29,7 +29,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            var portfolio = await _portfolioRepository.GetPortfolio.ToListAsync();
+            var portfolio = await _portfolioRepository.GetPortfolioProperty.ToListAsync();
             var portfolioListViewModel = _portfolioMapper.ToListPortfolioViewModel(portfolio);
 
             return View(portfolioListViewModel);

@@ -20,6 +20,6 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public string Github { get; set; }
         public string Linkedin { get; set; }
 
-        public PortfolioViewModel Portfolio { get; set; }
+        public PortfolioViewModel PortfolioViewModel { get; set; }
     }
 }

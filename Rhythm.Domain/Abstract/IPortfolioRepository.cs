@@ -9,9 +9,10 @@ namespace Rhythm.Domain.Abstract
 {
     public interface IPortfolioRepository
     {
-        IQueryable<Portfolio> GetPortfolio { get; }
+        IQueryable<Portfolio> GetPortfolioProperty { get; }
         Task<List<Portfolio>> GetListPortfolioAsync();
         Task<Portfolio> GetPortfolioAsync(int? portfolio);
+        Portfolio GetPortfolio(int portfolio);
         Task CreatePortfolioAsync(Portfolio portfolio);
         Task EditPortfolioAsync(Portfolio portfolio);
         Task DeletePortfolioAsync(int id);

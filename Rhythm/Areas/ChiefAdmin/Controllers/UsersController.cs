@@ -57,7 +57,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUserViewModel chiefUserViewModel)
+        public async Task<ActionResult> Create(ChiefUserViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ChiefUserID,PortfolioID,FirstName,LastName,MiddleName,Birth,Email,HomeAddress,Skype,Mobile,Github,Linkedin")] ChiefUserViewModel chiefUserViewModel)
+        public async Task<ActionResult> Edit(ChiefUserViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -155,10 +155,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         #region drop
         private void DropDownListUser(object selectedItem = null)
         {
-            var query = from m in _portfolioRepository.GetPortfolio
+            var query = from m in _portfolioRepository.GetPortfolioProperty
                             orderby m.PortfolioID
                             select m;
-            //var q = _portfolioRepository.GetPortfolio.OrderBy(m => m.NamePortfolio).ToList();
+
             ViewBag.PortfolioID = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);
         }
         #endregion

@@ -5,14 +5,18 @@ using System.Web;
 using Rhythm.Domain.Model;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.Domain.Abstract;
 
 namespace Rhythm.Areas.ChiefAdmin.Mappers
 {
     public class UserMapper
     {
-        public UserMapper()
+        private PortfolioMapper _porfolioMapper;
+        IPortfolioRepository _portfolioRepository;
+        public UserMapper(PortfolioMapper porfolioMapper, IPortfolioRepository portfolioRepository)
         {
-
+            _porfolioMapper = porfolioMapper;
+            _portfolioRepository = portfolioRepository;
         }
 
         public List<ChiefUserViewModel> ToListUsersViewModel(List<ChiefUser> users)
