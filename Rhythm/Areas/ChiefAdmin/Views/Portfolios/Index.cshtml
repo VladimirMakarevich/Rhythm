@@ -6,7 +6,7 @@
 }
 
 <div class="container relative">
-    <h2 class="align-center font-alt uppercase">Posts</h2>
+    <h2 class="align-center font-alt uppercase">Portfolios</h2>
     <div class="blog-item-body container">
         <p>
             <div class="blog-item-foot">
@@ -16,7 +16,7 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Summary)
+                    @Html.DisplayNameFor(model => model.NamePortfolio)
                 </th>
                 @*<th>
                     @Html.DisplayNameFor(model => model.Skills)
@@ -42,7 +42,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Summary)
+                        @Html.DisplayFor(modelItem => item.NamePortfolio)
                     </td>
                     @*<td>
                         @Html.DisplayFor(modelItem => item.Skills)

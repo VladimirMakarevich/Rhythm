@@ -15,12 +15,18 @@
             <div class="form-horizontal">
                 <h4>Portfolio</h4>
                 <hr />
-                @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NamePortfolio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NamePortfolio, new { htmlAttributes = new { @name = "NamePortfolio", @id = "NamePortfolio", @class = "input-md form-control" } })
+                    </div>
+                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Summary, new { htmlAttributes = new { @name = "Summary", @id = "Summary", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -28,7 +34,6 @@
                     @Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Skills, new { htmlAttributes = new { @name = "Skills", @id = "Skills", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.Skills, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -36,7 +41,6 @@
                     @Html.LabelFor(model => model.WorkExp, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.WorkExp, new { htmlAttributes = new { @name = "WorkExp", @id = "WorkExp", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.WorkExp, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -44,7 +48,6 @@
                     @Html.LabelFor(model => model.MyProjects, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.MyProjects, new { htmlAttributes = new { @name = "MyProjects", @id = "MyProjects", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.MyProjects, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -52,7 +55,6 @@
                     @Html.LabelFor(model => model.Education, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Education, new { htmlAttributes = new { @name = "Education", @id = "Education", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -60,7 +62,6 @@
                     @Html.LabelFor(model => model.AdditionalInfo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.AdditionalInfo, new { htmlAttributes = new { @name = "AdditionalInfo", @id = "AdditionalInfo", @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.AdditionalInfo, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 

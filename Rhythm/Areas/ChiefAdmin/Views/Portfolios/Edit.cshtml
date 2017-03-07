@@ -21,10 +21,16 @@
                 @Html.HiddenFor(model => model.PortfolioID)
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.NamePortfolio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.NamePortfolio, new { htmlAttributes = new { @class = "input-md form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
                     @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Summary, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -32,7 +38,6 @@
                     @Html.LabelFor(model => model.Skills, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Skills, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*              @Html.ValidationMessageFor(model => model.Skills, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -40,7 +45,6 @@
                     @Html.LabelFor(model => model.WorkExp, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.WorkExp, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.WorkExp, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -48,7 +52,6 @@
                     @Html.LabelFor(model => model.MyProjects, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.MyProjects, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.MyProjects, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -56,7 +59,6 @@
                     @Html.LabelFor(model => model.Education, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.Education, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.Education, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 
@@ -64,7 +66,6 @@
                     @Html.LabelFor(model => model.AdditionalInfo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextAreaFor(model => model.AdditionalInfo, new { htmlAttributes = new { @class = "input-md form-control" } })
-                        @*@Html.ValidationMessageFor(model => model.AdditionalInfo, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
 

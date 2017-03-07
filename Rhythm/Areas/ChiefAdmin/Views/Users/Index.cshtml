@@ -5,90 +5,108 @@
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container relative">
+    <h2 class="align-center font-alt uppercase">Users</h2>
+    <div class="blog-item-body container">
+        <p>
+            <div class="blog-item-foot">
+                <a href="@Url.Action("Create", "Users")" class="btn btn-mod btn-round  btn-small"> Create New </a>
+            </div>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Birth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HomeAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Skype)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Github)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Linkedin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Portfolio.Summary)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MiddleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Birth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Skype)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mobile)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Github)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Linkedin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Portfolio.Summary)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Birth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomeAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Skype)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Github)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Linkedin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Portfolio.Summary)
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Edit", "Users", new { id = item.ChiefUserID })" class="btn btn-mod btn-round  btn-small"> Edit </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Details", "Users", new { id = item.ChiefUserID })" class="btn btn-mod btn-round  btn-small"> Details </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Delete", "Users", new { id = item.ChiefUserID })" class="btn btn-mod btn-round  btn-small"> Delete </a>
+                        </div>
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MiddleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Birth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomeAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Skype)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mobile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Github)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Linkedin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Portfolio.Summary)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChiefUserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ChiefUserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ChiefUserID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>

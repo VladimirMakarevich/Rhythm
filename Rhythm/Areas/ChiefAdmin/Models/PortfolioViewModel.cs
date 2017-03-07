@@ -8,6 +8,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
     public class PortfolioViewModel
     {
         public int PortfolioID { get; set; }
+        public string NamePortfolio { get; set; }
         public string Summary { get; set; }
         public string Skills { get; set; }
         public string WorkExp { get; set; }

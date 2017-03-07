@@ -158,8 +158,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             var query = from m in _portfolioRepository.GetPortfolio
                             orderby m.PortfolioID
                             select m;
-            var q = _portfolioRepository.GetPortfolio.OrderBy(m => m.PortfolioID).ToList();
-            ViewBag.PortfolioID = new SelectList(query, "PortfolioID", "Summary", selectedItem);
+            //var q = _portfolioRepository.GetPortfolio.OrderBy(m => m.NamePortfolio).ToList();
+            ViewBag.PortfolioID = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);
         }
         #endregion
     }
