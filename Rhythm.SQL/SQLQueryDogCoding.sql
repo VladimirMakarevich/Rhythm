@@ -128,6 +128,7 @@ GO
 CREATE TABLE blog.Portfolio
 (
 	PortfolioID int IDENTITY(1,1) NOT NULL,
+	NamePortfolio nvarchar(MAX) NOT NULL,
 	Summary nvarchar(MAX) NOT NULL,
 	Skills nvarchar(MAX) NOT NULL,
 	WorkExp nvarchar(MAX) NOT NULL,
@@ -251,10 +252,6 @@ INSERT INTO blog.Comment
 	VALUES (2, N'Admin', N'admin@gmail.com', 1, N'First of all do I need to use the Inject attribute on all constructors that I want to use injection for. This seems like a really lame design? No you shouldn t have to do this at all actually. Since you work with ASP.NET MVC you can just install the Ninject.MVC3 Nuget package. This will get you started with a NinjectMVC3 class in the App_Start folder. You can use the RegisterServices method to register your interfaces/classes with Ninject. All controllers that have dependencies to those interfaces will then be automatically resolved by Ninject, there is no need for the Inject attribute. Do I need to create a Kernel then use that everywhere I pass in an injected class? No - what you are describing sounds more like the Service Locator pattern, not dependency injection - you will want to pass in your dependencies ideally in the constructor, instead of resolving them within particular classes using the kernel. There should be just one central composition root where the resolving is done, which is within the composition root in either the RegisterServices method mentioned above or a separate Ninject module instantiated there - the later approach will allow you a little more flexibility and modularity (no pun intended) in changing how you resolve your dependencies. Here s a good beginner s tutorial on dependency injection with Ninject and MVC3.', GETDATE(), NULL)
 INSERT INTO blog.Comment
 	VALUES (2, N'SuperAdmin', N'SuperAdmin@outlook.com', 0, N'That doesnt matter because the concept are still the same. You still deal with the models.', GETDATE(), NULL)
-
-INSERT INTO AspNetUsers (Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabled, LockoutEndDateUtc, LockoutEnabled, AccessFailedCount, UserName)
-	VALUES ('048a4312-be42-4352-bab0-d0ffc76d4994', 'makarevich.dev@outlook.com', 1, 'AOUYxY9lOeKLChqZhlL3p62WYtm1qjjRFNbYYQzCzBVEQoLn28h0hTAiq6Y/nyLLlw==', 'fc717dab-905b-4bb8-b97f-7f97dfe5254d', '+375291024485', 1, 1, GETDATE(), 1, 0, 'makarevich.dev@outlook.com')
-
 
 INSERT INTO blog.PostTag
 	VALUES (1, 1)
