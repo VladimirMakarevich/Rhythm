@@ -47,7 +47,7 @@ namespace Rhythm.Domain.EfRepository
             return await db.Portfolios.FindAsync(portfolio);
         }
 
-        public Portfolio GetPortfolio(int portfolio)
+        public Portfolio GetPortfolio(int? portfolio)
         {
             return db.Portfolios.Find(portfolio);
         }

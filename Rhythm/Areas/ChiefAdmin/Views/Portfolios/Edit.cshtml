@@ -10,7 +10,7 @@
     <div class="container relative">
         <h2>Edit Portfolio</h2>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Portfolios", FormMethod.Post, new { @role = "form", @class = "form" }))
         {
             @Html.AntiForgeryToken()
 
@@ -23,7 +23,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.NamePortfolio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.NamePortfolio, new { htmlAttributes = new { @class = "input-md form-control" } })
+                        @Html.EditorFor(model => model.NamePortfolio, new { htmlAttributes = new { @class = "input-md form-control" } })
                     </div>
                 </div>
 

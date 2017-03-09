@@ -21,8 +21,9 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
 
         public List<ChiefUserViewModel> ToListUsersViewModel(List<ChiefUser> users)
         {
-            IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            var usersListViewModel = mapper.Map<List<ChiefUserViewModel>>(users);
+            var usersListViewModel = users.Select(ToUserViewModel).ToList();
+            //IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
+            //List<ChiefUserViewModel> usersListViewModel = mapper.Map<List<ChiefUserViewModel>>(users);
 
             return usersListViewModel;
         }
@@ -30,7 +31,14 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
         public ChiefUserViewModel ToUserViewModel(ChiefUser user)
         {
             IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            var userViewModel = mapper.Map<ChiefUserViewModel>(user);
+            ChiefUserViewModel userViewModel = mapper.Map<ChiefUserViewModel>(user);
+
+            var portfolio = _portfolioRepository.GetPortfolio(user.PortfolioID);
+            if (portfolio != null)
+            {
+                var portfolioViewModel = _porfolioMapper.ToPortfolioViewModel(portfolio);
+                userViewModel.PortfolioViewModel = portfolioViewModel;
+            }
 
             return userViewModel;
         }
@@ -38,7 +46,7 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
         public ChiefUser ToChiefUser(ChiefUserViewModel userViewModel)
         {
             IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            var user = mapper.Map<ChiefUser>(userViewModel);
+            ChiefUser user = mapper.Map<ChiefUser>(userViewModel);
 
             return user;
         }

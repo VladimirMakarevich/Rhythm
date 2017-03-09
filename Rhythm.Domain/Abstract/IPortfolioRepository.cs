@@ -12,7 +12,7 @@ namespace Rhythm.Domain.Abstract
         IQueryable<Portfolio> GetPortfolioProperty { get; }
         Task<List<Portfolio>> GetListPortfolioAsync();
         Task<Portfolio> GetPortfolioAsync(int? portfolio);
-        Portfolio GetPortfolio(int portfolio);
+        Portfolio GetPortfolio(int? portfolio);
         Task CreatePortfolioAsync(Portfolio portfolio);
         Task EditPortfolioAsync(Portfolio portfolio);
         Task DeletePortfolioAsync(int id);
