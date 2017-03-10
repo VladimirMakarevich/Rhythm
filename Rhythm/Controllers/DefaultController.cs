@@ -9,6 +9,8 @@ namespace Rhythm.Controllers
 {
     public abstract class DefaultController : Controller
     {
+        public IPortfolioRepository portfolioRepository { get; set; }
+        public IUserRepository userRepository { get; set; }
         public IRepository repository { get; set; }
 
     }
