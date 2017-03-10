@@ -1,4 +1,4 @@
-﻿
+﻿@model Rhythm.Models.CommonUserViewModel
 @{
     ViewBag.Title = "About Me";
     ViewBag.Text = "";
@@ -17,14 +17,17 @@
             <div class="col-md-8 col-md-offset-2">
                 <h4 class="font-alt">What do you mean by an End Product?</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula porttitor rutrum. Ut laoreet sodales rutrum. Ut eget tristique nibh. Cras mattis est eget lacus dignissim, non consectetur velit pellentesque. Ut sit amet placerat eros, id gravida arcu. Sed felis purus, tempor ac vestibulum nec, consectetur at purus.
+                    @Html.Raw(Model.UserViewModel.FirstName) 
+                </p>
+                <p>
+                    @Html.Raw(Model.UserViewModel.LastName)
                 </p>
 
                 <hr class="mb-30" />
 
                 <h4 class="font-alt">I have bought a product that has files missing, what do I do?</h4>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula porttitor rutrum. Ut laoreet sodales rutrum. Ut eget tristique nibh. Cras mattis est eget lacus dignissim, non consectetur velit pellentesque. Ut sit amet placerat eros, id gravida arcu. Sed felis purus, tempor ac vestibulum nec, consectetur at purus.
+                    @Html.Raw(Model.UserViewModel.Birth)
                 </p>
 
                 <hr class="mb-30" />
