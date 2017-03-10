@@ -760,6 +760,7 @@
     <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
+    <Compile Include="Mappers\AboutMeMapper.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
       <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
@@ -790,7 +791,7 @@
     <Compile Include="Models\RssFeeds\RssViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssListViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssReader.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\CommonUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
       <DependentUpon>content_fr.resx</DependentUpon>
@@ -875,7 +876,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\files\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

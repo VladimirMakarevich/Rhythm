@@ -1,4 +1,6 @@
 ﻿using Rhythm.Domain.Abstract;
+using Rhythm.Mappers;
+using Rhythm.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +11,21 @@ namespace Rhythm.Controllers
 {
     public class AboutMeController : DefaultController
     {
-        public AboutMeController(IUserRepository userRepository, IPortfolioRepository portfolioRepository)
+        private AboutMeMapper _aboutMeMapper;
+        public AboutMeController(IUserRepository userRepository, IPortfolioRepository portfolioRepository, AboutMeMapper aboutMeMapper)
         {
             this.userRepository = userRepository;
             this.portfolioRepository = portfolioRepository;
+            _aboutMeMapper = aboutMeMapper;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var user = userRepository.GetUser.FirstOrDefault();
+            var portfolio = portfolioRepository.GetPortfolio(user.PortfolioID);
+            var userVewModel = _aboutMeMapper.ToCommonUserViewModel(user, portfolio);
+
+            return View(userVewModel);
         }
     }
 }
