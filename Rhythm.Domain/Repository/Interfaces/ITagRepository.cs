@@ -1,13 +1,13 @@
-﻿using Rhythm.Domain.Model;
-using System.Linq;
+﻿using Rhythm.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Rhythm.Domain.Repository.Interfaces
 {
     public interface ITagRepository
     {
-        IQueryable<Tag> Tag { get; }
-        Task<string> AddTagAsync(Tag tag);
-        Task<string> ChangeTagAsync(Tag tag);
+        Task<IEnumerable<Tag>> GetTagsAsync();
+        Task AddTagAsync(Tag tag);
+        Task ChangeTagAsync(Tag tag);
     }
 }

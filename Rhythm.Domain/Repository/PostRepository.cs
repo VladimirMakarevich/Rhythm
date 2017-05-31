@@ -4,10 +4,12 @@ using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Rhythm.Domain.Context;
+using Rhythm.Domain.Repository.Interfaces;
+using System.Collections.Generic;
 
 namespace Rhythm.Domain.Repository
 {
-    public class PostRepository
+    public class PostRepository : IPostRepository
     {
         DogCodingContext _db;
         public PostRepository(DogCodingContext db)
@@ -74,6 +76,11 @@ namespace Rhythm.Domain.Repository
             }
 
             return null;
+        }
+
+        public async Task<IEnumerable<Post>> GetPostsAsync()
+        {
+            return await _db.Posts.ToListAsync();
         }
     }
 }

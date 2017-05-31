@@ -1,5 +1,4 @@
-﻿using Rhythm.Domain.Concrete;
-using Rhythm.Domain.Model;
+﻿using Rhythm.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,10 +7,10 @@ namespace Rhythm.Domain.Repository.Interfaces
 {
     public interface ICommentRepository
     {
-        IQueryable<Comment> Comment { get; }
-        List<RecentComment> GetFiveCommentsList();
-        Task<string> AddCommentAsync(Comment comment);
-        Task<string> ChangeCommentAsync(Comment comment);
-        Task<string> DeleteCommentAsync(Comment comment);
+        Task<IEnumerable<Comment>> GetCommentsAsync();
+        //List<RecentComment> GetFiveCommentsList();
+        Task AddCommentAsync(Comment comment);
+        Task ChangeCommentAsync(Comment comment);
+        Task DeleteCommentAsync(Comment comment);
     }
 }

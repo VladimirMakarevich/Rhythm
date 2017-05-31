@@ -1,110 +1,74 @@
 ﻿using System.Collections.Generic;
-using Rhythm.Domain.Model;
 using System.Linq;
-using Rhythm.Domain.Concrete;
 using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using Rhythm.Domain.Context;
+using Rhythm.Domain.Repository.Interfaces;
+using Rhythm.Domain.Entities;
 
 namespace Rhythm.Domain.Repository
 {
-    public class CommentRepository
+    public class CommentRepository : ICommentRepository
     {
-        public IQueryable<Comment> Comment
+        DogCodingContext _db;
+        public CommentRepository(DogCodingContext db)
         {
-            get { return db.Comments; }
+            _db = db;
         }
 
-        public List<RecentComment> GetFiveCommentsList()
+        //public List<RecentComment> GetFiveCommentsList()
+        //{
+        //    var recent = new List<RecentComment>();
+
+        //    var allPost = db.Posts.OrderBy(p => p.ID).ToList();
+
+        //    var topComment = db.Comments
+        //        .OrderBy(c => c.PostedOn)
+        //        .AsEnumerable()
+        //        .Reverse()
+        //        .Take(5).ToList();
+
+        //    topComment.ForEach(comment =>
+        //    {
+        //        var post = allPost.SingleOrDefault(p => p.ID == comment.ID);
+        //        recent.Add(new RecentComment
+        //        {
+        //            CommentContent = comment.Comment1,
+        //            PostAddedDate = comment.PostedOn,
+        //            NameUserSender = comment.NameUserSender,
+        //            ID = comment.PostID
+        //        });
+        //    });
+
+        //    return recent;
+        //}
+
+        public async Task AddCommentAsync(Comment comment)
         {
-            var recent = new List<RecentComment>();
-
-            var allPost = db.Posts.OrderBy(p => p.ID).ToList();
-
-            var topComment = db.Comments
-                .OrderBy(c => c.PostedOn)
-                .AsEnumerable()
-                .Reverse()
-                .Take(5).ToList();
-
-            topComment.ForEach(comment =>
-            {
-                var post = allPost.SingleOrDefault(p => p.ID == comment.ID);
-                recent.Add(new RecentComment
-                {
-                    CommentContent = comment.Comment1,
-                    PostAddedDate = comment.PostedOn,
-                    NameUserSender = comment.NameUserSender,
-                    ID = comment.PostID
-                });
-            });
-
-            return recent;
+            comment.PostedOn = DateTime.Now;
+            comment.Post.CountComments++;
+            _db.Comments.Add(comment);
+            await _db.SaveChangesAsync();
         }
 
-        public async Task<string> AddCommentAsync(Comment comment)
+        public async Task ChangeCommentAsync(Comment comment)
         {
-            using (var contextDb = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    comment.PostedOn = DateTime.Now;
-                    comment.Post.CountComments++;
-                    db.Comments.Add(comment);
-                    await db.SaveChangesAsync();
-                    contextDb.Commit();
-
-                }
-                catch (Exception ex)
-                {
-                    string src = String.Format("Error AddComment: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
-            }
+            comment.Modified = DateTime.Now;
+            _db.Entry(comment).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
         }
 
-        public async Task<string> ChangeCommentAsync(Comment comment)
+        public async Task DeleteCommentAsync(Comment comment)
         {
-            using (var contextDb = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    comment.Modified = DateTime.Now;
-                    db.Entry(comment).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error ChangeComment: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
-            }
+            comment.Post.CountComments--;
+            _db.Comments.Remove(comment);
+            await _db.SaveChangesAsync();
         }
 
-        public async Task<string> DeleteCommentAsync(Comment comment)
+        public async Task<IEnumerable<Comment>> GetCommentsAsync()
         {
-            using (var contextDb = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    comment.Post.CountComments--;
-                    db.Comments.Remove(comment);
-                    await db.SaveChangesAsync();
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error DeleteComment: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
-            }
+            return await _db.Comments.ToListAsync();
         }
     }
 }

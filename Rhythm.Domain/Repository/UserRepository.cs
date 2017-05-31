@@ -1,52 +1,53 @@
-﻿using Rhythm.Domain.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Rhythm.Domain.Model;
 using System.Data.Entity;
+using Rhythm.Domain.Repository.Interfaces;
+using Rhythm.Domain.Context;
+using Rhythm.Domain.Entities;
 
 namespace Rhythm.Domain.Repository
 {
-    public class UserRepository : ContextDb, IUserRepository
+    public class UserRepository : IUserRepository
     {
-        public IQueryable<ChiefUser> GetUser
+        DogCodingContext _db;
+        public UserRepository(DogCodingContext db)
         {
-            get
-            {
-                return db.ChiefUsers;
-            }
+            _db = db;
         }
 
         public async Task CreateUserAsync(ChiefUser chiefUser)
         {
-            db.ChiefUsers.Add(chiefUser);
-            await db.SaveChangesAsync();
+            _db.ChiefUsers.Add(chiefUser);
+            await _db.SaveChangesAsync();
         }
 
         public async Task DeleteUserAsync(int id)
         {
-            var chiefUser = await db.ChiefUsers.FindAsync(id);
-            db.ChiefUsers.Remove(chiefUser);
-            await db.SaveChangesAsync();
+            var chiefUser = await _db.ChiefUsers.FindAsync(id);
+            _db.ChiefUsers.Remove(chiefUser);
+            await _db.SaveChangesAsync();
         }
 
         public async Task EditChangesUser(ChiefUser chiefUser)
         {
-            db.Entry(chiefUser).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+            _db.Entry(chiefUser).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ChiefUser>> GetChiefUsersAsync()
+        {
+            return await _db.ChiefUsers.ToListAsync();
         }
 
         public async Task<List<ChiefUser>> GetListChiefUsersAsync()
         {
-            var chiefUsers = db.ChiefUsers.Include(c => c.Portfolio);
+            var chiefUsers = _db.ChiefUsers.Include(c => c.Portfolio);
             return await chiefUsers.ToListAsync();
         }
 
-        public async Task<ChiefUser> GetUserAsync(int? chiefUser)
+        public async Task<ChiefUser> GetUserAsync(int chiefUser)
         {
-            return await db.ChiefUsers.FindAsync(chiefUser);
+            return await _db.ChiefUsers.FindAsync(chiefUser);
         }
     }
 }

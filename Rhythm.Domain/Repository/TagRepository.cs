@@ -1,68 +1,42 @@
-﻿using Rhythm.Domain.Model;
-using System.Linq;
-using System.Data.Entity;
-using System;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
-using Rhythm.Domain.Abstract;
+using Rhythm.Domain.Repository.Interfaces;
+using Rhythm.Domain.Entities;
+using Rhythm.Domain.Context;
+using System.Collections.Generic;
 
 namespace Rhythm.Domain.Repository
 {
     public class TagRepository : ITagRepository
     {
-        public IQueryable<Tag> Tag
+        DogCodingContext _db;
+        public TagRepository(DogCodingContext db)
         {
-            get { return db.Tags; }
+            _db = db;
         }
 
-        public async Task<string> AddTagAsync(Tag tag)
+        public async Task AddTagAsync(Tag tag)
         {
-            try
-            {
-                db.Tags.Add(tag);
-                await db.SaveChangesAsync();
-            }
-            catch (System.Exception ex)
-            {
-                string src = String.Format("Error AddTag: {0}", ex.Message);
-                return src;
-            }
-            return null;
+            _db.Tags.Add(tag);
+            await _db.SaveChangesAsync();
         }
 
-        public async Task<string> ChangeTagAsync(Tag tag)
+        public async Task ChangeTagAsync(Tag tag)
         {
-            using (var contextDb = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    db.Entry(tag).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error ChangeTag: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-                return null;
-            }
+            _db.Entry(tag).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
         }
 
-        public async Task<string> DeleteTagAsync(Tag tag)
+        public async Task DeleteTagAsync(Tag tag)
         {
-            try
-            {
-                db.Tags.Remove(tag);
-                await db.SaveChangesAsync();
-            }
-            catch (System.Exception ex)
-            {
-                string src = String.Format("Error DeleteTag: {0}", ex.Message);
-                return src;
-            }
-            return null;
+
+            _db.Tags.Remove(tag);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Tag>> GetTagsAsync()
+        {
+            return await _db.Tags.ToListAsync();
         }
     }
 }
