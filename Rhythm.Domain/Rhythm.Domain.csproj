@@ -72,16 +72,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IRepository.cs" />
-    <Compile Include="Abstract\IPortfolioRepository.cs" />
-    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITagRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPostRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPortfolioRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserRepository.cs" />
     <Compile Include="Concrete\RecentArticleWidget.cs" />
     <Compile Include="Concrete\RecentComment.cs" />
     <Compile Include="ContextDb.cs" />
-    <Compile Include="EfRepository\CommentEfRepository.cs" />
-    <Compile Include="EfRepository\PortfolioRepository.cs" />
-    <Compile Include="EfRepository\UserRepository.cs" />
-    <Compile Include="EfRepository\WidgetArticleEfRepository.cs" />
+    <Compile Include="Repository\CommentRepository.cs" />
+    <Compile Include="Repository\PortfolioRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Repository\WidgetArticleRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\Category.cs">
       <DependentUpon>ModelDb.tt</DependentUpon>
@@ -122,10 +126,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="EfRepository\CategoryEfRepository .cs" />
-    <Compile Include="EfRepository\PostEfRepository.cs" />
-    <Compile Include="EfRepository\TagEfRepository.cs" />
-    <Compile Include="EfRepository\EfRepository.cs" />
+    <Compile Include="Repository\CategoryRepository .cs" />
+    <Compile Include="Repository\PostRepository.cs" />
+    <Compile Include="Repository\TagRepository.cs" />
+    <Compile Include="Repository\EfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -171,6 +175,9 @@
       <DependentUpon>ModelDb.edmx</DependentUpon>
       <LastGenOutput>ModelDb.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EfRepository\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

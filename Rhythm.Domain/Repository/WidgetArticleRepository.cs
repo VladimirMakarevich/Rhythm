@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rhythm.Domain.EfRepository
+namespace Rhythm.Domain.Repository
 {
-    public partial class EfRepository
+    public class Repository
     {
         private RecentArticleWidget articleWidget;
         private Post repositoryArticle;

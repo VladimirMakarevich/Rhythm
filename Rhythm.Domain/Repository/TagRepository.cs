@@ -3,10 +3,11 @@ using System.Linq;
 using System.Data.Entity;
 using System;
 using System.Threading.Tasks;
+using Rhythm.Domain.Abstract;
 
-namespace Rhythm.Domain.EfRepository
+namespace Rhythm.Domain.Repository
 {
-    public partial class EfRepository
+    public class TagRepository : ITagRepository
     {
         public IQueryable<Tag> Tag
         {

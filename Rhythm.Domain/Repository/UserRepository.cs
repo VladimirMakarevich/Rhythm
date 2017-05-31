@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Rhythm.Domain.Model;
 using System.Data.Entity;
 
-namespace Rhythm.Domain.EfRepository
+namespace Rhythm.Domain.Repository
 {
     public class UserRepository : ContextDb, IUserRepository
     {

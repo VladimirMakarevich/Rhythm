@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Rhythm.Domain.Abstract;
 using System.Collections.Generic;
 
-namespace Rhythm.Domain.EfRepository
+namespace Rhythm.Domain.Repository
 {
     public class PortfolioRepository : ContextDb, IPortfolioRepository
     {

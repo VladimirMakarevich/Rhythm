@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System;
 using System.Threading.Tasks;
 
-namespace Rhythm.Domain.EfRepository
+namespace Rhythm.Domain.Repository
 {
-    public partial class EfRepository
+    public class CategoryRepository
     {
         public IQueryable<Category> Category
         {
