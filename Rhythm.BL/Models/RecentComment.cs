@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rhythm.Domain.Concrete
+namespace Rhythm.BL.Models
 {
     public class RecentComment
     {

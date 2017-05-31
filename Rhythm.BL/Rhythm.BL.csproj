@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\RecentArticleWidget.cs" />
+    <Compile Include="Models\RecentComment.cs" />
     <Compile Include="Intervaces\IPortfolioProvider.cs" />
     <Compile Include="Intervaces\IRssProvider.cs" />
     <Compile Include="Intervaces\IUserProvider.cs" />
@@ -56,7 +58,12 @@
     <Compile Include="Provider\TagProvider.cs" />
     <Compile Include="Provider\UserProvider.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Rhythm.Domain\Rhythm.Domain.csproj">
+      <Project>{7707A10A-E169-48CB-9259-7025315EEB46}</Project>
+      <Name>Rhythm.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

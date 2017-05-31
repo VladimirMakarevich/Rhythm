@@ -1,34 +1,41 @@
-﻿using Rhythm.Domain.Model;
+﻿using Rhythm.Domain.Entities;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Rhythm.Domain.Repository.Interfaces;
 using System.Collections.Generic;
+using Rhythm.Domain.Context;
 
 namespace Rhythm.Domain.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
+        DogCodingContext _db;
+        public CategoryRepository(DogCodingContext db)
+        {
+            _db = db;
+        }
+
         public async Task AddCategoryAsync(Category category)
         {
-            db.Categories.Add(category);
-            await db.SaveChangesAsync();
+            _db.Categories.Add(category);
+            await _db.SaveChangesAsync();
         }
 
         public async Task ChangeCategoryAsync(Category category)
         {
-            db.Entry(category).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+            _db.Entry(category).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
         }
 
         public async Task DeleteCategoryAsync(Category category)
         {
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            _db.Categories.Remove(category);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Category>> GetCategoryAsync()
         {
-            return await db.Categories.ToListAsync();
+            return await _db.Categories.ToListAsync();
         }
     }
 }

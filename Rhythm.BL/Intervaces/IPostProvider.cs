@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rhythm.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Rhythm.BL.Intervaces
 {
     public interface IPostProvider
     {
+        Task<RecentArticleWidget> GetArticleWidgetAsync();
     }
 }
