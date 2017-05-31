@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rhythm.BL.Intervaces
+namespace Rhythm.BL.Interfaces
 {
-    public interface IUserProvider
+    public interface IRssProvider
     {
     }
 }

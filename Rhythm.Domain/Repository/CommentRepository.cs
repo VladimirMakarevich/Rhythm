@@ -17,33 +17,6 @@ namespace Rhythm.Domain.Repository
             _db = db;
         }
 
-        //public List<RecentComment> GetFiveCommentsList()
-        //{
-        //    var recent = new List<RecentComment>();
-
-        //    var allPost = db.Posts.OrderBy(p => p.ID).ToList();
-
-        //    var topComment = db.Comments
-        //        .OrderBy(c => c.PostedOn)
-        //        .AsEnumerable()
-        //        .Reverse()
-        //        .Take(5).ToList();
-
-        //    topComment.ForEach(comment =>
-        //    {
-        //        var post = allPost.SingleOrDefault(p => p.ID == comment.ID);
-        //        recent.Add(new RecentComment
-        //        {
-        //            CommentContent = comment.Comment1,
-        //            PostAddedDate = comment.PostedOn,
-        //            NameUserSender = comment.NameUserSender,
-        //            ID = comment.PostID
-        //        });
-        //    });
-
-        //    return recent;
-        //}
-
         public async Task AddCommentAsync(Comment comment)
         {
             comment.PostedOn = DateTime.Now;

@@ -22,9 +22,8 @@ namespace Rhythm.Domain.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(int id)
+        public async Task DeleteUserAsync(ChiefUser chiefUser)
         {
-            var chiefUser = await _db.ChiefUsers.FindAsync(id);
             _db.ChiefUsers.Remove(chiefUser);
             await _db.SaveChangesAsync();
         }
@@ -38,12 +37,6 @@ namespace Rhythm.Domain.Repository
         public async Task<IEnumerable<ChiefUser>> GetChiefUsersAsync()
         {
             return await _db.ChiefUsers.ToListAsync();
-        }
-
-        public async Task<List<ChiefUser>> GetListChiefUsersAsync()
-        {
-            var chiefUsers = _db.ChiefUsers.Include(c => c.Portfolio);
-            return await chiefUsers.ToListAsync();
         }
 
         public async Task<ChiefUser> GetUserAsync(int chiefUser)

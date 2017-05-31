@@ -1,14 +1,17 @@
-﻿using Rhythm.Domain.Entities;
+﻿using Rhythm.BL.Models;
+using Rhythm.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Rhythm.Domain.Repository.Interfaces
+namespace Rhythm.BL.Interfaces
 {
-    public interface IPostRepository
+    public interface IPostProvider
     {
         Task<IEnumerable<Post>> GetPostsAsync();
         Task AddPostAsync(Post post);
+        Task<Post> GetPostAsync(int post, bool? flag);
         Task ChangePostAsync(Post post);
         Task DeletePostAsync(Post post);
+        Task<RecentArticleWidget> GetArticleWidgetAsync();
     }
 }

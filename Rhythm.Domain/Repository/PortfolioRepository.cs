@@ -22,9 +22,8 @@ namespace Rhythm.Domain.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeletePortfolioAsync(int id)
+        public async Task DeletePortfolioAsync(Portfolio portfolio)
         {
-            var portfolio = await _db.Portfolios.FindAsync(id);
             _db.Portfolios.Remove(portfolio);
             await _db.SaveChangesAsync();
         }
@@ -43,11 +42,6 @@ namespace Rhythm.Domain.Repository
         public async Task<Portfolio> GetPortfolioAsync(int portfolio)
         {
             return await _db.Portfolios.FindAsync(portfolio);
-        }
-
-        public Portfolio GetPortfolio(int portfolio)
-        {
-            return _db.Portfolios.Find(portfolio);
         }
 
         public async Task<IEnumerable<Portfolio>> GetPortfoliosAsync()

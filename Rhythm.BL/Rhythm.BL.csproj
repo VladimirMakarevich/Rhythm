@@ -42,13 +42,13 @@
   <ItemGroup>
     <Compile Include="Models\RecentArticleWidget.cs" />
     <Compile Include="Models\RecentComment.cs" />
-    <Compile Include="Intervaces\IPortfolioProvider.cs" />
-    <Compile Include="Intervaces\IRssProvider.cs" />
-    <Compile Include="Intervaces\IUserProvider.cs" />
-    <Compile Include="Intervaces\ITagProvider.cs" />
-    <Compile Include="Intervaces\IPostProvider.cs" />
-    <Compile Include="Intervaces\ICommentProvider.cs" />
-    <Compile Include="Intervaces\ICategoryProvider.cs" />
+    <Compile Include="Interfaces\IPortfolioProvider.cs" />
+    <Compile Include="Interfaces\IRssProvider.cs" />
+    <Compile Include="Interfaces\IUserProvider.cs" />
+    <Compile Include="Interfaces\ITagProvider.cs" />
+    <Compile Include="Interfaces\IPostProvider.cs" />
+    <Compile Include="Interfaces\ICommentProvider.cs" />
+    <Compile Include="Interfaces\ICategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\CategoryProvider.cs" />
     <Compile Include="Provider\CommentProvider.cs" />
