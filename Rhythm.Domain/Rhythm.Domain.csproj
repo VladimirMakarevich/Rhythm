@@ -78,12 +78,14 @@
     <Compile Include="Repository\Interfaces\ICategoryRepository.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\Interfaces\IPortfolioRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRssRepository.cs" />
     <Compile Include="Repository\Interfaces\IUserRepository.cs" />
     <Compile Include="Concrete\RecentArticleWidget.cs" />
     <Compile Include="Concrete\RecentComment.cs" />
     <Compile Include="ContextDb.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\PortfolioRepository.cs" />
+    <Compile Include="Repository\RssRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Repository\WidgetArticleRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />

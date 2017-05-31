@@ -1,66 +1,34 @@
 ﻿using Rhythm.Domain.Model;
-using System.Linq;
 using System.Data.Entity;
-using System;
 using System.Threading.Tasks;
+using Rhythm.Domain.Repository.Interfaces;
+using System.Collections.Generic;
 
 namespace Rhythm.Domain.Repository
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
-        public IQueryable<Category> Category
+        public async Task AddCategoryAsync(Category category)
         {
-            get { return db.Categories; }
-        }
-        public async Task<string> AddCategoryAsync(Category category)
-        {
-            try
-            {
-                db.Categories.Add(category);
-                await db.SaveChangesAsync();
-            }
-            catch (System.Exception ex)
-            {
-                string src = String.Format("Error AddCategory: {0}", ex.Message);
-                return src;
-            }
-            return null;
-
+            db.Categories.Add(category);
+            await db.SaveChangesAsync();
         }
 
-        public async Task<string> ChangeCategoryAsync(Category category)
+        public async Task ChangeCategoryAsync(Category category)
         {
-            using (var contextDb = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    db.Entry(category).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                    contextDb.Commit();
-                }
-                catch (System.Exception ex)
-                {
-                    string src = String.Format("Error ChangeCategory: {0}", ex.Message);
-                    contextDb.Rollback();
-                    return src;
-                }
-            }
-            return null;
+            db.Entry(category).State = EntityState.Modified;
+            await db.SaveChangesAsync();
         }
 
-        public async Task<string> DeleteCategoryAsync(Category category)
+        public async Task DeleteCategoryAsync(Category category)
         {
-            try
-            {
-                db.Categories.Remove(category);
-                await db.SaveChangesAsync();
-            }
-            catch (System.Exception ex)
-            {
-                string src = String.Format("Error DeleteCategory: {0}", ex.Message);
-                return src;
-            }
-            return null;
+            db.Categories.Remove(category);
+            await db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoryAsync()
+        {
+            return await db.Categories.ToListAsync();
         }
     }
 }
