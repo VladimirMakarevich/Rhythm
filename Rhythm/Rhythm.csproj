@@ -754,8 +754,6 @@
     <Compile Include="Areas\ChiefAdmin\Models\TagViewModel.cs" />
     <Compile Include="Authentication\AppUser.cs" />
     <Compile Include="Authentication\DogUserManager.cs" />
-    <Compile Include="Collections\Archive.cs" />
-    <Compile Include="Collections\ArchiveCollection.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
@@ -780,7 +778,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
-    <Compile Include="infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
@@ -912,6 +910,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Rhythm.BL\Rhythm.BL.csproj">
+      <Project>{ac77f5a1-549e-4812-b274-806ba37d18b1}</Project>
+      <Name>Rhythm.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rhythm.Domain\Rhythm.Domain.csproj">
       <Project>{7707a10a-e169-48cb-9259-7025315eeb46}</Project>
       <Name>Rhythm.Domain</Name>

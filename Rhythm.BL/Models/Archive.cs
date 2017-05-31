@@ -1,4 +1,4 @@
-﻿namespace Rhythm.Collections
+﻿namespace Rhythm.BL.Models
 {
     public class Archive
     {

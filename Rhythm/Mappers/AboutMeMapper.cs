@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Rhythm.Domain.Model;
 using Rhythm.Models;
 using Rhythm.Areas.ChiefAdmin.Models;
 using AutoMapper;
+using Rhythm.Domain.Entities;
 
 namespace Rhythm.Mappers
 {

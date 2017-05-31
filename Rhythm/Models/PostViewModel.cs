@@ -1,4 +1,4 @@
-﻿using Rhythm.Domain.Model;
+﻿using Rhythm.Domain.Entities;
 
 namespace Rhythm.Models
 {

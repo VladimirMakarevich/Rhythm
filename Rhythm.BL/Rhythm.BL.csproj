@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IArchiveProvider.cs" />
+    <Compile Include="Models\Archive.cs" />
     <Compile Include="Models\RecentArticleWidget.cs" />
     <Compile Include="Models\RecentComment.cs" />
     <Compile Include="Interfaces\IPortfolioProvider.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="Interfaces\ICommentProvider.cs" />
     <Compile Include="Interfaces\ICategoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\ArchiveProvider.cs" />
     <Compile Include="Provider\CategoryProvider.cs" />
     <Compile Include="Provider\CommentProvider.cs" />
     <Compile Include="Provider\PortfolioProvider.cs" />

@@ -1,14 +1,16 @@
-﻿using Rhythm.Domain.Model;
+﻿using Rhythm.BL.Interfaces;
+using Rhythm.BL.Models;
+using Rhythm.Domain.Entities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace Rhythm.Collections
+namespace Rhythm.BL.Provider
 {
-    public class ArchiveCollection : IEnumerable, IEnumerator
+    public class ArchiveProvider : IArchiveProvider
     {
-        private readonly List<Post> postsList;
+        private readonly List<Post> _postsList;
         protected List<Archive> Archives = new List<Archive>();
         int current = -1;
 
@@ -20,9 +22,9 @@ namespace Rhythm.Collections
             }
         }
 
-        public ArchiveCollection(List<Post> postsList)
+        public ArchiveProvider(List<Post> postsList)
         {
-            this.postsList = postsList;
+            _postsList = postsList;
             AddArchives();
         }
 
@@ -42,16 +44,17 @@ namespace Rhythm.Collections
             current = -1;
         }
 
-        private void AddArchives()
+        public void AddArchives()
         {
             var dateTimeFormatInfo = new DateTimeFormatInfo();
-            var group = postsList.GroupBy(p => new { p.PostedOn.Year, p.PostedOn.Month })
+
+            var group = _postsList.GroupBy(p => new { p.PostedOn.Year, p.PostedOn.Month })
                 .OrderByDescending(g => g.Key.Year)
                 .ThenByDescending(g => g.Key.Month);
 
             var archives = group.Select(g => new Archive
             {
-                MonthYear = string.Format("{0} {1} ({2})", dateTimeFormatInfo.GetMonthName(g.Key.Month), g.Key.Year, g.Count()),
+                MonthYear = string.Format($"{dateTimeFormatInfo.GetMonthName(g.Key.Month)} {g.Key.Year} ({g.Count()})"),
                 Year = g.Key.Year.ToString(CultureInfo.InvariantCulture),
                 Month = g.Key.Month.ToString("00")
             }).ToList();
