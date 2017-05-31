@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Rhythm.Domain.Repository
 {
-    public class PostRepository : IPostRepository
+    public class PostRepository : IPostRepository, IRepository
     {
         DogCodingContext _db;
         public PostRepository(DogCodingContext db)
@@ -81,6 +81,26 @@ namespace Rhythm.Domain.Repository
         public async Task<IEnumerable<Post>> GetPostsAsync()
         {
             return await _db.Posts.ToListAsync();
+        }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _db.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

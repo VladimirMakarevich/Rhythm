@@ -4,10 +4,11 @@ using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.Domain.Context;
 using System.Collections.Generic;
+using System;
 
 namespace Rhythm.Domain.Repository
 {
-    public class TagRepository : ITagRepository
+    public class TagRepository : ITagRepository, IRepository
     {
         DogCodingContext _db;
         public TagRepository(DogCodingContext db)
@@ -37,6 +38,26 @@ namespace Rhythm.Domain.Repository
         public async Task<IEnumerable<Tag>> GetTagsAsync()
         {
             return await _db.Tags.ToListAsync();
+        }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _db.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

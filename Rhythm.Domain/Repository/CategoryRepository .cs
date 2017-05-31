@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using Rhythm.Domain.Repository.Interfaces;
 using System.Collections.Generic;
 using Rhythm.Domain.Context;
+using System;
 
 namespace Rhythm.Domain.Repository
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository, IRepository
     {
         DogCodingContext _db;
         public CategoryRepository(DogCodingContext db)
@@ -36,6 +37,26 @@ namespace Rhythm.Domain.Repository
         public async Task<IEnumerable<Category>> GetCategoryAsync()
         {
             return await _db.Categories.ToListAsync();
+        }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _db.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

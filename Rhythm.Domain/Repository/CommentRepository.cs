@@ -9,7 +9,7 @@ using Rhythm.Domain.Entities;
 
 namespace Rhythm.Domain.Repository
 {
-    public class CommentRepository : ICommentRepository
+    public class CommentRepository : ICommentRepository, IRepository
     {
         DogCodingContext _db;
         public CommentRepository(DogCodingContext db)
@@ -69,6 +69,26 @@ namespace Rhythm.Domain.Repository
         public async Task<IEnumerable<Comment>> GetCommentsAsync()
         {
             return await _db.Comments.ToListAsync();
+        }
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _db.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -75,6 +75,11 @@
     <Compile Include="Entities\Portfolio.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Migrations\201705312243574_migration-old-database.cs" />
+    <Compile Include="Migrations\201705312243574_migration-old-database.Designer.cs">
+      <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
     <Compile Include="Repository\Interfaces\IPostRepository.cs" />
@@ -97,7 +102,6 @@
     <Compile Include="Repository\CategoryRepository .cs" />
     <Compile Include="Repository\PostRepository.cs" />
     <Compile Include="Repository\TagRepository.cs" />
-    <Compile Include="Repository\EfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -125,7 +129,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705312243574_migration-old-database.resx">
+      <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

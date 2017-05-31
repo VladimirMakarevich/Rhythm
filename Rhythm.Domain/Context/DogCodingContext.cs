@@ -20,6 +20,5 @@ namespace Rhythm.Domain.Context
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-
     }
 }
