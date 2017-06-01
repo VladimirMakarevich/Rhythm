@@ -3,6 +3,8 @@ using System.Linq;
 using Rhythm.Domain.Entities;
 using AutoMapper;
 using Rhythm.Models;
+using Rhythm.BL.Models;
+using System;
 
 namespace Rhythm.Mappers
 {
@@ -23,6 +25,11 @@ namespace Rhythm.Mappers
         public CommentViewModel ToCommentViewModel(Comment comment)
         {
             return _mapper.Map<Comment, CommentViewModel>(comment);
+        }
+
+        internal object ToCommetRecentViewModel(List<RecentComment> comments)
+        {
+            throw new NotImplementedException();
         }
     }
 }

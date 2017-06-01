@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Rhythm.Domain.Entities;
+using Rhythm.Models.RecentViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,16 @@ namespace Rhythm.Mappers
         public CategoryMapper(IMapper mapper)
         {
             _mapper = mapper;
+        }
+        
+        public IEnumerable<CategoryRecentViewModel> ToCategoriesRecentViewModel(IEnumerable<Category> category)
+        {
+            return category.Select(ToCategoryRecentViewModel).ToList();
+        }
+
+        public CategoryRecentViewModel ToCategoryRecentViewModel(Category category)
+        {
+            return _mapper.Map<Category, CategoryRecentViewModel>(category);
         }
     }
 }

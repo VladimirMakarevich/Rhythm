@@ -35,16 +35,18 @@ namespace Rhythm.Controllers
         public async Task<ActionResult> RecentCategories()
         {
             var category = await _categoryProvider.GetCategoryAsync();
+            var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
 
-            return PartialView("RecentCategories", category);
+            return PartialView("RecentCategories", categoriesRecentViewModel);
         }
 
         [ChildActionOnly]
         public async Task<ActionResult> RecentTags()
         {
             var tag = await _tagProvider.GetTagsAsync();
+            var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
 
-            return PartialView("RecentTags", tag);
+            return PartialView("RecentTags", tagsRecentViewModel);
         }
 
 
@@ -52,16 +54,18 @@ namespace Rhythm.Controllers
         public async Task<ActionResult> RecentPosts()
         {
             var posts = await _postProvider.GetPostsAsync();
+            var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
 
-            return PartialView("RecentPosts", posts);
+            return PartialView("RecentPosts", postRecentViewModel);
         }
 
         [ChildActionOnly]
         public async Task<ActionResult> RecentComments()
         {
             var comments = await _commentProvider.GetFiveCommentsListAsync();
+            var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments);
 
-            return PartialView("RecentComments", comments);
+            return PartialView("RecentComments", commentsRecentViewModel);
         }
 
         [ChildActionOnly]

@@ -5,6 +5,7 @@ using System.Web;
 using Rhythm.Domain.Entities;
 using Rhythm.Models;
 using AutoMapper;
+using Rhythm.Models.RecentViewModel;
 
 namespace Rhythm.Mappers
 {
@@ -51,6 +52,18 @@ namespace Rhythm.Mappers
             var postViewModel = _mapper.Map<Post, PostViewModel>(post);
 
             return new PostSingleViewModel { PostViewModel = postViewModel, CountPosts = count };
+        }
+
+        public IEnumerable<PostRecentViewModel> ToPostsRecentViewModel(IEnumerable<Post> posts)
+        {
+            var lastFivePosts = posts.OrderBy(m => m.Id).Take(5);
+
+            return lastFivePosts.Select(ToPostRecentViewModel).ToList();
+        }
+
+        public PostRecentViewModel ToPostRecentViewModel(Post post)
+        {
+            return _mapper.Map<Post, PostRecentViewModel>(post);
         }
     }
 }

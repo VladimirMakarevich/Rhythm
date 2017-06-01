@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Rhythm.Domain.Entities;
+using Rhythm.Models.RecentViewModel;
 
 namespace Rhythm.Mappers
 {
@@ -13,6 +13,16 @@ namespace Rhythm.Mappers
         public TagMapper(IMapper mapper)
         {
             _mapper = mapper;
+        }
+
+        public IEnumerable<TagRecentViewModel> ToTagsRecentViewModel(IEnumerable<Tag> tag)
+        {
+            return tag.Select(ToTagRecentViewModel).ToList();
+        }
+
+        public TagRecentViewModel ToTagRecentViewModel(Tag tag)
+        {
+            return _mapper.Map<Tag, TagRecentViewModel>(tag);
         }
     }
 }
