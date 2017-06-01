@@ -8,7 +8,7 @@ namespace Rhythm.BL.Interfaces
     public interface ICommentProvider
     {
         Task<IEnumerable<Comment>> GetCommentsAsync();
-        Task<List<RecentComment>> GetFiveCommentsList();
+        Task<List<RecentComment>> GetFiveCommentsListAsync();
         Task AddCommentAsync(Comment comment);
         Task ChangeCommentAsync(Comment comment);
         Task DeleteCommentAsync(Comment comment);

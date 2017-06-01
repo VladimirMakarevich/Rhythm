@@ -2,6 +2,7 @@
 using Ninject.Activation;
 using Rhythm.Domain.Entities;
 using Rhythm.Models;
+using Rhythm.Models.RecentViewModel;
 
 namespace Rhythm.Mappers
 {
@@ -18,6 +19,10 @@ namespace Rhythm.Mappers
         {
             config.CreateMap<Post, PostViewModel>().ReverseMap();
             config.CreateMap<Comment, CommentViewModel>().ReverseMap();
+            config.CreateMap<Post, PostRecentViewModel>().ReverseMap();
+            config.CreateMap<Comment, CommentRecentViewModel>().ReverseMap();
+            config.CreateMap<Category, CategoryRecentViewModel>().ReverseMap();
+            config.CreateMap<Tag, TagRecentViewModel>().ReverseMap();
         }
     }
 }

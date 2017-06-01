@@ -1,7 +1,4 @@
-﻿using Rhythm.Collections;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using Rhythm.Models;
+﻿using Rhythm.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

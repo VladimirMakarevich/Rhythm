@@ -756,8 +756,10 @@
     <Compile Include="IsValidBoolAttribute.cs" />
     <Compile Include="Mappers\AboutMeMapper.cs" />
     <Compile Include="Mappers\AutoMapperConfig.cs" />
+    <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
+    <Compile Include="Mappers\TagMapper.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
       <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
@@ -779,17 +781,21 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\RecentViewModel\CategoryRecentViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
     <Compile Include="Models\PostSingleViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
+    <Compile Include="Models\RecentViewModel\CommentRecentViewModel.cs" />
+    <Compile Include="Models\RecentViewModel\PostRecentViewModel.cs" />
     <Compile Include="Models\RssFeeds\GetRss.cs" />
     <Compile Include="Models\RssFeeds\RssViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssListViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssReader.cs" />
     <Compile Include="Models\CommonUserViewModel.cs" />
+    <Compile Include="Models\RecentViewModel\TagRecentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
       <DependentUpon>content_fr.resx</DependentUpon>

@@ -11,8 +11,8 @@ namespace Rhythm.BL.Provider
     public class ArchiveProvider : IArchiveProvider
     {
         private readonly List<Post> _postsList;
-        protected List<Archive> Archives = new List<Archive>();
-        int current = -1;
+        private List<Archive> Archives = new List<Archive>();
+        private int current = -1;
 
         public object Current
         {
