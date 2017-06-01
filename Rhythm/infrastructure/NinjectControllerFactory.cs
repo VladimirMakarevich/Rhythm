@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Ninject;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Rhythm.Areas.ChiefAdmin.Models;
-using Microsoft.AspNet.Identity;
-using Rhythm.Authentication;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Repository;
 using Rhythm.BL.Provider;
 using Rhythm.BL.Interfaces;
+using AutoMapper;
+using Rhythm.Mappers;
 
 namespace Rhythm.Infrastructure
 {
@@ -33,6 +29,15 @@ namespace Rhythm.Infrastructure
 
         private void AddBindings()
         {
+            // AutoMapperConfiguration binding
+            ninjectKernel.Bind<IMapper>().ToMethod(AutoMapperConfig.GetMapper).InSingletonScope();
+
+            // Mappers
+            ninjectKernel.Bind<CommentMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<PostMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<AboutMeMapper>().ToSelf().InSingletonScope();
+
+            // Repositories
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
             ninjectKernel.Bind<ICategoryRepository>().To<CategoryRepository>();
             ninjectKernel.Bind<ICommentRepository>().To<CommentRepository>();
@@ -41,6 +46,7 @@ namespace Rhythm.Infrastructure
             ninjectKernel.Bind<ITagRepository>().To<TagRepository>();
             ninjectKernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
 
+            // Providers
             ninjectKernel.Bind<IArchiveProvider>().To<ArchiveProvider>();
             ninjectKernel.Bind<IUserProvider>().To<UserProvider>();
             ninjectKernel.Bind<ICategoryProvider>().To<CategoryProvider>();

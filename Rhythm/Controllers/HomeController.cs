@@ -1,61 +1,28 @@
-﻿using Rhythm.Domain.Abstract;
-using Rhythm.Models;
-using System.Data.Entity;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using NLog;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using System.Threading.Tasks;
-using Rhythm.Authentication;
-using System.Security.Claims;
-using System;
+using Rhythm.BL.Interfaces;
+using Rhythm.Mappers;
 
 namespace Rhythm.Controllers
 {
     public class HomeController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 8;
-        public HomeController(IRepository repository)
+        private PostMapper _postMapper;
+
+        public HomeController(IPostProvider postProvider, PostMapper postMapper)
         {
-            this.repository = repository;
+            _postProvider = postProvider;
+            _postMapper = postMapper;
         }
 
-        public ViewResult Index(int page = 1)
+        public async Task<ViewResult> Index(int page = 1)
         {
-            PostListViewModel model = new PostListViewModel
-            {
-                Posts = repository.Post
-                .OrderBy(p => p.ID)
-                .Where(m => m.Published == true)
-                .AsEnumerable()
-                .Reverse()
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize),
+            var post = await _postProvider.GetPostsAsync();
+            var postListViewModel = _postMapper.ToPostListViewModel(post, page);
 
-                PagingView = new ListView
-                {
-                    CurrentPage = page,
-                    PostsPerPage = PageSize,
-                    TotalPosts = repository.Post.Count()
-                }
-            };
-
-            return View(model);
-        }
-
-        public ActionResult BadAction()
-        {
-            try
-            {
-                throw new Exception("You forgot to implement this ACTION!");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Simple error - {0}", ex.Message);
-            }
-            throw new Exception("You forgot to implement this ACTION!");
+            return View(postListViewModel);
         }
     }
 }

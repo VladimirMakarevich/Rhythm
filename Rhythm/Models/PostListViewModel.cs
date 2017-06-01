@@ -5,7 +5,7 @@ namespace Rhythm.Models
 {
     public class PostListViewModel
     {
-        public IEnumerable<Post> Posts { get; set; }
+        public IEnumerable<PostViewModel> PostsViewModel { get; set; }
         public ListView PagingView { get; set; }
 
     }

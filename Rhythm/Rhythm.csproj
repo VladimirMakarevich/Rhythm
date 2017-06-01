@@ -755,7 +755,9 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
     <Compile Include="Mappers\AboutMeMapper.cs" />
+    <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\CommentMapper.cs" />
+    <Compile Include="Mappers\PostMapper.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
       <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
@@ -781,6 +783,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
+    <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\RssFeeds\GetRss.cs" />
     <Compile Include="Models\RssFeeds\RssViewModel.cs" />
