@@ -12,5 +12,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task CreatePortfolioAsync(Portfolio portfolio);
         Task EditPortfolioAsync(Portfolio portfolio);
         Task DeletePortfolioAsync(Portfolio portfolio);
+        Task<Portfolio> GetPortfolioByUserAsync(int userId);
     }
 }

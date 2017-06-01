@@ -42,6 +42,11 @@ namespace Rhythm.BL.Provider
             return await _portfolioRepository.GetPortfolioAsync(portfolio);
         }
 
+        public async Task<Portfolio> GetPortfolioByUserAsync(int userId)
+        {
+            return await _portfolioRepository.GetPortfolioByUserAsync(userId);
+        }
+
         public async Task<IEnumerable<Portfolio>> GetPortfoliosAsync()
         {
             return await _portfolioRepository.GetPortfoliosAsync();

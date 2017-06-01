@@ -25,7 +25,7 @@ namespace Rhythm.Controllers
         public async Task<ActionResult> Index()
         {
             var user = await _userProvider.GetChiefUsersAsync();
-            var portfolio = await _portfolioProvider.GetPortfolioAsync(user.FirstOrDefault().PortfolioID);
+            var portfolio = await _portfolioProvider.GetPortfolioByUserAsync(user.FirstOrDefault().ChiefUserId);
 
             var userVewModel = _aboutMeMapper.ToChiefUserViewModel(user.FirstOrDefault(), portfolio);
 

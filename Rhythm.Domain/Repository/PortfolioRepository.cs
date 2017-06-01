@@ -49,6 +49,11 @@ namespace Rhythm.Domain.Repository
             return await _db.Portfolios.ToListAsync();
         }
 
+        public async Task<Portfolio> GetPortfolioByUserAsync(int userId)
+        {
+            return await _db.Portfolios.FirstOrDefaultAsync(user => user.ChiefUserId == userId);
+        }
+
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)
