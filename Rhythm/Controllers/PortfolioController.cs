@@ -8,7 +8,6 @@ namespace Rhythm.Controllers
 {
     public class PortfolioController : DefaultController
     {
-        // GET: Portfolio
         public ActionResult Index()
         {
             return View();

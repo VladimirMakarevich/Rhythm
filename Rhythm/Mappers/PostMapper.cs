@@ -45,5 +45,12 @@ namespace Rhythm.Mappers
         {
             return _mapper.Map<Post, PostViewModel>(post);
         }
+
+        public PostSingleViewModel ToPostSingleViewModel(Post post, int count)
+        {
+            var postViewModel = _mapper.Map<Post, PostViewModel>(post);
+
+            return new PostSingleViewModel { PostViewModel = postViewModel, CountPosts = count };
+        }
     }
 }

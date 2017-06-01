@@ -783,7 +783,7 @@
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ListView.cs" />
     <Compile Include="Models\PostListViewModel.cs" />
-    <Compile Include="Models\ContentViewModel.cs" />
+    <Compile Include="Models\PostSingleViewModel.cs" />
     <Compile Include="Models\PostViewModel.cs" />
     <Compile Include="Models\RssFeeds\GetRss.cs" />
     <Compile Include="Models\RssFeeds\RssViewModel.cs" />

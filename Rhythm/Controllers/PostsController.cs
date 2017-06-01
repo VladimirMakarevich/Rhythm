@@ -1,13 +1,9 @@
 ﻿using NLog;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using Rhythm.Models;
-using System;
-using System.Collections.Generic;
+using Rhythm.BL.Interfaces;
+using Rhythm.Domain.Entities;
+using Rhythm.Mappers;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Rhythm.Controllers
@@ -15,113 +11,79 @@ namespace Rhythm.Controllers
     public class PostsController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public int PageSize = 8;
-        public PostsController(IRepository repository)
+        private PostMapper _postMapper;
+
+        public PostsController(IPostProvider postProvider, PostMapper postMapper)
         {
-            this.repository = repository;
+            _postProvider = postProvider;
+            _postMapper = postMapper;
         }
 
-        public ViewResult Index(int page = 1)
+        public async Task<ViewResult> Index(int page = 1)
         {
-            PostListViewModel model = new PostListViewModel
-            {
-                Posts = repository.Post
-                .OrderBy(s => s.ID)
-                .Where(m => m.Published == true)
-                .AsEnumerable()
-                .Reverse()
-                .Skip((page - 1) * PageSize)
-                .Take(PageSize),
+            var post = await _postProvider.GetPostsAsync();
+            var postListViewModel = _postMapper.ToPostListViewModel(post, page);
 
-                PagingView = new ListView
-                {
-                    CurrentPage = page,
-                    PostsPerPage = PageSize,
-                    TotalPosts = repository.Post.Count()
-                }
-            };
-
-            return View(model);
+            return View(postListViewModel);
         }
 
-        public async Task<ActionResult> Post(int? id, bool? flag)
+        public async Task<ActionResult> Post(int id, bool? flag)
         {
-            ViewBag.Count = repository.Post.Where(p => p.Published == true).Max(m => m.ID);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var post = await repository.GetPostAsync(id, flag);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            PostViewModel postView = new PostViewModel
-            {
-                Post = post
-            };
-            return View(postView);
+            var posts = await _postProvider.GetPostsAsync();
+            int count = posts.Where(p => p.Published == true).Max(m => m.Id);
+
+            var post = await _postProvider.GetPostAsync(id, flag);
+
+            var postSingleViewModel = _postMapper.ToPostSingleViewModel(post, count);
+
+            return View(postSingleViewModel);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Post(PostViewModel commentViewModel)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Post(PostViewModel commentViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            Comment model = new Comment
+        //            {
+        //                PostID = commentViewModel.Post.ID,
+        //                NameUserSender = commentViewModel.Comment.NameUserSender,
+        //                EmailUserSender = commentViewModel.Comment.EmailUserSender,
+        //                Comment1 = commentViewModel.Comment.Comment1,
+        //                DescriptionComment = commentViewModel.Comment.DescriptionComment,
+        //                Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID),
+        //                PostedOn = DateTime.Now
+        //            };
+
+        //            string src = await repository.AddCommentAsync(model);
+        //            if (src != null)
+        //                logger.Error(src);
+
+        //            ModelState.Clear();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.Clear();
+        //            logger.Error("Faild in PostController ActionResult Post [HttpPost]: {0}", ex.Message);
+        //        }
+        //    }
+        //    ModelState.Clear();
+        //    PostViewModel post = new PostViewModel
+        //    {
+        //        Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID)
+        //    };
+
+        //    return View(post);
+        //}
+
+        public async Task<FileContentResult> GetImage(int id)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    Comment model = new Comment
-                    {
-                        PostID = commentViewModel.Post.ID,
-                        NameUserSender = commentViewModel.Comment.NameUserSender,
-                        EmailUserSender = commentViewModel.Comment.EmailUserSender,
-                        Comment1 = commentViewModel.Comment.Comment1,
-                        DescriptionComment = commentViewModel.Comment.DescriptionComment,
-                        Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID),
-                        PostedOn = DateTime.Now
-                    };
+            Post post = await _postProvider.GetPostAsync(id, null);
 
-                    string src = await repository.AddCommentAsync(model);
-                    if (src != null)
-                        logger.Error(src);
-
-                    ModelState.Clear();
-                }
-                catch (Exception ex)
-                {
-                    ModelState.Clear();
-                    logger.Error("Faild in PostController ActionResult Post [HttpPost]: {0}", ex.Message);
-                }
-            }
-            ModelState.Clear();
-            PostViewModel post = new PostViewModel
-            {
-                Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID)
-            };
-
-            return View(post);
-        }
-
-        public FileContentResult GetImage(int id)
-        {
-            try
-            {
-                Post post = repository.Post.FirstOrDefault(p => p.ID == id);
-                if (post != null)
-                {
-                    return File(post.ImageData, "image/png");
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
-            }
-            return null;
+            return File(post.ImageData, "image/png");
         }
     }
 }

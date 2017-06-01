@@ -8,7 +8,6 @@ namespace Rhythm.Controllers
 {
     public class LibraryController : DefaultController
     {
-        // GET: Library
         public ActionResult Index()
         {
             return View();

@@ -2,9 +2,10 @@
 
 namespace Rhythm.Models
 {
-    public class ContentViewModel
+    public class PostSingleViewModel
     {
         public PostViewModel PostViewModel { get; set; }
         public CommentViewModel CommentViewModel { get; set; }
+        public int CountPosts { get; set; }
     }
 }
