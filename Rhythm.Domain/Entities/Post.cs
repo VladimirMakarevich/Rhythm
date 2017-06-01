@@ -8,10 +8,11 @@ namespace Rhythm.Domain.Entities
         public Post()
         {
             this.Comments = new HashSet<Comment>();
-            this.Tags = new HashSet<Tag>();
+            this.PostTagMaps = new HashSet<PostTagMap>();
         }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string NameSenderPost { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
@@ -20,13 +21,12 @@ namespace Rhythm.Domain.Entities
         public bool Published { get; set; }
         public System.DateTime PostedOn { get; set; }
         public Nullable<System.DateTime> Modified { get; set; }
-        public int CategoryId { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMime { get; set; }
         public int CountComments { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<PostTagMap> PostTagMaps { get; set; }
     }
 }

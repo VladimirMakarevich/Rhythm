@@ -74,6 +74,8 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Portfolio.cs" />
     <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\PostTagMap.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Migrations\201705312243574_migration-old-database.cs" />
     <Compile Include="Migrations\201705312243574_migration-old-database.Designer.cs">
@@ -82,6 +84,14 @@
     <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.cs" />
     <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.Designer.cs">
       <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706010627491_added-project-entity.cs" />
+    <Compile Include="Migrations\201706010627491_added-project-entity.Designer.cs">
+      <DependentUpon>201706010627491_added-project-entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706010631472_added-map-for-tag-post-entities.cs" />
+    <Compile Include="Migrations\201706010631472_added-map-for-tag-post-entities.Designer.cs">
+      <DependentUpon>201706010631472_added-map-for-tag-post-entities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
@@ -138,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705312357570_removed-nullable-to-portfolioId.resx">
       <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706010627491_added-project-entity.resx">
+      <DependentUpon>201706010627491_added-project-entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706010631472_added-map-for-tag-post-entities.resx">
+      <DependentUpon>201706010631472_added-map-for-tag-post-entities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
