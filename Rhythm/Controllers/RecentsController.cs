@@ -80,12 +80,13 @@ namespace Rhythm.Controllers
             //return View();
         }
 
-        //[ChildActionOnly]
-        //public async Task<ActionResult> RecentArchives()
-        //{
-        //    var model = _archiveProvider.AddArchives();
-        //        //new ArchiveCollection(GetPost());
-        //    return PartialView(model);
-        //}
+        [ChildActionOnly]
+        public ActionResult RecentArchives()
+        {
+            // TODO: get archive
+            _archiveProvider.AddArchives();
+            //new ArchiveCollection(GetPost());
+            return PartialView();
+        }
     }
 }

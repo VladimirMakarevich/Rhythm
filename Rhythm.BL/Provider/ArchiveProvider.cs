@@ -10,15 +10,15 @@ namespace Rhythm.BL.Provider
 {
     public class ArchiveProvider : IArchiveProvider
     {
-        private readonly List<Post> _postsList;
-        private List<Archive> Archives = new List<Archive>();
+        private List<Post> _postsList;
+        private List<Archive> _archives = new List<Archive>();
         private int current = -1;
 
         public object Current
         {
             get
             {
-                return Archives[current];
+                return _archives[current];
             }
         }
 
@@ -30,13 +30,13 @@ namespace Rhythm.BL.Provider
 
         public IEnumerator GetEnumerator()
         {
-            return Archives.GetEnumerator();
+            return _archives.GetEnumerator();
         }
 
         public bool MoveNext()
         {
             current++;
-            return current < Archives.Count;
+            return current < _archives.Count;
         }
 
         public void Reset()
@@ -59,7 +59,7 @@ namespace Rhythm.BL.Provider
                 Month = g.Key.Month.ToString("00")
             }).ToList();
 
-            Archives.AddRange(archives);
+            _archives.AddRange(archives);
         }
     }
 }
