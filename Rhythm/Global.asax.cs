@@ -1,12 +1,12 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Rhythm.infrastructure;
 using System.Web.Optimization;
 using NLog.Common;
 using NLog;
 using System;
 using System.Web;
 using Rhythm.Controllers;
+using Rhythm.Infrastructure;
 
 namespace Rhythm
 {

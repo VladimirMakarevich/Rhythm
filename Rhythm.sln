@@ -44,6 +44,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "UI_Source", "UI_Source\", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythm.BL", "Rhythm.BL\Rhythm.BL.csproj", "{AC77F5A1-549E-4812-B274-806BA37D18B1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rhythm.Web", "Rhythm.Web", "{EA5684F3-0175-4D31-9851-057EF123CCD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,5 +75,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C946B53-4357-4424-B86D-D7B1FE277A5F} = {EA5684F3-0175-4D31-9851-057EF123CCD6}
 	EndGlobalSection
 EndGlobal

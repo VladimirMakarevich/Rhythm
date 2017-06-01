@@ -1,22 +1,29 @@
-﻿using Rhythm.Domain.Abstract;
+﻿using Rhythm.BL.Interfaces;
+using Rhythm.Mappers;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Rhythm.Controllers
 {
     public class CommentsController : DefaultController
     {
-        public CommentsController(IRepository repository)
+        private CommentMapper _commentMapper;
+
+        public CommentsController(ICommentProvider commentProvider, CommentMapper commentMapper)
         {
-            this.repository = repository;
+            _commentProvider = commentProvider;
+            _commentMapper = commentMapper;
         }
 
 
-        public ActionResult AllComments(int id)
+        public async Task<ActionResult> AllComments(int id)
         {
-            var allComment = repository.Comment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
+            var comments = await _commentProvider.GetCommentsAsync();
+            var commentsViewModel = _commentMapper.ToCommentsViewModel(comments);
+            //var sortedComments = allComment.OrderBy(c => c.PostID).Where(i => i.PostID == id).ToList();
 
-            return PartialView(allComment);
+            return PartialView(commentsViewModel);
         }
     }
 }

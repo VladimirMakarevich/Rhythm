@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201705312243574_migration-old-database.Designer.cs">
       <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.cs" />
+    <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.Designer.cs">
+      <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
@@ -131,6 +135,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705312243574_migration-old-database.resx">
       <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312357570_removed-nullable-to-portfolioId.resx">
+      <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

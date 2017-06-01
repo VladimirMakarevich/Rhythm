@@ -209,9 +209,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Readme\Elmah.SqlServer.sql" />
-    <Content Include="App_Readme\Elmah.SqlServer.txt" />
-    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\css\AjaxLoader.gif" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
@@ -758,6 +755,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
     <Compile Include="Mappers\AboutMeMapper.cs" />
+    <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
       <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
