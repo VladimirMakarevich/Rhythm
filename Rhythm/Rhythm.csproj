@@ -760,6 +760,7 @@
     <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
     <Compile Include="Mappers\RecentContentMapper.cs" />
+    <Compile Include="Mappers\SearchResultMapper.cs" />
     <Compile Include="Mappers\TagMapper.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
     <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
@@ -800,6 +801,7 @@
     <Compile Include="Models\RssFeeds\RssReader.cs" />
     <Compile Include="Models\CommonUserViewModel.cs" />
     <Compile Include="Models\RecentViewModel\TagRecentViewModel.cs" />
+    <Compile Include="Models\SearchResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\content_fr.Designer.cs">
       <DependentUpon>content_fr.resx</DependentUpon>

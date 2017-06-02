@@ -34,9 +34,14 @@ namespace Rhythm.Domain.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetCategoryAsync()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _db.Categories.ToListAsync();
+        }
+
+        public async Task<Category> GetCategoryAsync(int id)
+        {
+            return await _db.Categories.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         private bool _disposed = false;

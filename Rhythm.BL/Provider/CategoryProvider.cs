@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.BL.Interfaces;
+using System;
 
 namespace Rhythm.BL.Provider
 {
@@ -30,9 +31,14 @@ namespace Rhythm.BL.Provider
             await _categoryRepository.DeleteCategoryAsync(category);
         }
 
-        public async Task<IEnumerable<Category>> GetCategoryAsync()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _categoryRepository.GetCategoryAsync();
+            return await _categoryRepository.GetCategoriesAsync();
+        }
+
+        public async Task<Category> GetCategoryAsync(int id)
+        {
+            return await _categoryRepository.GetCategoryAsync(id);
         }
     }
 }

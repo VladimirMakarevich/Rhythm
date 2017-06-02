@@ -1,8 +1,11 @@
-﻿using Rhythm.Models;
+﻿using Rhythm.BL.Interfaces;
+using Rhythm.Mappers;
+using Rhythm.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,33 +13,21 @@ namespace Rhythm.Controllers
 {
     public class SearchController : DefaultController
     {
-        public int PageSize = 8;
-        public SearchController(IRepository repository)
+        private SearchResultMapper _searchResultMapper;
+        public SearchController(IPostProvider postProvider, SearchResultMapper searchResultMapper)
         {
-            this.repository = repository;
-        }
+            _postProvider = postProvider;
+            _searchResultMapper = searchResultMapper;
+    }
 
-        public ViewResult Category(Category item, int page = 1)
+        public async Task<ViewResult> Category(int id, int page = 1)
         {
-            ViewBag.Title = "Search by categories";
-            PostListViewModel search = new PostListViewModel
-            {
-                Posts = repository.Post
-                .Where(i => i.Category == item.ID)
-                    .OrderBy(p => p.ID)
-                    .Skip((page - 1) * PageSize)
-                    .Take(PageSize).ToArray().Reverse(),
+            var posts = await _postProvider.GetPostsByCategoryAsync(id);
+            var category = await _categoryProvider.GetCategoryAsync(id);
 
-                PagingView = new ListView
-                {
-                    CurrentPage = page,
-                    PostsPerPage = PageSize,
-                    TotalPosts = repository.Post.Count()
-                }
-            };
-            ViewBag.Text = String.Format(@"A list of posts by model ""{0}""", item.Name);
+            var categorySearchResultViewModel = _searchResultMapper.ToCategoryResultViewModel(posts, page, category.Name);
 
-            return View("Index", search);
+            return View("Index", categorySearchResultViewModel);
         }
 
         public ViewResult Tag(Tag item, int page = 1)
