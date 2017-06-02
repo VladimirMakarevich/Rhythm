@@ -5,6 +5,7 @@ using AutoMapper;
 using Rhythm.Models;
 using Rhythm.BL.Models;
 using System;
+using Rhythm.Models.RecentViewModel;
 
 namespace Rhythm.Mappers
 {
@@ -27,9 +28,24 @@ namespace Rhythm.Mappers
             return _mapper.Map<Comment, CommentViewModel>(comment);
         }
 
-        internal object ToCommetRecentViewModel(List<RecentComment> comments)
+        public List<CommentRecentViewModel> ToCommetRecentViewModel(List<Comment> comments, IEnumerable<Post> posts)
         {
-            throw new NotImplementedException();
+            List<CommentRecentViewModel> commentRecentListViewModel = new List<CommentRecentViewModel>();
+
+            comments.ForEach(comment =>
+            {
+                var post = posts.SingleOrDefault(p => p.Id == comment.Id);
+
+                commentRecentListViewModel.Add(new CommentRecentViewModel
+                {
+                    CommentContent = comment.CommentMessage,
+                    PostAddedDate = comment.PostedOn,
+                    NameUserSender = comment.NameUserSender,
+                    ID = comment.PostId
+                });
+            });
+
+            return commentRecentListViewModel;
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Rhythm.BL.Provider
 {
-    public class ArchiveProvider : IArchiveProvider
+    public class ArchiveProvider
     {
         private List<Post> _postsList;
         private List<Archive> _archives = new List<Archive>();

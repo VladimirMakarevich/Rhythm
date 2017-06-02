@@ -47,7 +47,7 @@ namespace Rhythm.Infrastructure
             ninjectKernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
 
             // Providers
-            ninjectKernel.Bind<IArchiveProvider>().To<ArchiveProvider>();
+            //ninjectKernel.Bind<IArchiveProvider>().To<ArchiveProvider>();
             ninjectKernel.Bind<IUserProvider>().To<UserProvider>();
             ninjectKernel.Bind<ICategoryProvider>().To<CategoryProvider>();
             ninjectKernel.Bind<ICommentProvider>().To<CommentProvider>();

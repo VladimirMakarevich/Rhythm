@@ -11,7 +11,6 @@ namespace Rhythm.BL.Provider
 {
     public class PostProvider : IPostProvider
     {
-        private RecentArticleWidget _articleWidget;
         private IPostRepository _postRepository;
         private Post _post;
 
@@ -20,29 +19,21 @@ namespace Rhythm.BL.Provider
             _postRepository = postRepository;
         }
 
-        public async Task<RecentArticleWidget> GetArticleWidgetAsync()
+        public async Task<Post> GetPostWidgetAsync()
         {
             int countArticle;
             var allPosts = await _postRepository.GetPostsAsync();
-            var count = allPosts.Max(p => p.ID);
+            var count = allPosts.Max(p => p.Id);
             Random r = new Random();
 
             do
             {
                 countArticle = r.Next(1, count + 1);
-                _post = allPosts.SingleOrDefault(p => p.ID == countArticle && p.Published == true);
+                _post = allPosts.SingleOrDefault(p => p.Id == countArticle && p.Published == true);
             }
             while (_post == null);
 
-            _articleWidget = new RecentArticleWidget()
-            {
-                ArticleContent = _post.ShortDescription,
-                Title = _post.Title,
-                ID = _post.ID,
-                ImageData = _post.ImageData
-            };
-
-            return _articleWidget;
+            return _post;
         }
 
         public async Task AddPostAsync(Post post)
@@ -80,23 +71,23 @@ namespace Rhythm.BL.Provider
                     while (findPost == null && newPost > 0)
                     {
                         newPost = post;
-                        findPost = postList.FirstOrDefault(m => m.ID == newPost && m.Published == true);
+                        findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
                         post = newPost - 1;
                     }
                     break;
 
                 case false:
-                    var maxPost = postList.Where(p => p.Published == true).Max(m => m.ID);
+                    var maxPost = postList.Where(p => p.Published == true).Max(m => m.Id);
                     while (findPost == null && newPost < maxPost)
                     {
                         newPost = post;
-                        findPost = postList.FirstOrDefault(m => m.ID == newPost && m.Published == true);
+                        findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
                         post = newPost + 1;
                     }
                     break;
 
                 default:
-                    findPost = postList.FirstOrDefault(m => m.ID == post && m.Published == true);
+                    findPost = postList.FirstOrDefault(m => m.Id == post && m.Published == true);
                     break;
             }
 

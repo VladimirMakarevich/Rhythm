@@ -1,6 +1,6 @@
-﻿namespace Rhythm.BL.Models
+﻿namespace Rhythm.Models.RecentViewModel
 {
-    public class RecentArticleWidget
+    public class ArticleWidgetViewModel
     {
         private string articleContent;
         public string ArticleContent
@@ -15,7 +15,7 @@
             }
         }
         public string Title { get; set; }
-        public int ID { get; set; }
+        public int Id { get; set; }
         public byte[] ImageData { get; set; }
     }
 }

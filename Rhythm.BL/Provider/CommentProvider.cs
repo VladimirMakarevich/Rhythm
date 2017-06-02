@@ -20,11 +20,8 @@ namespace Rhythm.BL.Provider
             _postRepository = postRepository;
         }
 
-        public async Task<List<RecentComment>> GetFiveCommentsListAsync()
+        public async Task<List<Comment>> GetFiveCommentsListAsync()
         {
-            List<RecentComment> recentComments = new List<RecentComment>();
-
-            IEnumerable<Post> allPost = await _postRepository.GetPostsAsync();
             IEnumerable<Comment> allComments = await _commentRepository.GetCommentsAsync();
 
             List<Comment> topComment = allComments
@@ -33,20 +30,7 @@ namespace Rhythm.BL.Provider
                 .Reverse()
                 .Take(5).ToList();
 
-            topComment.ForEach(comment =>
-            {
-                Post post = allPost.SingleOrDefault(p => p.Id == comment.Id);
-
-                recentComments.Add(new RecentComment
-                {
-                    CommentContent = comment.CommentMessage,
-                    PostAddedDate = comment.PostedOn,
-                    NameUserSender = comment.NameUserSender,
-                    ID = comment.PostId
-                });
-            });
-
-            return recentComments;
+            return topComment;
         }
 
         public async Task AddCommentAsync(Comment comment)

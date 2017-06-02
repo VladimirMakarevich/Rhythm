@@ -65,5 +65,16 @@ namespace Rhythm.Mappers
         {
             return _mapper.Map<Post, PostRecentViewModel>(post);
         }
+
+        public ArticleWidgetViewModel ToArticleWidget(Post post)
+        {
+            return new ArticleWidgetViewModel()
+            {
+                ArticleContent = post.ShortDescription,
+                Title = post.Title,
+                Id = post.Id,
+                ImageData = post.ImageData
+            };
+        }
     }
 }

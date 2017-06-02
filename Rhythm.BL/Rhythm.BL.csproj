@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="Interfaces\IArchiveProvider.cs" />
     <Compile Include="Models\Archive.cs" />
-    <Compile Include="Models\RecentArticleWidget.cs" />
-    <Compile Include="Models\RecentComment.cs" />
     <Compile Include="Interfaces\IPortfolioProvider.cs" />
     <Compile Include="Interfaces\IRssProvider.cs" />
     <Compile Include="Interfaces\IUserProvider.cs" />

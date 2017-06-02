@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Rhythm.BL.Interfaces;
 using Rhythm.Mappers;
+using Rhythm.BL.Provider;
 
 namespace Rhythm.Controllers
 {
@@ -14,79 +15,105 @@ namespace Rhythm.Controllers
         private CategoryMapper _categoryMapper;
         private CommentMapper _commentMapper;
         private TagMapper _tagMapper;
+        private RecentContentMapper _recentContentMapper;
 
         public RecentsController(ICategoryProvider categoryProvider, ICommentProvider commentProvider,
-            IPostProvider postProvider, ITagProvider tagProvider, IArchiveProvider archiveProvider,
-            TagMapper tagMapper, CommentMapper commentMapper, CategoryMapper categoryMapper,
-            PostMapper postMapper)
+            IPostProvider postProvider, ITagProvider tagProvider, TagMapper tagMapper, 
+            CommentMapper commentMapper, CategoryMapper categoryMapper,
+            PostMapper postMapper, RecentContentMapper recentContentMapper)
         {
             _categoryProvider = categoryProvider;
             _commentProvider = commentProvider;
             _postProvider = postProvider;
             _tagProvider = tagProvider;
-            _archiveProvider = archiveProvider;
+            //_archiveProvider = archiveProvider;
             _postMapper = postMapper;
             _categoryMapper = categoryMapper;
             _commentMapper = commentMapper;
             _tagMapper = tagMapper;
+            _recentContentMapper = recentContentMapper;
         }
 
-        [ChildActionOnly]
-        public async Task<ActionResult> RecentCategories()
+        public async Task<ActionResult> RecentContent()
         {
             var category = await _categoryProvider.GetCategoryAsync();
             var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
 
-            return PartialView("RecentCategories", categoriesRecentViewModel);
-        }
-
-        [ChildActionOnly]
-        public async Task<ActionResult> RecentTags()
-        {
             var tag = await _tagProvider.GetTagsAsync();
             var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
 
-            return PartialView("RecentTags", tagsRecentViewModel);
-        }
-
-
-        [ChildActionOnly]
-        public async Task<ActionResult> RecentPosts()
-        {
             var posts = await _postProvider.GetPostsAsync();
             var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
 
-            return PartialView("RecentPosts", postRecentViewModel);
-        }
-
-        [ChildActionOnly]
-        public async Task<ActionResult> RecentComments()
-        {
             var comments = await _commentProvider.GetFiveCommentsListAsync();
-            var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments);
+            var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments, posts);
 
-            return PartialView("RecentComments", commentsRecentViewModel);
+            var post = await _postProvider.GetPostWidgetAsync();
+            var articleWidget = _postMapper.ToArticleWidget(post);
+
+            var recentContentViewModel = _recentContentMapper.ToRecentContentViewModel(categoriesRecentViewModel,
+                tagsRecentViewModel, postRecentViewModel, commentsRecentViewModel, articleWidget);
+
+
+            return PartialView("_SideBar", recentContentViewModel);
         }
 
-        [ChildActionOnly]
-        public async Task<ActionResult> RecentArticleWidgets()
-        {
-            var articleWidget = await _postProvider.GetArticleWidgetAsync();
+        //[ChildActionOnly]
+        //public async Task<ActionResult> RecentCategories()
+        //{
+        //    var category = await _categoryProvider.GetCategoryAsync();
+        //    var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
 
-            //if (articleWidget != null)
-            //{
-            return PartialView("RecentArticleWidgets", articleWidget);
-            //}
-            //return View();
-        }
+        //    return PartialView("RecentCategories", categoriesRecentViewModel);
+        //}
+
+        //[ChildActionOnly]
+        //public async Task<ActionResult> RecentTags()
+        //{
+        //    var tag = await _tagProvider.GetTagsAsync();
+        //    var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
+
+        //    return PartialView("RecentTags", tagsRecentViewModel);
+        //}
+
+
+        //[ChildActionOnly]
+        //public async Task<ActionResult> RecentPosts()
+        //{
+        //    var posts = await _postProvider.GetPostsAsync();
+        //    var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
+
+        //    return PartialView("RecentPosts", postRecentViewModel);
+        //}
+
+        //[ChildActionOnly]
+        //public async Task<ActionResult> RecentComments()
+        //{
+        //    var comments = await _commentProvider.GetFiveCommentsListAsync();
+        //    var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments);
+
+        //    return PartialView("RecentComments", commentsRecentViewModel);
+        //}
+
+        //[ChildActionOnly]
+        //public async Task<ActionResult> RecentArticleWidgets()
+        //{
+        //    //var articleWidget = await _postProvider.GetArticleWidgetAsync();
+
+        //    //if (articleWidget != null)
+        //    //{
+        //    return PartialView("RecentArticleWidgets");
+        //    //}
+        //    //return View();
+        //}
 
         [ChildActionOnly]
-        public ActionResult RecentArchives()
+        public async Task<ActionResult> RecentArchives()
         {
-            // TODO: get archive
-            _archiveProvider.AddArchives();
-            //new ArchiveCollection(GetPost());
-            return PartialView();
+            var posts = await _postProvider.GetPostsAsync();
+            ArchiveProvider archive = new ArchiveProvider(posts.ToList());
+
+            return PartialView(archive);
         }
     }
 }

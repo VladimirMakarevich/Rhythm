@@ -12,6 +12,6 @@ namespace Rhythm.BL.Interfaces
         Task<Post> GetPostAsync(int post, bool? flag);
         Task ChangePostAsync(Post post);
         Task DeletePostAsync(Post post);
-        Task<RecentArticleWidget> GetArticleWidgetAsync();
+        Task<Post> GetPostWidgetAsync();
     }
 }
