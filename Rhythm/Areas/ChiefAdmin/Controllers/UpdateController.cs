@@ -35,7 +35,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
 
             IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
-            PostViewModel context = model.Map<PostViewModel>(postModel);
+            PostAdminViewModel context = model.Map<PostAdminViewModel>(postModel);
 
             DropDownListCategory(context.Category);
             TagData(context);
@@ -43,14 +43,14 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             return View(context);
         }
 
-        private void TagData(PostViewModel post)
+        private void TagData(PostAdminViewModel post)
         {
             var allTag = _repository.Tag;
             var postTag = new HashSet<int>(post.Tags.Select(c => c.ID));
-            var viewModel = new List<TagViewModel>();
+            var viewModel = new List<TagAdminViewModel>();
             foreach (var tag in allTag)
             {
-                viewModel.Add(new TagViewModel
+                viewModel.Add(new TagAdminViewModel
                 {
                     ID = tag.ID,
                     Name = tag.Name,
@@ -63,7 +63,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Post(PostViewModel post, int[] selectedTag)
+        public async Task<ActionResult> Post(PostAdminViewModel post, int[] selectedTag)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         public ActionResult Image(int id)
         {
             var post = _repository.Post.FirstOrDefault(m => m.ID == id);
-            ImageViewModel model = new ImageViewModel
+            ImageAdminViewModel model = new ImageViewModel
             {
                 PostID = id,
                 ImageDataByte = post.ImageData,
@@ -112,7 +112,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Image(ImageViewModel model)
+        public async Task<ActionResult> Image(ImageAdminViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -152,13 +152,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             }
 
             IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
-            TagViewModel context = model.Map<TagViewModel>(tagModel);
+            TagAdminViewModel context = model.Map<TagAdminViewModel>(tagModel);
 
             return View(context);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Tag(TagViewModel tagModel)
+        public async Task<ActionResult> Tag(TagAdminViewModel tagModel)
         {
             if (ModelState.IsValid)
             {
@@ -193,13 +193,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return HttpNotFound();
             }
             IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
-            CategoryViewModel context = model.Map<CategoryViewModel>(categoryModel);
+            CategoryAdminViewModel context = model.Map<CategoryAdminViewModel>(categoryModel);
 
             return View(context);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Category(CategoryViewModel categoryModel)
+        public async Task<ActionResult> Category(CategoryAdminViewModel categoryModel)
         {
             if (ModelState.IsValid)
             {
@@ -234,13 +234,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return HttpNotFound();
             }
             IMapper model = MappingConfig.MapperConfigComment.CreateMapper();
-            CommentViewModel context = model.Map<CommentViewModel>(commentModel);
+            CommentAdminViewModel context = model.Map<CommentAdminViewModel>(commentModel);
 
             return View(context);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Comment(CommentViewModel commentModel)
+        public async Task<ActionResult> Comment(CommentAdminViewModel commentModel)
         {
 
             if (ModelState.IsValid)

@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
-    public class ChiefUserViewModel
+    public class ChiefUserAdminViewModel
     {
-        public int ChiefUserID { get; set; }
-        public int PortfolioID { get; set; }
+        public int ChiefUserId { get; set; }
+        public int PortfolioId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
@@ -20,6 +20,6 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public string Github { get; set; }
         public string Linkedin { get; set; }
 
-        public PortfolioViewModel PortfolioViewModel { get; set; }
+        public PortfolioAdminViewModel PortfolioViewModel { get; set; }
     }
 }

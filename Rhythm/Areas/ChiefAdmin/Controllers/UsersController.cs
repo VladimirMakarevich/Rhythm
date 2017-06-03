@@ -57,7 +57,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ChiefUserViewModel chiefUserViewModel)
+        public async Task<ActionResult> Create(ChiefUserAdminViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ChiefUserViewModel chiefUserViewModel)
+        public async Task<ActionResult> Edit(ChiefUserAdminViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
             {

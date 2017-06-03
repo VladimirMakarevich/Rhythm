@@ -8,7 +8,7 @@ namespace Rhythm.Models
 {
     public class CommonUserViewModel
     {
-        public ChiefUserViewModel UserViewModel { get; set; }
-        public PortfolioViewModel PortfolioViewModel { get; set; }
+        public ChiefUserAdminViewModel UserViewModel { get; set; }
+        public PortfolioAdminViewModel PortfolioViewModel { get; set; }
     }
 }

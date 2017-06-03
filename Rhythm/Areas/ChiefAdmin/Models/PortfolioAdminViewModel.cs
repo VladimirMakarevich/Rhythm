@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
-    public class PortfolioViewModel
+    public class PortfolioAdminViewModel
     {
-        public int PortfolioID { get; set; }
+        public int PortfolioId { get; set; }
         public string NamePortfolio { get; set; }
         public string Summary { get; set; }
         public string Skills { get; set; }

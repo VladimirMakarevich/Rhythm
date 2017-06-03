@@ -2,10 +2,10 @@
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
-    public class TagViewModel
+    public class TagAdminViewModel
     {
         [Required(ErrorMessage = "the field are required!")]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "the field are required!")]
         public string Name { get; set; }
         [Required(ErrorMessage = "the field are required!")]

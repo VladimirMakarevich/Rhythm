@@ -1,11 +1,10 @@
-﻿using Rhythm.Domain.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
-    public class PostViewModel
+    public class PostAdminViewModel
     {
         [Required(ErrorMessage = "the field are required!")]
         public string NameSenderPost { get; set; }
@@ -20,16 +19,16 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "the field are required!")]
         public bool Published { get; set; }
         [Required(ErrorMessage = "the field are required!")]
-        public int Category { get; set; }
-        public Category Category1 { get; set; }
+        public int CategoryId { get; set; }
+        public CategoryAdminViewModel Category { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMime { get; set; }
 
         public int ID { get; set; }
         public DateTime PostedOn { get; set; }
-        public Nullable<DateTime> Modified { get; set; }
-        public Nullable<int> CountComments { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public ICollection<Tag> Tags { get; set; }
+        public DateTime Modified { get; set; }
+        public int CountComments { get; set; }
+        public ICollection<CommentAdminViewModel> Comments { get; set; }
+        public ICollection<TagAdminViewModel> Tags { get; set; }
     }
 }

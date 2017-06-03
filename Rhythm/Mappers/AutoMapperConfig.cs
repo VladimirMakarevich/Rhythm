@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ninject.Activation;
+using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Entities;
 using Rhythm.Models;
 using Rhythm.Models.RecentViewModel;
@@ -23,6 +24,14 @@ namespace Rhythm.Mappers
             config.CreateMap<Comment, CommentRecentViewModel>().ReverseMap();
             config.CreateMap<Category, CategoryRecentViewModel>().ReverseMap();
             config.CreateMap<Tag, TagRecentViewModel>().ReverseMap();
+
+            // Admin area
+            config.CreateMap<ChiefUser, ChiefUserAdminViewModel>().ReverseMap();
+            config.CreateMap<Portfolio, PortfolioAdminViewModel>().ReverseMap();
+            config.CreateMap<Post, PostAdminViewModel>().ReverseMap();
+            config.CreateMap<Comment, CommentAdminViewModel>().ReverseMap();
+            config.CreateMap<Category, CategoryAdminViewModel>().ReverseMap();
+            config.CreateMap<Tag, TagAdminViewModel>().ReverseMap();
         }
     }
 }

@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Rhythm.Domain.Model;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Abstract;
 
-namespace Rhythm.Areas.ChiefAdmin.Mappers
+namespace Rhythm.Mappers.ChiefAdmin
 {
     public class UserMapper
     {
+        private IMapper _mapper;
+
+        public UserMapper(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         private PortfolioMapper _porfolioMapper;
         IPortfolioRepository _portfolioRepository;
         public UserMapper(PortfolioMapper porfolioMapper, IPortfolioRepository portfolioRepository)
@@ -19,7 +22,7 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
             _portfolioRepository = portfolioRepository;
         }
 
-        public List<ChiefUserViewModel> ToListUsersViewModel(List<ChiefUser> users)
+        public List<ChiefUserAdminViewModel> ToListUsersViewModel(List<ChiefUser> users)
         {
             var usersListViewModel = users.Select(ToUserViewModel).ToList();
             //IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
@@ -28,10 +31,10 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
             return usersListViewModel;
         }
 
-        public ChiefUserViewModel ToUserViewModel(ChiefUser user)
+        public ChiefUserAdminViewModel ToUserViewModel(ChiefUser user)
         {
             IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            ChiefUserViewModel userViewModel = mapper.Map<ChiefUserViewModel>(user);
+            ChiefUserAdminViewModel userViewModel = mapper.Map<ChiefUserAdminViewModel>(user);
 
             var portfolio = _portfolioRepository.GetPortfolio(user.PortfolioID);
             if (portfolio != null)
@@ -43,7 +46,7 @@ namespace Rhythm.Areas.ChiefAdmin.Mappers
             return userViewModel;
         }
 
-        public ChiefUser ToChiefUser(ChiefUserViewModel userViewModel)
+        public ChiefUser ToChiefUser(ChiefUserAdminViewModel userViewModel)
         {
             IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
             ChiefUser user = mapper.Map<ChiefUser>(userViewModel);

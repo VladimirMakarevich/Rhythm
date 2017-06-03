@@ -1,37 +1,35 @@
 ﻿using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Rhythm.Areas.ChiefAdmin.Mappers
+namespace Rhythm.Mappers.ChiefAdmin
 {
     public class PortfolioMapper
     {
-        public PortfolioMapper()
-        {
+        private IMapper _mapper;
 
+        public PortfolioMapper(IMapper mapper)
+        {
+            _mapper = mapper;
         }
 
-        public List<PortfolioViewModel> ToListPortfolioViewModel(List<Portfolio> portfolio)
+        public List<PortfolioAdminViewModel> ToListPortfolioViewModel(List<Portfolio> portfolio)
         {
             IMapper mapper = MappingConfig.MapperConfigPortfolio.CreateMapper();
-            var portfolioListViewModel = mapper.Map<List<PortfolioViewModel>>(portfolio);
+            var portfolioListViewModel = mapper.Map<List<PortfolioAdminViewModel>>(portfolio);
 
             return portfolioListViewModel;
         }
 
-        public PortfolioViewModel ToPortfolioViewModel(Portfolio portfolio)
+        public PortfolioAdminViewModel ToPortfolioViewModel(Portfolio portfolio)
         {
             IMapper mapper = MappingConfig.MapperConfigPortfolio.CreateMapper();
-            var portfolioViewModel = mapper.Map<PortfolioViewModel>(portfolio);
+            var portfolioViewModel = mapper.Map<PortfolioAdminViewModel>(portfolio);
 
             return portfolioViewModel;
         }
 
-        public Portfolio ToPortfolio(PortfolioViewModel portfolioViewModel)
+        public Portfolio ToPortfolio(PortfolioAdminViewModel portfolioViewModel)
         {
             IMapper mapper = MappingConfig.MapperConfigPortfolio.CreateMapper();
             var portfolio = mapper.Map<Portfolio>(portfolioViewModel);

@@ -23,7 +23,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
         public ViewResult Index()
         {
-            Content content = new Content
+            ContentAdminViewModel content = new ContentAdminViewModel
             {
                 Posts = _repository.Post
                 .OrderBy(p => p.ID)

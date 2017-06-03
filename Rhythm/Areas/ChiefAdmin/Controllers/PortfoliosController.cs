@@ -61,7 +61,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Create(PortfolioViewModel portfolioViewModel)
+        public async Task<ActionResult> Create(PortfolioAdminViewModel portfolioViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Edit(PortfolioViewModel portfolioViewModel)
+        public async Task<ActionResult> Edit(PortfolioAdminViewModel portfolioViewModel)
         {
             if (ModelState.IsValid)
             {

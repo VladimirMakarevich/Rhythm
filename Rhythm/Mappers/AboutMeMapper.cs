@@ -7,13 +7,20 @@ namespace Rhythm.Mappers
 {
     public class AboutMeMapper
     {
+        private IMapper _mapper;
+
+        public AboutMeMapper(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public CommonUserViewModel ToChiefUserViewModel(ChiefUser user, Portfolio portfolio)
         {
             IMapper mapperPortfolio = MappingConfig.MapperConfigPortfolio.CreateMapper();
-            PortfolioViewModel portfolioViewModel = mapperPortfolio.Map<PortfolioViewModel>(portfolio);
+            PortfolioAdminViewModel portfolioViewModel = mapperPortfolio.Map<PortfolioAdminViewModel>(portfolio);
 
             IMapper mapperUser = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            ChiefUserViewModel userViewModel = mapperUser.Map<ChiefUserViewModel>(user);
+            ChiefUserAdminViewModel userViewModel = mapperUser.Map<ChiefUserAdminViewModel>(user);
 
             return new CommonUserViewModel() { PortfolioViewModel = portfolioViewModel , UserViewModel = userViewModel };
         }

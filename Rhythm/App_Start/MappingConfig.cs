@@ -23,30 +23,30 @@ namespace Rhythm
             // Создаем связь Категорий
             MapperConfigCategory = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Category, CategoryViewModel>().ReverseMap();
+                cfg.CreateMap<Category, CategoryAdminViewModel>().ReverseMap();
             });
             // Создаем связь Тэга
             MapperConfigTag = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Tag, TagViewModel>().ReverseMap();
+                cfg.CreateMap<Tag, TagAdminViewModel>().ReverseMap();
             });
             // Создаем связь Комментариев
             MapperConfigComment = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Comment, CommentViewModel>().ReverseMap();
+                cfg.CreateMap<Comment, CommentAdminViewModel>().ReverseMap();
             });
             // Создаем связь Постов
             MapperConfigPost = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Post, PostViewModel>().ReverseMap();
+                cfg.CreateMap<Post, PostAdminViewModel>().ReverseMap();
             });
             MapperConfigPortfolio = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Portfolio, PortfolioViewModel>().ReverseMap();
+                cfg.CreateMap<Portfolio, PortfolioAdminViewModel>().ReverseMap();
             });
             MapperConfigChiefUser = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ChiefUser, ChiefUserViewModel>().ReverseMap();
+                cfg.CreateMap<ChiefUser, ChiefUserAdminViewModel>().ReverseMap();
             });
         }
     }

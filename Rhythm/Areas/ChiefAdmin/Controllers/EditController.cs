@@ -32,10 +32,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private void TagData()
         {
             var allTag = _repository.Tag;
-            var viewModel = new List<TagViewModel>();
+            var viewModel = new List<TagAdminViewModel>();
             foreach (var tag in allTag)
             {
-                viewModel.Add(new TagViewModel
+                viewModel.Add(new TagAdminViewModel
                 {
                     ID = tag.ID,
                     Name = tag.Name
@@ -47,7 +47,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Post(PostViewModel post, int[] selectedTag)
+        public async Task<ActionResult> Post(PostAdminViewModel post, int[] selectedTag)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Tag(TagViewModel tagModel)
+        public async Task<ActionResult> Tag(TagAdminViewModel tagModel)
         {
             if (ModelState.IsValid)
             {
@@ -117,7 +117,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Category(CategoryViewModel categoryModel)
+        public async Task<ActionResult> Category(CategoryAdminViewModel categoryModel)
         {
             if (ModelState.IsValid)
             {
