@@ -1,6 +1,4 @@
-﻿using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using Rhythm.Models;
+﻿using Rhythm.Models;
 using Rhythm.Models.RssFeeds;
 using System;
 using System.Collections.Generic;
@@ -14,9 +12,8 @@ namespace Rhythm.Controllers
     public class RssController : DefaultController
     {
         public int PageSize = 8;
-        public RssController(IRepository repository)
+        public RssController()
         {
-            this.repository = repository;
         }
 
         public ActionResult Index()

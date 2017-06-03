@@ -36,6 +36,10 @@ namespace Rhythm.Infrastructure
             ninjectKernel.Bind<CommentMapper>().ToSelf().InSingletonScope();
             ninjectKernel.Bind<PostMapper>().ToSelf().InSingletonScope();
             ninjectKernel.Bind<AboutMeMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<CategoryMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<RecentContentMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<SearchResultMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<TagMapper>().ToSelf().InSingletonScope();
 
             // Repositories
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
