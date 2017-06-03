@@ -14,5 +14,6 @@ namespace Rhythm.BL.Interfaces
         Task DeletePostAsync(Post post);
         Task<Post> GetPostWidgetAsync();
         Task<IEnumerable<Post>> GetPostsByCategoryAsync(int id);
+        Task<IEnumerable<Post>> GetPostsByTagAsync(int id);
     }
 }

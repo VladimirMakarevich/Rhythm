@@ -129,5 +129,12 @@ namespace Rhythm.BL.Provider
 
             return posts.Where(c => c.CategoryId == id);
         }
+
+        public async Task<IEnumerable<Post>> GetPostsByTagAsync(int id)
+        {
+            var posts = await _postRepository.GetPostsAsync();
+
+            return posts.OrderBy(p => p.PostTagMaps.Where(t => t.TagId == id)).ToList();
+        }
     }
 }

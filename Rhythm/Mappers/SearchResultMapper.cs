@@ -49,6 +49,33 @@ namespace Rhythm.Mappers
             };
         }
 
+        public SearchResultViewModel ToTagResultViewModel(IEnumerable<Post> posts, int page, string tagName)
+        {
+            var postsViewModel = posts.Select(ToPostViewModel).ToList();
+
+            return new SearchResultViewModel
+            {
+                PostListViewModel = new PostListViewModel
+                {
+                    PostsViewModel = postsViewModel
+                    .OrderBy(p => p.Id)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize).ToArray().Reverse(),
+
+                    PagingView = new ListView
+                    {
+                        CurrentPage = page,
+                        PostsPerPage = PageSize,
+                        TotalPosts = posts.Count()
+                    },
+
+                },
+
+                Text = $"A list of posts by category - {tagName}",
+                Title = _titleTag
+            };
+        }
+
         public PostViewModel ToPostViewModel(Post post)
         {
             return _mapper.Map<Post, PostViewModel>(post);

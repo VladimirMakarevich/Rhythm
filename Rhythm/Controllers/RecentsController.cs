@@ -36,7 +36,7 @@ namespace Rhythm.Controllers
 
         public async Task<ActionResult> RecentContent()
         {
-            var category = await _categoryProvider.GetCategoryAsync();
+            var category = await _categoryProvider.GetCategoriesAsync();
             var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
 
             var tag = await _tagProvider.GetTagsAsync();

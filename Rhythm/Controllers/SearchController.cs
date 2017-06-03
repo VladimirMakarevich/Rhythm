@@ -30,31 +30,14 @@ namespace Rhythm.Controllers
             return View("Index", categorySearchResultViewModel);
         }
 
-        public ViewResult Tag(Tag item, int page = 1)
+        public async Task<ViewResult> Tag(int id, int page = 1)
         {
-            ViewBag.Title = "Search by tags";
+            var posts = await _postProvider.GetPostsByTagAsync(id);
+            var category = await _categoryProvider.GetCategoryAsync(id);
 
-            var posts = repository.Post.Where(p => p.Tags.Any(t => t.ID.Equals(item.ID))).ToList();
-            var postIds = posts.Select(p => p.ID).ToList();
+            var tagSearchResultViewModel = _searchResultMapper.ToCategoryResultViewModel(posts, page, category.Name);
 
-            PostListViewModel search = new PostListViewModel
-            {
-                Posts = repository.Post
-                .Where(p => postIds.Contains(p.ID))
-                    .OrderBy(p => p.ID)
-                    .Skip((page - 1) * PageSize)
-                    .Take(PageSize).ToArray().Reverse(),
-
-                PagingView = new ListView
-                {
-                    CurrentPage = page,
-                    PostsPerPage = PageSize,
-                    TotalPosts = repository.Post.Count()
-                }
-            };
-            ViewBag.Text = String.Format(@"A list of posts by tag ""{0}""", item.Name);
-
-            return View("Index", search);
+            return View("Index", tagSearchResultViewModel);
         }
 
         [ValidateAntiForgeryToken]
