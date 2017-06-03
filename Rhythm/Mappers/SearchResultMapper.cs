@@ -76,6 +76,35 @@ namespace Rhythm.Mappers
             };
         }
 
+        public SearchResultViewModel ToSearchResultViewModel(IEnumerable<Post> posts, int page, string searchText)
+        {
+            var postsViewModel = posts.Select(ToPostViewModel).ToList();
+
+            return new SearchResultViewModel
+            {
+                PostListViewModel = new PostListViewModel
+                {
+                    PostsViewModel = postsViewModel
+                    .OrderBy(p => p.Id)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize)
+                    .ToArray()
+                    .Reverse(),
+
+                    PagingView = new ListView
+                    {
+                        CurrentPage = page,
+                        PostsPerPage = PageSize,
+                        TotalPosts = posts.Count()
+                    },
+
+                },
+
+                Text = $"A list of posts by search text - {searchText}",
+                Title = _titleCommon
+            };
+        }
+
         public PostViewModel ToPostViewModel(Post post)
         {
             return _mapper.Map<Post, PostViewModel>(post);

@@ -120,21 +120,33 @@ namespace Rhythm.BL.Provider
 
         public async Task<IEnumerable<Post>> GetPostsAsync()
         {
-            return await _postRepository.GetPostsAsync();
+            var posts = await _postRepository.GetPostsAsync();
+
+            return posts.Where(p => p.Published == true).ToList();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByCategoryAsync(int id)
         {
             var posts = await _postRepository.GetPostsAsync();
 
-            return posts.Where(c => c.CategoryId == id);
+            return posts.Where(p => p.CategoryId == id && p.Published == true).ToList();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTagAsync(int id)
         {
             var posts = await _postRepository.GetPostsAsync();
 
-            return posts.OrderBy(p => p.PostTagMaps.Where(t => t.TagId == id)).ToList();
+            return posts.OrderBy(p => p.PostTagMaps.Where(t => t.TagId == id))
+                .Where(p => p.Published == true).ToList();
+        }
+
+        public async Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText)
+        {
+            var posts = await _postRepository.GetPostsAsync();
+
+            return posts.Where(p => p.Title.Contains(searchText) ||
+                p.ShortDescription.Contains(searchText) || 
+                p.DescriptionPost.Contains(searchText) && p.Published == true).ToList();
         }
     }
 }
