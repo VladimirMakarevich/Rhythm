@@ -25,8 +25,6 @@ namespace Rhythm
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            MappingConfig.RegisterMapping();
-
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalFilters.Filters.Add(new WatchConfig());
 
