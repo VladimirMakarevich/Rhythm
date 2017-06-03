@@ -1,8 +1,4 @@
-﻿
-using Ninject;
-using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
+﻿using Rhythm.BL.Interfaces;
 using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
@@ -10,12 +6,13 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public abstract class DefaultController : Controller
     {
-        [Inject]
-        public IRepository _repository { get; set; }
-        [Inject]
-        public IUserRepository _userRepository { get; set; }
-        [Inject]
-        public IPortfolioRepository _portfolioRepository { get; set; }
-
+        public IPortfolioProvider _portfolioProvider { get; set; }
+        public IUserProvider _userProvider { get; set; }
+        public ICategoryProvider _categoryProvider { get; set; }
+        public ICommentProvider _commentProvider { get; set; }
+        public IPostProvider _postProvider { get; set; }
+        public IRssProvider _rssProvider { get; set; }
+        public ITagProvider _tagProvider { get; set; }
+        public IArchiveProvider _archiveProvider { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using NLog;
-using Rhythm.Domain.Abstract;
 using System;
 using System.Linq;
 using System.Net;

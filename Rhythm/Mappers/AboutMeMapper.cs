@@ -16,11 +16,8 @@ namespace Rhythm.Mappers
 
         public CommonUserViewModel ToChiefUserViewModel(ChiefUser user, Portfolio portfolio)
         {
-            IMapper mapperPortfolio = MappingConfig.MapperConfigPortfolio.CreateMapper();
-            PortfolioAdminViewModel portfolioViewModel = mapperPortfolio.Map<PortfolioAdminViewModel>(portfolio);
-
-            IMapper mapperUser = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            ChiefUserAdminViewModel userViewModel = mapperUser.Map<ChiefUserAdminViewModel>(user);
+            var portfolioViewModel = _mapper.Map<Portfolio, PortfolioAdminViewModel>(portfolio);
+            var userViewModel = _mapper.Map<ChiefUser, ChiefUserAdminViewModel>(user);
 
             return new CommonUserViewModel() { PortfolioViewModel = portfolioViewModel , UserViewModel = userViewModel };
         }
