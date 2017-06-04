@@ -44,6 +44,11 @@ namespace Rhythm.Domain.Repository
             return await _db.Comments.ToListAsync();
         }
 
+        public async Task<Comment> GetCommentAsync(int id)
+        {
+            return await _db.Comments.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)

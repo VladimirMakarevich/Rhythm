@@ -33,6 +33,11 @@ namespace Rhythm.BL.Provider
             await _tagRepository.DeleteTagAsync(tag);
         }
 
+        public async Task<Tag> GetTagAsync(int id)
+        {
+            return await _tagRepository.GetTagAsync(id);
+        }
+
         public async Task<IEnumerable<Tag>> GetTagsAsync()
         {
             return await _tagRepository.GetTagsAsync();

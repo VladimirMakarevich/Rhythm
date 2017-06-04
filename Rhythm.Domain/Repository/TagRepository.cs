@@ -40,6 +40,11 @@ namespace Rhythm.Domain.Repository
             return await _db.Tags.ToListAsync();
         }
 
+        public async Task<Tag> GetTagAsync(int id)
+        {
+            return await _db.Tags.FirstOrDefaultAsync(t => t.Id == id);
+        }
+
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)

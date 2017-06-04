@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Rhythm.Domain.Repository.Interfaces;
-using Rhythm.BL.Models;
 using Rhythm.Domain.Entities;
 using Rhythm.BL.Interfaces;
 
@@ -58,6 +57,11 @@ namespace Rhythm.BL.Provider
         public async Task<IEnumerable<Comment>> GetCommentsAsync()
         {
             return await _commentRepository.GetCommentsAsync();
+        }
+
+        public async Task<Comment> GetCommentAsync(int id)
+        {
+            return await _commentRepository.GetCommentAsync(id);
         }
     }
 }
