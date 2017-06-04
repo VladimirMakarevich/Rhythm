@@ -1,4 +1,5 @@
 ﻿using NLog;
+using Rhythm.BL.Interfaces;
 using System;
 using System.Linq;
 using System.Net;
@@ -10,34 +11,21 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class DeleteController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public DeleteController(IRepository repository)
+        public DeleteController(IPostProvider postProvider, ICategoryProvider categoryProvider, ITagProvider tagProvider)
         {
-            this._repository = repository;
+            _postProvider = postProvider;
+            _categoryProvider = categoryProvider;
+            _tagProvider = tagProvider;
+
         }
 
 
-        public async Task<ActionResult> Post(int? id)
+        public async Task<ActionResult> Post(int id)
         {
-            try
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                var postModel = _repository.Post.SingleOrDefault(c => c.ID == id);
-                if (postModel == null)
-                {
-                    return HttpNotFound();
-                }
-                string src = await _repository.DeletePostAsync(postModel);
-                if (src != null)
-                    logger.Error(src);
-            }
-            catch (Exception ex)
-            {
-                logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: {0}", ex.Message);
-            }
+            var postModel = await _postProvider.GetPostAsync(id);
+
+            await _repository.DeletePostAsync(postModel);
+
             return RedirectToAction("listPosts", "Home");
         }
 

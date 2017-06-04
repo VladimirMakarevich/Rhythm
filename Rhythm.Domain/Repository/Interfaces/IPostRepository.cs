@@ -10,5 +10,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task AddPostAsync(Post post);
         Task ChangePostAsync(Post post);
         Task DeletePostAsync(Post post);
+        Task<Post> GetPostAsync(int id);
     }
 }

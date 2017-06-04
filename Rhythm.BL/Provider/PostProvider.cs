@@ -58,7 +58,7 @@ namespace Rhythm.BL.Provider
             await _postRepository.DeletePostAsync(post);
         }
 
-        public async Task<Post> GetPostAsync(int post, bool? flag)
+        public async Task<Post> GetPostWithConditionAsync(int post, bool? flag)
         {
             Post findPost = new Post();
             IEnumerable<Post> postList = await _postRepository.GetPostsAsync();
@@ -147,6 +147,11 @@ namespace Rhythm.BL.Provider
             return posts.Where(p => p.Title.Contains(searchText) ||
                 p.ShortDescription.Contains(searchText) || 
                 p.DescriptionPost.Contains(searchText) && p.Published == true).ToList();
+        }
+
+        public async Task<Post> GetPostAsync(int id)
+        {
+            return await _postRepository.GetPostAsync(id);
         }
     }
 }

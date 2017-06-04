@@ -40,6 +40,11 @@ namespace Rhythm.Domain.Repository
             return await _db.Posts.ToListAsync();
         }
 
+        public async Task<Post> GetPostAsync(int id)
+        {
+            return await _db.Posts.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)

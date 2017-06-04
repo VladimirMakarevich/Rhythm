@@ -9,7 +9,8 @@ namespace Rhythm.BL.Interfaces
     {
         Task<IEnumerable<Post>> GetPostsAsync();
         Task AddPostAsync(Post post);
-        Task<Post> GetPostAsync(int post, bool? flag);
+        Task<Post> GetPostAsync(int id);
+        Task<Post> GetPostWithConditionAsync(int post, bool? flag);
         Task ChangePostAsync(Post post);
         Task DeletePostAsync(Post post);
         Task<Post> GetPostWidgetAsync();
