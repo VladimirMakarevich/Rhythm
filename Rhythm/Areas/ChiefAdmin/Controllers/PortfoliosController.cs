@@ -7,24 +7,20 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Rhythm.Domain.Model;
-using Rhythm.Domain.Abstract;
 using NLog;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Areas.ChiefAdmin.Mappers;
+using Rhythm.Mappers.ChiefAdmin;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     public class PortfoliosController : DefaultController
     {
         private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        private PortfolioMapper _portfolioMapper;
+        private PortfolioAdminMapper _portfolioMapper;
 
-        public PortfoliosController(IUserRepository userRepository, IPortfolioRepository portfolioRepository, PortfolioMapper portfolioMapper)
+        public PortfoliosController(PortfolioAdminMapper portfolioMapper)
         {
-            _userRepository = userRepository;
-            _portfolioRepository = portfolioRepository;
             _portfolioMapper = portfolioMapper;
         }
         public async Task<ActionResult> Index()

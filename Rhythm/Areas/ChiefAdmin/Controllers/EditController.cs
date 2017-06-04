@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using NLog;
-using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using System;
-using System.Collections.Generic;
+﻿using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.BL.Interfaces;
+using Rhythm.Mappers.ChiefAdmin;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -14,68 +10,47 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class EditController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        private TagAdminMapper _tagMapper;
+        private CategoryAdminMapper _categoryMapper;
+        private PostAdminMapper _postMapper;
 
-        public EditController(IRepository repository)
+        public EditController(IPostProvider postProvider, ICategoryProvider categoryProvider, ITagProvider tagProvider,
+            ICommentProvider commentProvider, TagAdminMapper tagMapper, CategoryAdminMapper categoryMapper,
+            PostAdminMapper postMapper)
         {
-            this._repository = repository;
+            _postProvider = postProvider;
+            _categoryProvider = categoryProvider;
+            _tagProvider = tagProvider;
+            _commentProvider = commentProvider;
+            _tagMapper = tagMapper;
+            _categoryMapper = categoryMapper;
+            _postMapper = postMapper;
+
         }
 
         #region post
-        public ActionResult Post()
+        public async Task<ActionResult> Post()
         {
-            DropDownListCategory();
-            TagData();
-            return View();
-        }
+            await DropDownListCategory();
+            await TagData();
 
-        private void TagData()
-        {
-            var allTag = _repository.Tag;
-            var viewModel = new List<TagAdminViewModel>();
-            foreach (var tag in allTag)
-            {
-                viewModel.Add(new TagAdminViewModel
-                {
-                    ID = tag.ID,
-                    Name = tag.Name
-                });
-            }
-            ViewBag.Tag = viewModel;
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Post(PostAdminViewModel post, int[] selectedTag)
+        public async Task<ActionResult> Post(PostAdminViewModel postViewModel, int[] selectedTag)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    List<Tag> listTag = new List<Tag>();
-                    foreach (var item in selectedTag)
-                    {
-                        var tag = _repository.Tag.SingleOrDefault(m => m.ID == item);
-                        listTag.Add(tag);
-                    }
-                    var category = _repository.Category.SingleOrDefault(m => m.ID == post.Category);
+            var tags = await _tagProvider.GetTagsByIdAsync(selectedTag);
+            var categories = await _categoryProvider.GetCategoriesAsync();
 
-                    post.Tags = listTag;
-                    post.Category1 = category;
+            var category = categories.SingleOrDefault(m => m.Id == postViewModel.CategoryId);
 
-                    IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
-                    Post context = model.Map<Post>(post);
+            var post = _postMapper.ToPost(postViewModel, tags.ToList(), category);
 
-                    string src = await _repository.AddPostAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/DeleteController/ActionResult Post: {0}", ex.Message);
-                }
-            }
+            await _postProvider.AddPostAsync(post);
+
             return RedirectToAction("Index", "Home");
         }
         #endregion
@@ -87,25 +62,12 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Tag(TagAdminViewModel tagModel)
+        public async Task<ActionResult> Tag(TagAdminViewModel tagViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
-                    Tag context = model.Map<Tag>(tagModel);
+            var tag = _tagMapper.ToTag(tagViewModel);
 
+            await _tagProvider.AddTagAsync(tag);
 
-                    string src = await _repository.AddTagAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Tag: {0}", ex.Message);
-                }
-            }
             return RedirectToAction("Index", "Home");
         }
         #endregion  Tag
@@ -117,35 +79,33 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Category(CategoryAdminViewModel categoryModel)
+        public async Task<ActionResult> Category(CategoryAdminViewModel categoryViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
-                    Category context = model.Map<Category>(categoryModel);
+            var category = _categoryMapper.ToCategory(categoryViewModel);
 
-                    string src = await _repository.AddCategoryAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/EditController/ActionResult Category: {0}", ex.Message);
-                }
-            }
+            await _categoryProvider.AddCategoryAsync(category);
+
             return RedirectToAction("Index", "Home");
         }
         #endregion
 
         #region drop
-        private void DropDownListCategory(object selectedItem = null)
+        private async Task TagData()
         {
-            var Query = from m in _repository.Category
-                        orderby m.ID
-                        select m;
-            ViewBag.Category = new SelectList(Query, "ID", "Name", selectedItem);
+            var tags = await _tagProvider.GetTagsAsync();
+            var tagsViewModel = _tagMapper.ToTagsViewModel(tags);
+
+            ViewBag.Tag = tagsViewModel;
+        }
+
+        private async Task DropDownListCategory(object selectedItem = null)
+        {
+            var categories = from m in await _categoryProvider.GetCategoriesAsync()
+                             orderby m.Id
+                             select m;
+            var categoriesViewModel = _categoryMapper.ToCategoriesViewModel(categories);
+
+            ViewBag.Category = new SelectList(categoriesViewModel, "Id", "Name", selectedItem);
         }
         #endregion
     }

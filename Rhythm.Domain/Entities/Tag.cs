@@ -7,7 +7,7 @@ namespace Rhythm.Domain.Entities
     {
         public Tag()
         {
-            this.PostTagMaps = new HashSet<PostTagMap>();
+            this.Posts = new HashSet<Post>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace Rhythm.Domain.Entities
         public string UrlSlug { get; set; }
         public string DescriptionTag { get; set; }
 
-        public virtual ICollection<PostTagMap> PostTagMaps { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

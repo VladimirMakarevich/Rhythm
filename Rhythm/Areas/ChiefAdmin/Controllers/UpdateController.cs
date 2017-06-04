@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using NLog;
-using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using System;
+﻿using Rhythm.Areas.ChiefAdmin.Models;
+using Rhythm.BL.Interfaces;
+using Rhythm.Mappers.ChiefAdmin;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
@@ -15,261 +11,176 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class UpdateController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public UpdateController(IRepository repository)
+        private TagAdminMapper _tagMapper;
+        private CategoryAdminMapper _categoryMapper;
+        private PostAdminMapper _postMapper;
+        private CommentAdminMapper _commentMapper;
+
+        public UpdateController(IPostProvider postProvider, ICategoryProvider categoryProvider, ITagProvider tagProvider,
+            ICommentProvider commentProvider, TagAdminMapper tagMapper, CategoryAdminMapper categoryMapper,
+            PostAdminMapper postMapper, CommentAdminMapper commentMapper)
         {
-            this._repository = repository;
+            _postProvider = postProvider;
+            _categoryProvider = categoryProvider;
+            _tagProvider = tagProvider;
+            _commentProvider = commentProvider;
+            _tagMapper = tagMapper;
+            _categoryMapper = categoryMapper;
+            _postMapper = postMapper;
+            _commentMapper = commentMapper;
+
         }
 
         #region post
-        public ActionResult Post(int? id)
+        public async Task<ActionResult> Post(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var postModel = _repository.Post.SingleOrDefault(c => c.ID == id);
-            if (postModel == null)
-            {
-                return HttpNotFound();
-            }
+            var post = await _postProvider.GetPostAsync(id);
 
-            IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
-            PostAdminViewModel context = model.Map<PostAdminViewModel>(postModel);
+            var postViewModel = _postMapper.ToPostViewModel(post);
 
-            DropDownListCategory(context.Category);
-            TagData(context);
+            await DropDownListCategory(postViewModel.Category);
+            await TagData(postViewModel);
 
-            return View(context);
-        }
-
-        private void TagData(PostAdminViewModel post)
-        {
-            var allTag = _repository.Tag;
-            var postTag = new HashSet<int>(post.Tags.Select(c => c.ID));
-            var viewModel = new List<TagAdminViewModel>();
-            foreach (var tag in allTag)
-            {
-                viewModel.Add(new TagAdminViewModel
-                {
-                    ID = tag.ID,
-                    Name = tag.Name,
-                    Assigned = postTag.Contains(tag.ID)
-                });
-            }
-            ViewBag.Tag = viewModel;
+            return View(postViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> Post(PostAdminViewModel post, int[] selectedTag)
+        public async Task<ActionResult> Post(PostAdminViewModel postViewModel, int[] selectedTag)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    List<Tag> listTag = new List<Tag>();
-                    foreach (var item in selectedTag)
-                    {
-                        var tag = _repository.Tag.SingleOrDefault(m => m.ID == item);
-                        listTag.Add(tag);
-                    }
-                    var category = _repository.Category.SingleOrDefault(m => m.ID == post.Category);
+            //var listTag = new List<Tag>();
+            //foreach (var item in selectedTag)
+            //{
+            //    var tag = _repository.Tag.SingleOrDefault(m => m.ID == item);
+            //    listTag.Add(tag);
+            //}
+            //var category = _repository.Category.SingleOrDefault(m => m.ID == postViewModel.Category);
 
-                    post.Tags = listTag;
-                    post.Category1 = category;
+            //postViewModel.Tags = listTag;
+            //postViewModel.Category = category;
 
-                    IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
-                    Post context = model.Map<Post>(post);
+            //IMapper model = MappingConfig.MapperConfigPost.CreateMapper();
+            //Post context = model.Map<Post>(post);
 
-                    string src = await _repository.ChangePostAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: {0}", ex.Message);
-                }
-            }
+            //await _repository.ChangePostAsync(context);
+
+
+            var tags = await _tagProvider.GetTagsByIdAsync(selectedTag);
+            var categories = await _categoryProvider.GetCategoriesAsync();
+
+            var category = categories.SingleOrDefault(m => m.Id == postViewModel.CategoryId);
+
+            var post = _postMapper.ToPost(postViewModel, tags.ToList(), category);
+
+            await _postProvider.ChangePostAsync(post);
+
             return RedirectToAction("listPosts", "Home");
         }
         #endregion
 
         #region image
-        public ActionResult Image(int id)
+        public async Task<ActionResult> Image(int id)
         {
-            var post = _repository.Post.FirstOrDefault(m => m.ID == id);
-            ImageAdminViewModel model = new ImageViewModel
-            {
-                PostID = id,
-                ImageDataByte = post.ImageData,
-                ImageMime = post.ImageMime
-            };
-            
-            return View(model);
+            var post = await _postProvider.GetPostAsync(id);
+            var imageViewModel = _postMapper.ToImageViewModel(post);
+
+            return View(imageViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Image(ImageAdminViewModel model)
+        public async Task<ActionResult> Image(ImageAdminViewModel imageViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    byte[] image = new byte[model.ImageData.ContentLength];
-                    model.ImageData.InputStream.Read(image, 0, image.Length);
-                    var post = _repository.Post.SingleOrDefault(m => m.ID == model.PostID);
-                    post.ImageData = image;
-                    post.ImageMime = model.ImageMime;
+            var post = await _postProvider.GetPostAsync(imageViewModel.PostId);
+            var postUpdated = _postMapper.FromImageViewModelToPost(imageViewModel, post);
+            await _postProvider.ChangePostAsync(postUpdated);
 
-                    string src = await _repository.ChangePostAsync(post);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Post: {0}", ex.Message);
-                }
-            }
             return RedirectToAction("listPosts", "Home");
         }
 
         #endregion
 
         #region tag
-        public ActionResult Tag(int? id)
+        public async Task<ActionResult> Tag(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var tagModel = _repository.Tag.SingleOrDefault(c => c.ID == id);
-            if (tagModel == null)
-            {
-                return HttpNotFound();
-            }
+            var tag = await _tagProvider.GetTagAsync(id);
+            var tagViewModel = _tagMapper.ToTagViewModel(tag);
 
-            IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
-            TagAdminViewModel context = model.Map<TagAdminViewModel>(tagModel);
-
-            return View(context);
+            return View(tagViewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Tag(TagAdminViewModel tagModel)
+        public async Task<ActionResult> Tag(TagAdminViewModel tagViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IMapper model = MappingConfig.MapperConfigTag.CreateMapper();
-                    Tag context = model.Map<Tag>(tagModel);
+            var tag = _tagMapper.ToTag(tagViewModel);
+            await _tagProvider.ChangeTagAsync(tag);
 
-                    string src = await _repository.ChangeTagAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Tag: {0}", ex.Message);
-                }
-            }
             return RedirectToAction("listTags", "Home");
         }
         #endregion
 
         #region category
-        public ActionResult Category(int? id)
+        public async Task<ActionResult> Category(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var categoryModel = _repository.Category.SingleOrDefault(c => c.ID == id);
-            if (categoryModel == null)
-            {
-                return HttpNotFound();
-            }
-            IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
-            CategoryAdminViewModel context = model.Map<CategoryAdminViewModel>(categoryModel);
+            var category = await _categoryProvider.GetCategoryAsync(id);
+            var categoryVeiwModel = _categoryMapper.ToCategoryViewModel(category);
 
-            return View(context);
+            return View(categoryVeiwModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Category(CategoryAdminViewModel categoryModel)
+        public async Task<ActionResult> Category(CategoryAdminViewModel categoryViewModel)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IMapper model = MappingConfig.MapperConfigCategory.CreateMapper();
-                    Category context = model.Map<Category>(categoryModel);
+            var category = _categoryMapper.ToCategory(categoryViewModel);
+            await _categoryProvider.ChangeCategoryAsync(category);
 
-                    string src = await _repository.ChangeCategoryAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/UpdateController/ActionResult Category: {0}", ex.Message);
-                }
-            }
             return RedirectToAction("listCategories", "Home");
         }
         #endregion
 
         #region comment
-        public ActionResult Comment(int? id)
+        public async Task<ActionResult> Comment(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var commentModel = _repository.Comment.SingleOrDefault(c => c.ID == id);
-            if (commentModel == null)
-            {
-                return HttpNotFound();
-            }
-            IMapper model = MappingConfig.MapperConfigComment.CreateMapper();
-            CommentAdminViewModel context = model.Map<CommentAdminViewModel>(commentModel);
+            var comment = await _commentProvider.GetCommentAsync(id);
+            var commentViewModel = _commentMapper.ToCommentViewModel(comment);
 
-            return View(context);
+            return View(commentViewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Comment(CommentAdminViewModel commentModel)
+        public async Task<ActionResult> Comment(CommentAdminViewModel commentViewModel)
         {
+            var comment = _commentMapper.ToComment(commentViewModel);
+            await _commentProvider.ChangeCommentAsync(comment);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    IMapper model = MappingConfig.MapperConfigComment.CreateMapper();
-                    Comment context = model.Map<Comment>(commentModel);
-
-                    string src = await _repository.ChangeCommentAsync(context);
-                    if (src != null)
-                        logger.Error(src);
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("Faild in ChiefAdmin/UpadateController/ActionResult Comment: {0}", ex.Message);
-                }
-            }
             return RedirectToAction("listComments", "Home");
         }
         #endregion
 
         #region drop
-        private void DropDownListCategory(object selectedItem = null)
+        private void TagDatas(PostAdminViewModel post)
         {
-            var Query = from m in _repository.Category
-                        orderby m.ID
-                        select m;
-            ViewBag.Category = new SelectList(Query, "ID", "Name", selectedItem);
+
+        }
+        private async Task TagData(PostAdminViewModel post)
+        {
+            var tags = await _tagProvider.GetTagsAsync();
+            var postTag = new HashSet<int>(post.Tags.Select(c => c.Id));
+
+            var tagsViewModel = _tagMapper.ToTagsViewModelByPostTag(tags, postTag);
+
+            ViewBag.Tag = tagsViewModel;
+        }
+
+        private async Task DropDownListCategory(object selectedItem = null)
+        {
+            var categories = from m in await _categoryProvider.GetCategoriesAsync()
+                             orderby m.Id
+                             select m;
+            var categoriesViewModel = _categoryMapper.ToCategoriesViewModel(categories);
+
+            ViewBag.Category = new SelectList(categoriesViewModel, "Id", "Name", selectedItem);
         }
         #endregion
     }

@@ -11,5 +11,6 @@ namespace Rhythm.BL.Interfaces
         Task DeleteTagAsync(Tag tag);
         Task ChangeTagAsync(Tag tag);
         Task<Tag> GetTagAsync(int id);
+        Task<IEnumerable<Tag>> GetTagsByIdAsync(int[] ids);
     }
 }

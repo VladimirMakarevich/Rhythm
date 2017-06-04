@@ -42,5 +42,16 @@ namespace Rhythm.BL.Provider
         {
             return await _tagRepository.GetTagsAsync();
         }
+
+        public async Task<IEnumerable<Tag>> GetTagsByIdAsync(int[] ids)
+        {
+            List<Tag> tags = new List<Tag>();
+            foreach (var id in ids)
+            {
+                tags.Add(await _tagRepository.GetTagAsync(id));
+            }
+
+            return tags;
+        }
     }
 }

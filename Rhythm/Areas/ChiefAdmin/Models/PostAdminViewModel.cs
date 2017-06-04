@@ -24,7 +24,7 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public byte[] ImageData { get; set; }
         public string ImageMime { get; set; }
 
-        public int ID { get; set; }
+        public int Id { get; set; }
         public DateTime PostedOn { get; set; }
         public DateTime Modified { get; set; }
         public int CountComments { get; set; }

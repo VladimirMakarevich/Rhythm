@@ -5,7 +5,7 @@ using AutoMapper;
 using Rhythm.Models;
 using Rhythm.BL.Models;
 using System;
-using Rhythm.Models.RecentViewModel;
+using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.Mappers.ChiefAdmin
 {
@@ -16,6 +16,16 @@ namespace Rhythm.Mappers.ChiefAdmin
         public CommentAdminMapper(IMapper mapper)
         {
             _mapper = mapper;
+        }
+
+        public CommentAdminViewModel ToCommentViewModel(Comment comment)
+        {
+            return _mapper.Map<Comment, CommentAdminViewModel>(comment);
+        }
+
+        public Comment ToComment(CommentAdminViewModel commentViewModel)
+        {
+            return _mapper.Map<CommentAdminViewModel, Comment>(commentViewModel);
         }
     }
 }

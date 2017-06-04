@@ -8,7 +8,7 @@ namespace Rhythm.Domain.Entities
         public Post()
         {
             this.Comments = new HashSet<Comment>();
-            this.PostTagMaps = new HashSet<PostTagMap>();
+            this.Tags = new HashSet<Tag>();
         }
 
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace Rhythm.Domain.Entities
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<PostTagMap> PostTagMaps { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

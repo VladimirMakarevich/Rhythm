@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Entities;
-using Rhythm.Models.RecentViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,21 @@ namespace Rhythm.Mappers.ChiefAdmin
         public CategoryAdminMapper(IMapper mapper)
         {
             _mapper = mapper;
+        }
+
+        public List<CategoryAdminViewModel> ToCategoriesViewModel(IEnumerable<Category> categories)
+        {
+            return categories.Select(ToCategoryViewModel).ToList();
+        }
+
+        public CategoryAdminViewModel ToCategoryViewModel(Category category)
+        {
+            return _mapper.Map<Category, CategoryAdminViewModel>(category);
+        }
+
+        public Category ToCategory(CategoryAdminViewModel categoryViewModel)
+        {
+            return _mapper.Map<CategoryAdminViewModel, Category>(categoryViewModel);
         }
     }
 }

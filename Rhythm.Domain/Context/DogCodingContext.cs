@@ -5,13 +5,8 @@ namespace Rhythm.Domain.Context
 {
     public class DogCodingContext : DbContext
     {
-        public DogCodingContext() : base("name=DogCodingContext")
-        {
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        public DogCodingContext() 
+            : base("name=DogCodingContext") {
         }
 
         public virtual DbSet<Category> Categories { get; set; }
@@ -20,5 +15,18 @@ namespace Rhythm.Domain.Context
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            ConfigureCascadeDeleting(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private void ConfigureCascadeDeleting(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Post>()
+                .HasMany(x => x.Tags)
+                .WithMany(x => x.Posts);
+        }
     }
 }
