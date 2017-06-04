@@ -53,5 +53,11 @@ namespace Rhythm.Mappers.ChiefAdmin
 
             return post;
         }
+
+
+        public List<PostAdminViewModel> ToPostsViewModel(IEnumerable<Post> posts)
+        {
+            return posts.Select(ToPostViewModel).ToList();
+        }
     }
 }

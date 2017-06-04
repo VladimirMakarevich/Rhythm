@@ -8,6 +8,7 @@ using Rhythm.BL.Provider;
 using Rhythm.BL.Interfaces;
 using AutoMapper;
 using Rhythm.Mappers;
+using Rhythm.Mappers.ChiefAdmin;
 
 namespace Rhythm.Infrastructure
 {
@@ -38,8 +39,16 @@ namespace Rhythm.Infrastructure
             ninjectKernel.Bind<AboutMeMapper>().ToSelf().InSingletonScope();
             ninjectKernel.Bind<CategoryMapper>().ToSelf().InSingletonScope();
             ninjectKernel.Bind<RecentContentMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<SearchResultMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<SearchResultMapper>().ToSelf().InSingletonScope(); 
             ninjectKernel.Bind<TagMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<ContentAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<CommentAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<PostAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
+            ninjectKernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
 
             // Repositories
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>();

@@ -1,92 +1,87 @@
-﻿using Ninject.Infrastructure.Language;
-using NLog;
-using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Abstract;
-using Rhythm.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Rhythm.BL.Interfaces;
+using Rhythm.Mappers.ChiefAdmin;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     [Authorize]
     public class HomeController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        public HomeController(IRepository repository)
+        private TagAdminMapper _tagMapper;
+        private CategoryAdminMapper _categoryMapper;
+        private PostAdminMapper _postMapper;
+        private CommentAdminMapper _commentMapper;
+        private ContentAdminMapper _contentMapper;
+
+        public HomeController(IPostProvider postProvider, ICategoryProvider categoryProvider, ITagProvider tagProvider,
+            ICommentProvider commentProvider, TagAdminMapper tagMapper, CategoryAdminMapper categoryMapper,
+            PostAdminMapper postMapper, CommentAdminMapper commentMapper, ContentAdminMapper contentMapper)
         {
-            this._repository = repository;
+            _postProvider = postProvider;
+            _categoryProvider = categoryProvider;
+            _tagProvider = tagProvider;
+            _commentProvider = commentProvider;
+            _tagMapper = tagMapper;
+            _categoryMapper = categoryMapper;
+            _postMapper = postMapper;
+            _commentMapper = commentMapper;
+            _contentMapper = contentMapper;
         }
 
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            ContentAdminViewModel content = new ContentAdminViewModel
+            var categories = await _categoryProvider.GetCategoriesAsync();
+            var categoriesViewModel = _categoryMapper.ToCategoriesViewModel(categories);
+
+            var tags = await _tagProvider.GetTagsAsync();
+            var tagsViewModel = _tagMapper.ToTagsViewModel(tags);
+
+            var posts = await _postProvider.GetPostsAsync();
+            var postsViewModel = _postMapper.ToPostsViewModel(posts);
+
+            var comments = await _commentProvider.GetCommentsAsync();
+            var commentsViewModel = _commentMapper.ToCommentsViewModel(comments);
+
+            var contentViewModel = _contentMapper.ToContentViewModel(categoriesViewModel, tagsViewModel, postsViewModel, commentsViewModel);
+
+            return View(contentViewModel);
+        }
+
+        public async Task<ViewResult> listCategories()
+        {
+            var categories = await _categoryProvider.GetCategoriesAsync();
+
+            return View(categories);
+        }
+        public async Task<ViewResult> listTags()
+        {
+            var tags = await _tagProvider.GetTagsAsync();
+
+            return View(tags);
+        }
+        public async Task<ViewResult> listPosts()
+        {
+            var posts = await _postProvider.GetPostsAsync();
+
+            return View(posts);
+        }
+        public async Task<ViewResult> listComments()
+        {
+            var comments = await _commentProvider.GetCommentsAsync();
+
+            return View(comments);
+        }
+
+        public async Task<FileContentResult> GetImage(int id)
+        {
+            var post = await _postProvider.GetPostAsync(id);
+
+            if (post != null)
             {
-                Posts = _repository.Post
-                .OrderBy(p => p.ID)
-                .Take(15).ToArray().Reverse(),
-
-                Categories = _repository.Category
-                .OrderBy(c => c.ID).ToList(),
-
-                Tags = _repository.Tag
-                .OrderBy(t => t.ID).ToList(),
-
-                Comments = _repository.Comment
-                .OrderBy(co => co.ID)
-                .Take(15).ToArray().Reverse()
-
-            };
-            if (content == null)
-            {
-                return null;
+                return File(post.ImageData, "image/png");
             }
-            return View(content);
-        }
 
-        public ViewResult listCategories()
-        {
-            var model = _repository.Category.OrderBy(c => c.ID).ToList();
-            return View(model);
-        }
-        public ViewResult listTags()
-        {
-            var model = _repository.Tag.OrderBy(c => c.ID).ToList();
-
-            return View(model);
-        }
-        public ViewResult listPosts()
-        {
-            var model = _repository.Post.OrderBy(c => c.ID).ToList();
-            return View(model);
-        }
-        public ViewResult listComments()
-        {
-            var model = _repository.Comment.OrderBy(c => c.ID).ToList();
-            return View(model);
-        }
-
-        public FileContentResult GetImage(int id)
-        {
-            try
-            {
-                Post post = _repository.Post.FirstOrDefault(p => p.ID == id);
-                if (post != null)
-                {
-                    return File(post.ImageData, "image/png");
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                logger.Error("We have exceptions, can not get images: {0}", ex.Message);
-            }
             return null;
         }
     }

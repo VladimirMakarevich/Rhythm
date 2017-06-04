@@ -27,5 +27,10 @@ namespace Rhythm.Mappers.ChiefAdmin
         {
             return _mapper.Map<CommentAdminViewModel, Comment>(commentViewModel);
         }
+
+        public List<CommentAdminViewModel> ToCommentsViewModel(IEnumerable<Comment> comments)
+        {
+            return comments.Select(ToCommentViewModel).ToList();
+        }
     }
 }

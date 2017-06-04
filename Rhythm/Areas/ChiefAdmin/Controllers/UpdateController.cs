@@ -28,7 +28,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             _categoryMapper = categoryMapper;
             _postMapper = postMapper;
             _commentMapper = commentMapper;
-
         }
 
         #region post
