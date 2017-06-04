@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.ChiefUserViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.ChiefUserAdminViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -18,10 +18,10 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.PortfolioID, "PortfolioID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("PortfolioID", null, htmlAttributes: new { @class = "input-md form-control" })
-                        @Html.ValidationMessageFor(model => model.PortfolioID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
+                        @Html.ValidationMessageFor(model => model.PortfolioId, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace Rhythm.Mappers.ChiefAdmin
 {
@@ -15,28 +16,15 @@ namespace Rhythm.Mappers.ChiefAdmin
             _mapper = mapper;
         }
 
-        public List<ChiefUserAdminViewModel> ToListUsersViewModel(List<ChiefUser> users)
+        public List<ChiefUserAdminViewModel> ToListUsersViewModel(IEnumerable<ChiefUser> users)
         {
-            var usersListViewModel = users.Select(ToUserViewModel).ToList();
-            //IMapper mapper = MappingConfig.MapperConfigChiefUser.CreateMapper();
-            //List<ChiefUserViewModel> usersListViewModel = mapper.Map<List<ChiefUserViewModel>>(users);
+            return users.Select(ToUserViewModel).ToList();
 
-            return usersListViewModel;
         }
 
-        public ChiefUserAdminViewModel ToUserViewModel(ChiefUser user, PortfolioAdminViewModel portfolioAdminViewModel)
+        public ChiefUserAdminViewModel ToUserViewModel(ChiefUser user)
         {
-            var userViewModel = _mapper.Map<ChiefUser, ChiefUserAdminViewModel>(user);
-            userViewModel.PortfolioViewModel = portfolioAdminViewModel;
-
-            //var portfolio = _portfolioRepository.GetPortfolio(user.PortfolioId);
-            //if (portfolio != null)
-            //{
-            //    var portfolioViewModel = _porfolioMapper.ToPortfolioViewModel(portfolio);
-            //    userViewModel.PortfolioViewModel = portfolioViewModel;
-            //}
-
-            return userViewModel;
+            return _mapper.Map<ChiefUser, ChiefUserAdminViewModel>(user);
         }
 
         public ChiefUser ToChiefUser(ChiefUserAdminViewModel userViewModel)

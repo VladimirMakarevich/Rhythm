@@ -2,55 +2,47 @@
 using System.Threading.Tasks;
 using System.Net;
 using System.Web.Mvc;
-using Rhythm.Domain.Model;
-using Rhythm.Domain.Abstract;
 using NLog;
 using System.Linq;
-using Rhythm.Areas.ChiefAdmin.Mappers;
 using Rhythm.Areas.ChiefAdmin.Models;
 using System;
+using Rhythm.Mappers.ChiefAdmin;
+using Rhythm.BL.Interfaces;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     public class UsersController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
-        private UserMapper _userMapper;
-        public UsersController(IUserRepository userRepository, IPortfolioRepository portfolioRepository, UserMapper userMapper)
+        private UserAdminMapper _userMapper;
+        public UsersController(IUserProvider userProvider, IPortfolioProvider portfolioProvider, UserAdminMapper userMapper)
         {
-            _userRepository = userRepository;
-            _portfolioRepository = portfolioRepository;
+            _userProvider = userProvider;
+            _portfolioProvider = portfolioProvider;
             _userMapper = userMapper;
         }
 
         public async Task<ActionResult> Index()
         {
-            var users = await _userRepository.GetListChiefUsersAsync();
+            var users = await _userProvider.GetChiefUsersAsync();
             var usersListViewModel = _userMapper.ToListUsersViewModel(users);
 
             return View(usersListViewModel);
         }
 
 
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var chiefUser = await _userRepository.GetUserAsync(id);
+            var chiefUser = await _userProvider.GetUserAsync(id);
             var userViewModel = _userMapper.ToUserViewModel(chiefUser);
-            if (userViewModel == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(userViewModel);
         }
 
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            DropDownListUser();
+            await DropDownListPortfolioAsync();
+
             return View();
         }
 
@@ -64,32 +56,30 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 try
                 {
                     var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
-                    await _userRepository.CreateUserAsync(chiefUser);
+                    await _userProvider.CreateUserAsync(chiefUser);
+
                     return RedirectToAction("Index");
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
-            DropDownListUser(chiefUserViewModel.PortfolioID);
+
+            await DropDownListPortfolioAsync(chiefUserViewModel.PortfolioId);
+
             return View(chiefUserViewModel);
         }
 
 
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var chiefUser = await _userRepository.GetUserAsync(id);
+
+            var chiefUser = await _userProvider.GetUserAsync(id);
             var userViewModel = _userMapper.ToUserViewModel(chiefUser);
-            if (userViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            DropDownListUser(userViewModel.PortfolioID);
+
+            await DropDownListPortfolioAsync(userViewModel.PortfolioId);
+
             return View(userViewModel);
         }
 
@@ -103,32 +93,28 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 try
                 {
                     var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
-                    await _userRepository.EditChangesUser(chiefUser);
+                    await _userProvider.EditUser(chiefUser);
+
                     return RedirectToAction("Index");
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
-            DropDownListUser(chiefUserViewModel.PortfolioID);
+
+            await DropDownListPortfolioAsync(chiefUserViewModel.PortfolioId);
+
             return View(chiefUserViewModel);
         }
 
-
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var chiefUser = await _userRepository.GetUserAsync(id);
+            var chiefUser = await _userProvider.GetUserAsync(id);
             var userViewModel = _userMapper.ToUserViewModel(chiefUser);
-            if (userViewModel == null)
-            {
-                return HttpNotFound();
-            }
-            DropDownListUser(userViewModel.PortfolioID);
+
+            await DropDownListPortfolioAsync(userViewModel.PortfolioId);
+
             return View(userViewModel);
         }
 
@@ -141,25 +127,27 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    await _userRepository.DeleteUserAsync(id);
+                    await _userProvider.DeleteUserAsync(id);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
+
             return RedirectToAction("Index");
         }
 
         #region drop
-        private void DropDownListUser(object selectedItem = null)
+        private async Task DropDownListPortfolioAsync(object selectedItem = null)
         {
-            var query = from m in _portfolioRepository.GetPortfolioProperty
-                            orderby m.PortfolioID
-                            select m;
+            var query = from m in await _portfolioProvider.GetPortfoliosAsync()
+                        orderby m.PortfolioId
+                        select m;
 
-            ViewBag.PortfolioID = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);
+            ViewBag.PortfolioId = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);
         }
         #endregion
     }
