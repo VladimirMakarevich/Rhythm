@@ -1,14 +1,14 @@
-﻿@model IEnumerable<Rhythm.Domain.Model.Post>
+﻿@model List<Rhythm.Models.RecentViewModel.PostRecentViewModel>
 
 <h5 class="widget-title font-alt">Last posts</h5>
 <div class="widget-body">
     <ul class="clearlist widget-posts">
-        @foreach (var p in Model)
+        @foreach (var post in Model)
         {
             <li class="clearfix">
                 <div class="widget-posts-descr">
-                    <a href="@Url.Action("Post","Posts", new { id = p.ID})" title="@p.Title">@p.Title</a>
-                    Posted by @p.NameSenderPost in @p.PostedOn
+                    <a href="@Url.Action("Post","Posts", new { id = post.Id})" title="@post.Title">@post.Title</a>
+                    Posted by @post.NameSenderPost in @post.PostedOn
                 </div>
                 <div class="fa fa-examples">
                     <i class="fa fa-fw">&#xf0f6</i>

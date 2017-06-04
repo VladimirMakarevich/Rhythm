@@ -1,14 +1,15 @@
-﻿@model List<Rhythm.Domain.Model.Category>
+﻿@model List<Rhythm.Models.RecentViewModel.CategoryRecentViewModel>
+
 
 <h5 class="widget-title font-alt">Categories</h5>
 <div class="widget-body">
     <ul class="clearlist widget-menu">
-        @foreach (var c in Model)
-        {
+        @foreach (var category in Model)
+            {
             <li>
-                <a href="@Url.Action("Category", "Search", new { id = c.ID, Name = c.Name })" title="@c.Name">@c.Name</a>
+                <a href="@Url.Action("Category", "Search", new { id = category.Id, Name = category.Name })" title="@category.Name">@category.Name</a>
                 <small>
-                    - @c.CountCategory
+                    - @category.CountCategory
                 </small>
                 <div class="fa fa-examples">
                     <i class="fa fa-fw">&#xf0a5</i>

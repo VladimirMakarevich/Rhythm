@@ -1,13 +1,14 @@
-﻿@model List<Rhythm.Domain.Model.Tag>
+﻿@model List<Rhythm.Models.RecentViewModel.TagRecentViewModel>
+
 
 
 <h5 class="widget-title font-alt">Tags</h5>
 <div class="widget-body">
     <div class="tags">
-        @foreach (var t in Model)
-        {
-            <a href="@Url.Action("Tag", "Search", new { id = t.ID, Name = t.Name })" title="@t.Name">@t.Name</a>
-            @Html.Hidden(t.Name)
+        @foreach (var tag in Model)
+            {
+            <a href="@Url.Action("Tag", "Search", new { id = tag.Id, Name = tag.Name })" title="@tag.Name">@tag.Name</a>
+                @Html.Hidden(tag.Name)
         }
     </div>
 </div>

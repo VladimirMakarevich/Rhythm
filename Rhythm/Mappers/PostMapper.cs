@@ -54,7 +54,7 @@ namespace Rhythm.Mappers
             return new PostSingleViewModel { PostViewModel = postViewModel, CountPosts = count };
         }
 
-        public IEnumerable<PostRecentViewModel> ToPostsRecentViewModel(IEnumerable<Post> posts)
+        public List<PostRecentViewModel> ToPostsRecentViewModel(IEnumerable<Post> posts)
         {
             var lastFivePosts = posts.OrderBy(m => m.Id).Take(5);
 

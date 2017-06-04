@@ -15,7 +15,7 @@ namespace Rhythm.Mappers
             _mapper = mapper;
         }
 
-        public IEnumerable<TagRecentViewModel> ToTagsRecentViewModel(IEnumerable<Tag> tag)
+        public List<TagRecentViewModel> ToTagsRecentViewModel(IEnumerable<Tag> tag)
         {
             return tag.Select(ToTagRecentViewModel).ToList();
         }

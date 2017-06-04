@@ -17,7 +17,7 @@ namespace Rhythm.Mappers
             _mapper = mapper;
         }
         
-        public IEnumerable<CategoryRecentViewModel> ToCategoriesRecentViewModel(IEnumerable<Category> category)
+        public List<CategoryRecentViewModel> ToCategoriesRecentViewModel(IEnumerable<Category> category)
         {
             return category.Select(ToCategoryRecentViewModel).ToList();
         }

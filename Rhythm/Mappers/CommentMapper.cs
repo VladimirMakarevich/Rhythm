@@ -41,7 +41,7 @@ namespace Rhythm.Mappers
                     CommentContent = comment.CommentMessage,
                     PostAddedDate = comment.PostedOn,
                     NameUserSender = comment.NameUserSender,
-                    ID = comment.PostId
+                    Id = comment.PostId
                 });
             });
 
