@@ -11,5 +11,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task<Tag> GetTagAsync(int id);
         Task ChangeTagAsync(Tag tag);
         Task DeleteTagAsync(Tag tag);
+        IEnumerable<Tag> GetTags();
     }
 }

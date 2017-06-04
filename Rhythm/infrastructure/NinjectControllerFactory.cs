@@ -1,7 +1,6 @@
 ﻿using System;
 using Ninject;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Repository;
 using Rhythm.BL.Provider;
@@ -9,65 +8,70 @@ using Rhythm.BL.Interfaces;
 using AutoMapper;
 using Rhythm.Mappers;
 using Rhythm.Mappers.ChiefAdmin;
+using System.Collections.Generic;
 
 namespace Rhythm.Infrastructure
 {
-    public class NinjectControllerFactory : DefaultControllerFactory
+    public class NinjectDependencyResolver : IDependencyResolver
     {
-        private IKernel ninjectKernel;
-        public NinjectControllerFactory()
+        private IKernel _kernel;
+
+        public NinjectDependencyResolver(IKernel kernelParam)
         {
-            ninjectKernel = new StandardKernel();
+            _kernel = kernelParam;
             AddBindings();
         }
 
-        protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+        public object GetService(Type serviceType)
         {
-            return controllerType == null
-                ? null
-                : (IController)ninjectKernel.Get(controllerType);
+            return _kernel.TryGet(serviceType);
+        }
+
+        public IEnumerable<object> GetServices(Type serviceType)
+        {
+            return _kernel.GetAll(serviceType);
         }
 
         private void AddBindings()
         {
             // AutoMapperConfiguration binding
-            ninjectKernel.Bind<IMapper>().ToMethod(AutoMapperConfig.GetMapper).InSingletonScope();
+            _kernel.Bind<IMapper>().ToMethod(AutoMapperConfig.GetMapper).InSingletonScope();
 
             // Mappers
-            ninjectKernel.Bind<CommentMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<PostMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<AboutMeMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<CategoryMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<RecentContentMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<SearchResultMapper>().ToSelf().InSingletonScope(); 
-            ninjectKernel.Bind<TagMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<ContentAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<CommentAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<PostAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
-            ninjectKernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<CommentMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<PostMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<AboutMeMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<CategoryMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<RecentContentMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<SearchResultMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<TagMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<ContentAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<CommentAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<PostAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
 
             // Repositories
-            ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
-            ninjectKernel.Bind<ICategoryRepository>().To<CategoryRepository>();
-            ninjectKernel.Bind<ICommentRepository>().To<CommentRepository>();
-            ninjectKernel.Bind<IPostRepository>().To<PostRepository>();
-            ninjectKernel.Bind<IRssRepository>().To<RssRepository>();
-            ninjectKernel.Bind<ITagRepository>().To<TagRepository>();
-            ninjectKernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
+            _kernel.Bind<IUserRepository>().To<UserRepository>();
+            _kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
+            _kernel.Bind<ICommentRepository>().To<CommentRepository>();
+            _kernel.Bind<IPostRepository>().To<PostRepository>();
+            _kernel.Bind<IRssRepository>().To<RssRepository>();
+            _kernel.Bind<ITagRepository>().To<TagRepository>();
+            _kernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
 
             // Providers
             //ninjectKernel.Bind<IArchiveProvider>().To<ArchiveProvider>();
-            ninjectKernel.Bind<IUserProvider>().To<UserProvider>();
-            ninjectKernel.Bind<ICategoryProvider>().To<CategoryProvider>();
-            ninjectKernel.Bind<ICommentProvider>().To<CommentProvider>();
-            ninjectKernel.Bind<IPostProvider>().To<PostProvider>();
-            ninjectKernel.Bind<IRssProvider>().To<RssProvider>();
-            ninjectKernel.Bind<ITagProvider>().To<TagProvider>();
-            ninjectKernel.Bind<IPortfolioProvider>().To<PortfolioProvider>();
+            _kernel.Bind<IUserProvider>().To<UserProvider>();
+            _kernel.Bind<ICategoryProvider>().To<CategoryProvider>();
+            _kernel.Bind<ICommentProvider>().To<CommentProvider>();
+            _kernel.Bind<IPostProvider>().To<PostProvider>();
+            _kernel.Bind<IRssProvider>().To<RssProvider>();
+            _kernel.Bind<ITagProvider>().To<TagProvider>();
+            _kernel.Bind<IPortfolioProvider>().To<PortfolioProvider>();
         }
     }
 }

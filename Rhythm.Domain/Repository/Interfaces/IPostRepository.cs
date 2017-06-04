@@ -11,5 +11,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task ChangePostAsync(Post post);
         Task DeletePostAsync(Post post);
         Task<Post> GetPostAsync(int id);
+        IEnumerable<Post> GetPosts();
     }
 }

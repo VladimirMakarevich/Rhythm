@@ -17,5 +17,7 @@ namespace Rhythm.BL.Interfaces
         Task<IEnumerable<Post>> GetPostsByCategoryAsync(int id);
         Task<IEnumerable<Post>> GetPostsByTagAsync(int id);
         Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText);
+        IEnumerable<Post> GetPosts();
+        Post GetPostWidget();
     }
 }

@@ -13,5 +13,6 @@ namespace Rhythm.BL.Interfaces
         Task ChangeCommentAsync(Comment comment);
         Task DeleteCommentAsync(Comment comment);
         Task<Comment> GetCommentAsync(int id);
+        List<Comment> GetFiveCommentsList();
     }
 }

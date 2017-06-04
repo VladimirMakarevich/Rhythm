@@ -63,5 +63,16 @@ namespace Rhythm.BL.Provider
         {
             return await _commentRepository.GetCommentAsync(id);
         }
+
+        public List<Comment> GetFiveCommentsList()
+        {
+            IEnumerable<Comment> comments = _commentRepository.GetComments();
+
+            return comments
+                .OrderBy(c => c.PostedOn)
+                .AsEnumerable()
+                .Reverse()
+                .Take(5).ToList();
+        }
     }
 }

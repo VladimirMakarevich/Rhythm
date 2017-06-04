@@ -31,6 +31,11 @@ namespace Rhythm.BL.Provider
             await _categoryRepository.DeleteCategoryAsync(category);
         }
 
+        public IEnumerable<Category> GetCategories()
+        {
+            return _categoryRepository.GetCategories();
+        }
+
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _categoryRepository.GetCategoriesAsync();

@@ -155,5 +155,27 @@ namespace Rhythm.BL.Provider
         {
             return await _postRepository.GetPostAsync(id);
         }
+
+        public IEnumerable<Post> GetPosts()
+        {
+            return _postRepository.GetPosts();
+        }
+
+        public Post GetPostWidget()
+        {
+            int countArticle;
+            var allPosts = _postRepository.GetPosts();
+            var count = allPosts.Max(p => p.Id);
+            Random r = new Random();
+
+            do
+            {
+                countArticle = r.Next(1, count + 1);
+                _post = allPosts.SingleOrDefault(p => p.Id == countArticle && p.Published == true);
+            }
+            while (_post == null);
+
+            return _post;
+        }
     }
 }

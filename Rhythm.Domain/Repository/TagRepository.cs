@@ -64,5 +64,10 @@ namespace Rhythm.Domain.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public IEnumerable<Tag> GetTags()
+        {
+            return _db.Tags;
+        }
     }
 }

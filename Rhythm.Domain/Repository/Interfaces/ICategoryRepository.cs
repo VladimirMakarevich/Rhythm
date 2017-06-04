@@ -11,5 +11,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task ChangeCategoryAsync(Category category);
         Task DeleteCategoryAsync(Category category);
         Task<Category> GetCategoryAsync(int id);
+        IEnumerable<Category> GetCategories();
     }
 }

@@ -26,7 +26,6 @@ namespace Rhythm.Controllers
             _commentProvider = commentProvider;
             _postProvider = postProvider;
             _tagProvider = tagProvider;
-            //_archiveProvider = archiveProvider;
             _postMapper = postMapper;
             _categoryMapper = categoryMapper;
             _commentMapper = commentMapper;
@@ -34,86 +33,81 @@ namespace Rhythm.Controllers
             _recentContentMapper = recentContentMapper;
         }
 
-        public async Task<ActionResult> RecentContent()
+        //public async Task<ActionResult> RecentContent()
+        //{
+        //    var category = await _categoryProvider.GetCategoriesAsync();
+        //    var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
+
+        //    var tag = await _tagProvider.GetTagsAsync();
+        //    var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
+
+        //    var posts = await _postProvider.GetPostsAsync();
+        //    var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
+
+        //    var comments = await _commentProvider.GetFiveCommentsListAsync();
+        //    var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments, posts);
+
+        //    var post = await _postProvider.GetPostWidgetAsync();
+        //    var articleWidget = _postMapper.ToArticleWidget(post);
+
+        //    var recentContentViewModel = _recentContentMapper.ToRecentContentViewModel(categoriesRecentViewModel,
+        //        tagsRecentViewModel, postRecentViewModel, commentsRecentViewModel, articleWidget);
+
+
+        //    return PartialView("_SideBar", recentContentViewModel);
+        //}
+
+        [ChildActionOnly]
+        public ActionResult RecentCategories()
         {
-            var category = await _categoryProvider.GetCategoriesAsync();
+            var category = _categoryProvider.GetCategories();
             var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
 
-            var tag = await _tagProvider.GetTagsAsync();
-            var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
-
-            var posts = await _postProvider.GetPostsAsync();
-            var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
-
-            var comments = await _commentProvider.GetFiveCommentsListAsync();
-            var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments, posts);
-
-            var post = await _postProvider.GetPostWidgetAsync();
-            var articleWidget = _postMapper.ToArticleWidget(post);
-
-            var recentContentViewModel = _recentContentMapper.ToRecentContentViewModel(categoriesRecentViewModel,
-                tagsRecentViewModel, postRecentViewModel, commentsRecentViewModel, articleWidget);
-
-
-            return PartialView("_SideBar", recentContentViewModel);
+            return PartialView("RecentCategories", categoriesRecentViewModel);
         }
 
-        //[ChildActionOnly]
-        public async Task<JsonResult> RecentCategories()
+        [ChildActionOnly]
+        public ActionResult RecentTags()
         {
-            var category = await _categoryProvider.GetCategoriesAsync().ConfigureAwait(false);
-            var categoriesRecentViewModel = _categoryMapper.ToCategoriesRecentViewModel(category);
-
-            return Json(categoriesRecentViewModel);
-        }
-
-        //[ChildActionOnly]
-        public async Task<ActionResult> RecentTags()
-        {
-            var tag = await _tagProvider.GetTagsAsync();
+            var tag = _tagProvider.GetTags();
             var tagsRecentViewModel = _tagMapper.ToTagsRecentViewModel(tag);
 
             return PartialView("RecentTags", tagsRecentViewModel);
         }
 
 
-        //[ChildActionOnly]
-        public async Task<ActionResult> RecentPosts()
+        [ChildActionOnly]
+        public ActionResult RecentPosts()
         {
-            var posts = await _postProvider.GetPostsAsync();
+            var posts = _postProvider.GetPosts();
             var postRecentViewModel = _postMapper.ToPostsRecentViewModel(posts);
 
             return PartialView("RecentPosts", postRecentViewModel);
         }
 
-        //[ChildActionOnly]
-        public async Task<ActionResult> RecentComments()
+        [ChildActionOnly]
+        public ActionResult RecentComments()
         {
-            var comments = await _commentProvider.GetFiveCommentsListAsync();
-            var posts = await _postProvider.GetPostsAsync();
+            var comments = _commentProvider.GetFiveCommentsList();
+            var posts = _postProvider.GetPosts();
             var commentsRecentViewModel = _commentMapper.ToCommetRecentViewModel(comments, posts);
 
             return PartialView("RecentComments", commentsRecentViewModel);
         }
 
-        //[ChildActionOnly]
-        public async Task<ActionResult> RecentArticleWidgets()
+        [ChildActionOnly]
+        public ActionResult RecentArticleWidgets()
         {
-            var post = await _postProvider.GetPostWidgetAsync();
+            var post = _postProvider.GetPostWidget();
             var articleWidget = _postMapper.ToArticleWidget(post);
-            //var articleWidget = await _postProvider.GetArticleWidgetAsync();
 
-            //if (articleWidget != null)
-            //{
             return PartialView("RecentArticleWidgets", articleWidget);
-            //}
-            //return View();
         }
 
-        //[ChildActionOnly]
-        public async Task<ActionResult> RecentArchives()
+        [ChildActionOnly]
+        public ActionResult RecentArchives()
         {
-            var posts = await _postProvider.GetPostsAsync();
+            var posts = _postProvider.GetPosts();
             ArchiveProvider archive = new ArchiveProvider(posts.ToList());
 
             return PartialView(archive);

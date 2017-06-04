@@ -12,5 +12,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task ChangeCommentAsync(Comment comment);
         Task DeleteCommentAsync(Comment comment);
         Task<Comment> GetCommentAsync(int id);
+        IEnumerable<Comment> GetComments();
     }
 }

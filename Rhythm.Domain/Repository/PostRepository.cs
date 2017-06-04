@@ -64,5 +64,10 @@ namespace Rhythm.Domain.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public IEnumerable<Post> GetPosts()
+        {
+            return _db.Posts;
+        }
     }
 }

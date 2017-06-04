@@ -27,9 +27,6 @@ namespace Rhythm
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalFilters.Filters.Add(new WatchConfig());
-
-
-            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
         }
 
         //protected void Application_Error(object sender, EventArgs e)

@@ -68,5 +68,10 @@ namespace Rhythm.Domain.Repository
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public IEnumerable<Comment> GetComments()
+        {
+            return _db.Comments;
+        }
     }
 }

@@ -5,6 +5,7 @@ using Rhythm.Domain.Repository.Interfaces;
 using System.Collections.Generic;
 using Rhythm.Domain.Context;
 using System;
+using System.Linq;
 
 namespace Rhythm.Domain.Repository
 {
@@ -62,6 +63,11 @@ namespace Rhythm.Domain.Repository
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return _db.Categories;
         }
     }
 }
