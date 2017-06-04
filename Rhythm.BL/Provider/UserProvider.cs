@@ -30,9 +30,9 @@ namespace Rhythm.BL.Provider
             await _userRepository.DeleteUserAsync(chiefUser);
         }
 
-        public async Task EditChangesUser(ChiefUser chiefUser)
+        public async Task EditUser(ChiefUser chiefUser)
         {
-            await _userRepository.EditChangesUser(chiefUser);
+            await _userRepository.EditUser(chiefUser);
         }
 
         public async Task<IEnumerable<ChiefUser>> GetChiefUsersAsync()

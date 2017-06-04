@@ -12,11 +12,13 @@ namespace Rhythm.BL.Provider
     public class PostProvider : IPostProvider
     {
         private IPostRepository _postRepository;
+        private ITagRepository _tagRepository;
         private Post _post;
 
-        public PostProvider(IPostRepository postRepository)
+        public PostProvider(IPostRepository postRepository, ITagRepository tagRepository)
         {
             _postRepository = postRepository;
+            _tagRepository = tagRepository;
         }
 
         public async Task<Post> GetPostWidgetAsync()
@@ -134,10 +136,10 @@ namespace Rhythm.BL.Provider
 
         public async Task<IEnumerable<Post>> GetPostsByTagAsync(int id)
         {
+            var tag = await _tagRepository.GetTagAsync(id);
             var posts = await _postRepository.GetPostsAsync();
 
-            return posts.OrderBy(p => p.PostTagMaps.Where(t => t.TagId == id))
-                .Where(p => p.Published == true).ToList();
+            return posts.Where(p => p.Tags.Contains(tag));
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText)

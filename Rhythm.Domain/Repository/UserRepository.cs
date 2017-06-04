@@ -28,7 +28,7 @@ namespace Rhythm.Domain.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task EditChangesUser(ChiefUser chiefUser)
+        public async Task EditUser(ChiefUser chiefUser)
         {
             _db.Entry(chiefUser).State = EntityState.Modified;
             await _db.SaveChangesAsync();

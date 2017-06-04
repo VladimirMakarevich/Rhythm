@@ -1,4 +1,4 @@
-﻿@model Rhythm.Models.PostViewModel
+﻿@model Rhythm.Models.PostSingleViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,20 +13,20 @@
                 <div class="blog-item mb-80 mb-xs-40">
                     <!-- Text -->
                     <div class="blog-item-body">
-                        <h1 class="mt-0">@Model.Post.Title</h1>
+                        <h1 class="mt-0">@Model.PostViewModel.Title</h1>
                         <div class="lead">
                             <hr class="mb-40" />
                             <div>
-                                @if (Model.Post.ImageData != null && Model.Post.ImageData.Any())
+                                @if (Model.PostViewModel.ImageData != null && Model.PostViewModel.ImageData.Any())
                                 {
-                                    <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = Model.Post.ID })" />
+                                    <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = Model.PostViewModel.Id })" />
                                 }
                             </div>
                             <hr class="mb-40" />
-                            @Html.Raw(Model.Post.ShortDescription)
+                            @Html.Raw(Model.PostViewModel.ShortDescription)
                         </div>
                         <hr class="mb-40" />
-                        @Html.Raw(Model.Post.DescriptionPost)
+                        @Html.Raw(Model.PostViewModel.DescriptionPost)
                     </div>
                     <!-- End Text -->
                 </div>
@@ -34,22 +34,22 @@
                 @Html.Partial("_CommentsList")
                 <!-- Prev/Next Post -->
                 <div class="clearfix mt-40">
-                    @if (Model.Post.ID == 1)
+                    @if (Model.PostViewModel.Id == 1)
                     {
                         <a href="#"></a>
                     }
                     else
                     {
-                        @Html.ActionLink("Prev post", "Post", new { id = Model.Post.ID - 1, flag = false }, new { @class = "blog-item-more left" })
+                        @Html.ActionLink("Prev post", "Post", new { id = Model.PostViewModel.Id - 1, flag = false }, new { @class = "blog-item-more left" })
                     }
 
-                    @if (Model.Post.ID >= ViewBag.Count)
+                    @if (Model.PostViewModel.Id >= Model.CountPosts)
                     {
                         <a href="#"></a>
                     }
                     else
                     {
-                        @Html.ActionLink("Next post", "Post", new { id = Model.Post.ID + 1, flag = true }, new { @class = "blog-item-more right" })
+                        @Html.ActionLink("Next post", "Post", new { id = Model.PostViewModel.Id + 1, flag = true }, new { @class = "blog-item-more right" })
                     }
                 </div>
                 <!-- End Prev/Next Post -->

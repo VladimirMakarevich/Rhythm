@@ -17,35 +17,35 @@
             <!-- for renderBody -->
             <!-- Content -->
             <div class="col-sm-8">
-                @foreach (var p in Model.Posts)
+                @foreach (var post in Model.PostsViewModel)
                 {
                     <!-- Post -->
                     <div class="blog-item">
                         <!-- Post Title -->
-                        <h2 class="blog-item-title">@Html.ActionLink(@p.Title, "Post", new { id = p.ID })</h2>
+                        <h2 class="blog-item-title">@Html.ActionLink(@post.Title, "Post", new { id = post.Id })</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a><i class="fa fa-clock-o"></i> @p.PostedOn </a>
+                            <a><i class="fa fa-clock-o"></i> @post.PostedOn </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-user"></i> @p.NameSenderPost </a>
+                            <a><i class="fa fa-user"></i> @post.NameSenderPost </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-code"></i> @p.Category1.Name </a>
+                            @*<a><i class="fa fa-code"></i> @post.Category.Name </a>*@
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-comments"></i> Comments @p.CountComments </a>
+                            <a><i class="fa fa-comments"></i> Comments @post.CountComments </a>
                         </div>
-                        @if (p.ImageData != null && p.ImageData.Any())
+                        @if (post.ImageData != null && post.ImageData.Any())
                         {
-                            <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = p.ID })" />
+                            <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = post.Id })" />
                         }
                         <br />
                         <div class="blog-item-body">
                             <p>
-                                @Html.Raw(p.ShortDescription)
+                                @Html.Raw(post.ShortDescription)
                             </p>
                         </div>
                         <!-- Read More Link -->
                         <div class="blog-item-foot">
-                            @Html.ActionLink("Read More", "Post", new { id = p.ID }, new { @class = "btn btn-mod btn-round  btn-small" })
+                            @Html.ActionLink("Read More", "Post", new { id = post.Id }, new { @class = "btn btn-mod btn-round  btn-small" })
                         </div>
                     </div>
                 <!-- End Post -->

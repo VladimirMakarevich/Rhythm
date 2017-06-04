@@ -11,39 +11,33 @@ using NLog;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Mappers.ChiefAdmin;
+using Rhythm.BL.Interfaces;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
     public class PortfoliosController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
         private PortfolioAdminMapper _portfolioMapper;
 
-        public PortfoliosController(PortfolioAdminMapper portfolioMapper)
+        public PortfoliosController(PortfolioAdminMapper portfolioMapper, IPortfolioProvider portfolioProvider)
         {
             _portfolioMapper = portfolioMapper;
+            _portfolioProvider = portfolioProvider;
         }
         public async Task<ActionResult> Index()
         {
-            var portfolio = await _portfolioRepository.GetPortfolioProperty.ToListAsync();
+            var portfolio = await _portfolioProvider.GetPortfoliosAsync();
             var portfolioListViewModel = _portfolioMapper.ToListPortfolioViewModel(portfolio);
 
             return View(portfolioListViewModel);
         }
 
 
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var portfolio = await _portfolioRepository.GetPortfolioAsync(id);
+            var portfolio = await _portfolioProvider.GetPortfolioAsync(id);
             var portfolioViewModel = _portfolioMapper.ToPortfolioViewModel(portfolio);
-            if (portfolioViewModel == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(portfolioViewModel);
         }
 
@@ -64,30 +58,24 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 try
                 {
                     var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
-                    await _portfolioRepository.CreatePortfolioAsync(portfolio);
+                    await _portfolioProvider.CreatePortfolioAsync(portfolio);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
+
             return View(portfolioViewModel);
         }
 
 
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var portfolio = await _portfolioRepository.GetPortfolioAsync(id);
+            var portfolio = await _portfolioProvider.GetPortfolioAsync(id);
             var portfolioViewModel = _portfolioMapper.ToPortfolioViewModel(portfolio);
-            if (portfolioViewModel == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(portfolioViewModel);
         }
 
@@ -102,30 +90,24 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 try
                 {
                     var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
-                    await _portfolioRepository.EditPortfolioAsync(portfolio);
+                    await _portfolioProvider.EditPortfolioAsync(portfolio);
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
+
             return View(portfolioViewModel);
         }
 
 
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var portfolio = await _portfolioRepository.GetPortfolioAsync(id);
+            var portfolio = await _portfolioProvider.GetPortfolioAsync(id);
             var portfolioViewModel = _portfolioMapper.ToPortfolioViewModel(portfolio);
-            if (portfolioViewModel == null)
-            {
-                return HttpNotFound();
-            }
+
             return View(portfolioViewModel);
         }
 
@@ -138,18 +120,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    //var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
-                    await _portfolioRepository.DeletePortfolioAsync(id);
+                    await _portfolioProvider.DeletePortfolioAsync(id);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("Failed message - {0}, source - {1}, inner exception - {2}", ex.Message, ex.Source, ex.InnerException);
+                    throw ex;
                 }
             }
             return RedirectToAction("Index");
-            //await _portfolioRepository.DeletePortfolioAsync(id);
-            //return RedirectToAction("Index");
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Rhythm.Controllers
             var posts = await _postProvider.GetPostsAsync();
             int count = posts.Where(p => p.Published == true).Max(m => m.Id);
 
-            var post = await _postProvider.GetPostAsync(id, flag);
+            var post = await _postProvider.GetPostWithConditionAsync(id, flag);
 
             var postSingleViewModel = _postMapper.ToPostSingleViewModel(post, count);
 
@@ -81,7 +81,7 @@ namespace Rhythm.Controllers
 
         public async Task<FileContentResult> GetImage(int id)
         {
-            Post post = await _postProvider.GetPostAsync(id, null);
+            Post post = await _postProvider.GetPostAsync(id);
 
             return File(post.ImageData, "image/png");
         }

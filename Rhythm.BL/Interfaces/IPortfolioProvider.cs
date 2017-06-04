@@ -8,7 +8,7 @@ namespace Rhythm.BL.Interfaces
     {
         Task<IEnumerable<Portfolio>> GetPortfoliosAsync();
         Task<List<Portfolio>> GetListPortfolioAsync();
-        Task<Portfolio> GetPortfolioAsync(int portfolio);
+        Task<Portfolio> GetPortfolioAsync(int id);
         Task<Portfolio> GetPortfolioByUserAsync(int userId);
         Task CreatePortfolioAsync(Portfolio portfolio);
         Task EditPortfolioAsync(Portfolio portfolio);

@@ -9,7 +9,7 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task<IEnumerable<ChiefUser>> GetChiefUsersAsync();
         Task<ChiefUser> GetUserAsync(int chiefUser);
         Task CreateUserAsync(ChiefUser chiefUser);
-        Task EditChangesUser(ChiefUser chiefUser);
+        Task EditUser(ChiefUser chiefUser);
         Task DeleteUserAsync(ChiefUser chiefUser);
     }
 }

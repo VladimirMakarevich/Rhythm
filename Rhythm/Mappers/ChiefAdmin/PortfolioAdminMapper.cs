@@ -15,7 +15,7 @@ namespace Rhythm.Mappers.ChiefAdmin
             _mapper = mapper;
         }
 
-        public List<PortfolioAdminViewModel> ToListPortfolioViewModel(List<Portfolio> portfolio)
+        public List<PortfolioAdminViewModel> ToListPortfolioViewModel(IEnumerable<Portfolio> portfolio)
         {
             return portfolio.Select(ToPortfolioViewModel).ToList();
         }
