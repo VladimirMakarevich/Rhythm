@@ -1,8 +1,5 @@
-﻿using System.Data.Entity;
-using System.Threading.Tasks;
-using System.Net;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using NLog;
 using System.Linq;
 using Rhythm.Areas.ChiefAdmin.Models;
 using System;
