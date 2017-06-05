@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.ImageViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.ImageAdminViewModel
     @{
         Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
     }
@@ -12,7 +12,7 @@
             @using (Html.BeginForm("Image", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.PostID)
+                @Html.HiddenFor(m => m.PostId)
                 @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
                 <div class="mb-20 mb-md-10">
                     <!-- Description -->
@@ -30,7 +30,7 @@
                 <div class="mb-20 mb-md-10">
                     @if (Model.ImageDataByte != null)
                     {
-                        <img width="300" height="300" src="@Url.Action("GetImage", "Home", new { id = Model.PostID })" />
+                        <img width="300" height="300" src="@Url.Action("GetImage", "Home", new { id = Model.PostId })" />
                     }
                 </div>
                         <div class="clearfix">

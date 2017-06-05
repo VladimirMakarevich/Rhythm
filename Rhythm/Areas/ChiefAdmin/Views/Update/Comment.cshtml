@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.CommentViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.CommentAdminViewModel
 
 @{
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
@@ -27,10 +27,10 @@
 
             @Html.Label("Comment: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.TextAreaFor(m => m.Comment1, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Comment" })
+                @Html.TextAreaFor(m => m.Comment, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Comment" })
             </div>
             @*@Html.HiddenFor(m => m.ID)*@
-            @Html.HiddenFor(m => m.PostID)
+            @Html.HiddenFor(m => m.PostId)
             @Html.HiddenFor(m => m.PostedOn)
             <div class="clearfix">
                 <div class="cf-left-col">

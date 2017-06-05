@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Rhythm.Areas.ChiefAdmin.Models.PortfolioViewModel>
+﻿@model List<Rhythm.Areas.ChiefAdmin.Models.PortfolioAdminViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -61,17 +61,17 @@
                     </td>*@
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Edit", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Edit </a>
+                            <a href="@Url.Action("Edit", "Portfolios", new { id = item.PortfolioId })" class="btn btn-mod btn-round  btn-small"> Edit </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Details", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Details </a>
+                            <a href="@Url.Action("Details", "Portfolios", new { id = item.PortfolioId })" class="btn btn-mod btn-round  btn-small"> Details </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Delete", "Portfolios", new { id = item.PortfolioID })" class="btn btn-mod btn-round  btn-small"> Delete </a>
+                            <a href="@Url.Action("Delete", "Portfolios", new { id = item.PortfolioId })" class="btn btn-mod btn-round  btn-small"> Delete </a>
                         </div>
                     </td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.PortfolioID }) |

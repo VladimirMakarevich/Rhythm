@@ -1,4 +1,4 @@
-﻿@model List<Rhythm.Domain.Model.Post>
+﻿@model List<Rhythm.Areas.ChiefAdmin.Models.PostAdminViewModel>
 @{
     <link href="~/Content/table.css" rel="stylesheet" />
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
@@ -22,29 +22,29 @@
             @foreach (var p in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Id)</td>
                     <td>@Html.DisplayFor(m => p.NameSenderPost)</td>
                     <td>@Html.DisplayFor(m => p.Title)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
                         @if (p.ImageData != null)
                         {
-                            <img width="150" height="150" src="@Url.Action("GetImage", "Home", new { id = p.ID })" />
+                            <img width="150" height="150" src="@Url.Action("GetImage", "Home", new { id = p.Id })" />
                         }
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Post", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Post", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Image", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Image </a>
+                            <a href="@Url.Action("Image", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Image </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Post", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                            <a href="@Url.Action("Post", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
                         </div>
                     </td>
                 </tr>

@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.PortfolioViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.PortfolioAdminViewModel
 
 @{
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
@@ -18,7 +18,7 @@
                 <h4>Portfolio</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.PortfolioID)
+                @Html.HiddenFor(model => model.PortfolioId)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.NamePortfolio, htmlAttributes: new { @class = "control-label col-md-2" })

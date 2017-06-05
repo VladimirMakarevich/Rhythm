@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.Content
+﻿@model Rhythm.Areas.ChiefAdmin.Models.ContentAdminViewModel
 
 @{
     <link href="~/Content/table.css" rel="stylesheet" />
@@ -12,28 +12,28 @@
 
         <table>
             <tr>
-                <th>ID</th>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Published</th>
                 <th>PostedOn</th>
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.Posts)
+            @foreach (var p in Model.PostAdminViewModel)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Id)</td>
                     <td>@Html.DisplayFor(m => p.Title)</td>
                     <td>@Html.DisplayFor(m => p.Published)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Post", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Post", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Post", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                            <a href="@Url.Action("Post", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
                         </div>
                     </td>
                 </tr>
@@ -54,28 +54,28 @@
 
         <table>
             <tr>
-                <th>ID</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Description </th>
                 <th>Count </th>
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.Categories)
+            @foreach (var p in Model.CategoriesAdminViewModel)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Id)</td>
                     <td>@Html.DisplayFor(m => p.Name)</td>
                     <td>@Html.DisplayFor(m => p.DescriptionCategory)</td>
                     <td>@Html.DisplayFor(m => p.CountCategory)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Category", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Category", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Category", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                            <a href="@Url.Action("Category", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
                         </div>
                     </td>
                 </tr>
@@ -95,28 +95,28 @@
 
         <table>
             <tr>
-                <th>ID</th>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Descroption </th>
                 <th>Url </th>
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.Tags)
+            @foreach (var p in Model.TagsAdminViewModel)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Id)</td>
                     <td>@Html.DisplayFor(m => p.Name)</td>
                     <td>@Html.DisplayFor(m => p.DescriptionTag)</td>
                     <td>@Html.DisplayFor(m => p.UrlSlug)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Tag", "Update", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Tag", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Tag", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                            <a href="@Url.Action("Tag", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
                         </div>
                     </td>
                 </tr>
@@ -136,28 +136,28 @@
 
         <table>
             <tr>
-                <th>ID</th>
+                <th>Id</th>
                 <th>Post</th>
                 <th>NameUserSender</th>
                 <th>PostedOn</th>
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.Comments)
+            @foreach (var p in Model.CommentsAdminViewModel)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => p.ID)</td>
+                    <td>@Html.DisplayFor(m => p.Id)</td>
                     <td>@Html.DisplayFor(m => p.Post.Title)</td>
                     <td>@Html.DisplayFor(m => p.NameUserSender)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Comment", "Update", new { id = p.ID })"  class="btn btn-mod btn-round  btn-small">Change </a>
+                            <a href="@Url.Action("Comment", "Update", new { id = p.Id })"  class="btn btn-mod btn-round  btn-small">Change </a>
                         </div>
                     </td>
                     <td>
                         <div class="blog-item-foot">
-                            <a href="@Url.Action("Comment", "Delete", new { id = p.ID })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                            <a href="@Url.Action("Comment", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
                         </div>
                     </td>
                 </tr>

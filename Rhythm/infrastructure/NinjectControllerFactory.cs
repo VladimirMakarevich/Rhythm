@@ -50,7 +50,6 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<CommentAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<PostAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
-            _kernel.Bind<CategoryAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
 

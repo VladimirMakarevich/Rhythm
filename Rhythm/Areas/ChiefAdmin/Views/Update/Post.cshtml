@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.PostViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.PostAdminViewModel
 
 @{
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
@@ -60,14 +60,14 @@
                 <table>
                     <tr>
                         @{
-                            List<Rhythm.Areas.ChiefAdmin.Models.TagViewModel> tags = ViewBag.Tag;
+                            List<Rhythm.Areas.ChiefAdmin.Models.TagAdminViewModel> tags = ViewBag.Tag;
 
                             foreach (var tag in tags)
                             {
                                 <td>
                                     <input type="checkbox"
                                            name="selectedTag"
-                                           value="@tag.ID"
+                                           value="@tag.Id"
                                            @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
                                 </td>
                                 <td>
