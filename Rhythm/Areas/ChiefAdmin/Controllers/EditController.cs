@@ -45,7 +45,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             var tags = await _tagProvider.GetTagsByIdAsync(selectedTag);
             var categories = await _categoryProvider.GetCategoriesAsync();
 
-            var category = categories.SingleOrDefault(m => m.Id == postViewModel.CategoryId);
+            var category = categories.FirstOrDefault(m => m.Id == postViewModel.CategoryId);
 
             var post = _postMapper.ToPost(postViewModel, tags.ToList(), category);
 

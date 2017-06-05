@@ -51,26 +51,30 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         public async Task<ViewResult> listCategories()
         {
             var categories = await _categoryProvider.GetCategoriesAsync();
+            var categoriesViewModel = _categoryMapper.ToCategoriesViewModel(categories);
 
-            return View(categories);
+            return View(categoriesViewModel);
         }
         public async Task<ViewResult> listTags()
         {
             var tags = await _tagProvider.GetTagsAsync();
+            var tagsViewModel = _tagMapper.ToTagsViewModel(tags);
 
-            return View(tags);
+            return View(tagsViewModel);
         }
         public async Task<ViewResult> listPosts()
         {
             var posts = await _postProvider.GetPostsAsync();
+            var postsViewModel = _postMapper.ToPostsViewModel(posts);
 
-            return View(posts);
+            return View(postsViewModel);
         }
         public async Task<ViewResult> listComments()
         {
             var comments = await _commentProvider.GetCommentsAsync();
+            var commentsViewModel = _commentMapper.ToCommentsViewModel(comments);
 
-            return View(comments);
+            return View(commentsViewModel);
         }
 
         public async Task<FileContentResult> GetImage(int id)

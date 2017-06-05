@@ -19,7 +19,7 @@
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.PostAdminViewModel)
+            @foreach (var p in Model.Posts)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.Id)</td>
@@ -61,7 +61,7 @@
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.CategoriesAdminViewModel)
+            @foreach (var p in Model.Categories)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.Id)</td>
@@ -102,7 +102,7 @@
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.TagsAdminViewModel)
+            @foreach (var p in Model.Tags)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.Id)</td>
@@ -143,11 +143,11 @@
                 <th>Change</th>
                 <th>Delete</th>
             </tr>
-            @foreach (var p in Model.CommentsAdminViewModel)
+            @foreach (var p in Model.Comments)
             {
                 <tr>
                     <td>@Html.DisplayFor(m => p.Id)</td>
-                    <td>@Html.DisplayFor(m => p.Post.Title)</td>
+                    @*<td>@Html.DisplayFor(m => p.Post.Title)</td>*@
                     <td>@Html.DisplayFor(m => p.NameUserSender)</td>
                     <td>@Html.DisplayFor(m => p.PostedOn)</td>
                     <td>

@@ -40,7 +40,7 @@ namespace Rhythm.BL.Provider
 
         public async Task AddPostAsync(Post post)
         {
-            post.Category.CountCategory++;
+            post.Category.CountCategory = post.Category.CountCategory + 1;
             post.PostedOn = DateTime.Now;
 
             await _postRepository.AddPostAsync(post);
@@ -55,7 +55,7 @@ namespace Rhythm.BL.Provider
 
         public async Task DeletePostAsync(Post post)
         {
-            post.Category.CountCategory--;
+            post.Category.CountCategory = post.Category.CountCategory - 1;
 
             await _postRepository.DeletePostAsync(post);
         }

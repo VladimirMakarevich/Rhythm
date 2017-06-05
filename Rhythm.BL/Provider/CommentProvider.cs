@@ -35,7 +35,7 @@ namespace Rhythm.BL.Provider
         public async Task AddCommentAsync(Comment comment)
         {
             comment.PostedOn = DateTime.Now;
-            comment.Post.CountComments++;
+            comment.Post.CountComments = comment.Post.CountComments + 1;
 
             await _commentRepository.AddCommentAsync(comment);
         }
@@ -49,7 +49,7 @@ namespace Rhythm.BL.Provider
 
         public async Task DeleteCommentAsync(Comment comment)
         {
-            comment.Post.CountComments--;
+            comment.Post.CountComments = comment.Post.CountComments - 1;
 
             await _commentRepository.DeleteCommentAsync(comment);
         }

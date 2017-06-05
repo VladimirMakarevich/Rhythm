@@ -1,4 +1,4 @@
-﻿@model Rhythm.Areas.ChiefAdmin.Models.PostViewModel
+﻿@model Rhythm.Areas.ChiefAdmin.Models.PostAdminViewModel
 
 @{
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
@@ -49,13 +49,13 @@
 
             @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.DropDownListFor(m => m.Category, (IEnumerable<SelectListItem>)ViewBag.Category)
+                @Html.DropDownListFor(m => m.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Category)
             </div>
             @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })
             <table>
                 <tr>
                     @{
-                        List<Rhythm.Areas.ChiefAdmin.Models.TagViewModel> tags = ViewBag.Tag;
+                        List<Rhythm.Areas.ChiefAdmin.Models.TagAdminViewModel> tags = ViewBag.Tag;
 
                         foreach (var tag in tags)
                         {
@@ -63,11 +63,11 @@
                             <td>
                                 <input type="checkbox"
                                        name="selectedTag"
-                                       value="@tag.ID"
+                                       value="@tag.Id"
                                        @(Html.Raw(tag.Assigned ? "checked=\"checked\"" : "")) />
                             </td>
                             <td>
-                                <div><a>&nbsp;</a> - @tag.Name <a>&nbsp;</a></div>
+                                <div><a>&nbsp;</a> @tag.Name <a>&nbsp;</a></div>
                             </td>
                         }
                     }
