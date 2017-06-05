@@ -139,7 +139,9 @@ namespace Rhythm.BL.Provider
             var tag = await _tagRepository.GetTagAsync(id);
             var posts = await _postRepository.GetPostsAsync();
 
-            return posts.Where(p => p.Tags.Contains(tag));
+            return (from p in posts
+                    from t in p.Tags.Where(tg => tg.Id == tag.Id)
+                    select p);
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText)
@@ -147,7 +149,7 @@ namespace Rhythm.BL.Provider
             var posts = await _postRepository.GetPostsAsync();
 
             return posts.Where(p => p.Title.Contains(searchText) ||
-                p.ShortDescription.Contains(searchText) || 
+                p.ShortDescription.Contains(searchText) ||
                 p.DescriptionPost.Contains(searchText) && p.Published == true).ToList();
         }
 

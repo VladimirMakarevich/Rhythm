@@ -1,4 +1,5 @@
 ﻿using Rhythm.BL.Interfaces;
+using Rhythm.Domain.Entities;
 using Rhythm.Mappers;
 using Rhythm.Models;
 using System;
@@ -14,9 +15,11 @@ namespace Rhythm.Controllers
     public class SearchController : DefaultController
     {
         private SearchResultMapper _searchResultMapper;
-        public SearchController(IPostProvider postProvider, SearchResultMapper searchResultMapper)
+        public SearchController(IPostProvider postProvider, SearchResultMapper searchResultMapper, ICategoryProvider categoryProvider, ITagProvider tagProvider)
         {
             _postProvider = postProvider;
+            _categoryProvider = categoryProvider;
+            _tagProvider = tagProvider;
             _searchResultMapper = searchResultMapper;
     }
 
@@ -33,9 +36,9 @@ namespace Rhythm.Controllers
         public async Task<ViewResult> Tag(int id, int page = 1)
         {
             var posts = await _postProvider.GetPostsByTagAsync(id);
-            var category = await _categoryProvider.GetCategoryAsync(id);
+            var tag = await _tagProvider.GetTagAsync(id);
 
-            var tagSearchResultViewModel = _searchResultMapper.ToCategoryResultViewModel(posts, page, category.Name);
+            var tagSearchResultViewModel = _searchResultMapper.ToTagResultViewModel(posts, page, tag.Name);
 
             return View("Index", tagSearchResultViewModel);
         }
