@@ -1,48 +1,46 @@
 ﻿using Rhythm.BL.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.Domain.Repository.Interfaces;
-using System;
+using Rhythm.Domain.UnitOfWork;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Rhythm.BL.Provider
 {
     public class UserProvider : IUserProvider
     {
-        private IUserRepository _userRepository;
+        private IUnitOfWork _uow;
 
-        public UserProvider(IUserRepository userRepository)
+        public UserProvider(IUnitOfWork uow)
         {
-            _userRepository = userRepository;
+            _uow = uow;
         }
 
         public async Task CreateUserAsync(ChiefUser chiefUser)
         {
-            await _userRepository.CreateUserAsync(chiefUser);
+            await _uow.User.CreateUserAsync(chiefUser);
         }
 
         public async Task DeleteUserAsync(int id)
         {
-            var chiefUser = await _userRepository.GetUserAsync(id);
+            var chiefUser = await _uow.User.GetUserAsync(id);
 
-            await _userRepository.DeleteUserAsync(chiefUser);
+            await _uow.User.DeleteUserAsync(chiefUser);
         }
 
         public async Task EditUser(ChiefUser chiefUser)
         {
-            await _userRepository.EditUser(chiefUser);
+            await _uow.User.EditUser(chiefUser);
         }
 
         public async Task<IEnumerable<ChiefUser>> GetChiefUsersAsync()
         {
-            return await _userRepository.GetChiefUsersAsync();
+            return await _uow.User.GetChiefUsersAsync();
         }
 
         public async Task<ChiefUser> GetUserAsync(int chiefUser)
         {
-            return await _userRepository.GetUserAsync(chiefUser);
+            return await _uow.User.GetUserAsync(chiefUser);
         }
     }
 }

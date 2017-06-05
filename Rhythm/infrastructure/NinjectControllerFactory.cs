@@ -9,6 +9,7 @@ using AutoMapper;
 using Rhythm.Mappers;
 using Rhythm.Mappers.ChiefAdmin;
 using System.Collections.Generic;
+using Rhythm.Domain.UnitOfWork;
 
 namespace Rhythm.Infrastructure
 {
@@ -52,6 +53,9 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
+
+            // UnitOfWork
+            _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // Repositories
             _kernel.Bind<IUserRepository>().To<UserRepository>();

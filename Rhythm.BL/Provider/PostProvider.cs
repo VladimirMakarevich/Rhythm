@@ -6,25 +6,24 @@ using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.BL.Interfaces;
 using System.Collections.Generic;
+using Rhythm.Domain.UnitOfWork;
 
 namespace Rhythm.BL.Provider
 {
     public class PostProvider : IPostProvider
     {
-        private IPostRepository _postRepository;
-        private ITagRepository _tagRepository;
+        private IUnitOfWork _uow;
         private Post _post;
 
-        public PostProvider(IPostRepository postRepository, ITagRepository tagRepository)
+        public PostProvider(IUnitOfWork uow)
         {
-            _postRepository = postRepository;
-            _tagRepository = tagRepository;
+            _uow = uow;
         }
 
         public async Task<Post> GetPostWidgetAsync()
         {
             int countArticle;
-            var allPosts = await _postRepository.GetPostsAsync();
+            var allPosts = await _uow.Post.GetPostsAsync();
             var count = allPosts.Max(p => p.Id);
             Random r = new Random();
 
@@ -43,27 +42,27 @@ namespace Rhythm.BL.Provider
             post.Category.CountCategory = post.Category.CountCategory + 1;
             post.PostedOn = DateTime.Now;
 
-            await _postRepository.AddPostAsync(post);
+            await _uow.Post.AddPostAsync(post);
         }
 
         public async Task ChangePostAsync(Post post)
         {
             post.Modified = DateTime.Now;
 
-            await _postRepository.ChangePostAsync(post);
+            await _uow.Post.ChangePostAsync(post);
         }
 
         public async Task DeletePostAsync(Post post)
         {
             post.Category.CountCategory = post.Category.CountCategory - 1;
 
-            await _postRepository.DeletePostAsync(post);
+            await _uow.Post.DeletePostAsync(post);
         }
 
         public async Task<Post> GetPostWithConditionAsync(int post, bool? flag)
         {
             Post findPost = new Post();
-            IEnumerable<Post> postList = await _postRepository.GetPostsAsync();
+            IEnumerable<Post> postList = await _uow.Post.GetPostsAsync();
 
             int newPost = 1;
 
@@ -122,22 +121,22 @@ namespace Rhythm.BL.Provider
 
         public async Task<IEnumerable<Post>> GetPostsAsync()
         {
-            var posts = await _postRepository.GetPostsAsync();
+            var posts = await _uow.Post.GetPostsAsync();
 
             return posts.Where(p => p.Published == true).ToList();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByCategoryAsync(int id)
         {
-            var posts = await _postRepository.GetPostsAsync();
+            var posts = await _uow.Post.GetPostsAsync();
 
             return posts.Where(p => p.CategoryId == id && p.Published == true).ToList();
         }
 
         public async Task<IEnumerable<Post>> GetPostsByTagAsync(int id)
         {
-            var tag = await _tagRepository.GetTagAsync(id);
-            var posts = await _postRepository.GetPostsAsync();
+            var tag = await _uow.Tag.GetTagAsync(id);
+            var posts = await _uow.Post.GetPostsAsync();
 
             return (from p in posts
                     from t in p.Tags.Where(tg => tg.Id == tag.Id)
@@ -146,7 +145,7 @@ namespace Rhythm.BL.Provider
 
         public async Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText)
         {
-            var posts = await _postRepository.GetPostsAsync();
+            var posts = await _uow.Post.GetPostsAsync();
 
             return posts.Where(p => p.Title.Contains(searchText) ||
                 p.ShortDescription.Contains(searchText) ||
@@ -155,18 +154,18 @@ namespace Rhythm.BL.Provider
 
         public async Task<Post> GetPostAsync(int id)
         {
-            return await _postRepository.GetPostAsync(id);
+            return await _uow.Post.GetPostAsync(id);
         }
 
         public IEnumerable<Post> GetPosts()
         {
-            return _postRepository.GetPosts();
+            return _uow.Post.GetPosts();
         }
 
         public Post GetPostWidget()
         {
             int countArticle;
-            var allPosts = _postRepository.GetPosts();
+            var allPosts = _uow.Post.GetPosts();
             var count = allPosts.Max(p => p.Id);
             Random r = new Random();
 

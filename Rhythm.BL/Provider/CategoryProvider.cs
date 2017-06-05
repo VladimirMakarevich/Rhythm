@@ -4,46 +4,47 @@ using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.BL.Interfaces;
 using System;
+using Rhythm.Domain.UnitOfWork;
 
 namespace Rhythm.BL.Provider
 {
     public class CategoryProvider : ICategoryProvider
     {
-        private ICategoryRepository _categoryRepository;
-        
-        public CategoryProvider(ICategoryRepository categoryRepository)
+        private IUnitOfWork _uow;
+
+        public CategoryProvider(IUnitOfWork uow)
         {
-            _categoryRepository = categoryRepository;
+            _uow = uow;
         }
 
         public async Task AddCategoryAsync(Category category)
         {
-            await _categoryRepository.AddCategoryAsync(category);
+            await _uow.Category.AddCategoryAsync(category);
         }
 
         public async Task ChangeCategoryAsync(Category category)
         {
-            await _categoryRepository.ChangeCategoryAsync(category);
+            await _uow.Category.ChangeCategoryAsync(category);
         }
 
         public async Task DeleteCategoryAsync(Category category)
         {
-            await _categoryRepository.DeleteCategoryAsync(category);
+            await _uow.Category.DeleteCategoryAsync(category);
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            return _categoryRepository.GetCategories();
+            return _uow.Category.GetCategories();
         }
 
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _categoryRepository.GetCategoriesAsync();
+            return await _uow.Category.GetCategoriesAsync();
         }
 
         public async Task<Category> GetCategoryAsync(int id)
         {
-            return await _categoryRepository.GetCategoryAsync(id);
+            return await _uow.Category.GetCategoryAsync(id);
         }
     }
 }

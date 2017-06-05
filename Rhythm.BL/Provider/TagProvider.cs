@@ -6,54 +6,56 @@ using System.Threading.Tasks;
 using Rhythm.BL.Interfaces;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
+using Rhythm.Domain.UnitOfWork;
 
 namespace Rhythm.BL.Provider
 {
     public class TagProvider : ITagProvider
     {
-        private ITagRepository _tagRepository;
+        private IUnitOfWork _uow;
 
-        public TagProvider(ITagRepository tagRepository)
+        public TagProvider(IUnitOfWork uow)
         {
-            _tagRepository = tagRepository;
+            _uow = uow;
         }
 
         public async Task AddTagAsync(Tag tag)
         {
-            await _tagRepository.AddTagAsync(tag);
+            await _uow.Tag.AddTagAsync(tag);
         }
 
         public async Task ChangeTagAsync(Tag tag)
         {
-            await _tagRepository.ChangeTagAsync(tag);
+            await _uow.Tag.ChangeTagAsync(tag);
         }
 
         public async Task DeleteTagAsync(Tag tag)
         {
-            await _tagRepository.DeleteTagAsync(tag);
+            await _uow.Tag.DeleteTagAsync(tag);
         }
 
         public async Task<Tag> GetTagAsync(int id)
         {
-            return await _tagRepository.GetTagAsync(id);
+            return await _uow.Tag.GetTagAsync(id);
         }
 
         public IEnumerable<Tag> GetTags()
         {
-            return _tagRepository.GetTags();
+            return _uow.Tag.GetTags();
         }
 
         public async Task<IEnumerable<Tag>> GetTagsAsync()
         {
-            return await _tagRepository.GetTagsAsync();
+            return await _uow.Tag.GetTagsAsync();
         }
 
         public async Task<IEnumerable<Tag>> GetTagsByIdAsync(int[] ids)
         {
             List<Tag> tags = new List<Tag>();
+
             foreach (var id in ids)
             {
-                tags.Add(await _tagRepository.GetTagAsync(id));
+                tags.Add(await _uow.Tag.GetTagAsync(id));
             }
 
             return tags;
