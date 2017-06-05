@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rhythm.SQL", "Rhythm.SQL", "{381675F1-F341-4237-86A1-61F35574FEBC}"
 	ProjectSection(SolutionItems) = preProject
 		SQLidentity.sql = SQLidentity.sql
+		SqlQueryByEF.sql = SqlQueryByEF.sql
 		Rhythm.SQL\SQLQueryDogCoding.sql = Rhythm.SQL\SQLQueryDogCoding.sql
 	EndProjectSection
 EndProject
