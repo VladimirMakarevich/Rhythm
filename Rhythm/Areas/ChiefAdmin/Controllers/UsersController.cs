@@ -11,11 +11,15 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     public class UsersController : DefaultController
     {
         private UserAdminMapper _userMapper;
-        public UsersController(IUserProvider userProvider, IPortfolioProvider portfolioProvider, UserAdminMapper userMapper)
+        private PortfolioAdminMapper _portfolioMapper;
+
+        public UsersController(IUserProvider userProvider, IPortfolioProvider portfolioProvider, UserAdminMapper userMapper,
+            PortfolioAdminMapper portfolioMapper)
         {
             _userProvider = userProvider;
             _portfolioProvider = portfolioProvider;
             _userMapper = userMapper;
+            _portfolioMapper = portfolioMapper;
         }
 
         public async Task<ActionResult> Index()

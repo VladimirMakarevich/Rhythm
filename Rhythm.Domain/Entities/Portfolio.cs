@@ -19,7 +19,7 @@ namespace Rhythm.Domain.Entities
         public string Education { get; set; }
         public string ApplicationSystems { get; set; }
         public string AdditionalInfo { get; set; }
-        public int ChiefUserId { get; set; }
+        public int? ChiefUserId { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ChiefUser ChiefUser { get; set; }

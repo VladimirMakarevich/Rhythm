@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201706041749530_changed-map-post-and-tag-entities.Designer.cs">
       <DependentUpon>201706041749530_changed-map-post-and-tag-entities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.cs" />
+    <Compile Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.Designer.cs">
+      <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706041749530_changed-map-post-and-tag-entities.resx">
       <DependentUpon>201706041749530_changed-map-post-and-tag-entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.resx">
+      <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

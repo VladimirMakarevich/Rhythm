@@ -4,9 +4,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
+<h2 class="align-center font-alt uppercase">Portfolios</h2>
 
 <div class="container relative">
-    <h2 class="align-center font-alt uppercase">Portfolios</h2>
     <div class="blog-item-body container">
         <p>
             <div class="blog-item-foot">
@@ -19,19 +19,10 @@
                     Name
                 </th>
                 <th>
-                    Skills
+                    Objective
                 </th>
                 <th>
-                    Work Expirience
-                </th>
-                <th>
-                    Projects
-                </th>
-                <th>
-                    Education
-                </th>
-                <th>
-                    Additional Information
+                    Summary
                 </th>
                 <th></th>
                 <th></th>
@@ -45,19 +36,10 @@
                         @Html.DisplayFor(modelItem => item.NamePortfolio)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Skills)
+                        @Html.DisplayFor(modelItem => item.Objective)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.WorkExp)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MyProjects)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Education)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AdditionalInfo)
+                        @Html.DisplayFor(modelItem => item.Summary)
                     </td>
                     <td>
                         <div class="blog-item-foot">
@@ -74,9 +56,6 @@
                             <a href="@Url.Action("Delete", "Portfolios", new { id = item.PortfolioId })" class="btn btn-mod btn-round  btn-small"> Delete </a>
                         </div>
                     </td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.PortfolioID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.PortfolioID })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.PortfolioID })*@
                 </tr>
             }
 

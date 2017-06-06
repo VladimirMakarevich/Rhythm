@@ -6,10 +6,15 @@
 }
 
 <div class="container relative">
-    <h2 class="align-center font-alt uppercase">Details Porfolio</h2>
+    <h2 class="align-center font-alt uppercase">Details User</h2>
     <div class="blog-item-body container">
         <h2>Details</h2>
-
+        <p>
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Edit", "Users", new { id = Model.PortfolioId })" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Edit </a> |
+                <a href="@Url.Action("Index", "Users")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+            </div>
+        </p>
         <div>
             <h4>User</h4>
             <hr />
@@ -39,6 +44,14 @@
                 </dd>
 
                 <dt>
+                    @Html.DisplayNameFor(model => model.Birth)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Birth)
+                </dd>
+
+                <dt>
                     @Html.DisplayNameFor(model => model.Email)
                 </dt>
 
@@ -47,20 +60,46 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.PortfolioViewModel.NamePortfolio)
+                    @Html.DisplayNameFor(model => model.HomeAddress)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.PortfolioViewModel.NamePortfolio)
+                    @Html.DisplayFor(model => model.HomeAddress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Skype)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Skype)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Mobile)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Github)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Github)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Linkedin)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Linkedin)
                 </dd>
 
             </dl>
         </div>
-        <p>
-            <div class="form-actions no-color">
-                <a href="@Url.Action("Edit", "Users", new { id = Model.PortfolioId })" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn"> Edit </a> |
-                <a href="@Url.Action("Index", "Users")" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn"> Back to List </a>
-            </div>
-        </p>
     </div>
 </div>
