@@ -1,8 +1,11 @@
-﻿namespace Rhythm.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Rhythm.Domain.Entities
 {
     public class Project
     {
-        public int ProjectId { get; set; }
+        [Key]
+        public int Id { get; set; }
         public int? PortfolioId { get; set; }
         public string NameProject { get; set; }
         public string Framework { get; set; }

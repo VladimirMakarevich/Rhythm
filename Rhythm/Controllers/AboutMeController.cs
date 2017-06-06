@@ -31,7 +31,7 @@ namespace Rhythm.Controllers
                 return View();
             }
 
-            var portfolio = await _portfolioProvider.GetPortfolioByUserAsync(user.FirstOrDefault().ChiefUserId);
+            var portfolio = await _portfolioProvider.GetPortfolioByUserAsync(user.FirstOrDefault().Id);
             var userViewModel = _aboutMeMapper.ToChiefUserViewModel(user.FirstOrDefault(), portfolio);
 
             return View(userViewModel);

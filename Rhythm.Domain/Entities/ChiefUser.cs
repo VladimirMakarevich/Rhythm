@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Rhythm.Domain.Entities
 {
     public class ChiefUser
     {
-        public ChiefUser()
-        {
-            this.Portfolios = new HashSet<Portfolio>();
-        }
-        public int ChiefUserId { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
@@ -21,6 +19,6 @@ namespace Rhythm.Domain.Entities
         public string Github { get; set; }
         public string Linkedin { get; set; }
 
-        public virtual ICollection<Portfolio> Portfolios { get; set; }
+        public virtual Portfolio Portfolio { get; set; }
     }
 }

@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.Designer.cs">
       <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.cs" />
+    <Compile Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.Designer.cs">
+      <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
@@ -170,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.resx">
       <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.resx">
+      <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -145,7 +145,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         private async Task DropDownListPortfolioAsync(object selectedItem = null)
         {
             var query = from m in await _portfolioProvider.GetPortfoliosAsync()
-                        orderby m.PortfolioId
+                        orderby m.Id
                         select m;
 
             ViewBag.PortfolioId = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);

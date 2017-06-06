@@ -2,7 +2,7 @@
 {
     public class ChiefUserAdminViewModel
     {
-        public int ChiefUserId { get; set; }
+        public int Id { get; set; }
         public int PortfolioId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
