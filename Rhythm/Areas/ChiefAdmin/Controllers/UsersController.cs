@@ -148,7 +148,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         orderby m.Id
                         select m;
 
-            ViewBag.PortfolioId = new SelectList(query, "PortfolioID", "NamePortfolio", selectedItem);
+            ViewBag.PortfolioId = new SelectList(query, "Id", "NamePortfolio", selectedItem);
         }
         #endregion
     }

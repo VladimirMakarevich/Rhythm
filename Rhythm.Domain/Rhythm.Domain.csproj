@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.Designer.cs">
       <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs" />
+    <Compile Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.Designer.cs">
+      <DependentUpon>201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
@@ -177,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.resx">
       <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.resx">
+      <DependentUpon>201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

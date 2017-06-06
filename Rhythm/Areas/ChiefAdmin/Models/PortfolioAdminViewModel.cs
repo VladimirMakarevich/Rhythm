@@ -13,5 +13,6 @@
         public string ApplicationSystems { get; set; }
         public string AdditionalInfo { get; set; }
         public int ChiefUserId { get; set; }
+        public ChiefUserAdminViewModel ChiefUser { get; set; }
     }
 }

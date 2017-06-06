@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rhythm.Domain.Entities
 {
@@ -9,10 +8,10 @@ namespace Rhythm.Domain.Entities
         public Portfolio()
         {
             this.Projects = new HashSet<Project>();
+            this.ChiefUsers = new HashSet<ChiefUser>();
         }
 
         [Key]
-        [ForeignKey("ChiefUser")]
         public int Id { get; set; }
         public string NamePortfolio { get; set; }
         public string Objective { get; set; }
@@ -25,6 +24,6 @@ namespace Rhythm.Domain.Entities
         public string AdditionalInfo { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ChiefUser ChiefUser { get; set; }
+        public virtual ICollection<ChiefUser> ChiefUsers { get; set; }
     }
 }

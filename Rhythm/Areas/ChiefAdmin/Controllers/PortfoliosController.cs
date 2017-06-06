@@ -57,8 +57,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             {
                 try
                 {
-                    portfolioViewModel.ChiefUserId = 1;
                     var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
+                    portfolio.Id = 1;
                     await _portfolioProvider.CreatePortfolioAsync(portfolio);
                     return RedirectToAction("Index");
                 }
