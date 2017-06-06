@@ -47,9 +47,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             var category = categories.FirstOrDefault(m => m.Id == postViewModel.CategoryId);
 
-            var post = _postMapper.ToPost(postViewModel, tags.ToList(), category);
+            var post = _postMapper.ToPost(postViewModel, tags, category);
 
-            await _postProvider.AddPostAsync(post);
+            var toPost = await _postProvider.AddPostAsync(post);
+            await _postProvider.AddReferencedToPost(toPost, selectedTag, postViewModel.CategoryId);
 
             return RedirectToAction("Index", "Home");
         }

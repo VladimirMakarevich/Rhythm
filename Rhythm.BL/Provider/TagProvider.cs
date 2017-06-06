@@ -49,7 +49,7 @@ namespace Rhythm.BL.Provider
             return await _uow.Tag.GetTagsAsync();
         }
 
-        public async Task<IEnumerable<Tag>> GetTagsByIdAsync(int[] ids)
+        public async Task<List<Tag>> GetTagsByIdAsync(int[] ids)
         {
             List<Tag> tags = new List<Tag>();
 

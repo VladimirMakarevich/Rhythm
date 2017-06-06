@@ -22,8 +22,8 @@ namespace Rhythm.Mappers.ChiefAdmin
         public Post ToPost(PostAdminViewModel postViewModel, List<Tag> tags, Category category)
         {
             var post = _mapper.Map<PostAdminViewModel, Post>(postViewModel);
-            post.Category = category;
-            post.Tags = tags;
+            //post.Category = category;
+            //post.Tags = tags;
 
             return post;
         }

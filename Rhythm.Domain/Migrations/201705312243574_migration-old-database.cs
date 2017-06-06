@@ -11,19 +11,19 @@ namespace Rhythm.Domain.Migrations
                 "dbo.Categories",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         UrlSlug = c.String(),
                         DescriptionCategory = c.String(),
                         CountCategory = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Posts",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         NameSenderPost = c.String(),
                         Title = c.String(),
                         ShortDescription = c.String(),
@@ -37,7 +37,7 @@ namespace Rhythm.Domain.Migrations
                         ImageMime = c.String(),
                         CountComments = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
                 .Index(t => t.CategoryId);
             
@@ -45,7 +45,7 @@ namespace Rhythm.Domain.Migrations
                 "dbo.Comments",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         PostID = c.Int(nullable: false),
                         NameUserSender = c.String(),
                         EmailUserSender = c.String(),
@@ -54,7 +54,7 @@ namespace Rhythm.Domain.Migrations
                         PostedOn = c.DateTime(nullable: false),
                         Modified = c.DateTime(),
                     })
-                .PrimaryKey(t => t.ID)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Posts", t => t.PostID, cascadeDelete: true)
                 .Index(t => t.PostID);
             
@@ -62,19 +62,19 @@ namespace Rhythm.Domain.Migrations
                 "dbo.Tags",
                 c => new
                     {
-                        ID = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         UrlSlug = c.String(),
                         DescriptionTag = c.String(),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ChiefUsers",
                 c => new
                     {
-                        ChiefUserID = c.Int(nullable: false, identity: true),
-                        PortfolioID = c.Int(),
+                        ChiefUserId = c.Int(nullable: false, identity: true),
+                        PortfolioId = c.Int(),
                         FirstName = c.String(),
                         LastName = c.String(),
                         MiddleName = c.String(),
@@ -86,15 +86,15 @@ namespace Rhythm.Domain.Migrations
                         Github = c.String(),
                         Linkedin = c.String(),
                     })
-                .PrimaryKey(t => t.ChiefUserID)
-                .ForeignKey("dbo.Portfolios", t => t.PortfolioID)
-                .Index(t => t.PortfolioID);
+                .PrimaryKey(t => t.ChiefUserId)
+                .ForeignKey("dbo.Portfolios", t => t.PortfolioId)
+                .Index(t => t.PortfolioId);
             
             CreateTable(
                 "dbo.Portfolios",
                 c => new
                     {
-                        PortfolioID = c.Int(nullable: false, identity: true),
+                        PortfolioId = c.Int(nullable: false, identity: true),
                         NamePortfolio = c.String(),
                         Summary = c.String(),
                         Skills = c.String(),
@@ -103,20 +103,20 @@ namespace Rhythm.Domain.Migrations
                         Education = c.String(),
                         AdditionalInfo = c.String(),
                     })
-                .PrimaryKey(t => t.PortfolioID);
+                .PrimaryKey(t => t.PortfolioId);
             
             CreateTable(
                 "dbo.TagPosts",
                 c => new
                     {
-                        Tag_ID = c.Int(nullable: false),
-                        Post_ID = c.Int(nullable: false),
+                        Tag_Id = c.Int(nullable: false),
+                        Post_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.Tag_ID, t.Post_ID })
-                .ForeignKey("dbo.Tags", t => t.Tag_ID, cascadeDelete: true)
-                .ForeignKey("dbo.Posts", t => t.Post_ID, cascadeDelete: true)
-                .Index(t => t.Tag_ID)
-                .Index(t => t.Post_ID);
+                .PrimaryKey(t => new { t.Tag_Id, t.Post_Id })
+                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Posts", t => t.Post_Id, cascadeDelete: true)
+                .Index(t => t.Tag_Id)
+                .Index(t => t.Post_Id);
             
         }
         

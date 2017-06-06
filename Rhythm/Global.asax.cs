@@ -7,6 +7,7 @@ using System;
 using System.Web;
 using Rhythm.Controllers;
 using Rhythm.Infrastructure;
+using System.Globalization;
 
 namespace Rhythm
 {
@@ -27,6 +28,7 @@ namespace Rhythm
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalFilters.Filters.Add(new WatchConfig());
+            //System.Globalization.CultureInfo.CurrentCulture = new CultureInfo("en-US");
         }
 
         //protected void Application_Error(object sender, EventArgs e)

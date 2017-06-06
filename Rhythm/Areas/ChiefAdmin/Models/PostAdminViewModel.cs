@@ -26,9 +26,9 @@ namespace Rhythm.Areas.ChiefAdmin.Models
 
         public int Id { get; set; }
         public DateTime PostedOn { get; set; }
-        public DateTime Modified { get; set; }
+        //public DateTime Modified { get; set; }
         public int CountComments { get; set; }
-        public ICollection<CommentAdminViewModel> Comments { get; set; }
+        //public ICollection<CommentAdminViewModel> Comments { get; set; }
         public ICollection<TagAdminViewModel> Tags { get; set; }
     }
 }

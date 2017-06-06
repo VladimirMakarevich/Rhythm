@@ -53,7 +53,7 @@
 
             @Html.Label("Choose Category: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
-                @Html.DropDownList("Category")
+                @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.Category)
             </div>
             <div class="mb-20 mb-md-10">
                 @Html.Label("Choose Tags: ", new { @for = "exampleInputFile" })

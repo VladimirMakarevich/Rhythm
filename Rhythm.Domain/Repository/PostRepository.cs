@@ -17,14 +17,18 @@ namespace Rhythm.Domain.Repository
             _db = db;
         }
 
-        public async Task AddPostAsync(Post post)
+        public async Task<Post> AddPostAsync(Post post)
         {
-            _db.Posts.Add(post);
+            _db.Entry(post).State = EntityState.Detached;
+            var result = _db.Posts.Add(post);
             await _db.SaveChangesAsync();
+
+            return result;
         }
 
         public async Task ChangePostAsync(Post post)
         {
+            _db.Posts.Attach(post);
             _db.Entry(post).State = EntityState.Modified;
             await _db.SaveChangesAsync();
         }

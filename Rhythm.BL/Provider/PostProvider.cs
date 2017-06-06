@@ -7,6 +7,7 @@ using Rhythm.Domain.Entities;
 using Rhythm.BL.Interfaces;
 using System.Collections.Generic;
 using Rhythm.Domain.UnitOfWork;
+using System.Globalization;
 
 namespace Rhythm.BL.Provider
 {
@@ -37,19 +38,34 @@ namespace Rhythm.BL.Provider
             return _post;
         }
 
-        public async Task AddPostAsync(Post post)
+        public async Task<Post> AddPostAsync(Post post)
         {
-            post.Category.CountCategory = post.Category.CountCategory + 1;
             post.PostedOn = DateTime.Now;
 
-            await _uow.Post.AddPostAsync(post);
+            return await _uow.Post.AddPostAsync(post);
+        }
+
+        public async Task AddReferencedToPost(Post toPost, int[] tagsId, int categoryId)
+        {
+            var tags = new List<Tag>();
+
+            foreach (var id in tagsId)
+            {
+                toPost.Tags.Add(await _uow.Tag.GetTagAsync(id));
+            }
+
+            var category = await _uow.Category.GetCategoryAsync(categoryId);
+            category.CountCategory = category.CountCategory + 1;
+            toPost.Category = category;
+
+            await ChangePostAsync(toPost);
         }
 
         public async Task ChangePostAsync(Post post)
         {
             post.Modified = DateTime.Now;
 
-            await _uow.Post.ChangePostAsync(post);
+           await _uow.Post.ChangePostAsync(post);
         }
 
         public async Task DeletePostAsync(Post post)

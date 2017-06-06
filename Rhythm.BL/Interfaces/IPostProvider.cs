@@ -8,7 +8,7 @@ namespace Rhythm.BL.Interfaces
     public interface IPostProvider
     {
         Task<IEnumerable<Post>> GetPostsAsync();
-        Task AddPostAsync(Post post);
+        Task<Post> AddPostAsync(Post post);
         Task<Post> GetPostAsync(int id);
         Task<Post> GetPostWithConditionAsync(int post, bool? flag);
         Task ChangePostAsync(Post post);
@@ -19,5 +19,6 @@ namespace Rhythm.BL.Interfaces
         Task<IEnumerable<Post>> GetPostsByTextAsync(string searchText);
         IEnumerable<Post> GetPosts();
         Post GetPostWidget();
+        Task AddReferencedToPost(Post toPost, int[] tags, int category);
     }
 }

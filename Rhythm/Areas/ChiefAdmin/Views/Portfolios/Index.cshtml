@@ -16,23 +16,23 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NamePortfolio)
-                </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Skills)
+                    Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.WorkExp)
+                    Skills
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MyProjects)
+                    Work Expirience
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Education)
+                    Projects
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.AdditionalInfo)
-                </th>*@
+                    Education
+                </th>
+                <th>
+                    Additional Information
+                </th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -44,7 +44,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NamePortfolio)
                     </td>
-                    @*<td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Skills)
                     </td>
                     <td>
@@ -58,7 +58,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.AdditionalInfo)
-                    </td>*@
+                    </td>
                     <td>
                         <div class="blog-item-foot">
                             <a href="@Url.Action("Edit", "Portfolios", new { id = item.PortfolioId })" class="btn btn-mod btn-round  btn-small"> Edit </a>
