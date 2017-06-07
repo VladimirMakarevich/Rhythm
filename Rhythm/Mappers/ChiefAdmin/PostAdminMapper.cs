@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using Rhythm.Domain.Entities;
-using Rhythm.Models;
 using AutoMapper;
-using Rhythm.Models.RecentViewModel;
 using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.Mappers.ChiefAdmin
@@ -22,8 +18,6 @@ namespace Rhythm.Mappers.ChiefAdmin
         public Post ToPost(PostAdminViewModel postViewModel, List<Tag> tags, Category category)
         {
             var post = _mapper.Map<PostAdminViewModel, Post>(postViewModel);
-            //post.Category = category;
-            //post.Tags = tags;
 
             return post;
         }

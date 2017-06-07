@@ -32,6 +32,7 @@ namespace Rhythm.Mappers
             config.CreateMap<Comment, CommentAdminViewModel>().ReverseMap();
             config.CreateMap<Category, CategoryAdminViewModel>().ReverseMap();
             config.CreateMap<Tag, TagAdminViewModel>().ReverseMap();
+            config.CreateMap<Project, ProjectAdminViewModel>().ReverseMap();
         }
     }
 }

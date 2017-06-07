@@ -1,0 +1,90 @@
+﻿@model Rhythm.Areas.ChiefAdmin.Models.ProjectAdminViewModel
+
+@{
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
+<h2 class="align-center font-alt uppercase">Create Project</h2>
+<!-- Section -->
+<div class="container relative">
+    <div>
+        <a href="@Url.Action("Index", "Projects")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+    </div>
+    <br />
+    @using (Html.BeginForm("Create", "Projects", FormMethod.Post, new { @role = "form", @class = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Portfolio</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NameProject, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NameProject, new { htmlAttributes = new { @name = "NameProject", @id = "NameProject", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Framework, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Framework, new { htmlAttributes = new { @name = "Framework", @id = "Framework", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Database, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Database, new { htmlAttributes = new { @name = "Database", @id = "Database", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IDE, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IDE, new { htmlAttributes = new { @name = "IDE", @id = "IDE", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StackTechnologies, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.StackTechnologies, new { htmlAttributes = new { @name = "StackTechnologies", @id = "StackTechnologies", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
+                    @Html.ValidationMessageFor(model => model.PortfolioId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix">
+                <div class="cf-left-col">
+                    <!-- Inform Tip -->
+                    <div class="form-tip pt-20">
+                        <i class="fa fa-info-circle"></i> All the fields are required
+                    </div>
+                </div>
+                <div class="cf-right-col">
+                    <!-- Send Button -->
+                    <div class="align-right pt-10">
+                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Create Project</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        var editor = CKEDITOR.instances['StackTechnologies'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('StackTechnologies', { enterMode: CKEDITOR.ENTER_BR, });
+    </script>
+}

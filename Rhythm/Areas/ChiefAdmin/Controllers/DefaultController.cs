@@ -14,5 +14,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         public IRssProvider _rssProvider { get; set; }
         public ITagProvider _tagProvider { get; set; }
         public IArchiveProvider _archiveProvider { get; set; }
+        public IProjectProvider _projectProvider { get; set; }
     }
 }

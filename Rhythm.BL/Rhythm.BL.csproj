@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IArchiveProvider.cs" />
+    <Compile Include="Interfaces\IProjectProvider.cs" />
     <Compile Include="Models\Archive.cs" />
     <Compile Include="Interfaces\IPortfolioProvider.cs" />
     <Compile Include="Interfaces\IRssProvider.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Provider\CommentProvider.cs" />
     <Compile Include="Provider\PortfolioProvider.cs" />
     <Compile Include="Provider\PostProvider.cs" />
+    <Compile Include="Provider\ProjectProvider.cs" />
     <Compile Include="Provider\RssProvider.cs" />
     <Compile Include="Provider\TagProvider.cs" />
     <Compile Include="Provider\UserProvider.cs" />

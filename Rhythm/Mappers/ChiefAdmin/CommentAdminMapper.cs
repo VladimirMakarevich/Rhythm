@@ -2,9 +2,6 @@
 using System.Linq;
 using Rhythm.Domain.Entities;
 using AutoMapper;
-using Rhythm.Models;
-using Rhythm.BL.Models;
-using System;
 using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.Mappers.ChiefAdmin

@@ -53,6 +53,7 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<TagAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<ProjectAdminMapper>().ToSelf().InSingletonScope();
 
             // UnitOfWork
             _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
@@ -65,6 +66,7 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<IRssRepository>().To<RssRepository>();
             _kernel.Bind<ITagRepository>().To<TagRepository>();
             _kernel.Bind<IPortfolioRepository>().To<PortfolioRepository>();
+            _kernel.Bind<IProjectRepository>().To<ProjectRepository>();
 
             // Providers
             //ninjectKernel.Bind<IArchiveProvider>().To<ArchiveProvider>();
@@ -75,6 +77,7 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<IRssProvider>().To<RssProvider>();
             _kernel.Bind<ITagProvider>().To<TagProvider>();
             _kernel.Bind<IPortfolioProvider>().To<PortfolioProvider>();
+            _kernel.Bind<IProjectProvider>().To<ProjectProvider>();
         }
     }
 }

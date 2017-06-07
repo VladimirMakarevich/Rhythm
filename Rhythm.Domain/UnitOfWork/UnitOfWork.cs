@@ -14,6 +14,7 @@ namespace Rhythm.Domain.UnitOfWork
         private RssRepository _rssRepository;
         private PortfolioRepository _portfolioRepository;
         private CommentRepository _commentRepository;
+        private ProjectRepository _projectRepository;
 
         public UnitOfWork(DogCodingContext db)
         {
@@ -98,6 +99,17 @@ namespace Rhythm.Domain.UnitOfWork
                     _userRepository = new UserRepository(_db);
 
                 return _userRepository;
+            }
+        }
+
+        public ProjectRepository Project
+        {
+            get
+            {
+                if (_projectRepository == null)
+                    _projectRepository = new ProjectRepository(_db);
+
+                return _projectRepository;
             }
         }
 

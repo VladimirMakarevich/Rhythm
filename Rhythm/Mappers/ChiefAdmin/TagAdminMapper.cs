@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Rhythm.Domain.Entities;
-using Rhythm.Models.RecentViewModel;
-using System;
 using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.Mappers.ChiefAdmin

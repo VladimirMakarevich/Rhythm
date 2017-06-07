@@ -11,6 +11,7 @@ namespace Rhythm.Domain.UnitOfWork
         RssRepository Rss { get; }
         PortfolioRepository Portfolio { get; }
         CommentRepository Comment { get; }
+        ProjectRepository Project { get; }
         void Save();
     }
 }

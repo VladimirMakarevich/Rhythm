@@ -1,0 +1,66 @@
+﻿@model Rhythm.Areas.ChiefAdmin.Models.ProjectAdminViewModel
+
+@{
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container relative">
+    <h2 class="align-center font-alt uppercase">Details Project @Html.DisplayFor(model => model.NameProject)</h2>
+    <div class="blog-item-body container">
+        <h2>Details</h2>
+
+        <p>
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Edit", "Projects", new { id = Model.Id })" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Edit </a> |
+                <a href="@Url.Action("Index", "Projects")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+            </div>
+        </p>
+
+        <div>
+            <h4>Portfolio</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NameProject)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NameProject)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Framework)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Framework)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Database)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Database)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IDE)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IDE)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.StackTechnologies)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StackTechnologies)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectRepository.cs" />
     <Compile Include="Repository\Interfaces\ITagRepository.cs" />
     <Compile Include="Repository\Interfaces\IPostRepository.cs" />
     <Compile Include="Repository\Interfaces\ICategoryRepository.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Repository\Interfaces\IRssRepository.cs" />
     <Compile Include="Repository\Interfaces\IUserRepository.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
+    <Compile Include="Repository\ProjectRepository.cs" />
     <Compile Include="Repository\PortfolioRepository.cs" />
     <Compile Include="Repository\RssRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
