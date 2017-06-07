@@ -8,11 +8,12 @@ namespace Rhythm.Domain.Entities
         public Portfolio()
         {
             this.Projects = new HashSet<Project>();
-            this.ChiefUsers = new HashSet<ChiefUser>();
+
         }
 
         [Key]
         public int Id { get; set; }
+        public int? ChiefUserId { get; set; }
         public string NamePortfolio { get; set; }
         public string Objective { get; set; }
         public string Summary { get; set; }
@@ -24,6 +25,6 @@ namespace Rhythm.Domain.Entities
         public string AdditionalInfo { get; set; }
 
         public virtual ICollection<Project> Projects { get; set; }
-        public virtual ICollection<ChiefUser> ChiefUsers { get; set; }
+        public virtual ChiefUser ChiefUser { get; set; }
     }
 }
