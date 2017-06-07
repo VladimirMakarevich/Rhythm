@@ -1,4 +1,6 @@
-﻿namespace Rhythm.Areas.ChiefAdmin.Models
+﻿using System.Collections.Generic;
+
+namespace Rhythm.Areas.ChiefAdmin.Models
 {
     public class ChiefUserAdminViewModel
     {
@@ -15,6 +17,6 @@
         public string Github { get; set; }
         public string Linkedin { get; set; }
 
-        public PortfolioAdminViewModel PortfolioViewModel { get; set; }
+        public List<PortfolioAdminViewModel> PortfolioViewModel { get; set; }
     }
 }

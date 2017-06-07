@@ -7,13 +7,13 @@ namespace Rhythm.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addedprojectentity : IMigrationMetadata
+    public sealed partial class rebuildalldatabse : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedprojectentity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(rebuildalldatabse));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706010627491_added-project-entity"; }
+            get { return "201706072008174_rebuild-all-databse"; }
         }
         
         string IMigrationMetadata.Source

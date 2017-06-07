@@ -3,7 +3,7 @@ namespace Rhythm.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class migrationolddatabase : DbMigration
+    public partial class rebuildalldatabse : DbMigration
     {
         public override void Up()
         {
@@ -24,6 +24,7 @@ namespace Rhythm.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        CategoryId = c.Int(nullable: false),
                         NameSenderPost = c.String(),
                         Title = c.String(),
                         ShortDescription = c.String(),
@@ -32,7 +33,6 @@ namespace Rhythm.Domain.Migrations
                         Published = c.Boolean(nullable: false),
                         PostedOn = c.DateTime(nullable: false),
                         Modified = c.DateTime(),
-                        CategoryId = c.Int(nullable: false),
                         ImageData = c.Binary(),
                         ImageMime = c.String(),
                         CountComments = c.Int(nullable: false),
@@ -46,17 +46,17 @@ namespace Rhythm.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        PostID = c.Int(nullable: false),
+                        PostId = c.Int(nullable: false),
                         NameUserSender = c.String(),
                         EmailUserSender = c.String(),
                         DescriptionComment = c.Boolean(nullable: false),
-                        Comment1 = c.String(),
+                        CommentMessage = c.String(),
                         PostedOn = c.DateTime(nullable: false),
                         Modified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Posts", t => t.PostID, cascadeDelete: true)
-                .Index(t => t.PostID);
+                .ForeignKey("dbo.Posts", t => t.PostId, cascadeDelete: true)
+                .Index(t => t.PostId);
             
             CreateTable(
                 "dbo.Tags",
@@ -73,8 +73,7 @@ namespace Rhythm.Domain.Migrations
                 "dbo.ChiefUsers",
                 c => new
                     {
-                        ChiefUserId = c.Int(nullable: false, identity: true),
-                        PortfolioId = c.Int(),
+                        Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(),
                         LastName = c.String(),
                         MiddleName = c.String(),
@@ -86,53 +85,75 @@ namespace Rhythm.Domain.Migrations
                         Github = c.String(),
                         Linkedin = c.String(),
                     })
-                .PrimaryKey(t => t.ChiefUserId)
-                .ForeignKey("dbo.Portfolios", t => t.PortfolioId)
-                .Index(t => t.PortfolioId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Portfolios",
                 c => new
                     {
-                        PortfolioId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
+                        ChiefUserId = c.Int(),
                         NamePortfolio = c.String(),
+                        Objective = c.String(),
                         Summary = c.String(),
                         Skills = c.String(),
+                        EnglishProficiency = c.String(),
                         WorkExp = c.String(),
-                        MyProjects = c.String(),
                         Education = c.String(),
+                        ApplicationSystems = c.String(),
                         AdditionalInfo = c.String(),
                     })
-                .PrimaryKey(t => t.PortfolioId);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ChiefUsers", t => t.ChiefUserId)
+                .Index(t => t.ChiefUserId);
             
             CreateTable(
-                "dbo.TagPosts",
+                "dbo.Projects",
                 c => new
                     {
-                        Tag_Id = c.Int(nullable: false),
-                        Post_Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        PortfolioId = c.Int(),
+                        NameProject = c.String(),
+                        Framework = c.String(),
+                        Database = c.String(),
+                        IDE = c.String(),
+                        StackTechnologies = c.String(),
                     })
-                .PrimaryKey(t => new { t.Tag_Id, t.Post_Id })
-                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Portfolios", t => t.PortfolioId)
+                .Index(t => t.PortfolioId);
+            
+            CreateTable(
+                "dbo.PostTags",
+                c => new
+                    {
+                        Post_Id = c.Int(nullable: false),
+                        Tag_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Post_Id, t.Tag_Id })
                 .ForeignKey("dbo.Posts", t => t.Post_Id, cascadeDelete: true)
-                .Index(t => t.Tag_Id)
-                .Index(t => t.Post_Id);
+                .ForeignKey("dbo.Tags", t => t.Tag_Id, cascadeDelete: true)
+                .Index(t => t.Post_Id)
+                .Index(t => t.Tag_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.ChiefUsers", "PortfolioID", "dbo.Portfolios");
-            DropForeignKey("dbo.TagPosts", "Post_ID", "dbo.Posts");
-            DropForeignKey("dbo.TagPosts", "Tag_ID", "dbo.Tags");
-            DropForeignKey("dbo.Comments", "PostID", "dbo.Posts");
+            DropForeignKey("dbo.Projects", "PortfolioId", "dbo.Portfolios");
+            DropForeignKey("dbo.Portfolios", "ChiefUserId", "dbo.ChiefUsers");
+            DropForeignKey("dbo.PostTags", "Tag_Id", "dbo.Tags");
+            DropForeignKey("dbo.PostTags", "Post_Id", "dbo.Posts");
+            DropForeignKey("dbo.Comments", "PostId", "dbo.Posts");
             DropForeignKey("dbo.Posts", "CategoryId", "dbo.Categories");
-            DropIndex("dbo.TagPosts", new[] { "Post_ID" });
-            DropIndex("dbo.TagPosts", new[] { "Tag_ID" });
-            DropIndex("dbo.ChiefUsers", new[] { "PortfolioID" });
-            DropIndex("dbo.Comments", new[] { "PostID" });
+            DropIndex("dbo.PostTags", new[] { "Tag_Id" });
+            DropIndex("dbo.PostTags", new[] { "Post_Id" });
+            DropIndex("dbo.Projects", new[] { "PortfolioId" });
+            DropIndex("dbo.Portfolios", new[] { "ChiefUserId" });
+            DropIndex("dbo.Comments", new[] { "PostId" });
             DropIndex("dbo.Posts", new[] { "CategoryId" });
-            DropTable("dbo.TagPosts");
+            DropTable("dbo.PostTags");
+            DropTable("dbo.Projects");
             DropTable("dbo.Portfolios");
             DropTable("dbo.ChiefUsers");
             DropTable("dbo.Tags");

@@ -77,45 +77,9 @@
     <Compile Include="Entities\PostTagMap.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Tag.cs" />
-    <Compile Include="Migrations\201705312243574_migration-old-database.cs" />
-    <Compile Include="Migrations\201705312243574_migration-old-database.Designer.cs">
-      <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.cs" />
-    <Compile Include="Migrations\201705312357570_removed-nullable-to-portfolioId.Designer.cs">
-      <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706010627491_added-project-entity.cs" />
-    <Compile Include="Migrations\201706010627491_added-project-entity.Designer.cs">
-      <DependentUpon>201706010627491_added-project-entity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706010631472_added-map-for-tag-post-entities.cs" />
-    <Compile Include="Migrations\201706010631472_added-map-for-tag-post-entities.Designer.cs">
-      <DependentUpon>201706010631472_added-map-for-tag-post-entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706041749530_changed-map-post-and-tag-entities.cs" />
-    <Compile Include="Migrations\201706041749530_changed-map-post-and-tag-entities.Designer.cs">
-      <DependentUpon>201706041749530_changed-map-post-and-tag-entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.cs" />
-    <Compile Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.Designer.cs">
-      <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.cs" />
-    <Compile Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.Designer.cs">
-      <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs" />
-    <Compile Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.Designer.cs">
-      <DependentUpon>201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706071859418_changed-dependency-to-chiefuser-from-portfolio-as-onу-to-many.cs" />
-    <Compile Include="Migrations\201706071859418_changed-dependency-to-chiefuser-from-portfolio-as-onу-to-many.Designer.cs">
-      <DependentUpon>201706071859418_changed-dependency-to-chiefuser-from-portfolio-as-onу-to-many.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706071903243_removed-porfolio-ad-from-chiefuser.cs" />
-    <Compile Include="Migrations\201706071903243_removed-porfolio-ad-from-chiefuser.Designer.cs">
-      <DependentUpon>201706071903243_removed-porfolio-ad-from-chiefuser.cs</DependentUpon>
+    <Compile Include="Migrations\201706072008174_rebuild-all-databse.cs" />
+    <Compile Include="Migrations\201706072008174_rebuild-all-databse.Designer.cs">
+      <DependentUpon>201706072008174_rebuild-all-databse.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
@@ -169,35 +133,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705312243574_migration-old-database.resx">
-      <DependentUpon>201705312243574_migration-old-database.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705312357570_removed-nullable-to-portfolioId.resx">
-      <DependentUpon>201705312357570_removed-nullable-to-portfolioId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706010627491_added-project-entity.resx">
-      <DependentUpon>201706010627491_added-project-entity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706010631472_added-map-for-tag-post-entities.resx">
-      <DependentUpon>201706010631472_added-map-for-tag-post-entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706041749530_changed-map-post-and-tag-entities.resx">
-      <DependentUpon>201706041749530_changed-map-post-and-tag-entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706061446214_allow-nullable-to-user-and-projects.resx">
-      <DependentUpon>201706061446214_allow-nullable-to-user-and-projects.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706061608532_changed-dependency-to-user-from-portfolio.resx">
-      <DependentUpon>201706061608532_changed-dependency-to-user-from-portfolio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.resx">
-      <DependentUpon>201706061641251_added-dependency-to-portfolio-from-user-as-one-to-many.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706071859418_changed-dependency-to-chiefuser-from-portfolio-as-onу-to-many.resx">
-      <DependentUpon>201706071859418_changed-dependency-to-chiefuser-from-portfolio-as-onу-to-many.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706071903243_removed-porfolio-ad-from-chiefuser.resx">
-      <DependentUpon>201706071903243_removed-porfolio-ad-from-chiefuser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706072008174_rebuild-all-databse.resx">
+      <DependentUpon>201706072008174_rebuild-all-databse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

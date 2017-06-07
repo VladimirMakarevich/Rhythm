@@ -114,8 +114,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             var chiefUser = await _userProvider.GetUserAsync(id);
             var userViewModel = _userMapper.ToUserViewModel(chiefUser);
 
-            await DropDownListPortfolioAsync(userViewModel.PortfolioId);
-
             return View(userViewModel);
         }
 
@@ -124,19 +122,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _userProvider.DeleteUserAsync(id);
-
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
+            await _userProvider.DeleteUserAsync(id);
 
             return RedirectToAction("Index");
         }

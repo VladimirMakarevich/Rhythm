@@ -19,10 +19,11 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     {
         private PortfolioAdminMapper _portfolioMapper;
 
-        public PortfoliosController(PortfolioAdminMapper portfolioMapper, IPortfolioProvider portfolioProvider)
+        public PortfoliosController(PortfolioAdminMapper portfolioMapper, IPortfolioProvider portfolioProvider, IUserProvider userProvider)
         {
             _portfolioMapper = portfolioMapper;
             _portfolioProvider = portfolioProvider;
+            _userProvider = userProvider;
         }
         public async Task<ActionResult> Index()
         {
@@ -42,8 +43,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            await DropDownListUsersAsync();
+
             return View();
         }
 
@@ -58,8 +61,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 try
                 {
                     var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
-                    portfolio.Id = 1;
                     await _portfolioProvider.CreatePortfolioAsync(portfolio);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -67,6 +70,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     throw ex;
                 }
             }
+
+            await DropDownListUsersAsync(portfolioViewModel.ChiefUserId);
 
             return View(portfolioViewModel);
         }
@@ -76,6 +81,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             var portfolio = await _portfolioProvider.GetPortfolioAsync(id);
             var portfolioViewModel = _portfolioMapper.ToPortfolioViewModel(portfolio);
+
+            await DropDownListUsersAsync(portfolioViewModel.ChiefUserId);
 
             return View(portfolioViewModel);
         }
@@ -92,6 +99,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     var portfolio = _portfolioMapper.ToPortfolio(portfolioViewModel);
                     await _portfolioProvider.EditPortfolioAsync(portfolio);
+
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -99,6 +107,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                     throw ex;
                 }
             }
+
+            await DropDownListUsersAsync(portfolioViewModel.ChiefUserId);
 
             return View(portfolioViewModel);
         }
@@ -109,6 +119,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             var portfolio = await _portfolioProvider.GetPortfolioAsync(id);
             var portfolioViewModel = _portfolioMapper.ToPortfolioViewModel(portfolio);
 
+            await DropDownListUsersAsync(portfolioViewModel.ChiefUserId);
+
             return View(portfolioViewModel);
         }
 
@@ -117,20 +129,20 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _portfolioProvider.DeletePortfolioAsync(id);
+            await _portfolioProvider.DeletePortfolioAsync(id);
 
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
             return RedirectToAction("Index");
         }
+
+        #region drop
+        private async Task DropDownListUsersAsync(object selectedItem = null)
+        {
+            var query = from m in await _userProvider.GetChiefUsersAsync()
+                        orderby m.Id
+                        select m;
+
+            ViewBag.ChiefUserId = new SelectList(query, "Id", "Email", selectedItem);
+        }
+        #endregion
     }
 }
