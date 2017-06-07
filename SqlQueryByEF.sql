@@ -1,11 +1,17 @@
 ﻿USE [DogCoding]
 GO
 
-INSERT INTO dbo.Portfolios
-	VALUES (N'Developer', N'Experienced software developer specialist with a focus on back-end development, business logic implementation and web-based applications.', N'ASP.NET MVC 5 - Core, Web API, EF 5-6 (model-first/code-first), WinForms, Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, XML, JavaScript, jQuery, Ajax, a bit Angular2, NLog, Elmah, a bit Azure, Confluence software.', N'1+ year', N'2010 – 02/2017 – Belarusian State Technological University.', N'Permanently I attend meetup for .NET, and other Microsoft technologies. In present I’m studying the books - Jeffrey Richter (CLR via C#), Steve McConnell (Code Complete). Also I like listening music and playing music.', N'ASP.NET MVC Developer', N'Pre-Intermediate.', N'GitHub, SourceTree, Microsoft Visual Studio (2012-2017), MS SQL, TargetProcess', 1)
-
 INSERT INTO dbo.ChiefUsers
-	VALUES (N'Vladimir', N'Makarevich', N'Vladimirovich', N'03/13/1992', N'makarevich.dev@outlook.com', N'Belarus, Minsk', N'vova.zhigalov', N'+375 29 102 44 85', N'www.github.com/VladimirMakarevich', N'www.linkedin.com/in/vladimir23/', 1, 1)
+	VALUES (N'Vladimir', N'Makarevich', N'Vladimirovich', N'03/13/1992', N'makarevich.dev@outlook.com', N'Belarus, Minsk', N'vova.zhigalov', N'+375 29 102 44 85', N'www.github.com/VladimirMakarevich', N'www.linkedin.com/in/vladimir23/', 1)
+
+INSERT INTO dbo.Portfolios
+	VALUES (N'Developer', N'Experienced software developer specialist with a focus on back-end development, business logic implementation and web-based applications.', N'ASP.NET MVC 5 - Core, Web API, EF 5-6 (model-first/code-first), WinForms, Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, XML, JavaScript, jQuery, Ajax, a bit Angular2, NLog, Elmah, a bit Azure, Confluence software.', N'1+ year', N'2010 – 02/2017 – Belarusian State Technological University.', N'Permanently I attend meetup for .NET, and other Microsoft technologies. In present I’m studying the books - Jeffrey Richter (CLR via C#), Steve McConnell (Code Complete). Also I like listening music and playing music.', N'ASP.NET MVC Developer', N'Pre-Intermediate.', N'GitHub, SourceTree, Microsoft Visual Studio (2012-2017), MS SQL, TargetProcess', 1, 1)
+
+INSERT INTO dbo.Projects
+	VALUES (1, N'DogCoding', N'ASP.NET MVC 5', N'MS SQL 2014, EF 6', N'Visual Studio 2015', N'ASP.NET MVC 5, EF 6 (code-first), Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, JavaScript, jQuery, Ajax, NLog, Elmah, Azure.', 1)
+
+INSERT INTO dbo.Projects
+	VALUES (1, N'AutoDoc', N'ASP.NET API Core', N'MS SQL 2014, EF Core', N'Visual Studio 2017', N'ASP.NET API Core, EF Core (code-first), Angular 2, Automapper, Bootstrap', 2)
 
 INSERT INTO dbo.Tags
 	VALUES (N'C#', N'csharp', NULL)
