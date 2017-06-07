@@ -752,6 +752,7 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\PortfoliosController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\ProjectAdminViewModel.cs" />
     <Compile Include="Mappers\ChiefAdmin\ContentAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\CategoryAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\CommentAdminMapper.cs" />

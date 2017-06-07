@@ -28,5 +28,7 @@ namespace Rhythm.Domain.Context
                 .HasMany(x => x.Tags)
                 .WithMany(x => x.Posts);
         }
+
+        public System.Data.Entity.DbSet<Rhythm.Domain.Entities.Project> Projects { get; set; }
     }
 }
