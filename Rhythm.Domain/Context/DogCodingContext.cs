@@ -17,6 +17,7 @@ namespace Rhythm.Domain.Context
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Rss> Rsses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

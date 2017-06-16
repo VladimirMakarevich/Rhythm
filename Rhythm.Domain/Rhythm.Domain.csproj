@@ -112,6 +112,7 @@
     <Compile Include="Entities\Portfolio.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Rss.cs" />
     <Compile Include="Entities\Tag.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Identity\DogUserManager.cs" />
@@ -122,6 +123,10 @@
     <Compile Include="Migrations\201706161500545_added-identity-user.cs" />
     <Compile Include="Migrations\201706161500545_added-identity-user.Designer.cs">
       <DependentUpon>201706161500545_added-identity-user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161709426_added-rss-entity.cs" />
+    <Compile Include="Migrations\201706161709426_added-rss-entity.Designer.cs">
+      <DependentUpon>201706161709426_added-rss-entity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
@@ -182,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706161500545_added-identity-user.resx">
       <DependentUpon>201706161500545_added-identity-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161709426_added-rss-entity.resx">
+      <DependentUpon>201706161709426_added-rss-entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
