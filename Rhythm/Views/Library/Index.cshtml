@@ -1,5 +1,5 @@
 ﻿
-@{
+@*@{
     ViewBag.Title = "Library";
     ViewBag.Text = "";
     ViewBag.WordFirst = "C#";
@@ -7,8 +7,10 @@
     ViewBag.WordThird = "WEB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)*@
+
   @*<!-- Section -->
     <section class="page-section">
         <div class="relative container">
@@ -27,4 +29,5 @@
         <!-- End Divider -->
     </section>
     <!-- End Section -->*@
-@Html.Partial("_messageNote")
+
+@*@Html.Partial("_messageNote")*@

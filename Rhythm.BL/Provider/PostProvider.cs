@@ -65,7 +65,7 @@ namespace Rhythm.BL.Provider
         {
             post.Modified = DateTime.Now;
 
-           await _uow.Post.ChangePostAsync(post);
+            await _uow.Post.ChangePostAsync(post);
         }
 
         public async Task DeletePostAsync(Post post)
@@ -85,52 +85,30 @@ namespace Rhythm.BL.Provider
             switch (flag)
             {
                 case true:
-                    while (findPost == null && newPost > 0)
+
+                    do
                     {
-                        newPost = post;
+                        newPost = post + 1;
+
                         findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
-                        post = newPost - 1;
-                    }
+                    } while (findPost == null && newPost > 0);
                     break;
 
                 case false:
+
                     var maxPost = postList.Where(p => p.Published == true).Max(m => m.Id);
-                    while (findPost == null && newPost < maxPost)
+                    do
                     {
-                        newPost = post;
+                        newPost = post - 1;
+
                         findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
-                        post = newPost + 1;
-                    }
+                    } while (findPost == null && newPost <= maxPost);
                     break;
 
                 default:
                     findPost = postList.FirstOrDefault(m => m.Id == post && m.Published == true);
                     break;
             }
-
-            //if (flag == false)
-            //{
-            //    while (findPost == null && newPost > 0)
-            //    {
-            //        newPost = post;
-            //        findPost = postList.FirstOrDefault(m => m.ID == newPost && m.Published == true);
-            //        post = newPost - 1;
-            //    }
-            //}
-            //else if (flag == true)
-            //{
-            //    var maxPost = postList.Where(p => p.Published == true).Max(m => m.ID);
-            //    while (findPost == null && newPost < maxPost)
-            //    {
-            //        newPost = post;
-            //        findPost = postList.FirstOrDefault(m => m.ID == newPost && m.Published == true);
-            //        post = newPost + 1;
-            //    }
-            //}
-            //else
-            //{
-            //    findPost = postList.FirstOrDefault(m => m.ID == post && m.Published == true);
-            //}
 
             return findPost;
         }

@@ -39,46 +39,6 @@ namespace Rhythm.Controllers
             return View(postSingleViewModel);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Post(PostViewModel commentViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            Comment model = new Comment
-        //            {
-        //                PostID = commentViewModel.Post.ID,
-        //                NameUserSender = commentViewModel.Comment.NameUserSender,
-        //                EmailUserSender = commentViewModel.Comment.EmailUserSender,
-        //                Comment1 = commentViewModel.Comment.Comment1,
-        //                DescriptionComment = commentViewModel.Comment.DescriptionComment,
-        //                Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID),
-        //                PostedOn = DateTime.Now
-        //            };
-
-        //            string src = await repository.AddCommentAsync(model);
-        //            if (src != null)
-        //                logger.Error(src);
-
-        //            ModelState.Clear();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ModelState.Clear();
-        //            logger.Error("Faild in PostController ActionResult Post [HttpPost]: {0}", ex.Message);
-        //        }
-        //    }
-        //    ModelState.Clear();
-        //    PostViewModel post = new PostViewModel
-        //    {
-        //        Post = repository.Post.FirstOrDefault(p => p.ID == commentViewModel.Post.ID)
-        //    };
-
-        //    return View(post);
-        //}
-
         public async Task<FileContentResult> GetImage(int id)
         {
             Post post = await _postProvider.GetPostAsync(id);

@@ -8,8 +8,10 @@
     ViewBag.WordThird = "WEB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)
+
 <!-- for renderBody -->
 <section class="page-section side bar">
     <div class="container relative">

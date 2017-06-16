@@ -1,7 +1,6 @@
 ﻿@model Rhythm.Models.RssFeeds.RssListViewModel
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
     int left = 0;
     int right = 0;
     if (Model.PagingView.CurrentPage == 1)
@@ -20,9 +19,12 @@
     {
         right = Model.PagingView.CurrentPage;
     };
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)
 
 <!-- for renderBody -->
 <section class="page-section">

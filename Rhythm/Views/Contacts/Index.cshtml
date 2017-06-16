@@ -1,4 +1,5 @@
 ﻿@model Rhythm.Models.ContactViewModel
+
 @{
     ViewBag.Title = "Contact";
     ViewBag.Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC";
@@ -8,8 +9,9 @@
     ViewBag.Message = "Contact with me";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)
 
 
 <!-- Contact Section -->

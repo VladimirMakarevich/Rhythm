@@ -1,4 +1,5 @@
-﻿
+﻿@model Rhythm.Models.HeaderViewModel
+
 @{
     ViewBag.Title = "RSS";
     ViewBag.WordFirst = "NEWS";
@@ -7,8 +8,10 @@
     ViewBag.Title = "RSS feeds";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model)
+
 <!-- Section -->
 <section class="page-section">
     <div class="container relative">

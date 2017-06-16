@@ -810,6 +810,7 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\ArchiveViewModel.cs" />
+    <Compile Include="Models\HeaderViewModel.cs" />
     <Compile Include="Models\RecentViewModel\ArticleWidgetViewModel.cs" />
     <Compile Include="Models\RecentViewModel\CategoryRecentViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />

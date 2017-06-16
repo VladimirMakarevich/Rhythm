@@ -1,4 +1,5 @@
 ﻿@model Rhythm.Models.CommonUserViewModel
+
 @{
     ViewBag.Title = "About Me";
     ViewBag.Text = "";
@@ -7,8 +8,9 @@
     ViewBag.WordThird = "WEB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)
 
 <!-- Section -->
 <section class="page-section">
