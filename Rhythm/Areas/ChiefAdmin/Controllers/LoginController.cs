@@ -2,7 +2,8 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Authentication;
+using Rhythm.Domain.Entities;
+using Rhythm.Domain.Identity;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return View(login);
             }
 
-            AppUser result = await UserManager.FindAsync(login.Email, login.Password);
+            User result = await UserManager.FindAsync(login.Email, login.Password);
             if (result == null)
             {
                 ModelState.AddModelError("", "Email or password not exist");
@@ -76,7 +77,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = register.Email, Email = register.Email };
+                var user = new User { UserName = register.Email, Email = register.Email };
                 var result = await UserManager.CreateAsync(user, register.Password);
                 if (result.Succeeded)
                 {

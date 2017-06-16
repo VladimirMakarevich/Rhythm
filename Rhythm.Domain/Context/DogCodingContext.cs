@@ -1,12 +1,13 @@
-﻿using Rhythm.Domain.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Rhythm.Domain.Entities;
 using System.Data.Entity;
 
 namespace Rhythm.Domain.Context
 {
-    public class DogCodingContext : DbContext
+    public class DogCodingContext : IdentityDbContext<User>
     {
         public DogCodingContext() 
-            : base("name=DogCodingContext") {
+            : base("name=DogCodingContext", throwIfV1Schema: false) {
         }
 
         public virtual DbSet<Category> Categories { get; set; }
@@ -15,6 +16,7 @@ namespace Rhythm.Domain.Context
         public virtual DbSet<Portfolio> Portfolios { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +31,9 @@ namespace Rhythm.Domain.Context
                 .WithMany(x => x.Posts);
         }
 
-        public System.Data.Entity.DbSet<Rhythm.Domain.Entities.Project> Projects { get; set; }
+        public static DogCodingContext Create()
+        {
+            return new DogCodingContext();
+        }
     }
 }

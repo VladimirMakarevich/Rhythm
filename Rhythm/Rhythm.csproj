@@ -775,8 +775,6 @@
     <Compile Include="Areas\ChiefAdmin\Models\PostAdminViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\CategoryAdminViewModel.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\TagAdminViewModel.cs" />
-    <Compile Include="Authentication\AppUser.cs" />
-    <Compile Include="Authentication\DogUserManager.cs" />
     <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="IsValidBoolAttribute.cs" />
@@ -788,11 +786,6 @@
     <Compile Include="Mappers\RecentContentMapper.cs" />
     <Compile Include="Mappers\SearchResultMapper.cs" />
     <Compile Include="Mappers\TagMapper.cs" />
-    <Compile Include="Migrations\201609071426374_InitialCreate.cs" />
-    <Compile Include="Migrations\201609071426374_InitialCreate.Designer.cs">
-      <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\LoginViewModel.cs" />
     <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
@@ -929,9 +922,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609071426374_InitialCreate.resx">
-      <DependentUpon>201609071426374_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\content_fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>content_fr.Designer.cs</LastGenOutput>
