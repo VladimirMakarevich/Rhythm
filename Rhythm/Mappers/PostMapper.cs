@@ -19,6 +19,38 @@ namespace Rhythm.Mappers
             _mapper = mapper;
         }
 
+        public PostListViewModel ToHomePostListViewModel(IEnumerable<Post> posts, int page)
+        {
+            var postsViewModel = posts.Select(ToPostViewModel).ToList();
+
+            return new PostListViewModel
+            {
+                PostsViewModel = postsViewModel
+                    .OrderBy(p => p.Id)
+                    .Where(m => m.Published == true)
+                    .AsEnumerable()
+                    .Reverse()
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize),
+
+                PagingView = new ListView
+                {
+                    CurrentPage = page,
+                    PostsPerPage = PageSize,
+                    TotalPosts = posts.Count()
+                },
+
+                HeaderViewModel = new HeaderViewModel
+                {
+                    Title = "DogCoding blog by Vladimir Makarevich",
+                    Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC",
+                    FirstTagWord = "C#",
+                    SecondTagWord = "ASP.NET MVC",
+                    ThirdTagWord = "WEB"
+                }
+            };
+        }
+
         public PostListViewModel ToPostListViewModel(IEnumerable<Post> posts, int page)
         {
             var postsViewModel = posts.Select(ToPostViewModel).ToList();
@@ -38,6 +70,15 @@ namespace Rhythm.Mappers
                     CurrentPage = page,
                     PostsPerPage = PageSize,
                     TotalPosts = posts.Count()
+                },
+
+                HeaderViewModel = new HeaderViewModel
+                {
+                    Title = "",
+                    Text = "",
+                    FirstTagWord = "",
+                    SecondTagWord = "",
+                    ThirdTagWord = ""
                 }
             };
         }

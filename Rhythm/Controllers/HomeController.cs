@@ -20,7 +20,7 @@ namespace Rhythm.Controllers
         public async Task<ViewResult> Index(int page = 1)
         {
             var post = await _postProvider.GetPostsAsync();
-            var postListViewModel = _postMapper.ToPostListViewModel(post, page);
+            var postListViewModel = _postMapper.ToHomePostListViewModel(post, page);
 
             return View(postListViewModel);
         }
