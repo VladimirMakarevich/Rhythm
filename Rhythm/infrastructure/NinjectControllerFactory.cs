@@ -54,6 +54,7 @@ namespace Rhythm.Infrastructure
             _kernel.Bind<PortfolioAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<UserAdminMapper>().ToSelf().InSingletonScope();
             _kernel.Bind<ProjectAdminMapper>().ToSelf().InSingletonScope();
+            _kernel.Bind<RssMapper>().ToSelf().InSingletonScope();
 
             // UnitOfWork
             _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();

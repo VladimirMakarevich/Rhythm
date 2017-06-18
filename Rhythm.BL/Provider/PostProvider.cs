@@ -172,5 +172,12 @@ namespace Rhythm.BL.Provider
 
             return _post;
         }
+
+        public async Task<IEnumerable<Post>> GetPostsByArchiveAsync(int year, int month)
+        {
+            var posts = await _uow.Post.GetPostsAsync();
+
+            return posts.Where(m => m.PostedOn.Month == month && m.PostedOn.Year == year).ToList();
+        }
     }
 }

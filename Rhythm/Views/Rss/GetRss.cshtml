@@ -3,20 +3,17 @@
 @{
     int left = 0;
     int right = 0;
-    if (Model.PagingView.CurrentPage == 1)
-    {
+
+    if (Model.PagingView.CurrentPage == 1) {
         left = Model.PagingView.CurrentPage - 1;
     }
-    else
-    {
+    else {
         left = Model.PagingView.CurrentPage;
     };
-    if (Model.PagingView.CurrentPage == 1)
-    {
+    if (Model.PagingView.CurrentPage == 1) {
         right = Model.PagingView.CurrentPage + 1;
     }
-    else
-    {
+    else {
         right = Model.PagingView.CurrentPage;
     };
 
@@ -43,11 +40,11 @@
                         <div class="blog-item-data">
                             <a><i class="fa fa-clock-o"></i> @i.PubDate </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-rss"></i> @ViewBag.Site </a>
+                            <a><i class="fa fa-rss"></i> @Model.Site </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-gears"></i> @ViewBag.News </a>
+                            <a><i class="fa fa-gears"></i> @Model.Theme </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-paw"></i>IT</a>
+                            <a><i class="fa fa-paw"></i> IT </a>
                         </div>
                         <!-- Text Intro -->
                         <div class="blog-item-body">
@@ -63,11 +60,12 @@
                     </div>
                 <!-- End Post -->
                 }
-                @Html.HiddenFor(m => m.Source)
+                @*@Html.HiddenFor(m => m.Source)*@
+
                 <div class="pagination">
-                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action(Model.Source, new { src = Model.Source, Page = x }))
-                    @Html.PageLinks(Model.PagingView, x => Url.Action(Model.Source, new { src = Model.Source, Page = x }))
-                    @Html.PageLinksRight(Model.PagingView, x => Url.Action(Model.Source, new { src = Model.Source, Page = x }))
+                    @Html.PageLinksLeft(Model.PagingView, x => Url.Action("GetRss", new { src = Model.Id, Page = x }))
+                    @Html.PageLinks(Model.PagingView, x => Url.Action("GetRss", new { src = Model.Id, Page = x }))
+                    @Html.PageLinksRight(Model.PagingView, x => Url.Action("GetRss", new { src = Model.Id, Page = x }))
                 </div>
             </div>
             <!-- End Content -->

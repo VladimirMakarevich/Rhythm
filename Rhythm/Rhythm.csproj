@@ -784,6 +784,7 @@
     <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
     <Compile Include="Mappers\RecentContentMapper.cs" />
+    <Compile Include="Mappers\RssMapper.cs" />
     <Compile Include="Mappers\SearchResultMapper.cs" />
     <Compile Include="Mappers\TagMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\LoginViewModel.cs" />
@@ -815,10 +816,12 @@
     <Compile Include="Models\RecentViewModel\PostRecentViewModel.cs" />
     <Compile Include="Models\RecentViewModel\CommentRecentViewModel.cs" />
     <Compile Include="Models\RecentViewModel\RecentContentViewModel.cs" />
-    <Compile Include="Models\RssFeeds\GetRss.cs" />
+    <Compile Include="Models\RssFeeds\RssesViewModel.cs" />
+    <Compile Include="Models\RssFeeds\Interface\IRssCore.cs" />
+    <Compile Include="Models\RssFeeds\RssCore.cs" />
+    <Compile Include="Models\RssFeeds\RssEntityViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssViewModel.cs" />
     <Compile Include="Models\RssFeeds\RssListViewModel.cs" />
-    <Compile Include="Models\RssFeeds\RssReader.cs" />
     <Compile Include="Models\CommonUserViewModel.cs" />
     <Compile Include="Models\RecentViewModel\TagRecentViewModel.cs" />
     <Compile Include="Models\SearchResultViewModel.cs" />
@@ -886,7 +889,6 @@
     <Content Include="Views\Recents\RecentArticleWidgets.cshtml" />
     <Content Include="Views\Shared\_messageNote.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Rss\RSS.cshtml" />
     <Content Include="Views\Rss\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Login\Login.cshtml" />
@@ -907,6 +909,7 @@
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Rss\GetRss.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

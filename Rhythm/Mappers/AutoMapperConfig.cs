@@ -4,6 +4,7 @@ using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.Domain.Entities;
 using Rhythm.Models;
 using Rhythm.Models.RecentViewModel;
+using Rhythm.Models.RssFeeds;
 
 namespace Rhythm.Mappers
 {
@@ -24,6 +25,7 @@ namespace Rhythm.Mappers
             config.CreateMap<Comment, CommentRecentViewModel>().ReverseMap();
             config.CreateMap<Category, CategoryRecentViewModel>().ReverseMap();
             config.CreateMap<Tag, TagRecentViewModel>().ReverseMap();
+            config.CreateMap<Rss, RssEntityViewModel>().ReverseMap();
 
             // Admin area
             config.CreateMap<ChiefUser, ChiefUserAdminViewModel>().ReverseMap();

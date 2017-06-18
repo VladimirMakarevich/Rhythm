@@ -1,5 +1,4 @@
-﻿using Rhythm.BL.Models;
-using Rhythm.Domain.Entities;
+﻿using Rhythm.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,5 +19,6 @@ namespace Rhythm.BL.Interfaces
         IEnumerable<Post> GetPosts();
         Post GetPostWidget();
         Task AddReferencedToPost(Post toPost, int[] tags, int category);
+        Task<IEnumerable<Post>> GetPostsByArchiveAsync(int year, int month);
     }
 }

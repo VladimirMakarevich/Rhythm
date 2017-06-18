@@ -3,7 +3,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @Html.Partial("_NavigationPanel")
+@Html.Partial("_HeadSection", Model.HeaderViewModel)
+
 <section class="page-section">
     <div class="container relative">
         <div class="row">

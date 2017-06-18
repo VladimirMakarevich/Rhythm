@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Rhythm.Domain.Entities;
 using Rhythm.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Rhythm.Mappers
 {
@@ -42,10 +40,15 @@ namespace Rhythm.Mappers
                         TotalPosts = posts.Count()
                     },
 
+                    HeaderViewModel = new HeaderViewModel
+                    {
+                        Text = $"A list of posts by category - {categoryName}",
+                        Title = _titleCategory,
+                        FirstTagWord = "Category",
+                        SecondTagWord = "Post",
+                        ThirdTagWord = "Blog"
+                    }
                 },
-
-                Text = $"A list of posts by category - {categoryName}",
-                Title = _titleCategory
             };
         }
 
@@ -69,10 +72,15 @@ namespace Rhythm.Mappers
                         TotalPosts = posts.Count()
                     },
 
+                    HeaderViewModel = new HeaderViewModel
+                    {
+                        Text = $"A list of posts by category - {tagName}",
+                        Title = _titleTag,
+                        FirstTagWord = "Tag",
+                        SecondTagWord = "Post",
+                        ThirdTagWord = "Blog"
+                    }
                 },
-
-                Text = $"A list of posts by category - {tagName}",
-                Title = _titleTag
             };
         }
 
@@ -98,10 +106,59 @@ namespace Rhythm.Mappers
                         TotalPosts = posts.Count()
                     },
 
+                    HeaderViewModel = new HeaderViewModel
+                    {
+                        Text = $"A list of posts by search text - {searchText}",
+                        Title = _titleCommon,
+                        FirstTagWord = "Search",
+                        SecondTagWord = "Post",
+                        ThirdTagWord = "Blog"
+                    }
                 },
+            };
+        }
 
-                Text = $"A list of posts by search text - {searchText}",
-                Title = _titleCommon
+        public SearchResultViewModel ToArchiveResultViewModel(IEnumerable<Post> posts, int page, string yearModel, string monthModel)
+        {
+            var postsViewModel = posts.Select(ToPostViewModel).ToList();
+            string text;
+
+            if (yearModel != null && monthModel != null)
+            {
+                text = $"List of posts found for search archive year - {yearModel}, month - {monthModel}";
+            }
+            else
+            {
+                text = $"Your search did not match any documents.";
+            }
+
+            return new SearchResultViewModel
+            {
+                PostListViewModel = new PostListViewModel
+                {
+                    PostsViewModel = postsViewModel
+                    .OrderBy(p => p.Id)
+                    .Skip((page - 1) * PageSize)
+                    .Take(PageSize)
+                    .ToArray()
+                    .Reverse(),
+
+                    PagingView = new ListView
+                    {
+                        CurrentPage = page,
+                        PostsPerPage = PageSize,
+                        TotalPosts = posts.Count()
+                    },
+
+                    HeaderViewModel = new HeaderViewModel
+                    {
+                        Text = text,
+                        Title = _titleCommon,
+                        FirstTagWord = "Archive",
+                        SecondTagWord = "Post",
+                        ThirdTagWord = "Blog"
+                    }
+                },
             };
         }
 

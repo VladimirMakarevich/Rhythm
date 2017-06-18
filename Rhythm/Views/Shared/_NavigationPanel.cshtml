@@ -17,86 +17,7 @@
             <ul class="clearlist">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("Post", "Index", "Posts")</li>
-                <li>
-                    <a href="@Url.Action("Index","Rss")" class="mn-has-sub">RSS feeds <i class="fa fa-angle-down"></i></a>
-                    <!-- Sub -->
-                    <ul class="mn-sub">
-                        <li>
-                            <a href="@Url.Action("Devby","Rss", new { src = "Devby" })" class="mn-has-sub">Dev <i class="fa fa-angle-right right"></i></a>
-
-                            <ul class="mn-sub">
-                                <li>
-                                    <a href="@Url.Action("Devby","Rss", new { src = "Devby" })">Dev</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("EventsDevby","Rss", new { src = "EventsDevby" })">Events Dev</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("DZoneweb","Rss")" class="mn-has-sub">DZone <i class="fa fa-angle-right right"></i></a>
-
-                            <ul class="mn-sub">
-                                <li>
-                                    <a href="@Url.Action("DZoneweb","Rss")">DZone</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("DZoneagile","Rss")">DZone Agile</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Codeproject","Rss")" class="mn-has-sub">Codeproject <i class="fa fa-angle-right right"></i></a>
-
-                            <ul class="mn-sub">
-                                <li>
-                                    <a href="@Url.Action("Codeproject","Rss")">Codeproject </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("CodeprojectAspnet","Rss")">Codeproject ASP.NET </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("CodeprojectDotnet","Rss")">Codeproject .NET </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("CodeprojectCsharp","Rss")">Codeproject C# </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Habrahabr","Rss")" class="mn-has-sub">Habrahabr </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Dotnetkick","Rss")" class="mn-has-sub">DotNetKick </a>
-                        </li>
-                        <li>
-                            <a href="#" class="mn-has-sub">Blog's <i class="fa fa-angle-right right"></i></a>
-
-                            <ul class="mn-sub">
-                                <li>
-                                    <a href="@Url.Action("Hanselman","Rss")">Hanselman </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("ScottGu","Rss")">Scott Gu </a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("StephenWalther","Rss")">Stephen Walther </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="mn-has-sub">Forum's <i class="fa fa-angle-right right"></i></a>
-
-                            <ul class="mn-sub">
-                                <li>
-                                    <a href="@Url.Action("AspDotNetQuestion","Rss")">asp.net mvc </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- End Sub -->
-                </li>
-                <!-- End Item With Sub -->
+                <li>@Html.ActionLink("Rss Feeds", "Index", "Rss")</li>
                 @*<li>@Html.ActionLink("Library", "Index", "Library")</li>*@
                 <li>@Html.ActionLink("Portfolio", "Index", "Portfolio")</li>
                 <li>@Html.ActionLink("About me", "Index", "AboutMe")</li>
@@ -105,12 +26,6 @@
                 <li><a>&nbsp;</a></li>
                 <li><a>&nbsp;</a></li>
                 <li>
-                    @*<a href="#" class="mn-has-sub">Eng <i class="fa fa-angle-down"></i></a>*@
-                    @*<ul class="mn-sub">
-                        <li><a href="">English</a></li>
-                        <li><a href="">Russian</a></li>
-                            <li><a href="">Belarusian</a></li>
-                    </ul>*@
                 </li>
             </ul>
         </div>
