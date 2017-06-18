@@ -6,6 +6,7 @@ namespace Rhythm.Models
     {
         public PostViewModel PostViewModel { get; set; }
         public CommentViewModel CommentViewModel { get; set; }
+        public HeaderViewModel HeaderViewModel { get; set; }
         public int CountPosts { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace Rhythm.Mappers
                 HeaderViewModel = new HeaderViewModel
                 {
                     Title = "DogCoding blog by Vladimir Makarevich",
-                    Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC",
+                    Text = "DogBlog - Vladimir Makarevich - backend developer ASP.NET MVC",
                     FirstTagWord = "C#",
                     SecondTagWord = "ASP.NET MVC",
                     ThirdTagWord = "WEB"
@@ -74,11 +74,11 @@ namespace Rhythm.Mappers
 
                 HeaderViewModel = new HeaderViewModel
                 {
-                    Title = "",
+                    Title = "Posts",
                     Text = "",
-                    FirstTagWord = "",
-                    SecondTagWord = "",
-                    ThirdTagWord = ""
+                    FirstTagWord = "C#",
+                    SecondTagWord = "PROGRAMMING",
+                    ThirdTagWord = "WEB"
                 }
             };
         }
@@ -92,7 +92,19 @@ namespace Rhythm.Mappers
         {
             var postViewModel = _mapper.Map<Post, PostViewModel>(post);
 
-            return new PostSingleViewModel { PostViewModel = postViewModel, CountPosts = count };
+            return new PostSingleViewModel
+            {
+                PostViewModel = postViewModel,
+                CountPosts = count,
+                HeaderViewModel = new HeaderViewModel
+                {
+                    Title = postViewModel.Title,
+                    Text = postViewModel.NameSenderPost,
+                    FirstTagWord = "",
+                    SecondTagWord = "",
+                    ThirdTagWord = ""
+                }
+            };
         }
 
         public List<PostRecentViewModel> ToPostsRecentViewModel(IEnumerable<Post> posts)

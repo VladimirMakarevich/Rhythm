@@ -1,11 +1,6 @@
 ﻿@model Rhythm.Models.PostListViewModel
 
 @{
-    ViewBag.Title = "Posts";
-    ViewBag.Text = "";
-    ViewBag.WordFirst = "C#";
-    ViewBag.WordSecond = "ASP.NET MVC";
-    ViewBag.WordThird = "WEB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -30,8 +25,6 @@
                             <a><i class="fa fa-clock-o"></i> @post.PostedOn </a>
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-user"></i> @post.NameSenderPost </a>
-                            <span class="separator">&nbsp;</span>
-                            @*<a><i class="fa fa-code"></i> @post.Category.Name </a>*@
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i> Comments @post.CountComments </a>
                         </div>

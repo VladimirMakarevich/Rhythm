@@ -10,11 +10,14 @@
                     @Model.Text
                 </div>
             </div>
-            <div class="col-md-4 mt-30">
-                <div class="mod-breadcrumbs font-alt black align-right">
-                    <a>@Model.FirstTagWord</a>&nbsp;/&nbsp;<a>@Model.SecondTagWord</a>&nbsp;/&nbsp;<a>@Model.ThirdTagWord</a>
+            @if (Model.FirstTagWord != "" && Model.SecondTagWord != "" && Model.ThirdTagWord != "")
+            {
+                <div class="col-md-4 mt-30">
+                    <div class="mod-breadcrumbs font-alt black align-right">
+                        <a>@Model.FirstTagWord</a>&nbsp;/&nbsp;<a>@Model.SecondTagWord</a>&nbsp;/&nbsp;<a>@Model.ThirdTagWord</a>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </section>
