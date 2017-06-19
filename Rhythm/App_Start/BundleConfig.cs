@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Rhythm
 {
@@ -57,7 +56,7 @@ namespace Rhythm
                 "~/Content/css/et-line.css",
                 "~/Content/css/font-awesome.min.css"));
 
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
