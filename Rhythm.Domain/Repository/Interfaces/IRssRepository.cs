@@ -7,7 +7,10 @@ namespace Rhythm.Domain.Repository.Interfaces
 {
     public interface IRssRepository
     {
-        Task<Rss> GetRss(int id);
-        Task<IEnumerable<Rss>> GetRsses();
+        Task<Rss> GetRssAsync(int id);
+        Task<IEnumerable<Rss>> GetRssesAsync();
+        Task CreateRssAsync(Rss rss);
+        Task EditRssAsync(Rss rss);
+        Task DeleteRssAsync(int id);
     }
 }

@@ -35,6 +35,7 @@ namespace Rhythm.Mappers
             config.CreateMap<Category, CategoryAdminViewModel>().ReverseMap();
             config.CreateMap<Tag, TagAdminViewModel>().ReverseMap();
             config.CreateMap<Project, ProjectAdminViewModel>().ReverseMap();
+            config.CreateMap<Rss, RssAdminViewModel>().ReverseMap();
         }
     }
 }

@@ -434,6 +434,11 @@
     <Content Include="Areas\ChiefAdmin\Views\Projects\Details.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Projects\Edit.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Projects\Index.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Rsses\Create.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Rsses\Delete.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Rsses\Details.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Rsses\Edit.cshtml" />
+    <Content Include="Areas\ChiefAdmin\Views\Rsses\Index.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -767,15 +772,18 @@
     <Compile Include="Areas\ChiefAdmin\Controllers\LoginController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\PortfoliosController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\ProjectsController.cs" />
+    <Compile Include="Areas\ChiefAdmin\Controllers\RssesController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UpdateController.cs" />
     <Compile Include="Areas\ChiefAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\ProjectAdminViewModel.cs" />
+    <Compile Include="Areas\ChiefAdmin\Models\RssAdminViewModel.cs" />
     <Compile Include="Mappers\ChiefAdmin\ContentAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\CategoryAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\CommentAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\PortfolioAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\ProjectAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\PostAdminMapper.cs" />
+    <Compile Include="Mappers\ChiefAdmin\RssAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\TagAdminMapper.cs" />
     <Compile Include="Mappers\ChiefAdmin\UserAdminMapper.cs" />
     <Compile Include="Areas\ChiefAdmin\Models\ChiefUserAdminViewModel.cs" />

@@ -16,12 +16,30 @@ namespace Rhythm.Domain.Repository
             _db = db;
         }
 
-        public async Task<Rss> GetRss(int id)
+        public async Task<Rss> GetRssAsync(int id)
         {
             return await _db.Rsses.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public async Task<IEnumerable<Rss>> GetRsses()
+        public async Task CreateRssAsync(Rss rss)
+        {
+            _db.Rsses.Add(rss);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DeleteRssAsync(int id)
+        {
+            _db.Projects.Remove(project);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task EditRssAsync(Rss rss)
+        {
+            _db.Entry(rss).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Rss>> GetRssesAsync()
         {
             return await _db.Rsses.ToListAsync();
         }

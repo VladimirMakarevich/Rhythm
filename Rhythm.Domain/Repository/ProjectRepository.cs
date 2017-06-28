@@ -47,7 +47,6 @@ namespace Rhythm.Domain.Repository
         {
             _db.Projects.Remove(project);
             await _db.SaveChangesAsync();
-
         }
 
         private bool _disposed = false;

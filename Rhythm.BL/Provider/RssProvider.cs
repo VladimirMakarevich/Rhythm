@@ -18,14 +18,29 @@ namespace Rhythm.BL.Provider
             _uow = uow;
         }
 
-        public async Task<Rss> GetRss(int id)
+        public async Task CreateRssAsync(Rss rss)
         {
-            return await _uow.Rss.GetRss(id);
+            await _uow.Rss.CreateRssAsync(rss);
         }
 
-        public async Task<IEnumerable<Rss>> GetRsses()
+        public async Task DeleteRssAsync(int id)
         {
-            return await _uow.Rss.GetRsses();
+            await _uow.Rss.DeleteRssAsync(id);
+        }
+
+        public async Task EditRssAsync(Rss rss)
+        {
+            await _uow.Rss.EditRssAsync(rss);
+        }
+
+        public async Task<Rss> GetRssAsync(int id)
+        {
+            return await _uow.Rss.GetRssAsync(id);
+        }
+
+        public async Task<IEnumerable<Rss>> GetRssesAsync()
+        {
+            return await _uow.Rss.GetRssesAsync();
         }
     }
 }
