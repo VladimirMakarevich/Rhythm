@@ -6,13 +6,15 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using Rhythm.Models;
 using System.Threading.Tasks;
-using NLog;
 
 namespace Rhythm.Controllers
 {
     public class ContactsController : DefaultController
     {
-        private static NLog.Logger logger = LogManager.GetCurrentClassLogger();
+        public ContactsController()
+        {
+                
+        }
 
         public ActionResult Index()
         {
@@ -25,33 +27,31 @@ namespace Rhythm.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    MailMessage msz = new MailMessage();
-                    msz.From = new MailAddress(contact.Email);
-                    msz.To.Add("justadreampictures@gmail.com");
-                    msz.Body = String.Format("Name: " + contact.Name + "\n\nE-mail: " + contact.Email + "\n\nMessage: " + contact.Message);
-                    msz.Subject = "site - DogCoding";
 
-                    SmtpClient smpt = new SmtpClient();
-                    smpt.Host = "smtp.gmail.com";
-                    smpt.Port = 587;
-                    smpt.Credentials = new System.Net.NetworkCredential("justadreampictures", "q26s4hcxz2332Q!@W");
+                MailMessage msz = new MailMessage();
+                msz.From = new MailAddress(contact.Email);
+                msz.To.Add("justadreampictures@gmail.com");
+                msz.Body = String.Format("Name: " + contact.Name + "\n\nE-mail: " + contact.Email + "\n\nMessage: " + contact.Message);
+                msz.Subject = "site - DogCoding";
 
-                    smpt.EnableSsl = true;
-                    await smpt.SendMailAsync(msz);
+                SmtpClient smpt = new SmtpClient();
+                smpt.Host = "smtp.gmail.com";
+                smpt.Port = 587;
+                smpt.Credentials = new System.Net.NetworkCredential("justadreampictures", "q26s4hcxz2332Q!@W");
 
-                    ModelState.Clear();
-                    ViewBag.ThxMessage = "Thank you for Contacting me.";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.MessageError = "Sorry, but a problem occured on the server, please try again after some time.";
-                    ModelState.Clear();
-                    logger.Error("Faild in ContactsController async Task<ActionResult> Index [HttpPost]: ", ex.Source, ex.InnerException, ex.StackTrace, ex.HelpLink, ex.TargetSite, ex.HResult);
-                }
+                smpt.EnableSsl = true;
+                await smpt.SendMailAsync(msz);
+
+                ModelState.Clear();
+                ViewBag.ThxMessage = "Thank you for Contacting me.";
+
+                //ViewBag.MessageError = "Sorry, but a problem occured on the server, please try again after some time.";
+
             }
-            else { ViewBag.MessageError = "You have entered invalid data."; }
+            else
+            {
+                ViewBag.MessageError = "You have entered invalid data.";
+            }
 
             return View();
         }
