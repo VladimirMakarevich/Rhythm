@@ -1,51 +1,58 @@
-﻿@model Rhythm.Domain.Entities.Rss
+﻿@model Rhythm.Areas.ChiefAdmin.Models.RssAdminViewModel
 
 @{
-    ViewBag.Title = "Details";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container relative">
+    <h2 class="align-center font-alt uppercase">Details Rss @Html.DisplayFor(model => model.Name)</h2>
+    <div class="blog-item-body container">
+        <h2>Details</h2>
 
-<div>
-    <h4>Rss</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        <p>
+            <div class="form-actions no-color">
+                <a href="@Url.Action("Edit", "Rsses", new { id = Model.Id })" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Edit </a> |
+                <a href="@Url.Action("Index", "Rsses")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+            </div>
+        </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <div>
+            <h4>Rss</h4>
+            <hr />
+            <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Theme)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Theme)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Theme)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Theme)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Url)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Url)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

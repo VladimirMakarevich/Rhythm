@@ -1,52 +1,71 @@
-﻿@model IEnumerable<Rhythm.Domain.Entities.Rss>
+﻿@model List<Rhythm.Areas.ChiefAdmin.Models.RssAdminViewModel>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Theme)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+<h2 class="align-center font-alt uppercase">List of Rss</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Theme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+<div class="container relative">
+    <div class="blog-item-body container">
+        <p>
+            <div class="blog-item-foot">
+                <a href="@Url.Action("Create", "Rsses")" cl class="btn btn-mod btn-round  btn-small"> Create New </a>
+            </div>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Theme
+                </th>
+                <th>
+                    Url
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var rss in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => rss.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => rss.Theme)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => rss.Url)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => rss.Description)
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Edit", "Rsses", new { id = rss.Id })" class= class="btn btn-mod btn-round  btn-small"> Edit </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Details", "Rsses", new { id = rss.Id })" class= class="btn btn-mod btn-round  btn-small"> Details </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="blog-item-foot">
+                            <a href="@Url.Action("Delete", "Rsses", new { id = rss.Id })" class= class="btn btn-mod btn-round  btn-small"> Delete </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
