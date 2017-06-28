@@ -11,6 +11,6 @@ namespace Rhythm.Domain.Repository.Interfaces
         Task<IEnumerable<Rss>> GetRssesAsync();
         Task CreateRssAsync(Rss rss);
         Task EditRssAsync(Rss rss);
-        Task DeleteRssAsync(int id);
+        Task DeleteRssAsync(Rss rss);
     }
 }

@@ -25,7 +25,8 @@ namespace Rhythm.BL.Provider
 
         public async Task DeleteRssAsync(int id)
         {
-            await _uow.Rss.DeleteRssAsync(id);
+            var rss = await GetRssAsync(id);
+            await _uow.Rss.DeleteRssAsync(rss);
         }
 
         public async Task EditRssAsync(Rss rss)

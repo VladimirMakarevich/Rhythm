@@ -27,9 +27,9 @@ namespace Rhythm.Domain.Repository
             await _db.SaveChangesAsync();
         }
 
-        public async Task DeleteRssAsync(int id)
+        public async Task DeleteRssAsync(Rss rss)
         {
-            _db.Projects.Remove(project);
+            _db.Rsses.Remove(rss);
             await _db.SaveChangesAsync();
         }
 
