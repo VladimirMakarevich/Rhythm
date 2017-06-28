@@ -321,7 +321,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\ChiefAdmin\Views\Edit\Post.cshtml" />
-    <Content Include="Areas\ChiefAdmin\Views\Login\Index.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Shared\_Login.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Edit\Tag.cshtml" />
     <Content Include="Areas\ChiefAdmin\Views\Edit\Category.cshtml" />
