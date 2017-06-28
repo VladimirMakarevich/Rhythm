@@ -1,23 +1,24 @@
 ﻿@model Rhythm.Areas.ChiefAdmin.Models.ImageAdminViewModel
-    @{
-        Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
-    }
-    <br /><br /><br />
-    <h2 class="align-center font-alt uppercase">Edit Post</h2>
-    <!-- Section -->
-    <section class="page-section">
-        <div class="container relative">
+@{
+    Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
+}
 
-            <!-- Form -->
-            @using (Html.BeginForm("Image", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
+<br /><br /><br />
+<h2 class="align-center font-alt uppercase">Edit Post</h2>
+<!-- Section -->
+<section class="page-section">
+    <div class="container relative">
+
+        <!-- Form -->
+        @using (Html.BeginForm("Image", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.PostId)
-                @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
-                <div class="mb-20 mb-md-10">
-                    <!-- Description -->
-                    @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
-                </div>
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.PostId)
+            @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
+            <div class="mb-20 mb-md-10">
+                <!-- Description -->
+                @Html.TextBoxFor(m => m.ImageMime, new { @name = "ImageMime", @id = "ImageMime", @class = "input-md form-control", @placeholder = "Photo Description" })
+            </div>
 
                 @Html.Label("Load Photo: ")
                 <div class="mb-20 mb-md-10">
@@ -33,20 +34,20 @@
                         <img width="300" height="300" src="@Url.Action("GetImage", "Home", new { id = Model.PostId })" />
                     }
                 </div>
-                        <div class="clearfix">
-                            <div class="cf-left-col">
-                                <!-- Inform Tip -->
-                                <div class="form-tip pt-20">
-                                    <i class="fa fa-info-circle"></i> All the fields are required
-                                </div>
-                            </div>
-                            <div class="cf-right-col">
-                                <!-- Send Button -->
-                                <div class="align-right pt-10">
-                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Image</button>
-                                </div>
-                            </div>
+                <div class="clearfix">
+                    <div class="cf-left-col">
+                        <!-- Inform Tip -->
+                        <div class="form-tip pt-20">
+                            <i class="fa fa-info-circle"></i> All the fields are required
                         </div>
-            }
-        </div>
-    </section>
+                    </div>
+                    <div class="cf-right-col">
+                        <!-- Send Button -->
+                        <div class="align-right pt-10">
+                            <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Image</button>
+                        </div>
+                    </div>
+                </div>
+        }
+    </div>
+</section>

@@ -1,7 +1,6 @@
 ﻿@model Rhythm.Areas.ChiefAdmin.Models.ChiefUserAdminViewModel
 
 @{
-    ViewBag.Title = "Create";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,17 +12,14 @@
     <br />
     @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @role = "form", @class = "form" }))
     {
-        @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
-            <h4>ChiefUser</h4>
+
+            <h4>Chief User</h4>
             <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
-                    @Html.ValidationMessageFor(model => model.PortfolioId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -31,7 +27,6 @@
                 @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -39,7 +34,6 @@
                 @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -47,7 +41,6 @@
                 @Html.LabelFor(model => model.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.MiddleName, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.MiddleName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -55,7 +48,6 @@
                 @Html.LabelFor(model => model.Birth, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Birth, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Birth, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -63,7 +55,6 @@
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -71,7 +62,6 @@
                 @Html.LabelFor(model => model.HomeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.HomeAddress, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.HomeAddress, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -79,7 +69,6 @@
                 @Html.LabelFor(model => model.Skype, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Skype, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Skype, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -87,7 +76,6 @@
                 @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -95,7 +83,6 @@
                 @Html.LabelFor(model => model.Github, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Github, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Github, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -103,7 +90,6 @@
                 @Html.LabelFor(model => model.Linkedin, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Linkedin, new { htmlAttributes = new { @class = "input-md form-control" } })
-                    @Html.ValidationMessageFor(model => model.Linkedin, "", new { @class = "text-danger" })
                 </div>
             </div>
 

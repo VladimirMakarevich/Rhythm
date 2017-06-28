@@ -1,6 +1,5 @@
 ﻿@model Rhythm.Areas.ChiefAdmin.Models.LoginModel
 @{
-    ViewBag.Title = "Login";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Login.cshtml";
 }
 
@@ -13,8 +12,6 @@
             <div class="col-md-8 col-md-offset-2">
                 @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form contact-form" }))
                 {
-
-                    @Html.ValidationSummary(true, "ERROR", new { @class = "form-tip pt-40", @style = "color:red;" })
                     <div class="validation-summary-error" data-valmsg-summary="true">
                         <div class="clearfix">
                             <div class="cf-left-col">
@@ -38,7 +35,6 @@
                                 </div>
                             </div>
                             @Html.Hidden("ReturnUrl")
-                            @Html.AntiForgeryToken()
                             <div class="cf-right-col">
                                 <!-- Send Button -->
                                 <div class="align-right pt-10">

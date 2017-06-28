@@ -1,7 +1,6 @@
 ﻿@model Rhythm.Areas.ChiefAdmin.Models.ChiefUserAdminViewModel
 
 @{
-    ViewBag.Title = "Delete";
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +13,6 @@
         <br />
         @using (Html.BeginForm())
             {
-            @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn" /> |

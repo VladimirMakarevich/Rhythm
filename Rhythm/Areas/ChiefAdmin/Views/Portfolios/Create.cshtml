@@ -12,12 +12,10 @@
     <br />
     @using (Html.BeginForm("Create", "Portfolios", FormMethod.Post, new { @role = "form", @class = "form" }))
     {
-        @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
             <h4>Portfolio</h4>
             <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.NamePortfolio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -85,7 +83,6 @@
                 @Html.LabelFor(model => model.ChiefUserId, "ChiefUserId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("ChiefUserId", null, htmlAttributes: new { @class = "input-md form-control" })
-                    @Html.ValidationMessageFor(model => model.ChiefUserId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
