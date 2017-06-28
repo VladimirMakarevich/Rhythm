@@ -44,7 +44,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public async Task<ActionResult> Post(PostAdminViewModel postViewModel, int[] selectedTag)
         {
@@ -88,7 +87,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Image(ImageAdminViewModel imageViewModel)
         {
             var post = await _postProvider.GetPostAsync(imageViewModel.PostId);

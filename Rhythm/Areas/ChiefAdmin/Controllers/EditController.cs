@@ -38,7 +38,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public async Task<ActionResult> Post(PostAdminViewModel postViewModel, int[] selectedTag)
         {

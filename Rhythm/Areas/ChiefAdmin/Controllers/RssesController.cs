@@ -6,6 +6,7 @@ using Rhythm.Areas.ChiefAdmin.Models;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public class RssesController : DefaultController
     {
         private RssAdminMapper _rssMapper;
@@ -38,7 +39,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RssAdminViewModel rssViewModel)
         {
             if (ModelState.IsValid)
@@ -61,7 +61,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(RssAdminViewModel rssViewModel)
         {
             if (ModelState.IsValid)
@@ -84,7 +83,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await _rssProvider.DeleteRssAsync(id);

@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public class ProjectsController : DefaultController
     {
         private ProjectAdminMapper _projectMapper;
@@ -42,7 +43,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ProjectAdminViewModel projectViewModel)
         {
             if (ModelState.IsValid)
@@ -69,7 +69,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ProjectAdminViewModel projectViewModel)
         {
             if (ModelState.IsValid)
@@ -94,7 +93,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await _projectProvider.DeleteProjectAsync(id);

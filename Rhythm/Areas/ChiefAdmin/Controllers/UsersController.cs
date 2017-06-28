@@ -8,6 +8,7 @@ using Rhythm.BL.Interfaces;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public class UsersController : DefaultController
     {
         private UserAdminMapper _userMapper;
@@ -49,7 +50,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(ChiefUserAdminViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
@@ -86,7 +86,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ChiefUserAdminViewModel chiefUserViewModel)
         {
             if (ModelState.IsValid)
@@ -119,7 +118,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await _userProvider.DeleteUserAsync(id);

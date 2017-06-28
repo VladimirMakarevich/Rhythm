@@ -15,6 +15,7 @@ using Rhythm.BL.Interfaces;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
+    [Authorize]
     public class PortfoliosController : DefaultController
     {
         private PortfolioAdminMapper _portfolioMapper;
@@ -52,7 +53,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public async Task<ActionResult> Create(PortfolioAdminViewModel portfolioViewModel)
         {
@@ -89,7 +89,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public async Task<ActionResult> Edit(PortfolioAdminViewModel portfolioViewModel)
         {
@@ -126,7 +125,6 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await _portfolioProvider.DeletePortfolioAsync(id);
