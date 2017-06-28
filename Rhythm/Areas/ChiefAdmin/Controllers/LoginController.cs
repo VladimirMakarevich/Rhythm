@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Rhythm.Areas.ChiefAdmin.Models;
-using Rhythm.Domain.Entities;
+using Rhythm.BL.Interfaces;
 using Rhythm.Domain.Identity;
 using System;
 using System.Security.Claims;
@@ -15,6 +15,11 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     [Authorize]
     public class LoginController : DefaultController
     {
+        public LoginController(IUserProvider userProvider)
+        {
+            _userProvider = userProvider;
+        }
+
         public IAuthenticationManager SignInManager
         {
             get
@@ -30,6 +35,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<DogUserManager>();
             }
         }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -45,7 +51,8 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 return View(login);
             }
 
-            User result = await UserManager.FindAsync(login.Email, login.Password);
+            var result = await UserManager.FindAsync(login.Email, login.Password);
+
             if (result == null)
             {
                 ModelState.AddModelError("", "Email or password not exist");
@@ -59,55 +66,29 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                 {
                     IsPersistent = true
                 }, claim);
+
                 if (String.IsNullOrEmpty(returnUrl))
                     return RedirectToAction("Index", "Home");
             }
+
             return Redirect(returnUrl);
         }
 
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult> Register(RegisterViewModel register)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new User { UserName = register.Email, Email = register.Email };
-                var result = await UserManager.CreateAsync(user, register.Password);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
-            return View(register);
-        }
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
-        }
 
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public ActionResult LogOff()
         {
             SignInManager.SignOut();
+
             return RedirectToAction("Index", "Home");
         }
     }

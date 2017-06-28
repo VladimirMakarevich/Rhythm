@@ -3,17 +3,8 @@ namespace Rhythm.Domain.Migrations
     using Entities;
     using Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    using System.Security.Claims;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin;
-    using Microsoft.Owin.Security;
-    using System.Web;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Rhythm.Domain.Context.DogCodingContext>
     {
@@ -24,6 +15,25 @@ namespace Rhythm.Domain.Migrations
 
         protected override void Seed(Rhythm.Domain.Context.DogCodingContext context)
         {
+            var userManager = new DogUserManager(new UserStore<User>(context));
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            var role = new IdentityRole { Name = "admin" };
+
+            roleManager.Create(role);
+
+
+            var admin = new User { Email = "makarevich@admin.com", UserName = "makarevich@admin.com" };
+            string password = "qwerty123456!@#$%^";
+            var result = userManager.Create(admin, password);
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(admin.Id, role.Name);
+            }
+
+            base.Seed(context);
         }
     }
 }

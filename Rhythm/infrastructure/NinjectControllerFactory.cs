@@ -10,6 +10,11 @@ using Rhythm.Mappers;
 using Rhythm.Mappers.ChiefAdmin;
 using System.Collections.Generic;
 using Rhythm.Domain.UnitOfWork;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Rhythm.Domain.Entities;
+using Rhythm.Domain.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Rhythm.Infrastructure
 {

@@ -4,6 +4,8 @@ using System.Data.Entity;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Context;
 using Rhythm.Domain.Entities;
+using Rhythm.Domain.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Rhythm.Domain.Repository
 {
@@ -42,6 +44,11 @@ namespace Rhythm.Domain.Repository
         public async Task<ChiefUser> GetUserAsync(int chiefUser)
         {
             return await _db.ChiefUsers.FindAsync(chiefUser);
+        }
+
+        public DogUserManager GetUserManagerAsync()
+        {
+            return new DogUserManager(new UserStore<User>(_db));
         }
     }
 }

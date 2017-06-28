@@ -13,7 +13,11 @@ namespace Rhythm.Domain.Identity
 {
     public class DogUserManager : UserManager<User>
     {
-        public DogUserManager(IUserStore<User> store) : base(store) { }
+        public DogUserManager(IUserStore<User> store)
+            : base(store)
+        {
+
+        }
 
         public static DogUserManager Create(IdentityFactoryOptions<DogUserManager> options,
             IOwinContext context)
