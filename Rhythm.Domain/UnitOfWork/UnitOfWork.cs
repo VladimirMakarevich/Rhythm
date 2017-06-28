@@ -114,7 +114,7 @@ namespace Rhythm.Domain.UnitOfWork
             }
         }
 
-        public async Task Save()
+        public async Task SaveAsync()
         {
             await _db.SaveChangesAsync();
             Dispose();

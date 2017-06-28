@@ -26,7 +26,7 @@ namespace Rhythm.Controllers
 
         public async Task<ActionResult> Index(int page = 1)
         {
-            var rsses = await _rssProvider.GetRsses();
+            var rsses = await _rssProvider.GetRssesAsync();
             var rssesViewModel = _rssMapper.ToRssesViewModel(rsses, page);
 
             return View(rssesViewModel);
@@ -34,7 +34,7 @@ namespace Rhythm.Controllers
 
         public async Task<ActionResult> GetRss(int id, int page = 1)
         {
-            var rss = await _rssProvider.GetRss(id);
+            var rss = await _rssProvider.GetRssAsync(id);
             var rssFeed = _rssCore.GetRssFeed(rss.Url);
 
             var rssListViewModel = _rssMapper.ToRssListViewModel(rss, rssFeed, page);
