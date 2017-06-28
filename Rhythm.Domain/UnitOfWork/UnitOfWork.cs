@@ -1,6 +1,7 @@
 ﻿using System;
 using Rhythm.Domain.Repository;
 using Rhythm.Domain.Context;
+using System.Threading.Tasks;
 
 namespace Rhythm.Domain.UnitOfWork
 {
@@ -113,9 +114,10 @@ namespace Rhythm.Domain.UnitOfWork
             }
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
+            Dispose();
         }
 
         private bool disposed = false;

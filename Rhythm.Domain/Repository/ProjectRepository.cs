@@ -8,9 +8,10 @@ using System;
 
 namespace Rhythm.Domain.Repository
 {
-    public class ProjectRepository : IProjectRepository, IRepository
+    public class ProjectRepository : IProjectRepository
     {
         DogCodingContext _db;
+
         public ProjectRepository(DogCodingContext db)
         {
             _db = db;
@@ -47,26 +48,6 @@ namespace Rhythm.Domain.Repository
         {
             _db.Projects.Remove(project);
             await _db.SaveChangesAsync();
-        }
-
-        private bool _disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _db.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

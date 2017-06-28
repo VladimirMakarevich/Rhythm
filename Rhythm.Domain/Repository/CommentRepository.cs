@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
@@ -9,9 +8,10 @@ using Rhythm.Domain.Entities;
 
 namespace Rhythm.Domain.Repository
 {
-    public class CommentRepository : ICommentRepository, IRepository
+    public class CommentRepository : ICommentRepository
     {
         DogCodingContext _db;
+
         public CommentRepository(DogCodingContext db)
         {
             _db = db;
@@ -22,6 +22,7 @@ namespace Rhythm.Domain.Repository
             comment.PostedOn = DateTime.Now;
             comment.Post.CountComments++;
             _db.Comments.Add(comment);
+
             await _db.SaveChangesAsync();
         }
 
@@ -29,6 +30,7 @@ namespace Rhythm.Domain.Repository
         {
             comment.Modified = DateTime.Now;
             _db.Entry(comment).State = EntityState.Modified;
+
             await _db.SaveChangesAsync();
         }
 
@@ -36,6 +38,7 @@ namespace Rhythm.Domain.Repository
         {
             comment.Post.CountComments--;
             _db.Comments.Remove(comment);
+
             await _db.SaveChangesAsync();
         }
 
@@ -47,26 +50,6 @@ namespace Rhythm.Domain.Repository
         public async Task<Comment> GetCommentAsync(int id)
         {
             return await _db.Comments.FirstOrDefaultAsync(c => c.Id == id);
-        }
-
-        private bool _disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _db.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         public IEnumerable<Comment> GetComments()

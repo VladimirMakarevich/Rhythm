@@ -1,8 +1,5 @@
 ﻿using Rhythm.BL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Rhythm.Domain.Entities;
 using Rhythm.Domain.UnitOfWork;
@@ -20,18 +17,24 @@ namespace Rhythm.BL.Provider
 
         public async Task CreateRssAsync(Rss rss)
         {
-            await _uow.Rss.CreateRssAsync(rss);
+            _uow.Rss.CreateRssAsync(rss);
+
+            await _uow.SaveAsync();
         }
 
         public async Task DeleteRssAsync(int id)
         {
             var rss = await GetRssAsync(id);
-            await _uow.Rss.DeleteRssAsync(rss);
+            _uow.Rss.DeleteRssAsync(rss);
+
+            await _uow.SaveAsync();
         }
 
         public async Task EditRssAsync(Rss rss)
         {
-            await _uow.Rss.EditRssAsync(rss);
+            _uow.Rss.EditRssAsync(rss);
+
+            await _uow.SaveAsync();
         }
 
         public async Task<Rss> GetRssAsync(int id)

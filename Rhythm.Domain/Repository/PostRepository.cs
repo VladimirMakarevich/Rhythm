@@ -1,6 +1,4 @@
 ﻿using Rhythm.Domain.Entities;
-using System.Linq;
-using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Rhythm.Domain.Context;
@@ -9,9 +7,10 @@ using System.Collections.Generic;
 
 namespace Rhythm.Domain.Repository
 {
-    public class PostRepository : IPostRepository, IRepository
+    public class PostRepository : IPostRepository
     {
         DogCodingContext _db;
+
         public PostRepository(DogCodingContext db)
         {
             _db = db;
@@ -47,26 +46,6 @@ namespace Rhythm.Domain.Repository
         public async Task<Post> GetPostAsync(int id)
         {
             return await _db.Posts.FirstOrDefaultAsync(p => p.Id == id);
-        }
-
-        private bool _disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _db.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         public IEnumerable<Post> GetPosts()

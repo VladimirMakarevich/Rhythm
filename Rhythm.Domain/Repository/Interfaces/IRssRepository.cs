@@ -9,8 +9,8 @@ namespace Rhythm.Domain.Repository.Interfaces
     {
         Task<Rss> GetRssAsync(int id);
         Task<IEnumerable<Rss>> GetRssesAsync();
-        Task CreateRssAsync(Rss rss);
-        Task EditRssAsync(Rss rss);
-        Task DeleteRssAsync(Rss rss);
+        void CreateRssAsync(Rss rss);
+        void EditRssAsync(Rss rss);
+        void DeleteRssAsync(Rss rss);
     }
 }

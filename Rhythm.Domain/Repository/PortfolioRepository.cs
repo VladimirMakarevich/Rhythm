@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using Rhythm.Domain.Repository.Interfaces;
 using Rhythm.Domain.Entities;
 using Rhythm.Domain.Context;
-using System;
 
 namespace Rhythm.Domain.Repository
 {
-    public class PortfolioRepository : IPortfolioRepository, IRepository
+    public class PortfolioRepository : IPortfolioRepository
     {
         DogCodingContext _db;
+
         public PortfolioRepository(DogCodingContext db)
         {
             _db = db;
@@ -52,26 +52,6 @@ namespace Rhythm.Domain.Repository
         public async Task<Portfolio> GetPortfolioByUserAsync(int userId)
         {
             return await _db.Portfolios.FirstOrDefaultAsync(user => user.Id == userId);
-        }
-
-        private bool _disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _db.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

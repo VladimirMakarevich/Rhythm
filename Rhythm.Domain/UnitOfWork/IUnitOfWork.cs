@@ -1,4 +1,5 @@
 ﻿using Rhythm.Domain.Repository;
+using System.Threading.Tasks;
 
 namespace Rhythm.Domain.UnitOfWork
 {
@@ -12,6 +13,6 @@ namespace Rhythm.Domain.UnitOfWork
         PortfolioRepository Portfolio { get; }
         CommentRepository Comment { get; }
         ProjectRepository Project { get; }
-        void Save();
+        Task SaveAsync();
     }
 }
