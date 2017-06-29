@@ -5,13 +5,14 @@ namespace Rhythm.Controllers
 {
     public abstract class DefaultController : Controller
     {
-        public IPortfolioProvider _portfolioProvider { get; set; }
-        public IUserProvider _userProvider { get; set; }
-        public ICategoryProvider _categoryProvider { get; set; }
-        public ICommentProvider _commentProvider { get; set; }
-        public IPostProvider _postProvider { get; set; }
-        public IRssProvider _rssProvider { get; set; }
-        public ITagProvider _tagProvider { get; set; }
-        public IArchiveProvider _archiveProvider { get; set; }
+        internal IPortfolioProvider _portfolioProvider { get; set; }
+        internal IUserProvider _userProvider { get; set; }
+        internal ICategoryProvider _categoryProvider { get; set; }
+        internal ICommentProvider _commentProvider { get; set; }
+        internal IPostProvider _postProvider { get; set; }
+        internal IRssProvider _rssProvider { get; set; }
+        internal ITagProvider _tagProvider { get; set; }
+        internal IArchiveProvider _archiveProvider { get; set; }
+        internal IProjectProvider _projectProvider { get; set; }
     }
 }

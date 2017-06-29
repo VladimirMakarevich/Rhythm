@@ -802,6 +802,7 @@
     <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\ContactsMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
+    <Compile Include="Mappers\ProjectMapper.cs" />
     <Compile Include="Mappers\RecentContentMapper.cs" />
     <Compile Include="Mappers\RssMapper.cs" />
     <Compile Include="Mappers\SearchResultMapper.cs" />
