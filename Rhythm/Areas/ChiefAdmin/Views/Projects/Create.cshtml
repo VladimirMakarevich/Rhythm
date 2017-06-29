@@ -52,6 +52,20 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @name = "Url", @id = "Url", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => Date.StackTechnologies, new { htmlAttributes = new { @name = "Date", @id = "Date", @class = "input-md form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
