@@ -13,5 +13,6 @@ namespace Rhythm.Models
         public string StackTechnologies { get; set; }
         public string Url { get; set; }
         public string Date { get; set; }
+        public string Description { get; set; }
     }
 }

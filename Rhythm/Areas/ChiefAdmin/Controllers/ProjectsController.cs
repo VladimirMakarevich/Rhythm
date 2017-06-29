@@ -43,6 +43,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Create(ProjectAdminViewModel projectViewModel)
         {
             if (ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public async Task<ActionResult> Edit(ProjectAdminViewModel projectViewModel)
         {
             if (ModelState.IsValid)
