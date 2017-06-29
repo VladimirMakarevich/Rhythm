@@ -19,7 +19,19 @@ namespace Rhythm.Mappers
             var portfolioViewModel = _mapper.Map<Portfolio, PortfolioAdminViewModel>(portfolio);
             var userViewModel = _mapper.Map<ChiefUser, ChiefUserAdminViewModel>(user);
 
-            return new CommonUserViewModel() { PortfolioViewModel = portfolioViewModel , UserViewModel = userViewModel };
+            return new CommonUserViewModel() { PortfolioViewModel = portfolioViewModel , UserViewModel = userViewModel, HeaderViewModel = GetHeader() };
+        }
+
+        private HeaderViewModel GetHeader()
+        {
+            return new HeaderViewModel
+            {
+                Title = "About Me",
+                Text = "",
+                FirstTagWord = "C#",
+                SecondTagWord = ".NET MVC",
+                ThirdTagWord = "WEB"
+            };
         }
     }
 }
