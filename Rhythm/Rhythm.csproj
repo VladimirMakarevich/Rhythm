@@ -801,6 +801,7 @@
     <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\CommentMapper.cs" />
     <Compile Include="Mappers\ContactsMapper.cs" />
+    <Compile Include="Mappers\PortfolioMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
     <Compile Include="Mappers\ProjectMapper.cs" />
     <Compile Include="Mappers\RecentContentMapper.cs" />
@@ -826,6 +827,8 @@
     <Compile Include="Models\ArchiveViewModel.cs" />
     <Compile Include="Models\ContactsResultViewModel.cs" />
     <Compile Include="Models\HeaderViewModel.cs" />
+    <Compile Include="Models\PortfolioViewModel.cs" />
+    <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\RecentViewModel\ArticleWidgetViewModel.cs" />
     <Compile Include="Models\RecentViewModel\CategoryRecentViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />

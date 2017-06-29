@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Rhythm.Domain.Entities;
+using Rhythm.Models;
 
 namespace Rhythm.Mappers
 {
@@ -15,5 +15,14 @@ namespace Rhythm.Mappers
             _mapper = mapper;
         }
 
+        public List<ProjectViewModel> ToProjectsViewModel(List<Project> projects)
+        {
+            return projects.Select(ToProjectViewModel).ToList();
+        }
+
+        public ProjectViewModel ToProjectViewModel(Project project)
+        {
+            return _mapper.Map<Project, ProjectViewModel>(project);
+        }
     }
 }

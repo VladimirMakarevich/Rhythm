@@ -1,19 +1,65 @@
-﻿
+﻿@model Rhythm.Models.PortfolioViewModel
+
 @{
     ViewBag.Title = "Projects";
-    ViewBag.Text = "";
-    ViewBag.WordFirst = "C#";
-    ViewBag.WordSecond = "ASP.NET MVC";
-    ViewBag.WordThird = "WEB";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.Partial("_NavigationPanel")
-@*@Html.Partial("_HeadSection", Model.HeaderViewModel)*@
+@Html.Partial("_HeadSection", Model.Header)
 
 <!-- Section -->
 <section class="page-section">
     <div class="container relative">
+
+        @foreach (var project in Model.Projects)
+        {
+            <!-- Divider -->
+            <hr class="mb-70 mb-xs-30" />
+            <!-- End Divider -->
+
+            <div class="section-text mb-60 mb-sm-40">
+                <div class="row">
+                    <div class="col-md-4 mb-sm-50 mb-xs-30">
+
+                        <!-- Project Detail -->
+                        <div class="work-detail">
+                            <h5 class="font-alt mt-0 mb-20">Project Details</h5>
+                            <div class="work-full-detail">
+                                <p>
+                                    <strong>Project:</strong>
+                                    @project.NameProject
+                                </p>
+                                <p>
+                                    <strong>Date:</strong>
+                                    @project.Date
+                                </p>
+                                <p>
+                                    <strong>Link:</strong>
+                                    <a href="@project.Url" target="_blank">@project.Url</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End Project Detail -->
+                    </div>
+
+                    <h5 class="font-alt mt-0 mb-20">Project Description</h5>
+                    <div class="col-md-4 col-sm-6 mb-sm-50 mb-xs-30">
+                        <strong>Framework:</strong> @project.Framework <br />
+                        <strong>IDE:</strong> @project.IDE <br />
+                        <strong>Database:</strong> @project.Database <br />
+                        <strong>Stack Technologies:</strong> @project.StackTechnologies
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-sm-50 mb-xs-30">
+                        @project.
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        qwerty
         <!-- Divider -->
         <hr class="mb-70 mb-xs-30" />
         <!-- End Divider -->
