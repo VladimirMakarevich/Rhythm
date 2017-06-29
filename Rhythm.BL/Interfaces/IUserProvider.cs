@@ -11,5 +11,6 @@ namespace Rhythm.BL.Interfaces
         Task CreateUserAsync(ChiefUser chiefUser);
         Task EditUser(ChiefUser chiefUser);
         Task DeleteUserAsync(int id);
+        Task<bool> SendMessage(string name, string email, string message);
     }
 }

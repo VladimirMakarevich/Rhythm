@@ -14,7 +14,8 @@ namespace Rhythm.Models
         public string Message { get; set; }
         [IsValidBool]
         public bool AreLikeDogs { get; set; }
-        public HeaderViewModel HeaderViewModel { get; set; }
+        public HeaderViewModel Header { get; set; }
+        public ContactsResultViewModel ResultMessage { get; set; }
     }
 }
 

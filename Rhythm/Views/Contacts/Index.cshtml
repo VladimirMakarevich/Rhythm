@@ -1,32 +1,26 @@
 ﻿@model Rhythm.Models.ContactViewModel
 
 @{
-    ViewBag.Title = "Contact";
-    ViewBag.Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC";
-    ViewBag.WordFirst = "C#";
-    ViewBag.WordSecond = "ASP.NET MVC";
-    ViewBag.WordThird = "WEB";
     ViewBag.Message = "Contact with me";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection", Model.HeaderViewModel)
+@Html.Partial("_HeadSection", Model.Header)
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">
     <div class="container relative">
         <h1 class="section-title font-alt mb-70 mb-sm-40">
-            @if (ViewBag.ThxMessage == null)
+            @if (Model.ResultMessage.Message != null)
             {
-                @ViewBag.Message
-            }
-            else
-            {
-                @ViewBag.ThxMessage
+                @Model.ResultMessage.Message
             }
             <br />
-            <a style="color:red">@ViewBag.MessageError</a>
+            @if (Model.ResultMessage.Error != null)
+            {
+                <a style="color:red">@Model.ResultMessage.Error</a>
+            }
         </h1>
         <div class="row mb-60 mb-xs-40">
             <div class="col-md-8 col-md-offset-2">

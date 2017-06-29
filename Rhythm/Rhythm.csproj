@@ -800,6 +800,7 @@
     <Compile Include="Mappers\AutoMapperConfig.cs" />
     <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\CommentMapper.cs" />
+    <Compile Include="Mappers\ContactsMapper.cs" />
     <Compile Include="Mappers\PostMapper.cs" />
     <Compile Include="Mappers\RecentContentMapper.cs" />
     <Compile Include="Mappers\RssMapper.cs" />
@@ -822,6 +823,7 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\ArchiveViewModel.cs" />
+    <Compile Include="Models\ContactsResultViewModel.cs" />
     <Compile Include="Models\HeaderViewModel.cs" />
     <Compile Include="Models\RecentViewModel\ArticleWidgetViewModel.cs" />
     <Compile Include="Models\RecentViewModel\CategoryRecentViewModel.cs" />

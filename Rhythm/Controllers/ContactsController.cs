@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Net.Mail;
+﻿using System.Web.Mvc;
 using Rhythm.Models;
 using System.Threading.Tasks;
+using Rhythm.BL.Interfaces;
+using Rhythm.Mappers;
 
 namespace Rhythm.Controllers
 {
     public class ContactsController : DefaultController
     {
-        public ContactsController()
+        private readonly ContactsMapper _contactsMapper;
+        public ContactsController(IUserProvider userProvider, ContactsMapper contactsMapper)
         {
-                
+            _userProvider = userProvider;
+            _contactsMapper = contactsMapper;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var contactViewModel = _contactsMapper.ToGetHeaderViewModel();
+
+            return View(contactViewModel);
         }
 
         [HttpPost]
@@ -27,33 +28,18 @@ namespace Rhythm.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                MailMessage msz = new MailMessage();
-                msz.From = new MailAddress(contact.Email);
-                msz.To.Add("justadreampictures@gmail.com");
-                msz.Body = String.Format("Name: " + contact.Name + "\n\nE-mail: " + contact.Email + "\n\nMessage: " + contact.Message);
-                msz.Subject = "site - DogCoding";
-
-                SmtpClient smpt = new SmtpClient();
-                smpt.Host = "smtp.gmail.com";
-                smpt.Port = 587;
-                smpt.Credentials = new System.Net.NetworkCredential("justadreampictures", "q26s4hcxz2332Q!@W");
-
-                smpt.EnableSsl = true;
-                await smpt.SendMailAsync(msz);
+                var result = await _userProvider.SendMessage(contact.Name, contact.Email, contact.Message);
+                var contactViewModel = _contactsMapper.ToContactViewModel(result);
 
                 ModelState.Clear();
-                ViewBag.ThxMessage = "Thank you for Contacting me.";
-
-                //ViewBag.MessageError = "Sorry, but a problem occured on the server, please try again after some time.";
-
+                return View(contactViewModel);
             }
             else
             {
-                ViewBag.MessageError = "You have entered invalid data.";
-            }
+                var contactErrorViewModel = _contactsMapper.ToMessageErrorViewModel(contact);
 
-            return View();
+                return View(contactErrorViewModel);
+            }
         }
     }
 }
