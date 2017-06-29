@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201706291014318_changed-project-entity-added-date-and-url.Designer.cs">
       <DependentUpon>201706291014318_changed-project-entity-added-date-and-url.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706291108341_changed-project-entity-added-description-property.cs" />
+    <Compile Include="Migrations\201706291108341_changed-project-entity-added-description-property.Designer.cs">
+      <DependentUpon>201706291108341_changed-project-entity-added-description-property.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\IProjectRepository.cs" />
@@ -201,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706291014318_changed-project-entity-added-date-and-url.resx">
       <DependentUpon>201706291014318_changed-project-entity-added-date-and-url.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706291108341_changed-project-entity-added-description-property.resx">
+      <DependentUpon>201706291108341_changed-project-entity-added-description-property.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
