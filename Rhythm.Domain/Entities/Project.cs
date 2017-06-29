@@ -12,6 +12,8 @@ namespace Rhythm.Domain.Entities
         public string Database { get; set; }
         public string IDE { get; set; }
         public string StackTechnologies { get; set; }
+        public string Url { get; set; }
+        public string Date { get; set; }
 
         public virtual Portfolio Portfolio { get; set; }
     }
