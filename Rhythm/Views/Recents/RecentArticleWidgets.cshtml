@@ -11,6 +11,9 @@
         <h2 class="blog-item-title">
             @Html.ActionLink(Model.Title, "Post", "Posts", new { id = Model.Id }, new { @class = "" })
         </h2>
-        @Html.Raw(Model.ArticleContent)
+        @if (Model.ArticleContent != null)
+        {
+            @Html.Raw(Model.ArticleContent)
+        }
     </div>
 </div>
