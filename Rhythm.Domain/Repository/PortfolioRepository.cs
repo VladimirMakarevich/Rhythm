@@ -51,7 +51,7 @@ namespace Rhythm.Domain.Repository
 
         public async Task<Portfolio> GetPortfolioByUserAsync(int userId)
         {
-            return await _db.Portfolios.FirstOrDefaultAsync(user => user.Id == userId);
+            return await _db.Portfolios.FirstOrDefaultAsync(user => user.ChiefUserId == userId);
         }
     }
 }

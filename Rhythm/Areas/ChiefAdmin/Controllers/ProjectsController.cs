@@ -49,7 +49,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             if (ModelState.IsValid)
             {
                 var project = _projectMapper.ToProject(projectViewModel);
-                await _projectProvider.CreateProjectAsync(project);
+                await _projectProvider.CreateProjectAsync(project, projectViewModel.PortfolioId);
 
                 return RedirectToAction("Index");
             }
@@ -76,7 +76,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             if (ModelState.IsValid)
             {
                 var project = _projectMapper.ToProject(projectViewModel);
-                await _projectProvider.EditProjectAsync(project);
+                await _projectProvider.EditProjectAsync(project, projectViewModel.PortfolioId);
 
                 return RedirectToAction("Index");
             }

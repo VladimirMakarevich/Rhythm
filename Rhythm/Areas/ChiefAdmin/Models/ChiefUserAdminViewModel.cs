@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Rhythm.Areas.ChiefAdmin.Models
 {
@@ -28,6 +29,8 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         public string Github { get; set; }
         [Display(Name = "LinkedIn")]
         public string Linkedin { get; set; }
+        public string ImagePath { get; set; }
+        public HttpPostedFileBase FileBase { get; set; }
 
         public List<PortfolioAdminViewModel> PortfolioViewModel { get; set; }
     }

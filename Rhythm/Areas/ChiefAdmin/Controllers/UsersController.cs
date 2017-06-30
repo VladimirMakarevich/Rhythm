@@ -5,6 +5,7 @@ using Rhythm.Areas.ChiefAdmin.Models;
 using System;
 using Rhythm.Mappers.ChiefAdmin;
 using Rhythm.BL.Interfaces;
+using System.Web;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
 {
@@ -13,6 +14,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
     {
         private UserAdminMapper _userMapper;
         private PortfolioAdminMapper _portfolioMapper;
+        private string _imagePath;
 
         public UsersController(IUserProvider userProvider, IPortfolioProvider portfolioProvider, UserAdminMapper userMapper,
             PortfolioAdminMapper portfolioMapper)
@@ -54,17 +56,15 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                if (chiefUserViewModel.FileBase != null)
                 {
-                    var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
-                    await _userProvider.CreateUserAsync(chiefUser);
+                    _imagePath = SaveFileData(chiefUserViewModel.FileBase);
+                }
+                var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel, _imagePath);
 
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                await _userProvider.CreateUserAsync(chiefUser, chiefUserViewModel.PortfolioId);
+
+                return RedirectToAction("Index");
             }
 
             await DropDownListPortfolioAsync(chiefUserViewModel.PortfolioId);
@@ -90,17 +90,16 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                if (chiefUserViewModel.FileBase != null)
                 {
-                    var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel);
-                    await _userProvider.EditUser(chiefUser);
+                    _imagePath = SaveFileData(chiefUserViewModel.FileBase);
+                }
 
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                var chiefUser = _userMapper.ToChiefUser(chiefUserViewModel, _imagePath);
+
+                await _userProvider.EditUser(chiefUser, chiefUserViewModel.PortfolioId);
+
+                return RedirectToAction("Index");
             }
 
             await DropDownListPortfolioAsync(chiefUserViewModel.PortfolioId);
@@ -133,6 +132,33 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
                         select m;
 
             ViewBag.PortfolioId = new SelectList(query, "Id", "NamePortfolio", selectedItem);
+        }
+        #endregion
+
+        #region images
+        public async Task<FileContentResult> GetImageToUser(int id)
+        {
+            var chiefUser = await _userProvider.GetUserAsync(id);
+
+            if (chiefUser.ImagePath != null)
+            {
+                var dataByte = System.IO.File.ReadAllBytes(chiefUser.ImagePath);
+
+                return File(dataByte, "image/png");
+            }
+
+            return null;
+        }
+
+        private string SaveFileData(HttpPostedFileBase fileData)
+        {
+            var fileHashName = fileData.GetHashCode().ToString();
+            var fileFullName = $"{fileHashName}_{fileData.FileName}";
+            var filePath = Server.MapPath("~/Content/images/" + fileFullName);
+
+            fileData.SaveAs(filePath);
+
+            return filePath;
         }
         #endregion
     }

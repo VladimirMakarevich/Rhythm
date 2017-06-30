@@ -27,8 +27,13 @@ namespace Rhythm.Mappers.ChiefAdmin
             return _mapper.Map<ChiefUser, ChiefUserAdminViewModel>(user);
         }
 
-        public ChiefUser ToChiefUser(ChiefUserAdminViewModel userViewModel)
+        public ChiefUser ToChiefUser(ChiefUserAdminViewModel userViewModel, string imagePath)
         {
+            if (imagePath != null)
+            {
+                userViewModel.ImagePath = imagePath;
+            }
+
             return _mapper.Map<ChiefUserAdminViewModel, ChiefUser>(userViewModel);
         }
     }

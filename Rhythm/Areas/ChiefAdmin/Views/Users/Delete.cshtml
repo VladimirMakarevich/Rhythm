@@ -105,6 +105,14 @@
                 </dd>
 
             </dl>
+
+            @Html.Label("Photo: ")
+            <div class="mb-20 mb-md-10">
+                @if (Model.ImagePath != null)
+                {
+                    <img width="300" height="300" src="@Url.Action("GetImageToUser", "Users", new { id = Model.Id })" />
+                }
+            </div>
         </div>
     </div>
 </div>

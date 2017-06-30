@@ -160,6 +160,7 @@ namespace Rhythm.BL.Provider
         {
             int countArticle;
             var allPosts = _uow.Post.GetPosts();
+            // TODO!
             var count = allPosts.Max(p => p.Id);
             Random r = new Random();
 

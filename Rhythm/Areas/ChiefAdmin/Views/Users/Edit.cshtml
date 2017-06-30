@@ -10,7 +10,7 @@
         <a href="@Url.Action("Index", "Users")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
     </div>
     <br />
-    @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { @role = "form", @class = "form" }))
+    @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
     {
 
         <div class="form-horizontal">
@@ -95,6 +95,24 @@
                 </div>
             </div>
 
+            <hr class="mb-30" />
+
+            @Html.HiddenFor(m => m.ImagePath)
+            @Html.Label("Load Photo: ")
+            <div class="mb-20 mb-md-10">
+                @Html.TextBoxFor(m => m.FileBase, new { @type = "file", id = "FileBase", @value = "Save" })
+                <p class="help-block">
+                    Choose photo
+                </p>
+            </div>
+            @Html.Label("Now: ")
+            <div class="mb-20 mb-md-10">
+                @if (Model.ImagePath != null)
+                {
+                    <img width="300" height="300" src="@Url.Action("GetImageToUser", "Users", new { id = Model.Id })" />
+                }
+            </div>
+
             <div class="clearfix">
                 <div class="cf-left-col">
                     <!-- Inform Tip -->
@@ -105,7 +123,7 @@
                 <div class="cf-right-col">
                     <!-- Send Button -->
                     <div class="align-right pt-10">
-                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Portfolio</button>
+                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save User</button>
                     </div>
                 </div>
             </div>

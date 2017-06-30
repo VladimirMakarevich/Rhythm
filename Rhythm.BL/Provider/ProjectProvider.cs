@@ -16,8 +16,11 @@ namespace Rhythm.BL.Provider
             _uow = uow;
         }
 
-        public async Task CreateProjectAsync(Project project)
+        public async Task CreateProjectAsync(Project project, int portfolioId)
         {
+            var portfolio = await _uow.Portfolio.GetPortfolioAsync(portfolioId);
+            project.Portfolio = portfolio;
+
             await _uow.Project.CreateProjectAsync(project);
         }
 
@@ -28,8 +31,11 @@ namespace Rhythm.BL.Provider
             await _uow.Project.DeleteProjectAsync(project);
         }
 
-        public async Task EditProjectAsync(Project project)
+        public async Task EditProjectAsync(Project project, int portfolioId)
         {
+            var portfolio = await _uow.Portfolio.GetPortfolioAsync(portfolioId);
+            project.Portfolio = portfolio;
+
             await _uow.Project.EditProjectAsync(project);
         }
 

@@ -9,8 +9,8 @@ namespace Rhythm.BL.Interfaces
         Task<List<Project>> GetListProjectsAsync();
         Task<Project> GetProjectAsync(int id);
         Task<Project> GetProjectByPortfolioAsync(int portfolioId);
-        Task CreateProjectAsync(Project project);
-        Task EditProjectAsync(Project project);
+        Task CreateProjectAsync(Project project, int portfolioId);
+        Task EditProjectAsync(Project project, int portfolioId);
         Task DeleteProjectAsync(int id);
     }
 }

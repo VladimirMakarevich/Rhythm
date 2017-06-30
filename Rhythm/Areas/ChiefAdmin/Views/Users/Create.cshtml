@@ -10,7 +10,7 @@
         <a href="@Url.Action("Index", "Users")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
     </div>
     <br />
-    @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @role = "form", @class = "form" }))
+    @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
     {
         <div class="form-horizontal">
 
@@ -91,6 +91,17 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Linkedin, new { htmlAttributes = new { @class = "input-md form-control" } })
                 </div>
+            </div>
+
+            <hr class="mb-30" />
+
+            @Html.HiddenFor(m => m.ImagePath)
+            @Html.Label("Load Photo: ")
+            <div class="mb-20 mb-md-10">
+                @Html.TextBoxFor(m => m.FileBase, new { @type = "file", id = "FileBase", @value = "Save" })
+                <p class="help-block">
+                    Choose photo
+                </p>
             </div>
 
             <div class="clearfix">

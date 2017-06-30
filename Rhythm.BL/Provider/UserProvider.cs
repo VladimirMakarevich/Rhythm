@@ -18,8 +18,11 @@ namespace Rhythm.BL.Provider
             _uow = uow;
         }
 
-        public async Task CreateUserAsync(ChiefUser chiefUser)
+        public async Task CreateUserAsync(ChiefUser chiefUser, int portfolioId)
         {
+            var portfolio = await _uow.Portfolio.GetPortfolioAsync(portfolioId);
+            chiefUser.Portfolios.Add(portfolio);
+
             await _uow.User.CreateUserAsync(chiefUser);
         }
 
@@ -30,8 +33,11 @@ namespace Rhythm.BL.Provider
             await _uow.User.DeleteUserAsync(chiefUser);
         }
 
-        public async Task EditUser(ChiefUser chiefUser)
+        public async Task EditUser(ChiefUser chiefUser, int portfolioId)
         {
+            var portfolio = await _uow.Portfolio.GetPortfolioAsync(portfolioId);
+            chiefUser.Portfolios.Add(portfolio);
+
             await _uow.User.EditUser(chiefUser);
         }
 
