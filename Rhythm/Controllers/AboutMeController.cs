@@ -36,5 +36,19 @@ namespace Rhythm.Controllers
 
             return View(userViewModel);
         }
+
+        public async Task<FileContentResult> GetImage(int id)
+        {
+            var chiefUser = await _userProvider.GetUserAsync(id);
+
+            if (chiefUser.ImagePath != null)
+            {
+                var dataByte = System.IO.File.ReadAllBytes(chiefUser.ImagePath);
+
+                return File(dataByte, "image/png");
+            }
+
+            return null;
+        }
     }
 }
