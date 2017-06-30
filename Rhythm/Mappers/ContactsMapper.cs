@@ -25,14 +25,14 @@ namespace Rhythm.Mappers
             };
         }
 
-        public ContactViewModel ToContactViewModel(bool result)
-        {
-            return new ContactViewModel
-            {
-                Header = GetHeader(),
-                ResultMessage = GetMessageResult(result)
-            };
-        }
+        //public ContactViewModel ToContactViewModel(bool result)
+        //{
+        //    return new ContactViewModel
+        //    {
+        //        Header = GetHeader(),
+        //        ResultMessage = GetMessageResult(result)
+        //    };
+        //}
 
         private ContactsResultViewModel GetMessageResult(bool result)
         {

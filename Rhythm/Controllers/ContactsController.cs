@@ -29,10 +29,10 @@ namespace Rhythm.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _userProvider.SendMessage(contact.Name, contact.Email, contact.Message);
-                var contactViewModel = _contactsMapper.ToContactViewModel(result);
+                //var contactViewModel = _contactsMapper.ToContactViewModel(result);
 
                 ModelState.Clear();
-                return View(contactViewModel);
+                return View("Thanks");
             }
             else
             {
@@ -40,6 +40,11 @@ namespace Rhythm.Controllers
 
                 return View(contactErrorViewModel);
             }
+        }
+
+        public ActionResult Thanks()
+        {
+            return View();
         }
     }
 }
