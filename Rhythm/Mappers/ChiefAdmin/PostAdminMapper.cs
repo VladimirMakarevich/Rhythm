@@ -3,6 +3,7 @@ using System.Linq;
 using Rhythm.Domain.Entities;
 using AutoMapper;
 using Rhythm.Areas.ChiefAdmin.Models;
+using System;
 
 namespace Rhythm.Mappers.ChiefAdmin
 {
@@ -29,29 +30,39 @@ namespace Rhythm.Mappers.ChiefAdmin
 
         public ImageAdminViewModel ToImageViewModel(Post post)
         {
+            byte[] dataByte = System.IO.File.ReadAllBytes(post.ImagePath);
+
             return new ImageAdminViewModel
             {
                 PostId = post.Id,
-                ImageDataByte = post.ImageData,
+                ImageDataByte = dataByte,
                 ImageMime = post.ImageMime
             };
         }
 
-        public Post FromImageViewModelToPost(ImageAdminViewModel imageViewModel, Post post)
-        {
-            byte[] image = new byte[imageViewModel.ImageData.ContentLength];
-            imageViewModel.ImageData.InputStream.Read(image, 0, image.Length);
-           
-            post.ImageData = image;
-            post.ImageMime = imageViewModel.ImageMime;
+        //public Post FromImageViewModelToPost(ImageAdminViewModel imageViewModel, Post post)
+        //{
+        //    byte[] image = new byte[imageViewModel.ImageData.ContentLength];
+        //    imageViewModel.ImageData.InputStream.Read(image, 0, image.Length);
 
-            return post;
-        }
+        //    post.ImageData = image;
+        //    post.ImageMime = imageViewModel.ImageMime;
+
+        //    return post;
+        //}
 
 
         public List<PostAdminViewModel> ToPostsViewModel(IEnumerable<Post> posts)
         {
             return posts.Select(ToPostViewModel).ToList();
+        }
+
+        public Post FromImagePathToPost(string filePath, string imageMime, Post post)
+        {
+            post.ImagePath = filePath;
+            post.ImageMime = imageMime;
+
+            return post;
         }
     }
 }

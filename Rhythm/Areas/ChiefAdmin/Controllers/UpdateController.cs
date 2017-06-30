@@ -1,9 +1,12 @@
 ﻿using Rhythm.Areas.ChiefAdmin.Models;
 using Rhythm.BL.Interfaces;
 using Rhythm.Mappers.ChiefAdmin;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Rhythm.Areas.ChiefAdmin.Controllers
@@ -90,8 +93,10 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         public async Task<ActionResult> Image(ImageAdminViewModel imageViewModel)
         {
             var post = await _postProvider.GetPostAsync(imageViewModel.PostId);
-            var postUpdated = _postMapper.FromImageViewModelToPost(imageViewModel, post);
-            await _postProvider.ChangePostAsync(postUpdated);
+            var filePath = SaveFileData(imageViewModel);
+            var postEdited = _postMapper.FromImagePathToPost(filePath, imageViewModel.ImageMime, post);
+
+            await _postProvider.ChangePostAsync(postEdited);
 
             return RedirectToAction("listPosts", "Home");
         }
@@ -178,6 +183,19 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
             var categoriesViewModel = _categoryMapper.ToCategoriesViewModel(categories);
 
             ViewBag.Category = new SelectList(categoriesViewModel, "Id", "Name", selectedItem);
+        }
+        #endregion
+
+        #region saveData
+        private string SaveFileData(ImageAdminViewModel imageViewModel)
+        {
+            var fileHashName = imageViewModel.ImageData.GetHashCode().ToString();
+            var fileFullName = $"{fileHashName}_{imageViewModel.ImageData.FileName}";
+            var filePath = Server.MapPath("~/Content/images/" + fileFullName);
+
+            imageViewModel.ImageData.SaveAs(filePath);
+
+            return filePath;
         }
         #endregion
     }
