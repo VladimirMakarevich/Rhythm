@@ -81,9 +81,11 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             var post = await _postProvider.GetPostAsync(id);
 
-            if (post != null)
+            if (post.ImagePath != null)
             {
-                return File(post.ImageData, "image/png");
+                var dataByte = System.IO.File.ReadAllBytes(post.ImagePath);
+
+                return File(dataByte, "image/png");
             }
 
             return null;

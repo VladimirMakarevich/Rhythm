@@ -20,5 +20,6 @@ namespace Rhythm.BL.Interfaces
         Post GetPostWidget();
         Task AddReferencedToPost(Post toPost, int[] tags, int category);
         Task<IEnumerable<Post>> GetPostsByArchiveAsync(int year, int month);
+        Task RemoveImageByPostAsync(Post post);
     }
 }

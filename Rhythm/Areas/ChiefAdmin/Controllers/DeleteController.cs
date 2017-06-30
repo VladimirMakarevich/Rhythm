@@ -54,5 +54,18 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             return RedirectToAction("listComments", "Home");
         }
+
+        public async Task<ActionResult> Image(int id)
+        {
+            var post = await _postProvider.GetPostAsync(id);
+
+            if ((System.IO.File.Exists(post.ImagePath)))
+            {
+                System.IO.File.Delete(post.ImagePath);
+                await _postProvider.RemoveImageByPostAsync(post);
+            }
+
+            return RedirectToAction("Image", "Update", new { id = id });
+        }
     }
 }

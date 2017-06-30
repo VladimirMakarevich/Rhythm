@@ -24,6 +24,7 @@ namespace Rhythm.Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMime { get; set; }
         public int CountComments { get; set; }
+        public string ImagePath { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

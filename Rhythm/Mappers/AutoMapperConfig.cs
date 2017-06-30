@@ -20,6 +20,7 @@ namespace Rhythm.Mappers
         private static void RegisterMappings(IMapperConfigurationExpression config)
         {
             config.CreateMap<Post, PostViewModel>().ReverseMap();
+            config.CreateMap<Post, ImageAdminViewModel>().ReverseMap();
             config.CreateMap<Comment, CommentViewModel>().ReverseMap();
             config.CreateMap<Post, PostRecentViewModel>().ReverseMap();
             config.CreateMap<Comment, CommentRecentViewModel>().ReverseMap();

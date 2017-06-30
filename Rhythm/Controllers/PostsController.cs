@@ -41,9 +41,16 @@ namespace Rhythm.Controllers
 
         public async Task<FileContentResult> GetImage(int id)
         {
-            Post post = await _postProvider.GetPostAsync(id);
+            var post = await _postProvider.GetPostAsync(id);
 
-            return File(post.ImageData, "image/png");
+            if (post.ImagePath != null)
+            {
+                var dataByte = System.IO.File.ReadAllBytes(post.ImagePath);
+
+                return File(dataByte, "image/png");
+            }
+
+            return null;
         }
     }
 }

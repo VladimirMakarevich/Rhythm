@@ -92,7 +92,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         [HttpPost]
         public async Task<ActionResult> Image(ImageAdminViewModel imageViewModel)
         {
-            var post = await _postProvider.GetPostAsync(imageViewModel.PostId);
+            var post = await _postProvider.GetPostAsync(imageViewModel.Id);
             var filePath = SaveFileData(imageViewModel);
             var postEdited = _postMapper.FromImagePathToPost(filePath, imageViewModel.ImageMime, post);
 
@@ -189,11 +189,11 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         #region saveData
         private string SaveFileData(ImageAdminViewModel imageViewModel)
         {
-            var fileHashName = imageViewModel.ImageData.GetHashCode().ToString();
-            var fileFullName = $"{fileHashName}_{imageViewModel.ImageData.FileName}";
+            var fileHashName = imageViewModel.FileBase.GetHashCode().ToString();
+            var fileFullName = $"{fileHashName}_{imageViewModel.FileBase.FileName}";
             var filePath = Server.MapPath("~/Content/images/" + fileFullName);
 
-            imageViewModel.ImageData.SaveAs(filePath);
+            imageViewModel.FileBase.SaveAs(filePath);
 
             return filePath;
         }

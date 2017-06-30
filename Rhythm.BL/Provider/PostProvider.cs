@@ -179,5 +179,13 @@ namespace Rhythm.BL.Provider
 
             return posts.Where(m => m.PostedOn.Month == month && m.PostedOn.Year == year).ToList();
         }
+
+        public async Task RemoveImageByPostAsync(Post post)
+        {
+            post.ImagePath = null;
+            post.Modified = DateTime.Now;
+
+            await _uow.Post.ChangePostAsync(post);
+        }
     }
 }

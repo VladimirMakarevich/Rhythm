@@ -17,6 +17,7 @@ namespace Rhythm.Models
         public DateTime PostedOn { get; set; }
         public DateTime Modified { get; set; }
         public byte[] ImageData { get; set; }
+        public string ImagePath { get; set; }
         public string ImageMime { get; set; }
         public int CountComments { get; set; }
     }

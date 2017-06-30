@@ -30,7 +30,7 @@
                             <span class="separator">&nbsp;</span>
                             <a><i class="fa fa-comments"></i> Comments @post.CountComments </a>
                         </div> 
-                        @if (post.ImageData != null && post.ImageData.Any())
+                        @if (post.ImagePath != null && post.ImagePath.Any())
                         {
                             <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { post.Id })" />
                         }

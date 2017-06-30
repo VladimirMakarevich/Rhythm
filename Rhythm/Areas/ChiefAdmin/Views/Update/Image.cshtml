@@ -8,12 +8,16 @@
 <!-- Section -->
 <section class="page-section">
     <div class="container relative">
-
+        <p>
+            <div class="blog-item-foot">
+                <a href="@Url.Action("Image", "Delete", new { id = Model.Id } )" class="btn btn-mod btn-round  btn-small"> Delete Image </a>
+            </div>
+        </p>
         <!-- Form -->
         @using (Html.BeginForm("Image", "Update", FormMethod.Post, new { enctype = "multipart/form-data", @role = "form", @class = "form" }))
             {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(m => m.PostId)
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.ImagePath)
             @Html.Label("Photo Description: ", new { @for = "exampleInputFile" })
             <div class="mb-20 mb-md-10">
                 <!-- Description -->
@@ -22,16 +26,16 @@
 
                 @Html.Label("Load Photo: ")
                 <div class="mb-20 mb-md-10">
-                    @Html.TextBoxFor(m => m.ImageData, new { @type = "file", id = "ImageData", @value = "Save" })
+                    @Html.TextBoxFor(m => m.FileBase, new { @type = "file", id = "FileBase", @value = "Save" })
                     <p class="help-block">
                         Choose photo
                     </p>
                 </div>
                 @Html.Label("Now: ")
                 <div class="mb-20 mb-md-10">
-                    @if (Model.ImageDataByte != null)
+                    @if (Model.ImageData != null)
                     {
-                        <img width="300" height="300" src="@Url.Action("GetImage", "Home", new { id = Model.PostId })" />
+                        <img width="300" height="300" src="@Url.Action("GetImage", "Home", new { id = Model.Id })" />
                     }
                 </div>
                 <div class="clearfix">

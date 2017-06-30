@@ -30,14 +30,13 @@ namespace Rhythm.Mappers.ChiefAdmin
 
         public ImageAdminViewModel ToImageViewModel(Post post)
         {
-            byte[] dataByte = System.IO.File.ReadAllBytes(post.ImagePath);
-
-            return new ImageAdminViewModel
+            var imageViewModel = _mapper.Map<Post, ImageAdminViewModel>(post);
+            if (post.ImagePath != null)
             {
-                PostId = post.Id,
-                ImageDataByte = dataByte,
-                ImageMime = post.ImageMime
-            };
+                imageViewModel.ImageData = System.IO.File.ReadAllBytes(post.ImagePath);
+            }
+
+            return imageViewModel;
         }
 
         //public Post FromImageViewModelToPost(ImageAdminViewModel imageViewModel, Post post)
