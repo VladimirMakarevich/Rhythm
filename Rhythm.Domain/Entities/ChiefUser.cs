@@ -23,6 +23,7 @@ namespace Rhythm.Domain.Entities
         public string Mobile { get; set; }
         public string Github { get; set; }
         public string Linkedin { get; set; }
+        public string ImagePath { get; set; }
 
         public virtual ICollection<Portfolio> Portfolios { get; set; }
     }

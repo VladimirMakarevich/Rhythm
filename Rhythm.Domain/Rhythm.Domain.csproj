@@ -144,6 +144,10 @@
     <Compile Include="Migrations\201706300608339_added-filePath-prophery-to-Post-entity.Designer.cs">
       <DependentUpon>201706300608339_added-filePath-prophery-to-Post-entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706301444062_added-image-to-chief-user.cs" />
+    <Compile Include="Migrations\201706301444062_added-image-to-chief-user.Designer.cs">
+      <DependentUpon>201706301444062_added-image-to-chief-user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
     <Compile Include="Repository\Interfaces\IProjectRepository.cs" />
@@ -215,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706300608339_added-filePath-prophery-to-Post-entity.resx">
       <DependentUpon>201706300608339_added-filePath-prophery-to-Post-entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706301444062_added-image-to-chief-user.resx">
+      <DependentUpon>201706301444062_added-image-to-chief-user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
