@@ -5,7 +5,7 @@
 }
 
 @Html.Partial("_NavigationPanel")
-@Html.Partial("_HeadSection", Model.HeaderViewModel)
+@Html.Partial("_HeadSection", Model.Header)
 
 <!-- Section -->
 <section class="page-section">
@@ -15,46 +15,55 @@
                 <h2 class="font-alt">@Model.UserViewModel.FirstName @Model.UserViewModel.LastName - @Model.PortfolioViewModel.Objective</h2>
 
                 <hr class="mb-30" />
+                <div class="section-text mb-60 mb-sm-40">
+                    <div class="row">
+                        <div class="col-md-8 mb-sm-50 mb-xs-30">
+                            <p class="midtext">
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Birth):</strong> @Html.DisplayFor(m => m.UserViewModel.Birth) <br />
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Email):</strong> @Html.DisplayFor(m => m.UserViewModel.Email) <br />
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Mobile):</strong> @Html.DisplayFor(m => m.UserViewModel.Mobile) <br />
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Skype):</strong> @Html.DisplayFor(m => m.UserViewModel.Skype) <br />
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Linkedin):</strong> @Html.DisplayFor(m => m.UserViewModel.Linkedin) <br />
+                                <strong>@Html.DisplayNameFor(m => m.UserViewModel.Github):</strong> @Html.DisplayFor(m => m.UserViewModel.Github) <br />
+                            </p>
+                        </div>
 
-                <h4 class="midtext">
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Birth):</strong> @Html.DisplayFor(m => m.UserViewModel.Birth) <br />
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Email):</strong> @Html.DisplayFor(m => m.UserViewModel.Email) <br />
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Mobile):</strong> @Html.DisplayFor(m => m.UserViewModel.Mobile) <br />
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Skype):</strong> @Html.DisplayFor(m => m.UserViewModel.Skype) <br />
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Linkedin):</strong> @Html.DisplayFor(m => m.UserViewModel.Linkedin) <br />
-                    <strong>@Html.DisplayNameFor(m => m.UserViewModel.Github):</strong> @Html.DisplayFor(m => m.UserViewModel.Github) <br />
-                </h4>
-
-                <hr class="mb-30" />
-
-                <h3 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Summary)</h3>
-                <h4 class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Summary)</h4>
-
-                <hr class="mb-30" />
-
-                <h3 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Skills)</h3>
-                <h4 class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Skills)</h4>
-
-                <hr class="mb-30" />
-
-                <h3 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Education)</h3>
-                <h4 class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Education)</h4>
+                        <div class="col-md-4 mb-sm-50 mb-xs-30">
+                            @*<img width="200" height="133" src="@Url.Action("GetImage", "AboutMe", new { id = @Model.UserViewModel.Id })" />*@
+                        </div>
+                    </div>
+                </div>
 
                 <hr class="mb-30" />
 
-                <h3 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.WorkExp)</h3>
-                <h4 class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.WorkExp)</h4>
+                <h4 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Summary)</h4>
+                <p class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Summary)</p>
 
                 <hr class="mb-30" />
 
-                <h3 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.AdditionalInfo)</h3>
-                <h4 class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.AdditionalInfo)</h4>
+                <h4 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Skills)</h4>
+                <p class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Skills)</p>
 
                 <hr class="mb-30" />
 
-                <h3 class="font-alt">
+                <h4 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.Education)</h4>
+                <p class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.Education)</p>
+
+                <hr class="mb-30" />
+
+                <h4 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.WorkExp)</h4>
+                <p class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.WorkExp)</p>
+
+                <hr class="mb-30" />
+
+                <h4 class="font-alt">@Html.DisplayNameFor(m => m.PortfolioViewModel.AdditionalInfo)</h4>
+                <p class="thintext_dark">@Html.Raw(Model.PortfolioViewModel.AdditionalInfo)</p>
+
+                <hr class="mb-30" />
+
+                <h4 class="font-alt">
                     My Projects - <a href="@Url.Action("Index", "Portfolio")" class="btn btn-mod btn-round  btn-small"> portfolio </a>
-                </h3>
+                </h4>
             </div>
         </div>
 

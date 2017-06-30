@@ -6,6 +6,6 @@ namespace Rhythm.Models
     {
         public ChiefUserAdminViewModel UserViewModel { get; set; }
         public PortfolioAdminViewModel PortfolioViewModel { get; set; }
-        public HeaderViewModel HeaderViewModel { get; set; }
+        public HeaderViewModel Header { get; set; }
     }
 }
