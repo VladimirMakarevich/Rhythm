@@ -17,13 +17,13 @@
                 @foreach (var rss in Model.RssEntity)
                 {
                     <div class="text">
-                        <h1 class="mt-0 ">
+                        <h1>
                             <small>RSS</small> @rss.Name
-                            <a href="@Url.Action("GetRss","Rss", new { id = rss.Id })" class="btn btn-mod btn-border btn-small btn-round"> Read More </a>
                         </h1>
                         @rss.Description
                     </div>
-
+                    <br />
+                    <a href="@Url.Action("GetRss","Rss", new { id = rss.Id })" class="btn btn-mod btn-border btn-small btn-round"> Read More </a>
                     <!-- End Col -->
 
                     <hr class="mb-40" />

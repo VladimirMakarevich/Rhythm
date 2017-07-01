@@ -8,6 +8,8 @@ using System.Web;
 using Rhythm.Controllers;
 using Rhythm.Infrastructure;
 using System.Globalization;
+using System.Timers;
+using System.Net;
 
 namespace Rhythm
 {
@@ -27,7 +29,8 @@ namespace Rhythm
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //System.Globalization.CultureInfo.CurrentCulture = new CultureInfo("en-US");
+
+            Timer();
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -82,6 +85,19 @@ namespace Rhythm
                 controller.ViewData.Model = new HandleErrorInfo(ex, currentController, currentAction);
                 ((IController)controller).Execute(new RequestContext(new HttpContextWrapper(httpContext), routeData));
             }
+        }
+
+        private void Timer()
+        {
+            Timer timer = new System.Timers.Timer(30000) { AutoReset = true };
+            timer.Elapsed += (object source, ElapsedEventArgs eea) =>
+            {
+                timer.Stop();
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://dogcoding.azurewebsites.net/");
+                request.GetResponse();
+                timer.Start();
+            };
+            timer.Start();
         }
     }
 }
