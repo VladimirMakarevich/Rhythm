@@ -126,7 +126,7 @@ namespace Rhythm.Mappers
                 ArticleContent = post.ShortDescription,
                 Title = post.Title,
                 Id = post.Id,
-                ImageData = post.ImageData
+                ImagePath = post.ImagePath
             };
         }
     }

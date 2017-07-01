@@ -3,7 +3,7 @@
 <h5 class="widget-title font-alt">Text widget</h5>
 <div class="widget-body">
     <div class="widget-text clearfix">
-        @if (Model.ImageData != null && Model.ImageData.Any())
+        @if (Model.ImagePath != null)
         {
             <img width="200" height="133" src="@Url.Action("GetImage", "Posts", new { Model.Id })" />
         }
