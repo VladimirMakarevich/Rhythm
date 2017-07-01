@@ -20,7 +20,7 @@
                         <div class="lead">
                             <hr class="mb-40" />
                             <div>
-                                @if (Model.PostViewModel.ImageData != null && Model.PostViewModel.ImageData.Any())
+                                @if (Model.PostViewModel.ImagePath != null && Model.PostViewModel..Any())
                                 {
                                     <img width="500" height="333" src="@Url.Action("GetImage", "Posts", new { id = Model.PostViewModel.Id })" />
                                 }
