@@ -21,7 +21,9 @@ namespace Rhythm.Areas.ChiefAdmin.Models
         [Required(ErrorMessage = "the field are required!")]
         public int CategoryId { get; set; }
         public CategoryAdminViewModel Category { get; set; }
+
         public byte[] ImageData { get; set; }
+        public string ImagePath { get; set; }
         public string ImageMime { get; set; }
 
         public int Id { get; set; }
