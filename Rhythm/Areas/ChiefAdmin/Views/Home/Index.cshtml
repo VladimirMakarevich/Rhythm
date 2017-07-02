@@ -5,169 +5,165 @@
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<br /><br /><br />
 <section class="page-section">
     <div class="container relative">
-        <h2 class="align-center font-alt uppercase">Posts</h2>
-        <div class="blog-item-body container">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-lg-12">
+                <h2 class="align-center font-alt uppercase">Posts</h2>
 
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Published</th>
-                    <th>PostedOn</th>
-                    <th>Change</th>
-                    <th>Delete</th>
-                </tr>
-                @foreach (var p in Model.Posts)
-            {
+                <table>
                     <tr>
-                        <td>@Html.DisplayFor(m => p.Id)</td>
-                        <td>@Html.DisplayFor(m => p.Title)</td>
-                        <td>@Html.DisplayFor(m => p.Published)</td>
-                        <td>@Html.DisplayFor(m => p.PostedOn)</td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Post", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Post", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
-                            </div>
-                        </td>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Published</th>
+                        <th>PostedOn</th>
+                        <th>Change</th>
+                        <th>Delete</th>
                     </tr>
-                }
-            </table>
-            <!-- Read More Link -->
-            <br />
-            <div class="align-right pt-10">
-                <a href="@Url.Action("listPosts", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
-            </div>
-        </div>
+                    @foreach (var p in Model.Posts)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => p.Id)</td>
+                            <td>@Html.DisplayFor(m => p.Title)</td>
+                            <td>@Html.DisplayFor(m => p.Published)</td>
+                            <td>@Html.DisplayFor(m => p.PostedOn)</td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Post", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Post", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <!-- Read More Link -->
+                <br />
+                <div class="align-right pt-10">
+                    <a href="@Url.Action("listPosts", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
+                </div>
 
 
-        <hr class="mb-40" />
+                <hr class="mb-40" />
 
-        <h2 class="align-center font-alt uppercase">Categories</h2>
-        <div class="blog-item-body container">
+                <h2 class="align-center font-alt uppercase">Categories</h2>
 
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description </th>
-                    <th>Count </th>
-                    <th>Change</th>
-                    <th>Delete</th>
-                </tr>
-                @foreach (var p in Model.Categories)
-            {
+                <table>
                     <tr>
-                        <td>@Html.DisplayFor(m => p.Id)</td>
-                        <td>@Html.DisplayFor(m => p.Name)</td>
-                        <td>@Html.DisplayFor(m => p.DescriptionCategory)</td>
-                        <td>@Html.DisplayFor(m => p.CountCategory)</td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Category", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Category", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
-                            </div>
-                        </td>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description </th>
+                        <th>Count </th>
+                        <th>Change</th>
+                        <th>Delete</th>
                     </tr>
-                }
-            </table>
-            <!-- Read More Link -->
-            <br />
-            <div class="align-right pt-10">
-                <a href="@Url.Action("listCategories", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
-            </div>
-        </div>
-
-        <hr class="mb-40" />
-
-        <h2 class="align-center font-alt uppercase">Tags</h2>
-        <div class="blog-item-body container">
-
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Descroption </th>
-                    <th>Url </th>
-                    <th>Change</th>
-                    <th>Delete</th>
-                </tr>
-                @foreach (var p in Model.Tags)
+                    @foreach (var p in Model.Categories)
             {
+                        <tr>
+                            <td>@Html.DisplayFor(m => p.Id)</td>
+                            <td>@Html.DisplayFor(m => p.Name)</td>
+                            <td>@Html.DisplayFor(m => p.DescriptionCategory)</td>
+                            <td>@Html.DisplayFor(m => p.CountCategory)</td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Category", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Category", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <!-- Read More Link -->
+                <br />
+                <div class="align-right pt-10">
+                    <a href="@Url.Action("listCategories", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
+                </div>
+
+                <hr class="mb-40" />
+
+                <h2 class="align-center font-alt uppercase">Tags</h2>
+
+                <table>
                     <tr>
-                        <td>@Html.DisplayFor(m => p.Id)</td>
-                        <td>@Html.DisplayFor(m => p.Name)</td>
-                        <td>@Html.DisplayFor(m => p.DescriptionTag)</td>
-                        <td>@Html.DisplayFor(m => p.UrlSlug)</td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Tag", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Tag", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
-                            </div>
-                        </td>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Descroption </th>
+                        <th>Url </th>
+                        <th>Change</th>
+                        <th>Delete</th>
                     </tr>
-                }
-            </table>
-            <!-- Read More Link -->
-            <br />
-            <div class="align-right pt-10">
-                <a href="@Url.Action("listTags", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
-            </div>
-        </div>
-        <hr class="mb-40" />
-
-
-        <h2 class="align-center font-alt uppercase">Comments</h2>
-        <div class="blog-item-body container">
-
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Post</th>
-                    <th>NameUserSender</th>
-                    <th>PostedOn</th>
-                    <th>Change</th>
-                    <th>Delete</th>
-                </tr>
-                @foreach (var p in Model.Comments)
+                    @foreach (var p in Model.Tags)
             {
+                        <tr>
+                            <td>@Html.DisplayFor(m => p.Id)</td>
+                            <td>@Html.DisplayFor(m => p.Name)</td>
+                            <td>@Html.DisplayFor(m => p.DescriptionTag)</td>
+                            <td>@Html.DisplayFor(m => p.UrlSlug)</td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Tag", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Tag", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <!-- Read More Link -->
+                <br />
+                <div class="align-right pt-10">
+                    <a href="@Url.Action("listTags", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
+                </div>
+                <hr class="mb-40" />
+
+
+                <h2 class="align-center font-alt uppercase">Comments</h2>
+
+                <table>
                     <tr>
-                        <td>@Html.DisplayFor(m => p.Id)</td>
-                        @*<td>@Html.DisplayFor(m => p.Post.Title)</td>*@
-                        <td>@Html.DisplayFor(m => p.NameUserSender)</td>
-                        <td>@Html.DisplayFor(m => p.PostedOn)</td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Comment", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="blog-item-foot">
-                                <a href="@Url.Action("Comment", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
-                            </div>
-                        </td>
+                        <th>Id</th>
+                        <th>Post</th>
+                        <th>NameUserSender</th>
+                        <th>PostedOn</th>
+                        <th>Change</th>
+                        <th>Delete</th>
                     </tr>
-                }
-            </table>
-            <!-- Read More Link -->
-            <br />
-            <div class="align-right pt-10">
-                <a href="@Url.Action("listComments", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
+                    @foreach (var p in Model.Comments)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(m => p.Id)</td>
+                            @*<td>@Html.DisplayFor(m => p.Post.Title)</td>*@
+                            <td>@Html.DisplayFor(m => p.NameUserSender)</td>
+                            <td>@Html.DisplayFor(m => p.PostedOn)</td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Comment", "Update", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Change </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Comment", "Delete", new { id = p.Id })" class="btn btn-mod btn-round  btn-small">Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <!-- Read More Link -->
+                <br />
+                <div class="align-right pt-10">
+                    <a href="@Url.Action("listComments", "Home")" class="btn btn-mod btn-round  btn-small">View all </a>
+                </div>
             </div>
         </div>
     </div>

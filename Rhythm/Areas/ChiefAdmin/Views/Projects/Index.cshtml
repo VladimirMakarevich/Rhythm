@@ -1,76 +1,82 @@
 ﻿@model List<Rhythm.Areas.ChiefAdmin.Models.ProjectAdminViewModel>
 
 @{
+    <link href="~/Content/table.css" rel="stylesheet" />
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
 <h2 class="align-center font-alt uppercase">Projects</h2>
 
-<div class="container relative">
-    <div class="blog-item-body container">
-        <p>
-            <div class="blog-item-foot">
-                <a href="@Url.Action("Create", "Projects")" class="btn btn-mod btn-round  btn-small"> Create New </a>
-            </div>
-        </p>
-        <table class="table">
-            <tr>
-                <th>
-                    NameProject
-                </th>
-                <th>
-                    Framework
-                </th>
-                <th>
-                    Database
-                </th>
-                <th>
-                    IDE
-                </th>
-                <th>
-                    StackTechnologies
-                </th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
+<section class="page-section">
+    <div class="container relative">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-lg-12">
+                <p>
+                    <div class="blog-item-foot">
+                        <a href="@Url.Action("Create", "Projects")" class="btn btn-mod btn-round  btn-small"> Create New </a>
+                    </div>
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            NameProject
+                        </th>
+                        <th>
+                            Framework
+                        </th>
+                        <th>
+                            Database
+                        </th>
+                        <th>
+                            IDE
+                        </th>
+                        <th>
+                            StackTechnologies
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
 
-            @foreach (var project in Model)
+                    @foreach (var project in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => project.NameProject)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => project.Framework)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => project.Database)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => project.IDE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => project.StackTechnologies)
-                    </td>
-                    <td>
-                        <div class="blog-item-foot">
-                            <a href="@Url.Action("Edit", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Edit </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="blog-item-foot">
-                            <a href="@Url.Action("Details", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Details </a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="blog-item-foot">
-                            <a href="@Url.Action("Delete", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Delete </a>
-                        </div>
-                    </td>
-                </tr>
-            }
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => project.NameProject)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => project.Framework)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => project.Database)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => project.IDE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => project.StackTechnologies)
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Edit", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Edit </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Details", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Details </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="blog-item-foot">
+                                    <a href="@Url.Action("Delete", "Projects", new { id = project.Id })" class="btn btn-mod btn-round  btn-small"> Delete </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
 
-        </table>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
+</section>

@@ -4,60 +4,65 @@
     Layout = "~/Areas/ChiefAdmin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container relative">
-    <h2 class="align-center font-alt uppercase">Rss @Html.DisplayFor(model => model.Name)</h2>
-    <div class="blog-item-body container">
-        <h2>Delete</h2>
+<section class="page-section">
+    <div class="container relative">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-lg-8">
+                <h2 class="align-center font-alt uppercase">Rss @Html.DisplayFor(model => model.Name)</h2>
+                <h2>Delete</h2>
 
-        <h3>Are you sure you want to delete this Rss feed?</h3>
+                <h3>Are you sure you want to delete this Rss feed?</h3>
 
-        @using (Html.BeginForm())
+                @using (Html.BeginForm())
             {
-            @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn" /> |
-                <a href="@Url.Action("Index", "Rsses")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn" /> |
+                        <a href="@Url.Action("Index", "Rsses")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+                    </div>
+                }
+
+                <div>
+                    <h4>Portfolio</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Theme)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Theme)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Url)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Url)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                    </dl>
+                </div>
             </div>
-        }
-
-        <div>
-            <h4>Portfolio</h4>
-            <hr />
-            <dl class="dl-horizontal">
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Name)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Theme)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Theme)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Url)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Url)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-            </dl>
         </div>
     </div>
-</div>
+</section>

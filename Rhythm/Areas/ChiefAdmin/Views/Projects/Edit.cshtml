@@ -6,99 +6,106 @@
 
 <h2 class="align-center font-alt uppercase"> Edit Project @Html.DisplayFor(model => model.NameProject)</h2>
 
-<div class="container relative">
-    <div>
-        <a href="@Url.Action("Index", "Projects")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
-    </div>
-    <br />
-    @using (Html.BeginForm("Edit", "Projects", FormMethod.Post, new { @role = "form", @class = "form" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Project</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.NameProject, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NameProject, new { htmlAttributes = new { @name = "NameProject", @id = "NameProject", @class = "input-md form-control" } })
+<section class="page-section">
+    <div class="container relative">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-lg-12">
+                <div>
+                    <a href="@Url.Action("Index", "Projects")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
                 </div>
-            </div>
+                <br />
+                @using (Html.BeginForm("Edit", "Projects", FormMethod.Post, new { @role = "form", @class = "form" }))
+                {
+                    @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Framework, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Framework, new { htmlAttributes = new { @name = "Framework", @id = "Framework", @class = "input-md form-control" } })
-                </div>
-            </div>
+                    <div class="form-horizontal">
+                        <h4>Project</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NameProject, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.NameProject, new { htmlAttributes = new { @name = "NameProject", @id = "NameProject", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Database, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Database, new { htmlAttributes = new { @name = "Database", @id = "Database", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Framework, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Framework, new { htmlAttributes = new { @name = "Framework", @id = "Framework", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IDE, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IDE, new { htmlAttributes = new { @name = "IDE", @id = "IDE", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Database, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Database, new { htmlAttributes = new { @name = "Database", @id = "Database", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StackTechnologies, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.StackTechnologies, new { htmlAttributes = new { @name = "StackTechnologies", @id = "StackTechnologies", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IDE, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.IDE, new { htmlAttributes = new { @name = "IDE", @id = "IDE", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @name = "Url", @id = "Url", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StackTechnologies, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.StackTechnologies, new { htmlAttributes = new { @name = "StackTechnologies", @id = "StackTechnologies", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @name = "Date", @id = "Date", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @name = "Url", @id = "Url", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @name = "Description", @id = "Description", @class = "input-md form-control" } })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @name = "Date", @id = "Date", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
-                </div>
-            </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @name = "Description", @id = "Description", @class = "input-md form-control" } })
+                            </div>
+                        </div>
 
-            <div class="clearfix">
-                <div class="cf-left-col">
-                    <!-- Inform Tip -->
-                    <div class="form-tip pt-20">
-                        <i class="fa fa-info-circle"></i> All the fields are required
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PortfolioId, "PortfolioId", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("PortfolioId", null, htmlAttributes: new { @class = "input-md form-control" })
+                            </div>
+                        </div>
+
+                        <div class="clearfix">
+                            <div class="cf-left-col">
+                                <!-- Inform Tip -->
+                                <div class="form-tip pt-20">
+                                    <i class="fa fa-info-circle"></i> All the fields are required
+                                </div>
+                            </div>
+                            <div class="cf-right-col">
+                                <!-- Send Button -->
+                                <div class="align-right pt-10">
+                                    <button type="submit" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn">Save Project</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="cf-right-col">
-                    <!-- Send Button -->
-                    <div class="align-right pt-10">
-                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Project</button>
-                    </div>
-                </div>
+                }
             </div>
         </div>
-    }
-</div>
+    </div>
+</section>
 
 
 @section scripts {
