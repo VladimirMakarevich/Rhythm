@@ -79,30 +79,37 @@ namespace Rhythm.BL.Provider
         {
             Post findPost = new Post();
             IEnumerable<Post> postList = await _uow.Post.GetPostsAsync();
+            var maxPost = postList.Where(p => p.Published == true).Max(m => m.Id);
 
-            int newPost = 1;
+            int newPost;
+            int currentPosts = post;
 
             switch (flag)
             {
                 case true:
-
                     do
                     {
                         newPost = post + 1;
 
                         findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
-                    } while (findPost == null && newPost > 0);
+                        post++;
+
+                        if (findPost == null && newPost >= maxPost) findPost = postList.FirstOrDefault(m => m.Id == currentPosts);
+
+                    } while (findPost == null);
                     break;
 
                 case false:
-
-                    var maxPost = postList.Where(p => p.Published == true).Max(m => m.Id);
                     do
                     {
                         newPost = post - 1;
 
                         findPost = postList.FirstOrDefault(m => m.Id == newPost && m.Published == true);
-                    } while (findPost == null && newPost <= maxPost);
+                        post--;
+
+                        if (newPost <= 0) findPost = postList.FirstOrDefault(m => m.Id == currentPosts);
+
+                    } while (findPost == null);
                     break;
 
                 default:
