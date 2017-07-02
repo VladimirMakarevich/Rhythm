@@ -20,7 +20,7 @@ namespace Rhythm.Mappers
             _mapper = mapper;
         }
 
-        public RssListViewModel ToRssListViewModel(Rss rss, IEnumerable<RssViewModel> rssFeed, int page)
+        public RssListViewModel ToRssListViewModel(Rss rss, List<RssViewModel> rssFeed, int page)
         {
             return new RssListViewModel
             {

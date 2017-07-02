@@ -35,7 +35,7 @@ namespace Rhythm.Controllers
         public async Task<ActionResult> GetRss(int id, int page = 1)
         {
             var rss = await _rssProvider.GetRssAsync(id);
-            var rssFeed = _rssCore.GetRssFeed(rss.Url);
+            var rssFeed = _rssCore.GetRssFeedCommon(rss.Url);
 
             var rssListViewModel = _rssMapper.ToRssListViewModel(rss, rssFeed, page);
 

@@ -4,7 +4,8 @@ namespace Rhythm.Models.RssFeeds.Interface
 {
     public interface IRssCore
     {
-        IEnumerable<RssViewModel> GetRssFeed(string link);
-        IEnumerable<RssViewModel> GetRssDNK(string link);
+        List<RssViewModel> GetRssFeedXml(string link);
+        List<RssViewModel> GetRssFeedCommon(string link);
+        List<RssViewModel> GetRssFeedAtom(string link);
     }
 }
