@@ -1,4 +1,5 @@
 ﻿using Rhythm.BL.Interfaces;
+using Rhythm.Domain.Entities;
 using Rhythm.Mappers;
 using Rhythm.Models;
 using Rhythm.Models.RssFeeds;
@@ -35,11 +36,27 @@ namespace Rhythm.Controllers
         public async Task<ActionResult> GetRss(int id, int page = 1)
         {
             var rss = await _rssProvider.GetRssAsync(id);
-            var rssFeed = _rssCore.GetRssFeedCommon(rss.Url);
-
+            var rssFeed = CheckType(rss);
             var rssListViewModel = _rssMapper.ToRssListViewModel(rss, rssFeed, page);
 
             return View(rssListViewModel);
+        }
+
+        private List<RssViewModel> CheckType(Rss rss)
+        {
+            List<RssViewModel> rssFeed;
+
+            switch (rss.Type)
+            {
+                case TypeRss.Xml:
+                    return rssFeed = _rssCore.GetRssFeedXml(rss.Url);
+                case TypeRss.Atom:
+                    return rssFeed = _rssCore.GetRssFeedAtom(rss.Url);
+                case TypeRss.Common:
+                    return rssFeed = _rssCore.GetRssFeedCommon(rss.Url);
+                default:
+                    return rssFeed = _rssCore.GetRssFeedCommon(rss.Url);
+            }
         }
 
         //#region SergeyTeplyakov
