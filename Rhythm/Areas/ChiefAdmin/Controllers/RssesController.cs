@@ -21,7 +21,7 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
         {
             var rsses = await _rssProvider.GetRssesAsync();
             var rssesViewModel = _rssMapper.ToRssesViewModel(rsses);
-            
+
             return View(rssesViewModel);
         }
 
@@ -89,5 +89,17 @@ namespace Rhythm.Areas.ChiefAdmin.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //#region
+        //private async Task DropDownListType(object selectedItem = null)
+        //{
+        //    var types = from m in await _rssProvider.GetTypesAsync()
+        //               orderby m.Id
+        //               select m;
+        //    //var typeViewModel = _rssMapper.ToTypesViewModel(types);
+
+        //    ViewBag.Type = new SelectList(types, "Id", "Name", selectedItem);
+        //}
+        //#endregion
     }
 }

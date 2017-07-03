@@ -44,7 +44,14 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.TextAreaFor(m => m.Description, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Description Tag" })
+                                @Html.TextAreaFor(m => m.Description, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Description" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EnumDropDownListFor(m => m.Type, new { @class = "input-md round form-control" })
                             </div>
                         </div>
 
