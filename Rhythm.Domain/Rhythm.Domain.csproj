@@ -118,6 +118,7 @@
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Rss.cs" />
     <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\TypeRss.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Identity\DogUserManager.cs" />
     <Compile Include="Migrations\201706072008174_rebuild-all-databse.cs" />
@@ -147,6 +148,10 @@
     <Compile Include="Migrations\201706301444062_added-image-to-chief-user.cs" />
     <Compile Include="Migrations\201706301444062_added-image-to-chief-user.Designer.cs">
       <DependentUpon>201706301444062_added-image-to-chief-user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707030717239_added-type-to-rss-feeds.cs" />
+    <Compile Include="Migrations\201707030717239_added-type-to-rss-feeds.Designer.cs">
+      <DependentUpon>201707030717239_added-type-to-rss-feeds.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\Interfaces\ICommentRepository.cs" />
@@ -222,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706301444062_added-image-to-chief-user.resx">
       <DependentUpon>201706301444062_added-image-to-chief-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707030717239_added-type-to-rss-feeds.resx">
+      <DependentUpon>201707030717239_added-type-to-rss-feeds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
