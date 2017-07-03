@@ -8,13 +8,12 @@
         public string PubDate { get; set; }
         public string Description
         {
-            get { return GetPlainText(description, 300); }
+            get { return GetPlainText(description, 500); }
             set { description = value; }
         }
         private string GetPlainText(string htmlContent, int lenght = 0)
         {
-            return htmlContent;
-
+            return lenght > 0 && htmlContent.Length > lenght ? htmlContent.Substring(0, lenght) + "..." : htmlContent;
         }
     }
 }
