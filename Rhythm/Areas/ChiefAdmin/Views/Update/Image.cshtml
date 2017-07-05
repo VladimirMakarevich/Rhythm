@@ -9,7 +9,8 @@
 <section class="page-section">
     <div class="container relative">
         <p>
-            <div class="blog-item-foot">
+            <div class="form-actions no-color">
+                <a href="@Url.Action("listPosts", "Home", new { id = Model.Id })" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a> |
                 <a href="@Url.Action("Image", "Delete", new { id = Model.Id } )" class="btn btn-mod btn-round  btn-small"> Delete Image </a>
             </div>
         </p>
