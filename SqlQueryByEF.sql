@@ -11,10 +11,13 @@ INSERT INTO dbo.ChiefUsers
 	N'vova.zhigalov', 
 	N'+375 29 102 44 85', 
 	N'www.github.com/VladimirMakarevich', 
-	N'www.linkedin.com/in/vladimir23/')
+	N'www.linkedin.com/in/vladimir23/',
+	N'qwerty')
+	
 
 INSERT INTO dbo.Portfolios
-	VALUES (1, N'Developer', 
+	VALUES (1, 
+	N'Developer', 
 	N'ASP.NET MVC Developer', 
 	N'Experienced software developer specialist with a focus on back-end development, business logic implementation and web-based applications.',
 	N'ASP.NET MVC 5 - Core, Web API, EF 5-6 (model-first/code-first), WinForms, Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, XML, JavaScript, jQuery, Ajax, a bit Angular2, NLog, Elmah, a bit Azure, Confluence software.', 
@@ -29,14 +32,20 @@ INSERT INTO dbo.Projects
 	N'ASP.NET MVC 5', 
 	N'MS SQL 2014, EF 6', 
 	N'Visual Studio 2015', 
-	N'ASP.NET MVC 5, EF 6 (code-first), Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, JavaScript, jQuery, Ajax, NLog, Elmah, Azure.')
+	N'ASP.NET MVC 5, EF 6 (code-first), Identity, Automapper, UnitTest, Moq, Ninject, HTML, CSS, JavaScript, jQuery, Ajax, NLog, Elmah, Azure.',
+	N'qwerty',
+	N'qwerty',
+	N'qwerty')
 
 INSERT INTO dbo.Projects
 	VALUES (1, N'AutoDoc', 
 	N'ASP.NET API Core', 
 	N'MS SQL 2014, EF Core', 
 	N'Visual Studio 2017', 
-	N'ASP.NET API Core, EF Core (code-first), Angular 2, Automapper, Bootstrap')
+	N'ASP.NET API Core, EF Core (code-first), Angular 2, Automapper, Bootstrap',
+	N'qwerty',
+	N'qwerty',
+	N'qwerty')
 
 INSERT INTO dbo.Tags
 	VALUES (N'C#', N'csharp', NULL)
@@ -71,7 +80,8 @@ INSERT INTO dbo.Posts
 	NULL, 
 	NULL, 
 	NULL, 
-	1)
+	1,
+	N'')
 
 INSERT INTO dbo.Posts
 	VALUES (2, N'Vladi Makarevich', 
@@ -83,7 +93,8 @@ INSERT INTO dbo.Posts
 	NULL, 
 	NULL, 
 	NULL, 
-	1)
+	1,
+	N'')
 
 INSERT INTO dbo.Posts
 	VALUES (3, N'Vladi Makarevich', 
@@ -95,7 +106,8 @@ INSERT INTO dbo.Posts
 	NULL, 
 	NULL, 
 	NULL, 
-	0)
+	0,
+	N'')
 
 INSERT INTO dbo.Comments
 	VALUES (1, 
