@@ -25,11 +25,15 @@
                             Last Name
                         </th>
                         <th>
-                            Birth Day
-                        </th>
-                        <th>
                             Email
                         </th>
+                        <th>
+                            Mobile
+                        </th>
+                        <th>
+                            Home Address
+                        </th>
+
                         <th></th>
                         <th></th>
                         <th></th>
@@ -45,10 +49,13 @@
                                 @Html.DisplayFor(modelItem => item.LastName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Birth)
+                                @Html.DisplayFor(modelItem => item.Email)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Email)
+                                @Html.DisplayFor(modelItem => item.Mobile)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HomeAddress)
                             </td>
                             <td>
                                 <div class="blog-item-foot">

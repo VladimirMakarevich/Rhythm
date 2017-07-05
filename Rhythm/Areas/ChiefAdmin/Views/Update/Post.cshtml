@@ -9,6 +9,10 @@
 <!-- Section -->
 <section class="page-section">
     <div class="container relative">
+        <div>
+            <a href="@Url.Action("listPosts", "Home")" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn"> Back to List </a>
+        </div>
+        <br />
 
         <!-- Form -->
         @using (Html.BeginForm("Post", "Update", FormMethod.Post, new { @role = "form", @class = "form" }))
@@ -97,7 +101,7 @@
                                 <div class="cf-right-col">
                                     <!-- Send Button -->
                                     <div class="align-right pt-10">
-                                        <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Save Post</button>
+                                        <button type="submit" class="submit_btn btn btn-mod btn-small btn-round" id="submit_btn">Save Post</button>
                                     </div>
                                 </div>
                             </div>

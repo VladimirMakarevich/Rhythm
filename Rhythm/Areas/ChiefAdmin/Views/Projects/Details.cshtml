@@ -25,7 +25,7 @@
                     <dl class="dl-horizontal">
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.NameProject)
+                            @Html.DisplayNameFor(model => model.NameProject):
                         </dt>
 
                         <dd>
@@ -33,7 +33,7 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Framework)
+                            @Html.DisplayNameFor(model => model.Framework):
                         </dt>
 
                         <dd>
@@ -41,7 +41,7 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Database)
+                            @Html.DisplayNameFor(model => model.Database):
                         </dt>
 
                         <dd>
@@ -49,7 +49,7 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.IDE)
+                            @Html.DisplayNameFor(model => model.IDE):
                         </dt>
 
                         <dd>
@@ -57,23 +57,23 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.StackTechnologies)
+                            @Html.DisplayNameFor(model => model.StackTechnologies):
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.StackTechnologies)
+                            @Html.Raw(Model.StackTechnologies)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Url)
+                            @Html.DisplayNameFor(model => model.Url):
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Url)
+                            @Html.Raw(Model.Url)
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Date)
+                            @Html.DisplayNameFor(model => model.Date):
                         </dt>
 
                         <dd>
@@ -81,11 +81,11 @@
                         </dd>
 
                         <dt>
-                            @Html.DisplayNameFor(model => model.Description)
+                            @Html.DisplayNameFor(model => model.Description):
                         </dt>
 
                         <dd>
-                            @Html.DisplayFor(model => model.Description)
+                            @Html.Raw(Model.Description)
                         </dd>
                     </dl>
                 </div>

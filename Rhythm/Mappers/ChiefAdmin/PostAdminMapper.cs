@@ -31,7 +31,8 @@ namespace Rhythm.Mappers.ChiefAdmin
         public ImageAdminViewModel ToImageViewModel(Post post)
         {
             var imageViewModel = _mapper.Map<Post, ImageAdminViewModel>(post);
-            if (post.ImagePath != null)
+
+            if (post.ImagePath != null && System.IO.File.Exists(post.ImagePath))
             {
                 imageViewModel.ImageData = System.IO.File.ReadAllBytes(post.ImagePath);
             }
