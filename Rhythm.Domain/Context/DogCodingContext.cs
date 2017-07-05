@@ -30,6 +30,16 @@ namespace Rhythm.Domain.Context
             modelBuilder.Entity<Post>()
                 .HasMany(x => x.Tags)
                 .WithMany(x => x.Posts);
+
+            modelBuilder.Entity<Post>()
+                .HasRequired(c => c.Category)
+                .WithMany(p => p.Posts)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Comment>()
+                .HasRequired(c => c.Post)
+                .WithMany(p => p.Comments)
+                .WillCascadeOnDelete(true);
         }
 
         public static DogCodingContext Create()
