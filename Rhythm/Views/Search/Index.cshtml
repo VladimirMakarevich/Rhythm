@@ -22,11 +22,11 @@
                         <h2 class="blog-item-title">@Html.ActionLink(@post.Title, "Post", "Posts", new { id = post.Id }, null)</h2>
                         <!-- Author, Categories, Comments -->
                         <div class="blog-item-data">
-                            <a><i class="fa fa-clock-o"></i>@post.PostedOn</a>
+                            <a><i class="fa fa-clock-o"></i> @post.PostedOn </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-user"></i>@post.NameSenderPost</a>
+                            <a><i class="fa fa-user"></i> @post.NameSenderPost </a>
                             <span class="separator">&nbsp;</span>
-                            <a><i class="fa fa-comments"></i>Comments - @post.CountComments</a>
+                            <a><i class="fa fa-comments"></i> Comments @post.CountComments </a>
                         </div>
                         <!-- Text Intro -->
                         <div class="blog-item-body">
