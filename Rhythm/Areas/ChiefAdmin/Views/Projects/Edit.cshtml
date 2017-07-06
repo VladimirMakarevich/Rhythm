@@ -121,4 +121,10 @@
         if (editor) { editor.destroy(true); }
         CKEDITOR.replace('Description', { enterMode: CKEDITOR.ENTER_BR, });
     </script>
+
+    <script>
+        var editor = CKEDITOR.instances['Url'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace('Url', { enterMode: CKEDITOR.ENTER_BR, });
+    </script>
 }
