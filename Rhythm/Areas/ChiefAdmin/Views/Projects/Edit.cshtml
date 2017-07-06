@@ -61,7 +61,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @name = "Url", @id = "Url", @class = "input-md form-control" } })
+                                @Html.TextAreaFor(model => model.Url, new { htmlAttributes = new { @name = "Url", @id = "Url", @class = "input-md form-control" } })
                             </div>
                         </div>
 
