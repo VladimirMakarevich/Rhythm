@@ -55,20 +55,20 @@ namespace Rhythm.Mappers
                 Name = contact.Name,
                 Email = contact.Email,
                 AreLikeDogs = contact.AreLikeDogs,
-                Header = GetHeader(),
+                Header = GetHeader("You have entered invalid data"),
                 ResultMessage = new ContactsResultViewModel
                 {
-                    Message = "You have entered invalid data."
+                    Message = "You have entered invalid data"
                 }
             };
         }
 
-        private HeaderViewModel GetHeader()
+        private HeaderViewModel GetHeader(string title = "Contact")
         {
             return new HeaderViewModel
             {
-                Title = "Contact",
-                Text = "DogBlog - Vladimir Makarevich - backend Developer ASP.NET MVC",
+                Title = title,
+                Text = "DogBlog - Vladimir Makarevich - ASP.NET MVC Developer",
                 FirstTagWord = "C#",
                 SecondTagWord = "ASP.NET MVC",
                 ThirdTagWord = "WEB"

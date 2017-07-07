@@ -10,7 +10,7 @@
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">
-    <div class="container relative">
+    <div class="container relative contact form">
         <h1 class="section-title font-alt mb-70 mb-sm-40">
             @if (Model.ResultMessage.Message != null)
             {
@@ -86,17 +86,21 @@
                             <div class="cf-left-col">
                                 <!-- Name -->
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.Name, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })
+                                    @*    @Html.TextBoxFor(m => m.Name, new { @class = "input-md round form-control", @placeholder = "Name", @pattern = ".{3,100}" })*@
+                                    <input class="input-md round form-control" id="Name" maxlength="25" name="Name" type="text" placeholder="Name">
                                 </div>
                                 <!-- Email -->
                                 <div class="form-group">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })
+                                    <input class="input-md round form-control" id="Email" maxlength="64" name="Email" type="text" placeholder="Email">
+                                    @*@Html.TextBoxFor(m => m.Email, new { @class = "input-md round form-control", @placeholder = "Email", @pattern = ".{5,100}" })*@
                                 </div>
                             </div>
                             <div class="cf-right-col">
                                 <!-- Message -->
                                 <div class="form-group">
-                                    @Html.TextAreaFor(m => m.Message, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })
+                                    <textarea class="input-md round form-control placeholded" cols="20" data-val="true" data-val-required="all the fields are required" id="Message" name="Message" placeholder="Message" rows="2" style="height: 84px;" maxlength="64" type="text"></textarea>
+                                    @*                     <input class="input-md round form-control" style="height: 84px;" id="Message" maxlength="64" name="Message" type="text" placeholder="Message" data-inputmask-regex="[a-zA-zа-яА-Я\`-]([\s]?[a-zA-zа-яА-Я\`-]){0,1000}" value="">*@
+                                    @*@Html.TextAreaFor(m => m.Message, new { @class = "input-md round form-control", @style = "height: 84px;", @placeholder = "Message" })*@
                                 </div>
                             </div>
                         </div>
@@ -114,7 +118,7 @@
                                 </div>
                                 <!-- Send Button -->
                                 <div class="align-right pt-10">
-                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
+                                    <button type="submit" class="submit_btn btn btn-mod btn-medium btn-round" id="sendMessage">Submit Message</button>
                                 </div>
                             </div>
                         </div>
@@ -131,13 +135,17 @@
 
 <!-- End Contact Section -->
 @section scripts {
-    <script>
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>*@
+    @*<script src="~/Scripts/rhythm/contact-form.js"></script>*@
+
+    @*<script>
         jQuery.validator.addMethod("isvalidbool", function (value, element, param) {
             return element.checked;
         });
         jQuery.validator.unobtrusive.adapters.addBool("isvalidbood");
-    </script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/rhythm/contact-form.js"></script>
+    </script>*@
+    @*<script src="~/Scripts/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/Scripts/mask.js"></script>
+    <script src="~/Scripts/custom/validationContact.js"></script>*@
 }
